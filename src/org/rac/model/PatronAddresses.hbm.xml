@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="org.rac.model.PatronAddresses" table="PatronAddresses" lazy="false">
+
+		<id name="addressId" column="addressId" type="java.lang.Long">
+			<generator class="native">
+            </generator>
+		</id>
+		<version name="version" type="java.lang.Long" column="version"/>
+
+		<property name="auditInfo" type="org.archiviststoolkit.hibernate.AuditInfoType">
+			<column name="lastUpdated"/>
+			<column name="created"/>
+			<column name="lastUpdatedBy"/>
+			<column name="createdBy"/>
+		</property>
+
+
+		<property name="addressType"
+				  column="addressType"
+				  type="string"/>
+
+		<property name="address1"
+				  column="address1"
+				  type="string"/>
+
+        <property name="address2"
+                  column="address2"
+                  type="string"/>
+
+        <property name="address3"
+                  column="address3"
+                  type="string"/>
+
+        <property name="city"
+                  column="city"
+                  type="string"/>
+
+        <property name="region"
+                  column="region"
+                  type="string"/>
+
+        <property name="mailCode"
+                  column="mailCode"
+                  type="string"/>
+
+        <property name="country"
+                  column="country"
+                  type="string"/>
+
+        <property name="preferredAddress"
+                  column="preferredAddress"
+                  type="boolean"/>
+
+        <many-to-one name="patron"
+                     class="org.rac.model.Patrons"
+                     column="patronId"/>
+
+	</class>
+</hibernate-mapping>

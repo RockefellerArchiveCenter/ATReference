@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="org.rac.model.PatronPublications" table="PatronPublications" lazy="false">
+
+		<id name="patronPublicationId" column="patronPublicationId" type="java.lang.Long">
+			<generator class="native">
+            </generator>
+		</id>
+		<version name="version" type="java.lang.Long" column="version"/>
+
+		<property name="auditInfo" type="org.archiviststoolkit.hibernate.AuditInfoType">
+			<column name="lastUpdated"/>
+			<column name="created"/>
+			<column name="lastUpdatedBy"/>
+			<column name="createdBy"/>
+		</property>
+
+
+		<property name="publicationDate"
+				  column="publicationDate"
+				  type="date"/>
+
+		<property name="publicationTitle"
+				  column="publicationTitle"
+				  type="text"/>
+
+        <property name="publisher"
+                  column="publisher"
+                  type="string"/>
+
+        <property name="publicationType"
+                  column="publicationType"
+                  type="string"/>
+
+        <property name="collaborators"
+                  column="collaborators"
+                  type="text"/>
+
+        <many-to-one name="patron"
+                     class="org.rac.model.Patrons"
+                     column="patronId"/>
+
+       <set name="subjects"
+             cascade="all-delete-orphan"
+             inverse="true"
+             lazy="true"
+             access="field">
+            <key>
+                <column name="patronPublicationId" not-null="true"/>
+            </key>
+            <one-to-many class="org.rac.model.PatronPublicationsSubjects"/>
+        </set>
+
+        <set name="names"
+             cascade="all-delete-orphan"
+             inverse="true"
+             lazy="true"
+             access="field">
+            <key>
+                <column name="patronPublicationId" not-null="true"/>
+            </key>
+            <one-to-many class="org.rac.model.PatronPublicationsNames"/>
+        </set>
+
+	</class>
+</hibernate-mapping>

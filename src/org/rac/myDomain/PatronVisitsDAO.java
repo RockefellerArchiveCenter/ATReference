@@ -1,0 +1,47 @@
+/**
+ * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.  
+ * All rights reserved. 
+ *
+ * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL) 
+ * version 1.0 (http://www.opensource.org/licenses/ecl1.php) 
+ *
+ * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty 
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the ECL license for more details about permissions and limitations. 
+ *
+ *
+ * Archivists' Toolkit(TM) 
+ * http://www.archiviststoolkit.org 
+ * info@archiviststoolkit.org 
+ *
+ * @author Lee Mandell
+ * Date: Jul 16, 2010
+ * Time: 10:46:23 AM
+ */
+
+package org.rac.myDomain;
+
+import org.archiviststoolkit.hibernate.SessionFactory;
+import org.rac.model.PatronVisits;
+import org.rac.model.PatronVisitsSubjects;
+import org.archiviststoolkit.model.Subjects;
+import org.archiviststoolkit.mydomain.DomainAccessObjectImpl;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+import java.util.Collection;
+
+public class PatronVisitsDAO extends DomainAccessObjectImpl {
+
+	public PatronVisitsDAO() {
+		super(PatronVisits.class);
+	}
+
+	public Collection findBySubject(Subjects subject) {
+
+		Session session = SessionFactory.getInstance().openSession();
+		return  session.createCriteria(PatronVisits.class)
+				.createCriteria(PatronVisits.PROPERTYNAME_SUBJECTS)
+					.add(Restrictions.eq(PatronVisitsSubjects.PROPERTYNAME_SUBJECT, subject)).list();
+
+	}
+}

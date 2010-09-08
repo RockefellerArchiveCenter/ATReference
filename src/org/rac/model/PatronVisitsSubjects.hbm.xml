@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.rac.model">
+
+	<class name="PatronVisitsSubjects"
+		   table="PatronVisitsSubjects">
+
+		<id name="patronVisitsSubjectsId" column="patronVisitsSubjectsId" type="java.lang.Long">
+			<generator class="native"></generator>
+		</id>
+
+
+		<many-to-one name="patronVisits"
+					 class="PatronVisits"
+					 column="patronVisitId"/>
+
+		<many-to-one name="subject"
+					 class="org.archiviststoolkit.model.Subjects"
+					 column="subjectId"/>
+
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,291 @@
+# InstallAnywhere Localization File
+#
+# External strings for locale: English (en)
+# See the 'ProjectLocalizationInfo.txt' file in this same directory for information 
+#     regarding mappings between the properties shown below and your InstallAnywhere
+#     project.
+#
+# External/Locale property names can take one of three forms:
+#     <ActionName>.<ReferenceID>.<ActionProperty>          (e.g., Installer.858175031081.productName)
+#     <ActionName>.<ReferenceID>.<ActionProperty>.<Index>  (e.g., Installer.858175031081.installLabels.01)
+#         - where the <ActionProperty> is a Vector and the <Index> represents the place within the
+#           Vector where the value of the property should be inserted
+#     _ia.<SomeProperty>                                   (e.g., _ia.MyCustomCodePanelProperty)
+#         - where <SomeProperty> is used as an identifier for a localized value by custom code
+#
+# External/Locale property values should be plain text strings.  Special or i18n characters
+#     that cannot be represented by ASCII characters should be written using escaped unicode.
+#     - see the utility 'native2ascii' distributed with your JDK
+#
+# Product Name: Archivists' Toolkit 2.0 - custom
+# Project File: /Users/leemandell/archivistsToolkit/atProject/installMaker/ArchivistsToolkitInstallMaker.iap_xml
+# Generated:    Mon Aug 30 11:59:13 EDT 2010
+
+
+# Billboard.004f70d5932d.imageName=ucsd_boat.jpg
+Billboard.004f70d5932d.imageName=ucsd_boat.jpg
+
+# Billboard.004f70d5932d.imagePath=/Users/leemandell/archivistsToolkit/atProject/installMaker/images/
+Billboard.004f70d5932d.imagePath=/Users/leemandell/archivistsToolkit/atProject/installMaker/images/
+
+# Billboard.005077d4932d.imageName=rope.jpg
+Billboard.005077d4932d.imageName=rope.jpg
+
+# Billboard.005077d4932d.imagePath=/Users/leemandell/archivistsToolkit/atProject/installMaker/images/
+Billboard.005077d4932d.imagePath=/Users/leemandell/archivistsToolkit/atProject/installMaker/images/
+
+# Billboard.0051cbb9932d.imageName=nyu_album.jpg
+Billboard.0051cbb9932d.imageName=nyu_album.jpg
+
+# Billboard.0051cbb9932d.imagePath=/Users/leemandell/archivistsToolkit/atProject/installMaker/images/
+Billboard.0051cbb9932d.imagePath=/Users/leemandell/archivistsToolkit/atProject/installMaker/images/
+
+# Billboard.00528867932d.imageName=newbrad1.jpg
+Billboard.00528867932d.imageName=newbrad1.jpg
+
+# Billboard.00528867932d.imagePath=/Users/leemandell/archivistsToolkit/atProject/installMaker/images/
+Billboard.00528867932d.imagePath=/Users/leemandell/archivistsToolkit/atProject/installMaker/images/
+
+# Billboard.00565b03932d.imageName=test.jpg
+Billboard.00565b03932d.imageName=test.jpg
+
+# Billboard.00565b03932d.imagePath=/Users/leemandell/archivistsToolkit/atProject/installMaker/images/
+Billboard.00565b03932d.imagePath=/Users/leemandell/archivistsToolkit/atProject/installMaker/images/
+
+# CreateShortcut.feceb6568b76.args=
+CreateShortcut.feceb6568b76.args=
+
+# CreateShortcut.feceb6568b76.destinationName=Archivists' Toolkit 2.0 - custom
+CreateShortcut.feceb6568b76.destinationName=Archivists' Toolkit 2.0 - custom
+
+# CreateShortcut.feceb6568b76.workingDir=
+CreateShortcut.feceb6568b76.workingDir=
+
+# InstallBundle.fecea3d68b69.bundleName=Application
+InstallBundle.fecea3d68b69.bundleName=Application
+
+# InstallBundle.fecea3d68b69.description=This installs the application feature.
+InstallBundle.fecea3d68b69.description=This installs the application feature.
+
+# InstallBundle.fecea3d78b69.bundleName=Help
+InstallBundle.fecea3d78b69.bundleName=Help
+
+# InstallBundle.fecea3d78b69.description=This installs the help feature.
+InstallBundle.fecea3d78b69.description=This installs the help feature.
+
+# InstallDirAction.fecea4048b6d.additionalText=
+InstallDirAction.fecea4048b6d.additionalText=
+
+# InstallDirAction.fecea4048b6d.prompt=Where Would You Like to Install?
+InstallDirAction.fecea4048b6d.prompt=Where Would You Like to Install?
+
+# InstallDirAction.fecea4048b6d.stepTitle=Choose Install Folder
+InstallDirAction.fecea4048b6d.stepTitle=Choose Install Folder
+
+# Installer.fecea3778b60.installLabels.00=Introduction
+Installer.fecea3778b60.installLabels.00=Introduction
+
+# Installer.fecea3778b60.installLabels.01=License Agreement
+Installer.fecea3778b60.installLabels.01=License Agreement
+
+# Installer.fecea3778b60.installLabels.02=Choose Install Folder
+Installer.fecea3778b60.installLabels.02=Choose Install Folder
+
+# Installer.fecea3778b60.installLabels.03=Choose Alias Folder
+Installer.fecea3778b60.installLabels.03=Choose Alias Folder
+
+# Installer.fecea3778b60.installLabels.04=Pre-Installation Summary
+Installer.fecea3778b60.installLabels.04=Pre-Installation Summary
+
+# Installer.fecea3778b60.installLabels.05=Installing...
+Installer.fecea3778b60.installLabels.05=Installing...
+
+# Installer.fecea3778b60.installLabels.06=Install Complete
+Installer.fecea3778b60.installLabels.06=Install Complete
+
+# Installer.fecea3778b60.installProgressImageName=introImage.png
+Installer.fecea3778b60.installProgressImageName=introImage.png
+
+# Installer.fecea3778b60.installProgressImagePath=com/zerog/ia/installer/images/
+Installer.fecea3778b60.installProgressImagePath=com/zerog/ia/installer/images/
+
+# Installer.fecea3778b60.panelImageName=introImage.png
+Installer.fecea3778b60.panelImageName=introImage.png
+
+# Installer.fecea3778b60.panelImagePath=com/zerog/ia/installer/images/
+Installer.fecea3778b60.panelImagePath=com/zerog/ia/installer/images/
+
+# Installer.fecea3778b60.rulesFailedMessage=The installer cannot run on your configuration. It will now quit.
+Installer.fecea3778b60.rulesFailedMessage=The installer cannot run on your configuration. It will now quit.
+
+# Installer.fecea3778b60.splashScreenConsolePrompt=CHOOSE LOCALE BY NUMBER
+Installer.fecea3778b60.splashScreenConsolePrompt=CHOOSE LOCALE BY NUMBER
+
+# Installer.fecea3778b60.splashScreenConsoleTitle=Choose Locale...
+Installer.fecea3778b60.splashScreenConsoleTitle=Choose Locale...
+
+# Installer.fecea3778b60.splashScreenGUIConfirm=OK
+Installer.fecea3778b60.splashScreenGUIConfirm=OK
+
+# Installer.fecea3778b60.splashScreenGUIImageName=ATLogo.jpg
+Installer.fecea3778b60.splashScreenGUIImageName=ATLogo.jpg
+
+# Installer.fecea3778b60.splashScreenGUIImagePath=/Users/leemandell/archivistsToolkit/atProject/src/org/archiviststoolkit/resources/images/
+Installer.fecea3778b60.splashScreenGUIImagePath=/Users/leemandell/archivistsToolkit/atProject/src/org/archiviststoolkit/resources/images/
+
+# Installer.fecea3778b60.splashScreenGUIInstructions=
+Installer.fecea3778b60.splashScreenGUIInstructions=
+
+# Installer.fecea3778b60.splashScreenGUITitle=
+Installer.fecea3778b60.splashScreenGUITitle=
+
+# InstallerInfoData.fecea3878b61.installerName=installArchivistsToolkit2.0custom
+InstallerInfoData.fecea3878b61.installerName=installArchivistsToolkit2.0custom
+
+# InstallerInfoData.fecea3878b61.installerTitle=Archivists' Toolkit 2.0-custom
+InstallerInfoData.fecea3878b61.installerTitle=Archivists' Toolkit 2.0-custom
+
+# InstallerInfoData.fecea3878b61.productName=Archivists' Toolkit 2.0 - custom
+InstallerInfoData.fecea3878b61.productName=Archivists' Toolkit 2.0 - custom
+
+# InstallFinishAction.fecea4118b6d.installErrorMessage=The installation of $PRODUCT_NAME$ is finished, but some errors occurred during the install.  Please see the installation log for details.
+InstallFinishAction.fecea4118b6d.installErrorMessage=The installation of $PRODUCT_NAME$ is finished, but some errors occurred during the install.  Please see the installation log for details.
+
+# InstallFinishAction.fecea4118b6d.installFatalMessage=The installation of $PRODUCT_NAME$ is finished, but some serious errors occurred during the install.  Please see the installation log for details.
+InstallFinishAction.fecea4118b6d.installFatalMessage=The installation of $PRODUCT_NAME$ is finished, but some serious errors occurred during the install.  Please see the installation log for details.
+
+# InstallFinishAction.fecea4118b6d.installSuccessMessage=Congratulations! $PRODUCT_NAME$ has been successfully installed to:\n\n     $USER_INSTALL_DIR$\n\nPress \"Done\" to quit the installer.
+InstallFinishAction.fecea4118b6d.installSuccessMessage=Congratulations! $PRODUCT_NAME$ has been successfully installed to:\n\n     $USER_INSTALL_DIR$\n\nPress \"Done\" to quit the installer.
+
+# InstallFinishAction.fecea4118b6d.installWarningMessage=The installation of $PRODUCT_NAME$ is finished, but some warnings occurred during the install.  Please see the installation log for details.
+InstallFinishAction.fecea4118b6d.installWarningMessage=The installation of $PRODUCT_NAME$ is finished, but some warnings occurred during the install.  Please see the installation log for details.
+
+# InstallFinishAction.fecea4118b6d.rebootNotNeededMessage=
+InstallFinishAction.fecea4118b6d.rebootNotNeededMessage=
+
+# InstallFinishAction.fecea4118b6d.rebootRecommendedMessage=You should restart the system to complete the installation.
+InstallFinishAction.fecea4118b6d.rebootRecommendedMessage=You should restart the system to complete the installation.
+
+# InstallFinishAction.fecea4118b6d.rebootRequiredMessage=You need to restart the system to complete the installation.
+InstallFinishAction.fecea4118b6d.rebootRequiredMessage=You need to restart the system to complete the installation.
+
+# InstallFinishAction.fecea4118b6d.windowTitle=Install Complete
+InstallFinishAction.fecea4118b6d.windowTitle=Install Complete
+
+# InstallFrameConfigurator.fecea3a08b61.uninstallerTitle=Uninstall $PRODUCT_NAME$
+InstallFrameConfigurator.fecea3a08b61.uninstallerTitle=Uninstall $PRODUCT_NAME$
+
+# InstallSet.fecea3d58b69.description=The most common application features will be installed.  This option is recommended for most users.
+InstallSet.fecea3d58b69.description=The most common application features will be installed.  This option is recommended for most users.
+
+# InstallSet.fecea3d58b69.imageName=typical.png
+InstallSet.fecea3d58b69.imageName=typical.png
+
+# InstallSet.fecea3d58b69.imagePath=com/zerog/ia/installer/images/
+InstallSet.fecea3d58b69.imagePath=com/zerog/ia/installer/images/
+
+# InstallSet.fecea3d58b69.installSetName=Typical
+InstallSet.fecea3d58b69.installSetName=Typical
+
+# InstallSet.fecea3d68b68.description=Only required application features will be installed.  This option is recommended only for users with limited disk space.
+InstallSet.fecea3d68b68.description=Only required application features will be installed.  This option is recommended only for users with limited disk space.
+
+# InstallSet.fecea3d68b68.imageName=minimal.png
+InstallSet.fecea3d68b68.imageName=minimal.png
+
+# InstallSet.fecea3d68b68.imagePath=com/zerog/ia/installer/images/
+InstallSet.fecea3d68b68.imagePath=com/zerog/ia/installer/images/
+
+# InstallSet.fecea3d68b68.installSetName=Minimal
+InstallSet.fecea3d68b68.installSetName=Minimal
+
+# InstallSet.fedbfe3a8ba0.description=Choose this option to customize the features to be installed.
+InstallSet.fedbfe3a8ba0.description=Choose this option to customize the features to be installed.
+
+# InstallSet.fedbfe3a8ba0.imageName=customIcon.png
+InstallSet.fedbfe3a8ba0.imageName=customIcon.png
+
+# InstallSet.fedbfe3a8ba0.imagePath=com/zerog/ia/installer/images/
+InstallSet.fedbfe3a8ba0.imagePath=com/zerog/ia/installer/images/
+
+# InstallSet.fedbfe3a8ba0.installSetName=Custom
+InstallSet.fedbfe3a8ba0.installSetName=Custom
+
+# InstallSummary.fecea40f8b6d.stepPrompt=Please Review the Following Before Continuing:
+InstallSummary.fecea40f8b6d.stepPrompt=Please Review the Following Before Continuing:
+
+# InstallSummary.fecea40f8b6d.title=Pre-Installation Summary
+InstallSummary.fecea40f8b6d.title=Pre-Installation Summary
+
+# InstallUninstaller.fecea4588b6e.destinationName=Uninstall $PRODUCT_NAME$
+InstallUninstaller.fecea4588b6e.destinationName=Uninstall $PRODUCT_NAME$
+
+# IntroAction.fecea4028b6d.message=InstallAnywhere will guide you through the installation of $PRODUCT_NAME$.\n\nIt is strongly recommended that you quit all programs before continuing with this installation.\n\nClick the 'Next' button to proceed to the next screen. If you want to change something on a previous screen, click the 'Previous' button.\n\nYou may cancel this installation at any time by clicking the 'Cancel' button.
+IntroAction.fecea4028b6d.message=InstallAnywhere will guide you through the installation of $PRODUCT_NAME$.\n\nIt is strongly recommended that you quit all programs before continuing with this installation.\n\nClick the 'Next' button to proceed to the next screen. If you want to change something on a previous screen, click the 'Previous' button.\n\nYou may cancel this installation at any time by clicking the 'Cancel' button.
+
+# IntroAction.fecea4028b6d.stepTitle=Introduction
+IntroAction.fecea4028b6d.stepTitle=Introduction
+
+# LicenseAgrAction.fed40a778ba0.resourceName=ecl-license.txt
+LicenseAgrAction.fed40a778ba0.resourceName=ecl-license.txt
+
+# LicenseAgrAction.fed40a778ba0.resourcePath=/Users/leemandell/archivistsToolkit/atProject/installMaker/
+LicenseAgrAction.fed40a778ba0.resourcePath=/Users/leemandell/archivistsToolkit/atProject/installMaker/
+
+# LicenseAgrAction.fed40a778ba0.stepPrompt=Installation and Use of $PRODUCT_NAME$ Requires Acceptance of the Following Agreement. Please scroll to the bottom to read the entire agreement.
+LicenseAgrAction.fed40a778ba0.stepPrompt=Installation and Use of $PRODUCT_NAME$ Requires Acceptance of the Following Agreement. Please scroll to the bottom to read the entire agreement.
+
+# LicenseAgrAction.fed40a778ba0.title=License Agreement
+LicenseAgrAction.fed40a778ba0.title=License Agreement
+
+# MakeExecutable.77cb50c38b25.destinationName=MaintenanceWizard
+MakeExecutable.77cb50c38b25.destinationName=MaintenanceWizard
+
+# MakeExecutable.feceb64e8b71.destinationName=Archivists' Toolkit 2.0 - custom
+MakeExecutable.feceb64e8b71.destinationName=Archivists' Toolkit 2.0 - custom
+
+# ShortcutLocAction.fecea4098b6d.macPrompt=Where would you like to create aliases?
+ShortcutLocAction.fecea4098b6d.macPrompt=Where would you like to create aliases?
+
+# ShortcutLocAction.fecea4098b6d.macTitle=Choose Alias Folder
+ShortcutLocAction.fecea4098b6d.macTitle=Choose Alias Folder
+
+# ShortcutLocAction.fecea4098b6d.unixPrompt=Where would you like to create links?
+ShortcutLocAction.fecea4098b6d.unixPrompt=Where would you like to create links?
+
+# ShortcutLocAction.fecea4098b6d.unixTitle=Choose Link Folder
+ShortcutLocAction.fecea4098b6d.unixTitle=Choose Link Folder
+
+# ShortcutLocAction.fecea4098b6d.winPrompt=Where would you like to create product icons?
+ShortcutLocAction.fecea4098b6d.winPrompt=Where would you like to create product icons?
+
+# ShortcutLocAction.fecea4098b6d.winTitle=Choose Shortcut Folder
+ShortcutLocAction.fecea4098b6d.winTitle=Choose Shortcut Folder
+
+# UninstallCompleteAction.fecea3f88b6d.rebootNotNeededMessage=
+UninstallCompleteAction.fecea3f88b6d.rebootNotNeededMessage=
+
+# UninstallCompleteAction.fecea3f88b6d.rebootRecommendedMessage=You should restart the system to complete the uninstallation.
+UninstallCompleteAction.fecea3f88b6d.rebootRecommendedMessage=You should restart the system to complete the uninstallation.
+
+# UninstallCompleteAction.fecea3f88b6d.rebootRequiredMessage=You need to restart the system to complete the uninstallation.
+UninstallCompleteAction.fecea3f88b6d.rebootRequiredMessage=You need to restart the system to complete the uninstallation.
+
+# UninstallCompleteAction.fecea3f88b6d.stepTitle=Uninstall Complete
+UninstallCompleteAction.fecea3f88b6d.stepTitle=Uninstall Complete
+
+# UninstallCompleteAction.fecea3f88b6d.uninstallIncompleteMessage=The following items could not be removed:
+UninstallCompleteAction.fecea3f88b6d.uninstallIncompleteMessage=The following items could not be removed:
+
+# UninstallCompleteAction.fecea3f88b6d.uninstallSkippedMessage=Unable to uninstall $PRODUCT_NAME$.
+UninstallCompleteAction.fecea3f88b6d.uninstallSkippedMessage=Unable to uninstall $PRODUCT_NAME$.
+
+# UninstallCompleteAction.fecea3f88b6d.uninstallSuccessMessage=All items were successfully uninstalled.
+UninstallCompleteAction.fecea3f88b6d.uninstallSuccessMessage=All items were successfully uninstalled.
+
+# UninstallIntroAction.fecea3f28b6d.message=About to uninstall...\n\n$PRODUCT_NAME$\n\nThis will remove features installed by InstallAnywhere.  It will not remove files and folders created after the installation.
+UninstallIntroAction.fecea3f28b6d.message=About to uninstall...\n\n$PRODUCT_NAME$\n\nThis will remove features installed by InstallAnywhere.  It will not remove files and folders created after the installation.
+
+# UninstallIntroAction.fecea3f28b6d.stepTitle=Uninstall $PRODUCT_NAME$
+UninstallIntroAction.fecea3f28b6d.stepTitle=Uninstall $PRODUCT_NAME$
+

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="org.rac.model.Services" table="Services" lazy="false">
+
+		<id name="servicesId" column="servicesId" type="java.lang.Long">
+			<generator class="native">
+            </generator>
+		</id>
+		<version name="version" type="java.lang.Long" column="version"/>
+
+		<property name="auditInfo" type="org.archiviststoolkit.hibernate.AuditInfoType">
+			<column name="lastUpdated"/>
+			<column name="created"/>
+			<column name="lastUpdatedBy"/>
+			<column name="createdBy"/>
+		</property>
+
+
+		<property name="category"
+				  column="category"
+				  unique="true"/>
+
+		<property name="description"
+				  column="description"
+				  not-null="true"
+				  type="string"/>
+
+		<property name="units"
+				  column="units"
+				  type="string"/>
+
+		<property name="minQuantityPerCalendarYear"
+				  column="minQuantPerCalYear"
+				  type="integer"/>
+
+		<property name="maxQuantityPerCalendarYear"
+				  column="maxQuantPerCalYear"
+				  type="int"/>
+
+		<property name="unlimitedQuantityPerCalendarYear"
+				  column="unlimitedQuantPerCalYear"
+				  type="boolean"/>
+
+        <property name="cost"
+                  column="cost"
+                  type="double"/>
+
+		<filter name="repository" condition=":repositoryId = repositoryId"/>
+	</class>
+	<filter-def name="repository">
+		<filter-param name="repositoryId" type="java.lang.Long"/>
+	</filter-def>
+</hibernate-mapping>

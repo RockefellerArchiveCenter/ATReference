@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.rac.model">
+    <class name="Patrons" table="Patrons" lazy="false">
+
+        <id name="patronId" column="patronId" type="java.lang.Long">
+            <generator class="native"></generator>
+        </id>
+
+        <version name="version" type="java.lang.Long" column="version"/>
+
+        <property name="auditInfo" type="org.archiviststoolkit.hibernate.AuditInfoType">
+            <column name="lastUpdated" not-null="true"/>
+            <column name="created" not-null="true"/>
+            <column name="lastUpdatedBy" not-null="true"/>
+            <column name="createdBy" not-null="true"/>
+        </property>
+
+
+        <property name="sortName"
+                  column="sortName"
+                  not-null="true"
+                  type="string"/>
+
+        <property name="createSortNameAutomatically"
+                  column="createSortNameAutomatically"
+                  not-null="true"
+                  type="boolean"/>
+
+        <!-- personal name fields-->
+        <property name="primaryName"
+                  column="primaryName"
+                  length="255"
+                  type="string"/>
+
+        <property name="restOfName"
+                  column="restOfName"
+                  length="255"
+                  type="string"/>
+
+        <property name="prefix"
+                  column="prefix"
+                  length="255"
+                  type="string"/>
+
+        <property name="suffix"
+                  column="suffix"
+                  length="255"
+                  type="string"/>
+
+        <property name="title"
+                  column="title"
+                  length="255"
+                  type="string"/>
+
+        <property name="directOrder"
+                  column="directOrder"
+                  type="boolean"/>
+
+        <property name="patronType"
+                  column="patronType"
+                  type="string"/>
+
+        <property name="institutionalAffiliation"
+                  column="institutionalAffiliation"
+                  type="string"/>
+
+        <property name="department"
+                  column="department"
+                  type="string"/>
+
+        <property name="patronNotes"
+                  column="patronNotes"
+                  type="text"/>
+
+        <property name="howDidYouHearAboutUs"
+                  column="howDidYouHearAboutUs"
+                  not-null="true"
+                  type="string"/>
+
+        <property name="email1"
+                  column="email1"
+                  not-null="true"
+                  type="string"/>
+
+        <property name="email2"
+                  column="email2"
+                  not-null="true"
+                  type="string"/>
+
+        <!-- a suite of user defined fields -->
+
+        <property name="userDefinedDate1"
+                  column="userDefinedDate1"
+                  type="date"/>
+
+        <property name="userDefinedDate2"
+                  column="userDefinedDate2"
+                  type="date"/>
+
+        <property name="userDefinedBoolean1"
+                  column="userDefinedBoolean1"
+                  type="boolean"/>
+
+        <property name="userDefinedBoolean2"
+                  column="userDefinedBoolean2"
+                  type="boolean"/>
+
+        <property name="userDefinedInteger1"
+                  column="userDefinedInteger1"
+                  type="integer"/>
+
+        <property name="userDefinedInteger2"
+                  column="userDefinedInteger2"
+                  type="integer"/>
+
+        <property name="userDefinedReal1"
+                  column="userDefinedReal1"
+                  type="double"/>
+
+        <property name="userDefinedReal2"
+                  column="userDefinedReal2"
+                  type="double"/>
+
+        <property name="userDefinedString1"
+                  column="userDefinedString1"
+                  type="string"/>
+
+        <property name="userDefinedString2"
+                  column="userDefinedString2"
+                  type="string"/>
+
+        <property name="userDefinedString3"
+                  column="userDefinedString3"
+                  type="string"/>
+
+        <property name="userDefinedText1"
+                  column="userDefinedText1"
+                  type="text"/>
+
+        <property name="userDefinedText2"
+                  column="userDefinedText2"
+                  type="text"/>
+
+        <property name="userDefinedText3"
+                  column="userDefinedText3"
+                  type="text"/>
+
+        <property name="userDefinedText4"
+                  column="userDefinedText4"
+                  type="text"/>
+
+        <property name="md5Hash"
+                  column="md5Hash"
+                  index="md5Hash"
+                  unique="true"
+                  type="string"/>
+
+        <set name="patronAddresses"
+             cascade="all-delete-orphan"
+             inverse="true"
+             lazy="true"
+             access="field">
+            <key>
+                <column name="patronId" not-null="true"/>
+            </key>
+            <one-to-many class="PatronAddresses"/>
+        </set>
+
+        <set name="patronVisits"
+             cascade="all-delete-orphan"
+             inverse="true"
+             lazy="true"
+             access="field">
+            <key>
+                <column name="patronId" not-null="true"/>
+            </key>
+            <one-to-many class="PatronVisits"/>
+        </set>
+
+        <set name="patronFunding"
+             cascade="all-delete-orphan"
+             inverse="true"
+             lazy="true"
+             access="field">
+            <key>
+                <column name="patronId" not-null="true"/>
+            </key>
+            <one-to-many class="PatronFunding"/>
+        </set>
+
+        <set name="patronPublications"
+             cascade="all-delete-orphan"
+             inverse="true"
+             lazy="true"
+             access="field">
+            <key>
+                <column name="patronId" not-null="true"/>
+            </key>
+            <one-to-many class="PatronPublications"/>
+        </set>
+
+        <set name="patronPhoneNumbers"
+             cascade="all-delete-orphan"
+             inverse="true"
+             lazy="true"
+             access="field">
+            <key>
+                <column name="patronId" not-null="true"/>
+            </key>
+            <one-to-many class="PatronPhoneNumbers"/>
+        </set>
+
+        <set name="completedForms"
+             cascade="all-delete-orphan"
+             inverse="true"
+             lazy="true"
+             access="field">
+            <key>
+                <column name="patronId" not-null="true"/>
+            </key>
+            <one-to-many class="CompletedForms"/>
+        </set>
+
+
+    </class>
+
+
+</hibernate-mapping>
+

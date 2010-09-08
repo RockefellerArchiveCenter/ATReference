@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="org.rac.model.PatronVisits" table="PatronVisits" lazy="false">
+
+		<id name="patronVisitId" column="patronVisitId" type="java.lang.Long">
+			<generator class="native">
+            </generator>
+		</id>
+		<version name="version" type="java.lang.Long" column="version"/>
+
+		<property name="auditInfo" type="org.archiviststoolkit.hibernate.AuditInfoType">
+			<column name="lastUpdated"/>
+			<column name="created"/>
+			<column name="lastUpdatedBy"/>
+			<column name="createdBy"/>
+		</property>
+
+
+		<property name="visitDate"
+				  column="visitDate"
+				  type="date"/>
+
+		<property name="contactArchivist"
+				  column="contactArchivist"
+				  type="string"/>
+
+        <property name="topic"
+                  column="topic"
+                  type="string"/>
+
+        <property name="researchPurpose"
+                  column="researchPurpose"
+                  not-null="true"
+                  type="string"/>
+
+        <!--<set name="subjects" table="PatronVisitsSubjects">-->
+            <!--<many-to-many column="subjectId"-->
+                <!--class="org.archiviststoolkit.model.Subjects"/>-->
+        <!--</set>-->
+
+        <many-to-one name="patron"
+                      class="org.rac.model.Patrons"
+                      column="patronId"/>
+
+        <set name="subjects"
+             cascade="all-delete-orphan"
+             inverse="true"
+             lazy="true"
+             access="field">
+            <key>
+                <column name="patronVisitId" not-null="true"/>
+            </key>
+            <one-to-many class="org.rac.model.PatronVisitsSubjects"/>
+        </set>
+
+        <set name="names"
+             cascade="all-delete-orphan"
+             inverse="true"
+             lazy="true"
+             access="field">
+            <key>
+                <column name="patronVisitId" not-null="true"/>
+            </key>
+            <one-to-many class="org.rac.model.PatronVisitsNames"/>
+        </set>
+
+	</class>
+</hibernate-mapping>

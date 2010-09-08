@@ -1,0 +1,785 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/dlib/!svn/ver/7723/at/trunk/src/org/archiviststoolkit/importer/MARCXML
+END
+Handle111Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/7723/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle111Action.java
+END
+Handle501Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle501Action.java
+END
+Handle440Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle440Action.java
+END
+Handle521Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle521Action.java
+END
+Handle307Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle307Action.java
+END
+Handle541Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle541Action.java
+END
+Handle515Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle515Action.java
+END
+Handle561Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle561Action.java
+END
+Handle246Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle246Action.java
+END
+Handle535Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle535Action.java
+END
+Handle581Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle581Action.java
+END
+Handle662Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle662Action.java
+END
+Handle555Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle555Action.java
+END
+Handle656Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle656Action.java
+END
+Handle777Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle777Action.java
+END
+Handle69xAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle69xAction.java
+END
+MARCXMLAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/MARCXMLAction.java
+END
+Handle100Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/7723/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle100Action.java
+END
+MARCImportHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/dlib/!svn/ver/7636/at/trunk/src/org/archiviststoolkit/importer/MARCXML/MARCImportHandler.java
+END
+Handle510Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle510Action.java
+END
+Handle611Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/7723/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle611Action.java
+END
+Handle530Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle530Action.java
+END
+Handle504Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle504Action.java
+END
+Handle342Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle342Action.java
+END
+Handle550Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle550Action.java
+END
+Handle524Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle524Action.java
+END
+Handle362Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle362Action.java
+END
+Handle255Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle255Action.java
+END
+Handle651Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle651Action.java
+END
+Handle544Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle544Action.java
+END
+Handle518Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle518Action.java
+END
+Handle752Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle752Action.java
+END
+Handle538Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle538Action.java
+END
+Handle772Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle772Action.java
+END
+Handle584Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle584Action.java
+END
+Handle786Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle786Action.java
+END
+Handle210Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle210Action.java
+END
+Handle600Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/7723/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle600Action.java
+END
+Handle250Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle250Action.java
+END
+Handle351Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle351Action.java
+END
+Handle513Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle513Action.java
+END
+Handle270Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle270Action.java
+END
+Handle533Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle533Action.java
+END
+Handle507Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle507Action.java
+END
+Handle365Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle365Action.java
+END
+Handle258Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle258Action.java
+END
+Handle654Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle654Action.java
+END
+Handle547Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle547Action.java
+END
+Handle648Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle648Action.java
+END
+Handle567Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle567Action.java
+END
+Handle775Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle775Action.java
+END
+Handle300Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle300Action.java
+END
+Handle502Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle502Action.java
+END
+Handle340Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle340Action.java
+END
+Handle710Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/7723/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle710Action.java
+END
+Handle522Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle522Action.java
+END
+Handle730Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle730Action.java
+END
+Handle516Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle516Action.java
+END
+Handle562Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle562Action.java
+END
+Handle247Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle247Action.java
+END
+Handle770Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle770Action.java
+END
+Handle536Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle536Action.java
+END
+Handle556Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle556Action.java
+END
+Handle657Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle657Action.java
+END
+Handle59xAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle59xAction.java
+END
+Handle222Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle222Action.java
+END
+Handle511Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle511Action.java
+END
+Handle008Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle008Action.java
+END
+Handle242Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle242Action.java
+END
+Handle505Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle505Action.java
+END
+Handle343Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle343Action.java
+END
+Handle525Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle525Action.java
+END
+Handle256Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle256Action.java
+END
+Handle490Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle490Action.java
+END
+Handle545Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle545Action.java
+END
+Handle753Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle753Action.java
+END
+Handle357Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle357Action.java
+END
+Handle565Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle565Action.java
+END
+Handle773Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle773Action.java
+END
+Handle585Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle585Action.java
+END
+Handle767Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle767Action.java
+END
+Handle787Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle787Action.java
+END
+Handle110Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/7723/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle110Action.java
+END
+Handle130Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle130Action.java
+END
+Handle500Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle500Action.java
+END
+Handle520Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle520Action.java
+END
+Handle306Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle306Action.java
+END
+Handle540Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle540Action.java
+END
+Handle514Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle514Action.java
+END
+Handle352Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle352Action.java
+END
+Handle245Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle245Action.java
+END
+Handle534Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle534Action.java
+END
+Handle580Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle580Action.java
+END
+Handle508Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle508Action.java
+END
+Handle762Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle762Action.java
+END
+Handle366Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle366Action.java
+END
+Handle655Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle655Action.java
+END
+MARCIngest.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/dlib/!svn/ver/7723/at/trunk/src/org/archiviststoolkit/importer/MARCXML/MARCIngest.java
+END
+Handle776Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle776Action.java
+END
+Handle240Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle240Action.java
+END
+Handle321Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle321Action.java
+END
+Handle610Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/7723/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle610Action.java
+END
+Handle260Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle260Action.java
+END
+Handle630Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle630Action.java
+END
+Handle711Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/7723/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle711Action.java
+END
+Handle650Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle650Action.java
+END
+Handle254Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle254Action.java
+END
+Handle355Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle355Action.java
+END
+Handle563Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle563Action.java
+END
+Handle583Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle583Action.java
+END
+Handle765Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle765Action.java
+END
+Handle658Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle658Action.java
+END
+Handle785Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle785Action.java
+END
+Handle310Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle310Action.java
+END
+Handle700Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/7723/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle700Action.java
+END
+Handle243Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle243Action.java
+END
+Handle720Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/7723/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle720Action.java
+END
+Handle506Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle506Action.java
+END
+Handle263Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle263Action.java
+END
+Handle740Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle740Action.java
+END
+Handle552Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle552Action.java
+END
+Handle760Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle760Action.java
+END
+Handle526Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle526Action.java
+END
+Handle653Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle653Action.java
+END
+Handle257Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4432/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle257Action.java
+END
+Handle780Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle780Action.java
+END
+Handle546Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4276/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle546Action.java
+END
+Handle754Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle754Action.java
+END
+Handle774Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle774Action.java
+END
+Handle586Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dlib/!svn/ver/4260/at/trunk/src/org/archiviststoolkit/importer/MARCXML/Handle586Action.java
+END

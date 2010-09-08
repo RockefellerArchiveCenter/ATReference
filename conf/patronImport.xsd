@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:element name="patronRecords">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="record" type="patron" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element> 
+    <xs:complexType name="patron">
+       <xs:sequence>
+           <xs:element name="patronType" type="xs:string" minOccurs="1" maxOccurs="1"/>
+           <xs:element name="howDidYouHearAboutUs" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="primaryName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+           <xs:element name="restOfName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+           <xs:element name="prefix" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="suffix" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="title" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="institutionalAffiliation" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="department" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="patronNotes" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="email1" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="email2" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="userDefinedDate1" type="xs:date" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="userDefinedDate2" type="xs:date" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="userDefinedBoolean1" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="userDefinedBoolean2" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="userDefinedInteger1" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="userDefinedInteger2" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="userDefinedReal1" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="userDefinedReal2" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="userDefinedString1" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="userDefinedString2" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="userDefinedString3" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="userDefinedText1" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="userDefinedText2" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="userDefinedText3" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="userDefinedText4" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="patronAddresses" type="patronAddresses" minOccurs="0" maxOccurs="unbounded"/>
+           <xs:element name="patronPhoneNumbers" type="patronPhoneNumbers" minOccurs="0" maxOccurs="unbounded"/>
+           <xs:element name="patronVisits" type="patronVisits" minOccurs="0" maxOccurs="unbounded"/>
+           <xs:element name="patronFunding" type="patronFunding" minOccurs="0" maxOccurs="unbounded"/>
+           <xs:element name="patronPublications" type="patronPublications" minOccurs="0" maxOccurs="unbounded"/>
+       </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="patronAddresses">
+        <xs:sequence>
+            <xs:element name="addressType" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="address1" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="address2" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="address3" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="city" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="region" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="country" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="mailCode" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="preferredAddress" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="patronPhoneNumbers">
+        <xs:sequence>
+            <xs:element name="phoneNumber" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="phoneNumberType" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="preferredPhoneNumber" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="patronVisits">
+        <xs:sequence>
+            <xs:element name="contactArchivist" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="researchPurpose" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="topic" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="visitDate" type="xs:date" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="patronVisitsSubjects" type="patronVisitsSubjects" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="patronVisitsSubjects">
+        <xs:sequence>
+            <xs:element name="subjectTerm" type="xs:string"  minOccurs="1" maxOccurs="1"/>
+            <xs:element name="subjectTermType" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="subjectSource" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="patronFunding">
+        <xs:sequence>
+            <xs:element name="topic" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="awardDetails" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="fundingType" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="fundingDate" type="xs:date" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="patronPublications">
+        <xs:sequence>
+            <xs:element name="publicationDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="publicationTitle" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="publicationType" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="publisher" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="collaborators" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="patronPublicationsSubjects" type="patronPublicationsSubjects" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="patronPublicationsSubjects">
+        <xs:sequence>
+            <xs:element name="subjectTerm" type="xs:string"/>
+            <xs:element name="subjectTermType" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="subjectSource" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+        
+    <!-- check validation rules- checked against DD, need to check against program -->
+    <!-- re-check field names-->
+ 
+
+   
+    
+    <!--Notes: 
+        
+        Email- now linked to address, is req for each address if req at all, so made not req) -->
+ 
+</xs:schema>

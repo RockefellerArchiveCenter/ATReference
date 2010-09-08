@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="archivisttoolkit" default="all">
+
+
+	<property file="archivisttoolkit.properties"/>
+	<!-- Uncomment the following property if no tests compilation is needed -->
+	<property name="skip.tests" value="true"/>
+
+	<!-- The task requires the following libraries from IntelliJ IDEA distribution: -->
+	<!--   javac2.jar; jdom.jar; bcel.jar -->
+	<!--<taskdef name="javac2" classname="com.intellij.uiDesigner.ant.Javac2"/>-->
+
+	<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask"/>
+
+
+	<taskdef name="buildinstaller" classname="com.zerog.ia.integration.ant.InstallAnywhereAntTask"/>
+	<!-- Compiler options -->
+
+	<property name="compiler.debug" value="on"/>
+	<property name="compiler.generate.no.warnings" value="off"/>
+	<property name="compiler.args" value=""/>
+	<property name="compiler.max.memory" value="128m"/>
+	<patternset id="ignored.files">
+		<exclude name="**/CVS/**"/>
+		<exclude name="**/SCCS/**"/>
+		<exclude name="**/RCS/**"/>
+		<exclude name="**/rcs/**"/>
+		<exclude name="**/.DS_Store/**"/>
+		<exclude name="**/.svn/**"/>
+	</patternset>
+	<patternset id="compiler.resources">
+		<include name="**/?*.properties"/>
+		<include name="**/?*.xml"/>
+		<include name="**/?*.gif"/>
+		<include name="**/?*.png"/>
+		<include name="**/?*.jpeg"/>
+		<include name="**/?*.jpg"/>
+		<include name="**/?*.html"/>
+		<include name="**/?*.dtd"/>
+		<include name="**/?*.tld"/>
+		<include name="**/?*.properties"/>
+		<include name="**/?*.xml"/>
+		<include name="**/?*.xsl"/>
+		<include name="**/?*.html"/>
+		<include name="**/?*.dtd"/>
+		<include name="**/?*.tld"/>
+		<include name="**/?*.gif"/>
+		<include name="**/?*.png"/>
+		<include name="**/?*.jpeg"/>
+		<include name="**/?*.jpg"/>
+	</patternset>
+
+	<!-- JDK definitions -->
+	<path id="jdk.classpath.1.5">
+		<fileset dir="${jdk.home.1.5}">
+			<include name="../../1.5.0/Home/lib/deploy.jar"/>
+			<include name="../../1.5.0/Classes/dt.jar"/>
+			<include name="../../1.5.0/Classes/jce.jar"/>
+			<include name="../../1.5.0/Home/lib/plugin.jar"/>
+			<include name="../../1.5.0/Classes/charsets.jar"/>
+			<include name="../../1.5.0/Classes/classes.jar"/>
+			<include name="../../1.5.0/Classes/dt.jar"/>
+			<include name="../../1.5.0/Classes/jce.jar"/>
+			<include name="../../1.5.0/Classes/jconsole.jar"/>
+			<include name="../../1.5.0/Classes/jsse.jar"/>
+			<include name="../../1.5.0/Classes/laf.jar"/>
+			<include name="../../1.5.0/Classes/ui.jar"/>
+			<include name="../../1.5.0/Home/lib/ext/apple_provider.jar"/>
+			<include name="../../1.5.0/Home/lib/ext/localedata.jar"/>
+			<include name="../../1.5.0/Home/lib/ext/sunjce_provider.jar"/>
+		</fileset>
+	</path>
+
+	<property name="project.jdk.home" value="${jdk.home.1.5}"/>
+	<property name="project.jdk.classpath" value="jdk.classpath.1.5"/>
+
+	<!-- Modules -->
+
+
+	<!-- Module ArchivistToolkit -->
+
+	<dirname property="module.archivisttoolkit.basedir" file="${ant.file}"/>
+
+
+	<property name="module.jdk.home.archivisttoolkit" value="${project.jdk.home}"/>
+	<property name="module.jdk.classpath.archivisttoolkit" value="${project.jdk.classpath}"/>
+
+	<property name="compiler.args.archivisttoolkit" value="${compiler.args}"/>
+
+	<property name="archivisttoolkit.output.dir" value="${module.archivisttoolkit.basedir}/classes"/>
+	<property name="archivisttoolkit.dist.dir" value="${module.archivisttoolkit.basedir}/dist"/>
+	<property name="archivisttoolkit.website.dir" value="/Users/leemandell/archivistsToolkit/atWebSite"/>
+	<property name="archivisttoolkit.testoutput.dir" value="${module.archivisttoolkit.basedir}/classes"/>
+	<property name="archivisttoolkit.zipFile" value="${module.archivisttoolkit.basedir}/dist/ArchivistsToolkit.zip"/>
+	<property name="archivisttoolkit.webDistribution.dir"
+			  value="${module.archivisttoolkit.basedir}/../atWebSite/atDistribution"/>
+	<property name="javadoc.dir" value="${archivisttoolkit.website.dir}/forDevelopers/javaDocs2_0_6"/>
+
+	<path id="archivisttoolkit.module.bootclasspath">
+		<!-- Paths to be included in compilation bootclasspath -->
+	</path>
+
+	<path id="archivisttoolkit.module.classpath">
+		<fileset dir="lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+
+	<patternset id="excluded.from.module.archivisttoolkit">
+		<patternset refid="ignored.files"/>
+	</patternset>
+
+	<patternset id="excluded.from.compilation.archivisttoolkit">
+		<patternset refid="excluded.from.module.archivisttoolkit"/>
+	</patternset>
+
+	<path id="archivisttoolkit.module.sourcepath">
+		<dirset dir="${module.archivisttoolkit.basedir}">
+			<include name="src"/>
+		</dirset>
+	</path>
+
+
+	<target name="compile.module.archivisttoolkit"
+			depends="compile.module.archivisttoolkit.production,compile.module.archivisttoolkit.tests"
+			description="compile module(s) ArchivistToolkit"/>
+
+	<target name="compile.module.archivisttoolkit.production"
+			description="compile module(s) ArchivistToolkit production classes">
+		<mkdir dir="${archivisttoolkit.output.dir}"/>
+		<javac destdir="${archivisttoolkit.output.dir}" debug="${compiler.debug}"
+			   nowarn="${compiler.generate.no.warnings}" memoryMaximumSize="${compiler.max.memory}">
+			<classpath refid="archivisttoolkit.module.classpath"/>
+			<src refid="archivisttoolkit.module.sourcepath"/>
+            <extdirs path="org/hadassah.importer.**"/>
+		</javac>
+
+		<copy todir="${archivisttoolkit.output.dir}">
+			<fileset dir="${module.archivisttoolkit.basedir}/src">
+				<patternset refid="compiler.resources"/>
+				<type type="file"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="compile.module.archivisttoolkit.tests" depends="compile.module.archivisttoolkit.production"
+			description="compile module(s) ArchivistToolkit test classes" unless="skip.tests"/>
+
+	<target name="clean.module.archivisttoolkit" description="cleanup module">
+		<delete dir="${archivisttoolkit.output.dir}"/>
+		<delete dir="${archivisttoolkit.testoutput.dir}"/>
+	</target>
+
+	<target name="init" description="Build initialization">
+		<!-- Perform any build initialization in this target -->
+	</target>
+
+	<target name="clean" depends="clean.module.archivisttoolkit" description="cleanup all"/>
+
+	<target name="all" depends="init, clean, compile.module.archivisttoolkit" description="build all"/>
+
+	<target name="create-jar"
+			depends="all"
+			description="Create the jar for this project">
+		<jar jarfile="${archivisttoolkit.dist.dir}/${app.name}.jar"
+			 update="false">
+			<fileset dir="${archivisttoolkit.output.dir}">
+				<include name="**/*.class"/>
+				<include name="**/*.java"/>
+				<include name="**/*.properties"/>
+				<include name="**/*.xml"/>
+				<include name="**/*.xsl"/>
+				<include name="**/*.png"/>
+				<include name="**/*.gif"/>
+				<include name="**/*.jpg"/>
+			</fileset>
+			<manifest>
+				<attribute name="Main-class" value="org.archiviststoolkit.Main"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="create-jar-with-source"
+			depends="all"
+			description="Create the jar for this project">
+		<jar jarfile="${archivisttoolkit.dist.dir}/${app.name}-with-src1_5_0.jar"
+			 update="false">
+			<fileset dir="${archivisttoolkit.output.dir}">
+				<include name="**/*.class"/>
+				<include name="**/*.java"/>
+				<include name="**/*.properties"/>
+				<include name="**/*.xml"/>
+				<include name="**/*.xsl"/>
+				<include name="**/*.png"/>
+				<include name="**/*.gif"/>
+                <include name="**/*.jpg"/>
+                <include name="**/*.jfd"/>
+			</fileset>
+			<fileset dir="${module.archivisttoolkit.basedir}/src">
+				<include name="**/*.java"/>
+			</fileset>
+			<manifest>
+				<attribute name="Main-class" value="org.archiviststoolkit.Main"/>
+			</manifest>
+		</jar>
+		<copy todir="${archivisttoolkit.website.dir}/forDevelopers">
+			<fileset dir="${archivisttoolkit.dist.dir}">
+				<include name="${app.name}-with-src1_1_8.jar"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="createDistribution" depends="create-jar">
+		<copy todir="${archivisttoolkit.dist.dir}/lib">
+			<fileset dir="${module.archivisttoolkit.basedir}/lib">
+				<include name="*.jar"/>
+			</fileset>
+		</copy>
+		<delete dir="${archivisttoolkit.dist.dir}/reports"/>
+		<copy todir="${archivisttoolkit.dist.dir}/reports">
+			<fileset dir="${module.archivisttoolkit.basedir}/reports">
+				<include name="**/*.xml"/>
+				<include name="**/*.jasper"/>
+				<include name="**/*.jrxml"/>
+			</fileset>
+		</copy>
+		<delete dir="${archivisttoolkit.dist.dir}/conf"/>
+		<copy todir="${archivisttoolkit.dist.dir}/conf">
+			<fileset dir="${module.archivisttoolkit.basedir}/conf">
+				<include name="**/*.xml"/>
+				<include name="**/*.xsd"/>
+			</fileset>
+		</copy>
+		<copy todir="${archivisttoolkit.dist.dir}">
+			<fileset dir="${module.archivisttoolkit.basedir}">
+				<include name="ReleaseNotes.html"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="zipDistribution" depends="createDistribution">
+		<zip destFile="${archivisttoolkit.zipFile}"
+			 basedir="${archivisttoolkit.dist.dir}"/>
+		<copy todir="${archivisttoolkit.webDistribution.dir}">
+			<fileset dir="${module.archivisttoolkit.basedir}">
+				<include name="ReleaseNotes.html"/>
+			</fileset>
+		</copy>
+		<copy todir="${archivisttoolkit.webDistribution.dir}">
+			<fileset dir="${module.archivisttoolkit.basedir}/..">
+				<include name="ArchivistsToolkit.zip"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="buildInstallerQA" depends="create-jar">
+		<buildinstaller
+				IAlocation="/Applications/Macrovision/InstallAnywhere2009"
+				IAProjectFile="${module.archivisttoolkit.basedir}/installMaker/ArchivistsToolkitInstallMaker.iap_xml"
+				BuildMacOSX="true"
+				BuildWindowsWithoutVM="true"
+				BuildOutputLocation="dist"/>
+	</target>
+
+	<target name="buildInstallerFull" depends="create-jar">
+		<buildinstaller
+				IAlocation="/Applications/Macrovision/InstallAnywhere2009"
+				IAProjectFile="${module.archivisttoolkit.basedir}/installMaker/ArchivistsToolkitInstallMaker.iap_xml"
+				BuildMacOSX="true"
+				BuildLinuxWithVM="true"
+				BuildLinuxWithoutVM="true"
+				BuildHPUXWithVM="false"
+				BuildHPUXWithoutVM="false"
+				BuildAIXWithVM="false"
+				BuildAIXWithoutVM="false"
+				BuildSolarisWithVM="false"
+				BuildSolarisWithoutVM="false"
+				BuildNamedUnixWithVM="false"
+				BuildNamedUnixWithoutVM="false"
+				BuildWindowsWithVM="true"
+				BuildWindowsWithoutVM="true"
+				BuildPureJava="false"
+				BuildOutputLocation="dist"/>
+
+	</target>
+
+	<fileset dir="${archivisttoolkit.dist.dir}/Web_Installers" id="installerFiles">
+		<include name="**/*.*"/>
+	</fileset>
+
+	<target name="getFTP_usernamePassword">
+		<input
+				message="Please enter ftp username:"
+				addproperty="ftp.username"
+				/>
+
+		<input
+				message="Please enter ftp password:"
+				addproperty="ftp.password"
+				/>
+
+	</target>
+
+	<target name="sftpProd" depends="getFTP_usernamePassword, buildInstallerFull">
+
+
+		<scp todir="${ftp.username}:${ftp.password}@i4.nyu.edu:/www/sites/archiviststoolkit.org/htdocs/toolkit/downloads/atDistributionFiles/1_5_0">
+			<fileset refid="installerFiles"/>
+		</scp>
+
+	</target>
+
+	<target name="sftpBeta" depends="getFTP_usernamePassword, buildInstallerFull">
+
+
+		<scp todir="${ftp.username}:${ftp.password}@i4.nyu.edu:/www/sites/archiviststoolkit.org/htdocs/toolkit/support/downloads/publicBeta/downloads">
+			<fileset refid="installerFiles"/>
+		</scp>
+
+	</target>
+
+	<target name="sftpQa" depends="getFTP_usernamePassword, buildInstallerQA">
+
+
+		<scp todir="${ftp.username}:${ftp.password}@i4.nyu.edu:/www/sites/archiviststoolkit.org/htdocs/toolkit/downloads/atDistributionFiles/qa">
+			<fileset refid="installerFiles"/>
+		</scp>
+
+	</target>
+
+    <target name="generateLookupListWithJaxb">
+        <xjc schema="conf/lookupListValues.xsd" destdir="./src" package="org.archiviststoolkit.structure.lookupListSchema"/>
+    </target>
+
+    <target name="generatePatronImportWithJaxb">
+        <xjc schema="conf/patronImportDraft.xsd" destdir="./src" package="org.rac.structure.patronImportSchema"/>
+    </target>
+
+	<target name="javadoc">
+		<delete dir="${javadoc.dir}" quiet="true"/>
+		<mkdir dir="${javadoc.dir}"/>
+
+		<javadoc
+				sourcepath="${module.archivisttoolkit.basedir}/src"
+				defaultexcludes="yes"
+				destdir="${javadoc.dir}"
+				version="true"
+				use="true"
+				windowtitle="Archivists' Toolkit">
+			<link href="http://java.sun.com/j2se/1.5.0/docs/api"/>
+		</javadoc>
+	</target>
+
+</project>

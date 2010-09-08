@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="org.rac.model.PatronPhoneNumbers" table="PatronPhoneNumbers" lazy="false">
+
+		<id name="patronPhoneNumberId" column="patronPhoneNumberId" type="java.lang.Long">
+			<generator class="native">
+            </generator>
+		</id>
+		<version name="version" type="java.lang.Long" column="version"/>
+
+		<property name="auditInfo" type="org.archiviststoolkit.hibernate.AuditInfoType">
+			<column name="lastUpdated"/>
+			<column name="created"/>
+			<column name="lastUpdatedBy"/>
+			<column name="createdBy"/>
+		</property>
+
+		<property name="phoneNumber"
+				  column="phoneNumber"
+				  type="string"/>
+
+		<property name="phoneNumberType"
+				  column="phoneNumberType"
+				  type="string"/>
+
+        <property name="preferredPhoneNumber"
+                  column="preferredPhoneNumber"
+                  type="boolean"/>
+
+        <many-to-one name="patron"
+                     class="org.rac.model.Patrons"
+                     column="patronId"/>
+
+	</class>
+</hibernate-mapping>
