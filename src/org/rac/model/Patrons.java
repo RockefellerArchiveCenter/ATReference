@@ -39,6 +39,8 @@ import java.util.*;
 
 public class Patrons extends DomainObject {
 
+	//todo remove this comment. It is a test of git
+
 
 	public static final String PROPERTYNAME_PATRON_TYPE = "patronType";
 
