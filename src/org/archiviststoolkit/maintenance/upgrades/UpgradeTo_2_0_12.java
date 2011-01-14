@@ -28,7 +28,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class UpgradeTo_2_0_10 extends Upgrade {
+public class UpgradeTo_2_0_12 extends Upgrade {
     protected boolean doUpgrade(Connection conn, int initialStep, int numberOfSteps, DeferredWizardResult.ResultProgressHandle progress) {
 		return true;
 	}
@@ -50,23 +50,6 @@ public class UpgradeTo_2_0_10 extends Upgrade {
 
 	protected boolean upgradeNeeded(Connection conn) throws SQLException {
 		return Constants.compareVersions("2.0.11", DatabaseConnectionUtils.getDatabaseVersionInfo(conn)) == Constants.VERSION_GREATER;
-	}
-
-	protected boolean runPostDBInitializationSQLCode(Connection conn) {
-		String sqlString = "";
-		Statement stmt;
-
-		try {
-			stmt = conn.createStatement();
-			sqlString = "UPDATE PatronPhoneNumbers set preferredPhoneNumber = false";
-			stmt.execute(sqlString);
-			conn.commit();
-		} catch (SQLException e) {
-			setErrorString(e.getMessage());
-			return false;
-		}
-
-		return true;
 	}
 
 }
