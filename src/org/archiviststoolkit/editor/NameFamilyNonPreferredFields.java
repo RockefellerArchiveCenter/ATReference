@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -111,7 +111,6 @@ public class NameFamilyNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_familyName, cc.xy(1, 3));
 
 		//---- familyName ----
-		familyName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		familyName.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -127,7 +126,6 @@ public class NameFamilyNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_familyNamePrefix, cc.xy(1, 5));
 
 		//---- familyNamePrefix ----
-		familyNamePrefix.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		familyNamePrefix.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -143,7 +141,6 @@ public class NameFamilyNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_familyQualifier, cc.xy(1, 7));
 
 		//---- familyQualifier ----
-		familyQualifier.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		familyQualifier.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -176,9 +173,6 @@ public class NameFamilyNonPreferredFields extends NameNonPreferredNameFields {
 			label_sortName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			ATFieldInfo.assignLabelInfo(label_sortName, NonPreferredNames.class, NonPreferredNames.PROPERTYNAME_SORT_NAME);
 			panel1.add(label_sortName, cc.xy(1, 1));
-
-			//---- sortName ----
-			sortName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			panel1.add(sortName, cc.xy(3, 1));
 
 			//---- namePersonalDirectOrder2 ----

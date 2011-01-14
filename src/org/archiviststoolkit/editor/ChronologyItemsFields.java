@@ -170,9 +170,6 @@ public class ChronologyItemsFields extends DomainEditorFields {
 		label_subjectScopeNote.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label_subjectScopeNote, ChronologyItems.class, ChronologyItems.PROPERTYNAME_EVENT_DATE);
 		add(label_subjectScopeNote, cc.xywh(1, 1, 1, 1, CellConstraints.DEFAULT, CellConstraints.TOP));
-
-		//---- eventDate ----
-		eventDate.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(eventDate, cc.xy(3, 1));
 
 		//---- label_subjectScopeNote2 ----

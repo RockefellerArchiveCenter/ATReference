@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -132,7 +132,6 @@ public class NameCorpFields extends NamePrimaryNameFields {
 		add(label_nameCorporatePrimaryName, cc.xy(1, 3));
 
 		//---- nameCorporatePrimaryName ----
-		nameCorporatePrimaryName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		nameCorporatePrimaryName.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -148,7 +147,6 @@ public class NameCorpFields extends NamePrimaryNameFields {
 		add(label_nameCorporateSubordinate1, cc.xy(1, 5));
 
 		//---- nameCorporateSubordinate1 ----
-		nameCorporateSubordinate1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		nameCorporateSubordinate1.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -164,7 +162,6 @@ public class NameCorpFields extends NamePrimaryNameFields {
 		add(label_nameCorporateSubordinate2, cc.xy(1, 7));
 
 		//---- nameCorporateSubordinate2 ----
-		nameCorporateSubordinate2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		nameCorporateSubordinate2.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -180,7 +177,6 @@ public class NameCorpFields extends NamePrimaryNameFields {
 		add(label_nameCorporateNumber, cc.xy(1, 9));
 
 		//---- nameCorporateNumber ----
-		nameCorporateNumber.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		nameCorporateNumber.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -196,7 +192,6 @@ public class NameCorpFields extends NamePrimaryNameFields {
 		add(label_nameCorporateQualifier, cc.xy(1, 11));
 
 		//---- nameCorporateQualifier ----
-		nameCorporateQualifier.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		nameCorporateQualifier.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -213,7 +208,6 @@ public class NameCorpFields extends NamePrimaryNameFields {
 
 		//---- nameSource ----
 		nameSource.setOpaque(false);
-		nameSource.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		nameSource.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sortNameConstruction(e);
@@ -229,7 +223,6 @@ public class NameCorpFields extends NamePrimaryNameFields {
 
 		//---- nameRule ----
 		nameRule.setOpaque(false);
-		nameRule.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		nameRule.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sortNameConstruction(e);
@@ -262,14 +255,10 @@ public class NameCorpFields extends NamePrimaryNameFields {
 			label_sortName2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			ATFieldInfo.assignLabelInfo(label_sortName2, Names.class, Names.PROPERTYNAME_SORT_NAME);
 			panel4.add(label_sortName2, cc.xy(1, 1));
-
-			//---- sortName ----
-			sortName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			panel4.add(sortName, cc.xy(3, 1));
 
 			//---- namePersonalDirectOrder2 ----
 			namePersonalDirectOrder2.setText("Create automatically");
-			namePersonalDirectOrder2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			namePersonalDirectOrder2.setOpaque(false);
 			namePersonalDirectOrder2.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {

@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -192,7 +192,6 @@ public class JiraReportDialog extends ATBasicDialog {
 					//---- detailedDescription ----
 					detailedDescription.setRows(20);
 					detailedDescription.setLineWrap(true);
-					detailedDescription.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					scrollPane1.setViewportView(detailedDescription);
 				}
 				contentPanel.add(scrollPane1, cc.xy(1, 9));

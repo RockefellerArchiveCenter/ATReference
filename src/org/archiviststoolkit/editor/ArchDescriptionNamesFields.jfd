@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.5.0_16" class="java.beans.XMLDecoder"> 
+<java version="1.5.0_22" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -92,6 +92,12 @@
         <void property="name"> 
          <string>sortNameDisplay</string> 
         </void> 
+        <void method="auxiliary"> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
+        </void> 
        </object> 
        <object class="com.jformdesigner.model.FormLayoutConstraints"> 
         <class>com.jgoodies.forms.layout.CellConstraints</class> 
@@ -135,6 +141,12 @@
         </void> 
         <void property="name"> 
          <string>function</string> 
+        </void> 
+        <void method="auxiliary"> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
         </void> 
         <void method="addEvent"> 
          <object class="com.jformdesigner.model.FormEvent"> 
@@ -204,6 +216,12 @@
         <void property="name"> 
          <string>role</string> 
         </void> 
+        <void method="auxiliary"> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
+        </void> 
        </object> 
        <object class="com.jformdesigner.model.FormLayoutConstraints"> 
         <class>com.jgoodies.forms.layout.CellConstraints</class> 
@@ -260,6 +278,10 @@
          <void method="setProperty"> 
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createComboBox(detailsModel, ArchDescriptionNames.PROPERTYNAME_FORM, ArchDescriptionNames.class, true);</string> 
+         </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
          </void> 
         </void> 
        </object> 

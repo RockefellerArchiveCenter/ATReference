@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -134,7 +134,6 @@ public class LookupListFields extends DomainEditorFields {
 		panel3 = new JPanel();
 		pairedValues = ATBasicComponentFactory.createCheckBox(detailsModel, LookupList.PROPERTYNAME_PAIRED_VALUES, LookupList.class);
 		pairedValues2 = ATBasicComponentFactory.createCheckBox(detailsModel, LookupList.PROPERTYNAME_RESTRICT_TO_NMTOKEN, LookupList.class);
-		otherOption = ATBasicComponentFactory.createCheckBox(detailsModel, LookupList.PROPERTYNAME_INCLUDE_OTHER_OPTION, LookupList.class);
 		panel1 = new JPanel();
 		scrollPane1 = new JScrollPane();
 		listItems = new DomainSortableTable();
@@ -143,12 +142,10 @@ public class LookupListFields extends DomainEditorFields {
 		removeItem = new JButton();
 		changeItem = new JButton();
 		mergeItems = new JButton();
-		acceptProvisionalTerm = new JButton();
 		importItems = new JButton();
 		showRecordCount = new JButton();
 		label3 = new JLabel();
 		label2 = new JLabel();
-		label4 = new JLabel();
 		CellConstraints cc = new CellConstraints();
 
 		//======== this ========
@@ -171,8 +168,6 @@ public class LookupListFields extends DomainEditorFields {
 				FormFactory.LINE_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.LINE_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.LINE_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC
 			}));
 
@@ -180,9 +175,6 @@ public class LookupListFields extends DomainEditorFields {
 		label1.setText("List Name");
 		label1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(label1, cc.xy(1, 1));
-
-		//---- listName ----
-		listName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(listName, cc.xy(3, 1));
 
 		//======== panel3 ========
@@ -190,8 +182,6 @@ public class LookupListFields extends DomainEditorFields {
 			panel3.setOpaque(false);
 			panel3.setLayout(new FormLayout(
 				new ColumnSpec[] {
-					FormFactory.DEFAULT_COLSPEC,
-					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
 					FormFactory.DEFAULT_COLSPEC,
 					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
 					FormFactory.DEFAULT_COLSPEC
@@ -213,14 +203,6 @@ public class LookupListFields extends DomainEditorFields {
 			pairedValues2.setEnabled(false);
 			pairedValues2.setText(ATFieldInfo.getLabel(LookupList.class, LookupList.PROPERTYNAME_RESTRICT_TO_NMTOKEN));
 			panel3.add(pairedValues2, cc.xy(3, 1));
-
-			//---- otherOption ----
-			otherOption.setText("Allow other option");
-			otherOption.setOpaque(false);
-			otherOption.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-			otherOption.setEnabled(false);
-			otherOption.setText(ATFieldInfo.getLabel(LookupList.class, LookupList.PROPERTYNAME_INCLUDE_OTHER_OPTION));
-			panel3.add(otherOption, cc.xy(5, 1));
 		}
 		add(panel3, cc.xy(3, 3));
 
@@ -239,9 +221,6 @@ public class LookupListFields extends DomainEditorFields {
 			//======== scrollPane1 ========
 			{
 				scrollPane1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-
-				//---- listItems ----
-				listItems.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				scrollPane1.setViewportView(listItems);
 			}
 			panel1.add(scrollPane1, cc.xywh(1, 1, 1, 1, CellConstraints.DEFAULT, CellConstraints.FILL));
@@ -254,8 +233,6 @@ public class LookupListFields extends DomainEditorFields {
 				panel2.setLayout(new FormLayout(
 					ColumnSpec.decodeSpecs("default"),
 					new RowSpec[] {
-						FormFactory.DEFAULT_ROWSPEC,
-						FormFactory.LINE_GAP_ROWSPEC,
 						FormFactory.DEFAULT_ROWSPEC,
 						FormFactory.LINE_GAP_ROWSPEC,
 						FormFactory.DEFAULT_ROWSPEC,
@@ -319,18 +296,6 @@ public class LookupListFields extends DomainEditorFields {
 				});
 				panel2.add(mergeItems, cc.xy(1, 9));
 
-				//---- acceptProvisionalTerm ----
-				acceptProvisionalTerm.setText("Accept Provisional Term");
-				acceptProvisionalTerm.setBackground(new Color(234, 201, 250));
-				acceptProvisionalTerm.setOpaque(false);
-				acceptProvisionalTerm.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-				acceptProvisionalTerm.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						acceptProvisionalTermActionPerformed();
-					}
-				});
-				panel2.add(acceptProvisionalTerm, cc.xy(1, 11));
-
 				//---- importItems ----
 				importItems.setText("Import Items");
 				importItems.setBackground(new Color(234, 201, 250));
@@ -341,7 +306,7 @@ public class LookupListFields extends DomainEditorFields {
 						importItemsActionPerformed(e);
 					}
 				});
-				panel2.add(importItems, cc.xy(1, 13));
+				panel2.add(importItems, cc.xy(1, 11));
 
 				//---- showRecordCount ----
 				showRecordCount.setText("Show Record Count");
@@ -353,7 +318,7 @@ public class LookupListFields extends DomainEditorFields {
 						showRecordCountActionPerformed(e);
 					}
 				});
-				panel2.add(showRecordCount, cc.xy(1, 15));
+				panel2.add(showRecordCount, cc.xy(1, 13));
 			}
 			panel1.add(panel2, cc.xywh(3, 1, 1, 1, CellConstraints.DEFAULT, CellConstraints.TOP));
 		}
@@ -368,11 +333,6 @@ public class LookupListFields extends DomainEditorFields {
 		label2.setText("Items in Blue are AT initial values");
 		label2.setForeground(new Color(45, 78, 114));
 		add(label2, cc.xy(3, 9));
-
-		//---- label4 ----
-		label4.setText("Items in Green are provisional values");
-		label4.setForeground(new Color(51, 204, 0));
-		add(label4, cc.xy(3, 11));
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
@@ -782,7 +742,6 @@ public class LookupListFields extends DomainEditorFields {
 	private JPanel panel3;
 	public JCheckBox pairedValues;
 	public JCheckBox pairedValues2;
-	public JCheckBox otherOption;
 	private JPanel panel1;
 	private JScrollPane scrollPane1;
 	private DomainSortableTable listItems;
@@ -791,12 +750,10 @@ public class LookupListFields extends DomainEditorFields {
 	private JButton removeItem;
 	private JButton changeItem;
 	private JButton mergeItems;
-	private JButton acceptProvisionalTerm;
 	private JButton importItems;
 	private JButton showRecordCount;
 	private JLabel label3;
 	private JLabel label2;
-	private JLabel label4;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 
 	private SelectionInList selectionInListModel = new SelectionInList();

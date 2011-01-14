@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.5.0_13" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_18" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -293,6 +293,10 @@
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Index.PROPERTYNAME_TITLE));</string> 
          </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
         </void> 
        </object> 
        <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -402,6 +406,10 @@
            <void method="setProperty"> 
             <string>JavaCodeGenerator.customCreateCode</string> 
             <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Index.PROPERTYNAME_NOTE), false);</string> 
+           </void> 
+           <void method="setProperty"> 
+            <string>font.noCode</string> 
+            <boolean>true</boolean> 
            </void> 
           </void> 
          </object> 
@@ -586,6 +594,10 @@
            <void method="setProperty"> 
             <string>JavaCodeGenerator.customCreateCode</string> 
             <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Index.PROPERTYNAME_EAD_INGEST_PROBLEMS));</string> 
+           </void> 
+           <void method="setProperty"> 
+            <string>font.noCode</string> 
+            <boolean>true</boolean> 
            </void> 
           </void> 
          </object> 

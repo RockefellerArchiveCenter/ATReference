@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.  
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.  
  * All rights reserved. 
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL) 
@@ -77,15 +77,18 @@ public class DigitalObjectTableWorkSurface extends DomainTableWorkSurface {
         if(digitalObject.getParent() == null) { // no parent, so just get the entire object from the database
 		    currentDomainObject = access.findByPrimaryKeyLongSession(domainObject.getIdentifier());
             treeViewer.setSelectedDigitalObject(null);
-        } else { // must do recursion until we find the top parent of the digital object
-            DigitalObjects currentDigitalObject = digitalObject;
+        } else { // must loop until we find the top parent of the digital object
+            DigitalObjects currentDigitalObject = (DigitalObjects)access.findByPrimaryKeyLongSession(digitalObject.getIdentifier());
 
             while(currentDigitalObject.getParent() != null) {
                 currentDigitalObject = currentDigitalObject.getParent();
             }
 
-            // now get the full object
-            currentDomainObject = access.findByPrimaryKeyLongSession(currentDigitalObject.getIdentifier());
+            // now set the current digital object the one that was found
+            // currentDomainObject = access.findByPrimaryKeyLongSession(currentDigitalObject.getIdentifier());
+            currentDomainObject = currentDigitalObject;
+
+            // Navigate to digital object in drop down menu
             treeViewer.setSelectedDigitalObject(digitalObject);
 	    }
     }

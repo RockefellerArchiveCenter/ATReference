@@ -18,9 +18,9 @@
 #     The relationships described above can be used to help identify the correct
 #     property to configure an object when working with the custom_xx files.
 #
-# Product Name: Archivists' Toolkit 2.0 - custom
-# Project File: /Users/leemandell/archivistsToolkit/atProject/installMaker/ArchivistsToolkitInstallMaker.iap_xml
-# Generated:    Mon Aug 30 11:59:13 EDT 2010
+# Product Name: Archivists' Toolkit Plus 2.x Beta
+# Project File: /Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/installMaker/ArchivistsToolkitInstallMaker.iap_xml
+# Generated:    Sat Oct 09 20:59:27 EDT 2010
 
 
 ---- PRE-INSTALL ACTIONS ----

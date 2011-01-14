@@ -76,11 +76,11 @@ public class HandleAbstractAction implements Action {
         if (label != null)
             EADHelper.setProperty(adn, "title", label, 
                                   ArchDescriptionNotes.class);
-        //adn.setUnits(label);
+        //adn.setTitle(label);
         else
             EADHelper.setProperty(adn, "title", "Abstract", 
                                   ArchDescriptionNotes.class);
-        //adn.setUnits("Abstract");
+        //adn.setTitle("Abstract");
         adn.setPersistentId(EADInfo.getReferenceTOResources().getNextPersistentIdAndIncrement());
         String id = ((Abstract)o).getId();
         EADInfo.addIdPairs(id, adn.getPersistentId());

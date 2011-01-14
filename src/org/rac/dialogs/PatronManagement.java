@@ -104,7 +104,6 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
 	@Override
 	public void setClazz(Class clazz) throws DomainEditorCreationException {
 		this.clazz = clazz;
-		findAll();
 
 		//set up the dialog for editing records
 //		dialog = DomainEditorFactory.getInstance().createDomainEditorWithParent(clazz, this, getContentTable(), true);
@@ -132,74 +131,79 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
 
 	// TODO 5/5/2009 This method might have to be modified based on usability issue
     protected void removePatronButtonActionPerformed() {
-		int response = JOptionPane.showConfirmDialog(this,
+		int selectedRow = getContentTable().getSelectedRow();
+
+		if (selectedRow == -1) {
+			JOptionPane.showMessageDialog(this, "You must select a patron to remove.", "warning", JOptionPane.WARNING_MESSAGE);
+		} else {
+			int response = JOptionPane.showConfirmDialog(this,
 				"Are you sure you want to delete the following patron record(s)",
 				"Delete records", JOptionPane.YES_NO_OPTION);
 
-		if (response == JOptionPane.OK_OPTION) {
-			int selectedRow = getContentTable().getSelectedRow();
+			if (response == JOptionPane.OK_OPTION) {
+				selectedRow = getContentTable().getSelectedRow();
 
-			if (selectedRow != -1) {
-				// get a list of AssessmentSearch Results to delete
-                final ArrayList<Patrons> patronsDeleteList = new ArrayList<Patrons>();
-				for (int index : getContentTable().getSelectedRows()) {
-					if (getContentTable().getFilteredList()!= null) {
-						patronsDeleteList.add((Patrons)getContentTable().getFilteredList().get(index));
-					} else {
-						patronsDeleteList.add((Patrons)getContentTable().getSortedList().get(index));
+					// get a list of patron search Results to delete
+					final ArrayList<Patrons> patronsDeleteList = new ArrayList<Patrons>();
+					for (int index : getContentTable().getSelectedRows()) {
+						if (getContentTable().getFilteredList()!= null) {
+							patronsDeleteList.add((Patrons)getContentTable().getFilteredList().get(index));
+						} else {
+							patronsDeleteList.add((Patrons)getContentTable().getSortedList().get(index));
+						}
 					}
+
+					// run the deletion in a thread to enable using a progress monitor
+					Thread performer = new Thread(new Runnable() {
+						public void run() {
+							String deleteProblems = "";
+
+							DomainAccessObject access = null;
+							try {
+								access = DomainAccessObjectFactory.getInstance().getDomainAccessObject(clazz);
+							} catch (PersistenceException e1) {
+								new ErrorDialog("Error deleting records", StringHelper.getStackTrace(e1)).showDialog();
+							}
+
+							// get the progress monitor which allows for canceling
+							InfiniteProgressPanel monitor = ATProgressUtil.createModalProgressMonitor(getThisAsJDialog(), 1000, true);
+							monitor.start("Deleting Records...");
+
+							int count = 1; // keep track of the number of record(s) deleted
+							int size = patronsDeleteList.size();
+							for (DomainObject domainObject : patronsDeleteList) {
+								try {
+									access.delete(domainObject);
+									//getContentTable().getEventList().remove(domainObject);
+
+									// update the monitor
+									monitor.setTextLine(count + " of " + size + " record(s) deleted", 2);
+									count++;
+
+									// check to see if the cancel button was pressed
+									if (monitor.isProcessCancelled()) {
+										break;
+									}
+								} catch (PersistenceException e1) {
+									deleteProblems += "\nCould not delete " + domainObject + ". \nReason: " + e1.getMessage();
+								} catch (DeleteException e1) {
+									deleteProblems += "\nCould not delete " + domainObject + ". \nReason: " + e1.getMessage();
+								}
+							}
+
+							// close the monitor
+							monitor.close();
+
+							if (deleteProblems.length() > 0) {
+								JOptionPane.showMessageDialog(getThisAsJDialog(), "There were problems deleting some records\n" + deleteProblems);
+							}
+							findAll();
+						}
+					}, "Deleting Records");
+					performer.start();
 				}
-
-                // run the deletion in a thread to enable using a progress monitor
-                Thread performer = new Thread(new Runnable() {
-                    public void run() {
-                        String deleteProblems = "";
-
-                        DomainAccessObject access = null;
-                        try {
-                            access = DomainAccessObjectFactory.getInstance().getDomainAccessObject(clazz);
-                        } catch (PersistenceException e1) {
-                            new ErrorDialog("Error deleting records", StringHelper.getStackTrace(e1)).showDialog();
-                        }
-
-                        // get the progress monitor which allows for canceling
-                        InfiniteProgressPanel monitor = ATProgressUtil.createModalProgressMonitor(getThisAsJDialog(), 1000, true);
-                        monitor.start("Deleting Records...");
-
-                        int count = 1; // keep track of the number of record(s) deleted
-                        int size = patronsDeleteList.size();
-                        for (DomainObject domainObject : patronsDeleteList) {
-                            try {
-                                access.delete(domainObject);
-                                //getContentTable().getEventList().remove(domainObject);
-
-                                // update the monitor
-                                monitor.setTextLine(count + " of " + size + " record(s) deleted", 2);
-                                count++;
-
-                                // check to see if the cancel button was pressed
-                                if (monitor.isProcessCancelled()) {
-                                    break;
-                                }
-                            } catch (PersistenceException e1) {
-                                deleteProblems += "\nCould not delete " + domainObject + ". \nReason: " + e1.getMessage();
-                            } catch (DeleteException e1) {
-                                deleteProblems += "\nCould not delete " + domainObject + ". \nReason: " + e1.getMessage();
-                            }
-                        }
-
-                        // close the monitor
-                        monitor.close();
-
-                        if (deleteProblems.length() > 0) {
-                            JOptionPane.showMessageDialog(getThisAsJDialog(), "There were problems deleting some records\n" + deleteProblems);
-                        }
-                        findAll();
-                    }
-                }, "Deleting Records");
-                performer.start();
-			}
 		}
+
 	}
 
 	public JTextField getFilterField() {
@@ -232,13 +236,9 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
             } else if (selectedRows.length == 0) {
 				int count = 1;
 				for (DomainObject domainObject : textFilteredIssues) {
-					Assessments assessment = (Assessments)access.findByPrimaryKeyLongSession(domainObject.getIdentifier());
-
-                    if (!listForPrinting.contains(assessment) && !assessment.getInactive()) {
-                        listForPrinting.add(assessment);
-                        progressPanel.setTextLine("Loading record number " + count++ + " for printing", 1);
-                    }
-
+					Patrons patrons = (Patrons)access.findByPrimaryKeyLongSession(domainObject.getIdentifier());
+					listForPrinting.add(patrons);
+					progressPanel.setTextLine("Loading record number " + count++ + " for printing", 1);
                     // check to see if cancel wasn't press. If it was then return null
                     if(progressPanel.isProcessCancelled()) {
                         return null;
@@ -247,12 +247,10 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
 			} else {
 				int count = 1;
 				for (int selectedRow : selectedRows) {
-					Assessments assessment = (Assessments)access.findByPrimaryKeyLongSession(getContentTable().getFilteredList().get(selectedRow).getIdentifier());
+					Patrons patrons = (Patrons)access.findByPrimaryKeyLongSession(getContentTable().getFilteredList().get(selectedRow).getIdentifier());
+					listForPrinting.add(patrons);
+					 progressPanel.setTextLine("Loading record number " + count++ + " for printing", 1);
 
-                    if(!listForPrinting.contains(assessment) && !assessment.getInactive()) {
-                        listForPrinting.add(assessment);
-                        progressPanel.setTextLine("Loading record number " + count++ + " for printing", 1);
-                    }
 
                     // check to see if cancel wasn't press in that case return null;
                     if(progressPanel.isProcessCancelled()) {
@@ -270,15 +268,13 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
 	}
 
 	private void reportButtonActionPerformed(ActionEvent e) {
-		JOptionPane.showMessageDialog(this, "Coming soon to a theater near you");
-
-//		ReportWorkerRunnable runnable = new ReportWorkerRunnable(this);
-//		Thread backgroundWorker = new Thread(runnable);
-//		backgroundWorker.start();
+		ReportWorkerRunnable runnable = new ReportWorkerRunnable(this);
+		Thread backgroundWorker = new Thread(runnable);
+		backgroundWorker.start();
 	}
 
     /**
-     * Performes searching on assessment records
+     * Performes searching on patron records
      */
     private void searchActionPerformed() {
 //		findAll();
@@ -325,6 +321,12 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
 
 	private void listAllActionPerformed() {
 		findAll();
+	}
+
+	@Override
+	public void showDialog() {
+		updateRowCount();
+		super.showDialog();
 	}
 
 	private void initComponents() {
@@ -650,39 +652,65 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
 
 		dialog.setNewRecord(true);
 		Boolean done = false;
-		int returnStatus;
+		boolean createNewInstance = true;
+		Boolean savedNewRecord;
+ 		int returnStatus;
 
 		while (!done) {
-			newPatron = new Patrons();
+			if (createNewInstance) {
+				newPatron = new Patrons();
+			} else {
+				createNewInstance = true;
+			}
 
-            dialog.setIncludeSaveButton(true);
+			dialog.setIncludeSaveButton(true);
             dialog.setModel((DomainObject) newPatron, null);
 
 			returnStatus = dialog.showDialog();
+			savedNewRecord = dialog.getSavedNewRecord();
 			try {
 				if (returnStatus == javax.swing.JOptionPane.OK_OPTION) {
 					DomainAccessObject access = DomainAccessObjectFactory.getInstance().getDomainAccessObject(clazz);
 
 					access.getLongSession(); // make sure we have a long session
-					access.updateLongSession(dialog.getModel());
+					if (savedNewRecord) {
+						access.updateLongSession(dialog.getModel());
+					} else {
+						access.add(dialog.getModel());
+					}
 					getContentTable().getEventList().add(newPatron);
+					updateRowCount();
  					done = true;
 				} else if (returnStatus == StandardEditor.OK_AND_ANOTHER_OPTION) {
 					DomainAccessObject access = DomainAccessObjectFactory.getInstance().getDomainAccessObject(clazz);
 
 					access.getLongSession(); // make sure we have a long session
-					access.updateLongSession(dialog.getModel());
+					if (savedNewRecord) {
+						access.updateLongSession(dialog.getModel());
+					} else {
+						access.add(dialog.getModel());
+					}
 					getContentTable().getEventList().add(newPatron);
+					updateRowCount();
                     dialog.setNewRecord(true); // tell the dialog this is a new record
+				} else if (returnStatus == JOptionPane.CANCEL_OPTION) {
+					try {
+						access.closeLongSessionRollback();
+					} catch (SQLException e1) {
+						new ErrorDialog("Error canceling record.", e1).showDialog();
+					}
 				} else {
 					done = true;
 				}
 			} catch (ConstraintViolationException persistenceException) {
 				JOptionPane.showMessageDialog(this, "Can't save, Duplicate record:" + newPatron);
 				((DomainObject) newPatron).removeIdAndAuditInfo();
+				createNewInstance = false;
 			} catch (PersistenceException persistenceException) {
 				if (persistenceException.getCause() instanceof ConstraintViolationException) {
 					JOptionPane.showMessageDialog(this,  "Can't save, Duplicate record:" + newPatron);
+					((DomainObject) newPatron).removeIdAndAuditInfo();
+					createNewInstance = false;
 				} else {
 					done = true;
 					new ErrorDialog("Error saving new record.",
@@ -691,7 +719,7 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
 			}
 		}
 		dialog.setNewRecord(false);
-		findAll();
+//		findAll();
 	}
 
 
@@ -815,5 +843,55 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
 		}
 	}
 
+	class ReportWorkerRunnable implements Runnable {
+		  private Dialog parent;
+
+		  ReportWorkerRunnable(Dialog parent) {
+			  this.parent = parent;
+		  }
+
+		  public void run() {
+
+			  try {
+				  ReportDestinationProperties reportDestinationProperties = new ReportDestinationProperties(clazz, parent, true);
+
+				  if (reportDestinationProperties.showDialog(textFilteredIssues.size())) {
+					  InfiniteProgressPanel monitor = ATProgressUtil.createModalProgressMonitor(parent, 1000, true);
+					  try {
+						  // decide on what records to return based whether we are printing the screen
+						  String reportTitle = reportDestinationProperties.getSelectedReport().getReportTitle();
+						  ArrayList setForPrinting;
+
+						  if(reportTitle.equals("Print Screen")) {
+							  ReportDestinationProperties reportDestinationProperties2 = new ReportDestinationProperties(Patrons.class, parent, true);
+							  reportDestinationProperties2.setReportDesitation(reportDestinationProperties.getReportDesitation());
+							  reportDestinationProperties2.reportSaveDestination = reportDestinationProperties.reportSaveDestination;
+							  reportDestinationProperties = reportDestinationProperties2;
+
+							  setForPrinting = getResultSetForPrinting(monitor, true); // Get records for print screen
+						  } else {
+							  setForPrinting = getResultSetForPrinting(monitor, false); // Just get patron records
+						  }
+
+						  if(setForPrinting != null) {
+							  ReportUtils.printReport(reportDestinationProperties, setForPrinting, monitor);
+						  }
+					  } catch (UnsupportedParentComponentException e) {
+						  monitor.close();
+						  new ErrorDialog("There was a problem printing the report", e).showDialog();
+					  } finally {
+						  // to ensure that progress dlg is closed in case of any exception
+						  monitor.close();
+					  }
+				  }
+			  } catch (UnsupportedClassException e) {
+				  new ErrorDialog("There was a problem printing the report", e).showDialog();
+			  } catch (UnsupportedReportDestination unsupportedReportDestination) {
+				  new ErrorDialog("There was a problem printing the report", unsupportedReportDestination).showDialog();
+			  } catch (UnsupportedReportType unsupportedReportType) {
+				  new ErrorDialog("There was a problem printing the report", unsupportedReportType).showDialog();
+			  }
+		  }
+	  }
 
 }

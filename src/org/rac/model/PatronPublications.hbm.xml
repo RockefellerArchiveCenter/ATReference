@@ -21,11 +21,11 @@
 
 		<property name="publicationDate"
 				  column="publicationDate"
-				  type="date"/>
+				  type="string"/>
 
 		<property name="publicationTitle"
 				  column="publicationTitle"
-				  type="text"/>
+				  type="string"/>
 
         <property name="publisher"
                   column="publisher"

@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -78,7 +78,6 @@ public class NameContactNoteFields extends DomainEditorFields {
 			}));
 
 		//---- sortName ----
-		sortName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		sortName.setEditable(false);
 		sortName.setOpaque(false);
 		sortName.setBorder(null);
@@ -96,9 +95,6 @@ public class NameContactNoteFields extends DomainEditorFields {
 		label1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label1, NameContactNotes.class, NameContactNotes.PROPERTYNAME_LABEL);
 		add(label1, cc.xy(1, 5));
-
-		//---- nameContactNoteLabel ----
-		nameContactNoteLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(nameContactNoteLabel, cc.xy(3, 5));
 
 		//---- label14 ----
@@ -119,7 +115,6 @@ public class NameContactNoteFields extends DomainEditorFields {
 			nameContactNote.setLineWrap(true);
 			nameContactNote.setTabSize(20);
 			nameContactNote.setWrapStyleWord(true);
-			nameContactNote.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			scrollPane1.setViewportView(nameContactNote);
 		}
 		add(scrollPane1, cc.xy(3, 7));

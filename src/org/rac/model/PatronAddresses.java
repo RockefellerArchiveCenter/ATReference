@@ -46,7 +46,6 @@ public class PatronAddresses extends DomainObject {
 
 	@IncludeInApplicationConfiguration (1)
 	@DefaultIncludeInSearchEditor
-	@ExcludeFromDefaultValues
 	@StringLengthValidationRequried(150)
 	private String addressType = "";
 
@@ -66,22 +65,18 @@ public class PatronAddresses extends DomainObject {
 	private String address3 = "";
 
     @IncludeInApplicationConfiguration
-	@ExcludeFromDefaultValues
 	@StringLengthValidationRequried(150)
 	private String city = "";
 
 	@IncludeInApplicationConfiguration
-	@ExcludeFromDefaultValues
 	@StringLengthValidationRequried(50)
 	private String region = "";
 
     @IncludeInApplicationConfiguration
-	@ExcludeFromDefaultValues
 	@StringLengthValidationRequried(150)
 	private String mailCode = "";
 
 	@IncludeInApplicationConfiguration
-	@ExcludeFromDefaultValues
 	@StringLengthValidationRequried(50)
 	private String country = "";
 

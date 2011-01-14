@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.5.0_06" class="java.beans.XMLDecoder"> 
+<java version="1.5.0_22" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -132,6 +132,10 @@
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(parentPresentationModel.getModel(NonPreferredNames.PROPERTYNAME_PERSONAL_PREFIX));</string> 
          </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
         </void> 
         <void method="addEvent"> 
          <object class="com.jformdesigner.model.FormEvent"> 
@@ -260,6 +264,10 @@
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(parentPresentationModel.getModel(NonPreferredNames.PROPERTYNAME_PERSONAL_PRIMARY_NAME));</string> 
          </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
         </void> 
         <void method="addEvent"> 
          <object class="com.jformdesigner.model.FormEvent"> 
@@ -329,6 +337,10 @@
          <void method="setProperty"> 
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(parentPresentationModel.getModel(NonPreferredNames.PROPERTYNAME_PERSONAL_REST_OF_NAME));</string> 
+         </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
          </void> 
         </void> 
         <void method="addEvent"> 
@@ -400,6 +412,10 @@
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(parentPresentationModel.getModel(NonPreferredNames.PROPERTYNAME_PERSONAL_TITLE));</string> 
          </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
         </void> 
         <void method="addEvent"> 
          <object class="com.jformdesigner.model.FormEvent"> 
@@ -469,6 +485,10 @@
          <void method="setProperty"> 
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(parentPresentationModel.getModel(NonPreferredNames.PROPERTYNAME_PERSONAL_SUFFIX));</string> 
+         </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
          </void> 
         </void> 
         <void method="addEvent"> 
@@ -540,6 +560,10 @@
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(parentPresentationModel.getModel(NonPreferredNames.PROPERTYNAME_NUMBER));</string> 
          </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
         </void> 
         <void method="addEvent"> 
          <object class="com.jformdesigner.model.FormEvent"> 
@@ -609,6 +633,10 @@
          <void method="setProperty"> 
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(parentPresentationModel.getModel(NonPreferredNames.PROPERTYNAME_PERSONAL_DATES));</string> 
+         </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
          </void> 
         </void> 
         <void method="addEvent"> 
@@ -680,6 +708,10 @@
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(parentPresentationModel.getModel(NonPreferredNames.PROPERTYNAME_PERSONAL_FULLER_FORM));</string> 
          </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
         </void> 
         <void method="addEvent"> 
          <object class="com.jformdesigner.model.FormEvent"> 
@@ -749,6 +781,10 @@
          <void method="setProperty"> 
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(parentPresentationModel.getModel(NonPreferredNames.PROPERTYNAME_QUALIFIER));</string> 
+         </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
          </void> 
         </void> 
         <void method="addEvent"> 
@@ -889,6 +925,10 @@
             <string>JavaCodeGenerator.customCreateCode</string> 
             <string>ATBasicComponentFactory.createTextField(parentPresentationModel.getModel(NonPreferredNames.PROPERTYNAME_SORT_NAME));</string> 
            </void> 
+           <void method="setProperty"> 
+            <string>font.noCode</string> 
+            <boolean>true</boolean> 
+           </void> 
           </void> 
          </object> 
          <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -980,7 +1020,7 @@
        <string>size</string> 
        <object class="java.awt.Dimension"> 
         <int>680</int> 
-        <int>325</int> 
+        <int>375</int> 
        </object> 
       </void> 
       <void method="setProperty"> 

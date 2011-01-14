@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- This script was automatically generated using InstallAnywhere 2009 Standard, Build 3657
      STATUS: Fully Functional LICENSED Edition
-     DATE:   Tue Aug 31 09:38:58 EDT 2010 -->
-<InstallAnywhere_Deployment_Project increments="4262">
+     DATE:   Mon Nov 29 17:06:19 EST 2010 -->
+<InstallAnywhere_Deployment_Project increments="4563">
 	<!-- ** DO NOT EDIT ** Essential authorization and configuration data ** DO NOT EDIT ** -->
 	<essentialScriptInfo>
 		<versionID major="10" minor="0" revision="0"/>
 		<editionID>49,48,46,48,32,83,116,97,110,100,97,114,100,32,66,117,105,108,100,32,51,54,53,55</editionID>
 		<scriptID>12,42,11,75,49,48,52,75,72,66,57,57,72,45,83,68,89,45,78,87,76,82,52,55,82,75,53,67</scriptID>
-		<buildID>3,13,71,77,97,99,32,79,83,32,88,44,32,49,48,46,54,46,52,44,32,120,56,54,95,54,52,59,32,74,97,118,97,32,49,46,54,46,48,95,50,48,44,32,65,112,112,108,101,32,73,110,99,46,44,32,104,116,116,112,58,47,47,119,119,119,46,97,112,112,108,101,46,99,111,109,47,59,32,101,110,44,32,85,110,107,110,111,119,110,59,32,77,97,99,82,111,109,97,110</buildID>
+		<buildID>3,13,71,77,97,99,32,79,83,32,88,44,32,49,48,46,54,46,53,44,32,120,56,54,95,54,52,59,32,74,97,118,97,32,49,46,54,46,48,95,50,50,44,32,65,112,112,108,101,32,73,110,99,46,44,32,104,116,116,112,58,47,47,119,119,119,46,97,112,112,108,101,46,99,111,109,47,59,32,101,110,44,32,85,110,107,110,111,119,110,59,32,77,97,99,82,111,109,97,110</buildID>
 		<!-- The authorizationID may change between project saves and builds.  This does not effect the integrity of the project, nor do changes in this value represent changes in the actual InstallAnywhere project. -->
-		<authorizationID>1,0,0,32,-61,91,48,112,80,112,118,100,85,99,113,97,113,49,81,54,74,67,71,67,74,72,64,69,66,69,64,95,71,5,2,9,13,127,120,10,1,0,0</authorizationID>
+		<authorizationID>1,0,0,32,-109,-95,0,-32,80,112,118,100,85,99,113,97,113,49,81,54,74,67,71,67,74,72,64,69,66,69,64,95,71,5,2,14,15,-116,121,12,1,0,0</authorizationID>
 	</essentialScriptInfo>
-	<installationObjects uniqueObjects="240">
+	<installationObjects uniqueObjects="246">
 		<object class="com.zerog.ia.installer.Installer" objectID="fecea3778b60">
 			<property name="wizardME">
 				<object class="com.zerog.ia.installer.actions.MakeExecutable" objectID="feceb64e8b71">
@@ -186,16 +186,6 @@ it will search for ones in this list]]></string>
 								</object>
 							</method>
 							<method name="addElement">
-								<object class="com.zerog.ia.installer.util.LAXPropertyData" objectID="504574eb8de6">
-									<property name="propertyValue">
-										<string><![CDATA[33554432]]></string>
-									</property>
-									<property name="propertyName">
-										<string><![CDATA[lax.nl.java.option.java.heap.size.initial]]></string>
-									</property>
-								</object>
-							</method>
-							<method name="addElement">
 								<object class="com.zerog.ia.installer.util.LAXPropertyData" objectID="e09abe38a5da">
 									<property name="propertyValue">
 										<string><![CDATA[org.archiviststoolkit.Main]]></string>
@@ -205,6 +195,16 @@ it will search for ones in this list]]></string>
 									</property>
 									<property name="propertyComment">
 										<string><![CDATA[the class that contains the main method for the application]]></string>
+									</property>
+								</object>
+							</method>
+							<method name="addElement">
+								<object class="com.zerog.ia.installer.util.LAXPropertyData" objectID="504574eb8de6">
+									<property name="propertyValue">
+										<string><![CDATA[33554432]]></string>
+									</property>
+									<property name="propertyName">
+										<string><![CDATA[lax.nl.java.option.java.heap.size.initial]]></string>
 									</property>
 								</object>
 							</method>
@@ -228,7 +228,7 @@ and any path to a file to save to the file]]></string>
 						<boolean>true</boolean>
 					</property>
 					<property name="destinationName">
-						<string><![CDATA[Archivists' Toolkit 2.0 - custom]]></string>
+						<string><![CDATA[Archivists' Toolkit Plus 2.x Beta]]></string>
 					</property>
 					<property name="executableIcon">
 						<object class="com.zerog.ia.installer.util.BindingWin32" objectID="fed05d328ba0">
@@ -266,7 +266,7 @@ and any path to a file to save to the file]]></string>
 			<property name="classpath">
 				<object class="java.util.Vector">
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61e8021">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a48fb8">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -277,7 +277,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -297,7 +297,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6188017">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a38fac">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -308,7 +308,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -328,7 +328,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6168013">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a08fa8">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -339,7 +339,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -359,7 +359,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e615800b">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a08fa0">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -370,7 +370,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -390,7 +390,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61f8025">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a58fbc">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -401,7 +401,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -421,7 +421,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6188016">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a08fac">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -432,7 +432,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -452,7 +452,38 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6208024">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6b18fc0">
+							<property name="unixPermissions">
+								<string><![CDATA[664]]></string>
+							</property>
+							<property name="sourceName">
+								<string><![CDATA[PatronImport.zip]]></string>
+							</property>
+							<property name="overrideUnixPermissions">
+								<boolean>false</boolean>
+							</property>
+							<property name="sourcePath">
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/plugins/]]></string>
+							</property>
+							<property name="shouldUninstall">
+								<boolean>true</boolean>
+							</property>
+							<property name="destinationName">
+								<string><![CDATA[PatronImport.zip]]></string>
+							</property>
+							<property name="fileSize">
+								<long>13607</long>
+							</property>
+							<property name="macBinary">
+								<boolean>false</boolean>
+							</property>
+							<property name="targetCheckKind">
+								<int>0</int>
+							</property>
+						</object>
+					</method>
+					<method name="addElement">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a58fbb">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -463,7 +494,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -483,7 +514,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6188011">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd69f8fa7">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -494,7 +525,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -514,7 +545,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6198018">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a18fae">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -525,7 +556,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -545,7 +576,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61c801e">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a28fb5">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -556,7 +587,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -576,7 +607,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61b8019">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a18fb0">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -587,7 +618,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -607,7 +638,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61e8025">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a48fbc">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -618,7 +649,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -638,7 +669,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61c8018">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a18faf">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -649,7 +680,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -669,7 +700,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61b801a">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a18fb1">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -680,7 +711,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -700,7 +731,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61d801d">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a38fb4">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -711,7 +742,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -731,7 +762,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61f8027">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a58fbe">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -742,7 +773,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -762,7 +793,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6168014">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a08fa9">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -773,7 +804,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -793,7 +824,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61a8018">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a28fae">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -804,7 +835,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -824,7 +855,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e615800d">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd69f8fa2">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -835,7 +866,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -855,7 +886,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6168012">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a08fa7">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -866,7 +897,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -886,7 +917,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6158010">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd69f8fa5">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -897,7 +928,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -917,7 +948,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61c8019">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a28fb0">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -928,7 +959,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -948,7 +979,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61d801f">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a38fb6">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -959,7 +990,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -979,7 +1010,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e615800e">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd69f8fa3">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -990,7 +1021,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1010,7 +1041,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61d8022">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a38fb9">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1021,7 +1052,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1041,7 +1072,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61c801d">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a28fb4">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1052,7 +1083,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1072,7 +1103,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61d8020">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a38fb7">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1083,7 +1114,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1103,7 +1134,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6168010">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a08fa5">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1114,7 +1145,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1134,7 +1165,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c733518029">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="9650214a9009">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1145,7 +1176,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/dist/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/dist/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1154,7 +1185,7 @@ and any path to a file to save to the file]]></string>
 								<string><![CDATA[ArchivistsToolkit.jar]]></string>
 							</property>
 							<property name="fileSize">
-								<long>3602237</long>
+								<long>3312696</long>
 							</property>
 							<property name="macBinary">
 								<boolean>false</boolean>
@@ -1165,7 +1196,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61a8019">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a28faf">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1176,7 +1207,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1196,7 +1227,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6178018">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a18fad">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1207,7 +1238,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1227,7 +1258,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61f8029">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6b08fbf">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1238,7 +1269,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1258,7 +1289,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e616800e">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a18fa3">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1269,7 +1300,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1289,7 +1320,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61c801a">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a28fb1">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1300,7 +1331,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1320,7 +1351,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6168011">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a08fa6">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1331,7 +1362,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1351,7 +1382,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61e8022">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a48fb9">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1362,7 +1393,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1382,7 +1413,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e615800f">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd69f8fa4">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1393,7 +1424,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1413,7 +1444,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61e8024">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a48fbb">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1424,7 +1455,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1444,7 +1475,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61f8026">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a58fbd">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1455,7 +1486,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1475,7 +1506,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6178016">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a18fab">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1486,7 +1517,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1506,7 +1537,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61c801b">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a28fb2">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1517,7 +1548,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1537,7 +1568,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6158011">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd69f8fa6">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1548,7 +1579,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1568,7 +1599,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e615800c">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd69f8fa1">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1579,7 +1610,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1599,7 +1630,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61e8027">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a78fbd">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1610,7 +1641,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1630,7 +1661,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61d801e">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a38fb5">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1641,7 +1672,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1661,7 +1692,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61d8024">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a58fba">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1672,7 +1703,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1692,7 +1723,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61b801b">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a38fb1">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1703,7 +1734,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1723,7 +1754,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61b801c">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a38fb2">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1734,7 +1765,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1754,7 +1785,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e616800d">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd69e8fa3">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1765,7 +1796,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1785,7 +1816,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6178014">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a18fa9">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1796,7 +1827,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1816,7 +1847,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6218028">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6b18fbe">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1827,7 +1858,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1847,7 +1878,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61f8028">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6b08fbe">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1858,7 +1889,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1878,7 +1909,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61d8023">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a68fb9">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1889,7 +1920,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1909,7 +1940,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61e8023">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a48fba">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1920,7 +1951,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1940,7 +1971,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6178017">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a18fac">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1951,7 +1982,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -1971,7 +2002,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6178015">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a18faa">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -1982,7 +2013,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -2002,7 +2033,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61d8021">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a38fb8">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -2013,7 +2044,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -2033,7 +2064,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6178012">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd69f8fa8">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -2044,7 +2075,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -2064,7 +2095,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61c801c">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a28fb3">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -2075,7 +2106,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -2095,7 +2126,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6168015">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a08faa">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -2106,7 +2137,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -2126,7 +2157,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61f8020">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a48fb7">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -2137,7 +2168,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -2157,7 +2188,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e614800d">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd69e8fa2">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -2168,7 +2199,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -2188,7 +2219,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6188018">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a28fad">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -2199,7 +2230,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -2219,7 +2250,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6168016">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a08fab">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -2230,7 +2261,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -2250,7 +2281,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e614800c">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd69e8fa1">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -2261,7 +2292,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -2281,7 +2312,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61e8028">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a68fbe">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -2292,7 +2323,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -2312,7 +2343,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e616800f">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a08fa4">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -2323,7 +2354,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -2343,7 +2374,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61d801c">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a38fb3">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -2354,7 +2385,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -2374,7 +2405,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61c8020">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a48fb6">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -2385,7 +2416,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -2405,7 +2436,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e6178013">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a18fa8">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -2416,7 +2447,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -2436,7 +2467,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61c801f">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a48fb5">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -2447,7 +2478,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -2467,7 +2498,7 @@ and any path to a file to save to the file]]></string>
 						</object>
 					</method>
 					<method name="addElement">
-						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="b8c6e61e8026">
+						<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="964fd6a48fbd">
 							<property name="unixPermissions">
 								<string><![CDATA[664]]></string>
 							</property>
@@ -2478,7 +2509,7 @@ and any path to a file to save to the file]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="sourcePath">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib/]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib/]]></string>
 							</property>
 							<property name="shouldUninstall">
 								<boolean>true</boolean>
@@ -3189,7 +3220,7 @@ Press "Done" to quit the installer.]]></string>
 								<boolean>false</boolean>
 							</property>
 							<property name="buildOutputLocation">
-								<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/dist]]></string>
+								<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/dist]]></string>
 							</property>
 							<property name="defaultWindowsUIMode">
 								<string><![CDATA[GUI]]></string>
@@ -3205,7 +3236,7 @@ Press "Done" to quit the installer.]]></string>
 				<object class="java.util.Properties">
 					<method name="put">
 						<string><![CDATA[com.zerog.ia.project.save.last.date]]></string>
-						<string><![CDATA[August 31, 2010 9:38:58 AM EDT]]></string>
+						<string><![CDATA[November 29, 2010 5:06:18 PM EST]]></string>
 					</method>
 					<method name="put">
 						<string><![CDATA[com.zerog.ia.build.options.optimization.platform.merge]]></string>
@@ -3257,7 +3288,7 @@ Press "Done" to quit the installer.]]></string>
 					</method>
 					<method name="put">
 						<string><![CDATA[com.zerog.ia.project.build.last.date]]></string>
-						<string><![CDATA[August 31, 2010 9:38:58 AM EDT]]></string>
+						<string><![CDATA[November 29, 2010 5:06:18 PM EST]]></string>
 					</method>
 					<method name="put">
 						<string><![CDATA[com.zerog.ia.build.vmpack.linux.path]]></string>
@@ -3325,7 +3356,7 @@ Press "Done" to quit the installer.]]></string>
 					</method>
 					<method name="put">
 						<string><![CDATA[com.zerog.ia.build.options.output.location]]></string>
-						<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/dist]]></string>
+						<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/dist]]></string>
 					</method>
 					<method name="put">
 						<string><![CDATA[com.zerog.ia.build.options.output.cdrom]]></string>
@@ -3504,13 +3535,13 @@ Press "Done" to quit the installer.]]></string>
 			<property name="installerInfoData">
 				<object class="com.zerog.ia.installer.util.InstallerInfoData" objectID="fecea3878b61">
 					<property name="installerTitle">
-						<string><![CDATA[Archivists' Toolkit 2.0-custom]]></string>
+						<string><![CDATA[Archivists' Toolkit Plus 2.x Beta]]></string>
 					</property>
 					<property name="installerName">
-						<string><![CDATA[installArchivistsToolkit2.0custom]]></string>
+						<string><![CDATA[installArchivistsToolkitPlus2.xBeta]]></string>
 					</property>
 					<property name="productName">
-						<string><![CDATA[Archivists' Toolkit 2.0 - custom]]></string>
+						<string><![CDATA[Archivists' Toolkit Plus 2.x Beta]]></string>
 					</property>
 					<property name="productID">
 						<object class="com.zerog.registry.UUID">
@@ -4254,7 +4285,7 @@ and any path to a file to read from that file]]></string>
 												<boolean>true</boolean>
 											</property>
 											<property name="destinationName">
-												<string><![CDATA[Archivists' Toolkit 2.0 - custom]]></string>
+												<string><![CDATA[Archivists' Toolkit Plus 2.x Beta]]></string>
 											</property>
 											<property name="args">
 												<string><![CDATA[]]></string>
@@ -4421,16 +4452,6 @@ it will search for ones in this list]]></string>
 														</object>
 													</method>
 													<method name="addElement">
-														<object class="com.zerog.ia.installer.util.LAXPropertyData" objectID="ee8bbb52a93a">
-															<property name="propertyValue">
-																<string><![CDATA[33554432]]></string>
-															</property>
-															<property name="propertyName">
-																<string><![CDATA[lax.nl.java.option.java.heap.size.initial]]></string>
-															</property>
-														</object>
-													</method>
-													<method name="addElement">
 														<object class="com.zerog.ia.installer.util.LAXPropertyData" objectID="e09abf3ba5ea">
 															<property name="propertyValue">
 																<string><![CDATA[org.archiviststoolkit.maintenance.MaintenanceWizard]]></string>
@@ -4440,6 +4461,16 @@ it will search for ones in this list]]></string>
 															</property>
 															<property name="propertyComment">
 																<string><![CDATA[the class that contains the main method for the application]]></string>
+															</property>
+														</object>
+													</method>
+													<method name="addElement">
+														<object class="com.zerog.ia.installer.util.LAXPropertyData" objectID="ee8bbb52a93a">
+															<property name="propertyValue">
+																<string><![CDATA[33554432]]></string>
+															</property>
+															<property name="propertyName">
+																<string><![CDATA[lax.nl.java.option.java.heap.size.initial]]></string>
 															</property>
 														</object>
 													</method>
@@ -4497,597 +4528,6 @@ and any path to a file to read from that file]]></string>
 												<int>3</int>
 											</property>
 										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="ac606c8c931a">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[constantsSQL.xml]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[constantsSQL.xml]]></string>
-											</property>
-											<property name="fileSize">
-												<long>663</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="ac606c8b931b">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[fieldDefinitionAndExamples.xml]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[fieldDefinitionAndExamples.xml]]></string>
-											</property>
-											<property name="fileSize">
-												<long>137196</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="ac606c8c931b">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[inLineTags.xml]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[inLineTags.xml]]></string>
-											</property>
-											<property name="fileSize">
-												<long>2884</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="ac606c8d931b">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[lookupListValues.xml]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[lookupListValues.xml]]></string>
-											</property>
-											<property name="fileSize">
-												<long>72549</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="ac606c8c931c">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[lookupListValues.xsd]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[lookupListValues.xsd]]></string>
-											</property>
-											<property name="fileSize">
-												<long>1594</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="ac606c8d931c">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[NoteEtcTypes.xml]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[NoteEtcTypes.xml]]></string>
-											</property>
-											<property name="fileSize">
-												<long>12404</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="e0dc05f683ae">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[accessionsImport.xsd]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[accessionsImport.xsd]]></string>
-											</property>
-											<property name="fileSize">
-												<long>13305</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="e0dc05f783ae">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[uniqueKeysSQL_mysql.xml]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[uniqueKeysSQL_mysql.xml]]></string>
-											</property>
-											<property name="fileSize">
-												<long>1898</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="e0dc05f883ae">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[uniqueKeysSQL_oracle.xml]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[uniqueKeysSQL_oracle.xml]]></string>
-											</property>
-											<property name="fileSize">
-												<long>1956</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="bc31711f8aa4">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[cpappend.bat]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/bin/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[cpappend.bat]]></string>
-											</property>
-											<property name="fileSize">
-												<long>28</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="bc31711d8aa5">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[startup.bat]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/bin/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[startup.bat]]></string>
-											</property>
-											<property name="fileSize">
-												<long>407</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="bc31711e8aa5">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[startup.sh]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/bin/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[startup.sh]]></string>
-											</property>
-											<property name="fileSize">
-												<long>625</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="ac6313dd9410">
-											<property name="unixPermissions">
-												<string><![CDATA[775]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/bin]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[bin]]></string>
-											</property>
-											<property name="removeRecursively">
-												<boolean>false</boolean>
-											</property>
-											<property name="totalSize">
-												<long>1</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<visualChildren>
-												<object refID="bc31711f8aa4"/>
-												<object refID="bc31711d8aa5"/>
-												<object refID="bc31711e8aa5"/>
-											</visualChildren>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="8a744c6f8a91">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[ead.xsd]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/jaxb/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[ead.xsd]]></string>
-											</property>
-											<property name="fileSize">
-												<long>100723</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="8a744c6d8a92">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[modsAT.xsd]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/jaxb/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[modsAT.xsd]]></string>
-											</property>
-											<property name="fileSize">
-												<long>42151</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="8a744c6e8a92">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[MODSbinding.xjb]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/jaxb/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[MODSbinding.xjb]]></string>
-											</property>
-											<property name="fileSize">
-												<long>1047</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="8a744c6f8a92">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[xlink.xsd]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/jaxb/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[xlink.xsd]]></string>
-											</property>
-											<property name="fileSize">
-												<long>2728</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="8a744c5c8a8d">
-											<property name="unixPermissions">
-												<string><![CDATA[775]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/jaxb]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[jaxb]]></string>
-											</property>
-											<property name="removeRecursively">
-												<boolean>false</boolean>
-											</property>
-											<property name="totalSize">
-												<long>1</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<visualChildren>
-												<object refID="8a744c6f8a91"/>
-												<object refID="8a744c6d8a92"/>
-												<object refID="8a744c6e8a92"/>
-												<object refID="8a744c6f8a92"/>
-											</visualChildren>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a85089878a93">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[ead.dtd]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[ead.dtd]]></string>
-											</property>
-											<property name="fileSize">
-												<long>186679</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="536cff2eb32a">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[uniqueKeysSQL_mssqlserver.xml]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[uniqueKeysSQL_mssqlserver.xml]]></string>
-											</property>
-											<property name="fileSize">
-												<long>1992</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
 										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="43c2d304a2de">
 											<property name="unixPermissions">
 												<string><![CDATA[775]]></string>
@@ -5111,79 +4551,78 @@ and any path to a file to read from that file]]></string>
 												<boolean>false</boolean>
 											</property>
 										</object>
-										<object refID="b8c6e615800b"/>
-										<object refID="b8c6e614800c"/>
-										<object refID="b8c6e615800c"/>
-										<object refID="b8c6e614800d"/>
-										<object refID="b8c6e615800d"/>
-										<object refID="b8c6e616800d"/>
-										<object refID="b8c6e615800e"/>
-										<object refID="b8c6e616800e"/>
-										<object refID="b8c6e615800f"/>
-										<object refID="b8c6e616800f"/>
-										<object refID="b8c6e6158010"/>
-										<object refID="b8c6e6168010"/>
-										<object refID="b8c6e6158011"/>
-										<object refID="b8c6e6168011"/>
-										<object refID="b8c6e6188011"/>
-										<object refID="b8c6e6168012"/>
-										<object refID="b8c6e6178012"/>
-										<object refID="b8c6e6168013"/>
-										<object refID="b8c6e6178013"/>
-										<object refID="b8c6e6168014"/>
-										<object refID="b8c6e6178014"/>
-										<object refID="b8c6e6168015"/>
-										<object refID="b8c6e6178015"/>
-										<object refID="b8c6e6168016"/>
-										<object refID="b8c6e6178016"/>
-										<object refID="b8c6e6188016"/>
-										<object refID="b8c6e6178017"/>
-										<object refID="b8c6e6188017"/>
-										<object refID="b8c6e6178018"/>
-										<object refID="b8c6e6188018"/>
-										<object refID="b8c6e6198018"/>
-										<object refID="b8c6e61a8018"/>
-										<object refID="b8c6e61c8018"/>
-										<object refID="b8c6e61a8019"/>
-										<object refID="b8c6e61b8019"/>
-										<object refID="b8c6e61c8019"/>
-										<object refID="b8c6e61b801a"/>
-										<object refID="b8c6e61c801a"/>
-										<object refID="b8c6e61b801b"/>
-										<object refID="b8c6e61c801b"/>
-										<object refID="b8c6e61b801c"/>
-										<object refID="b8c6e61c801c"/>
-										<object refID="b8c6e61d801c"/>
-										<object refID="b8c6e61c801d"/>
-										<object refID="b8c6e61d801d"/>
-										<object refID="b8c6e61c801e"/>
-										<object refID="b8c6e61d801e"/>
-										<object refID="b8c6e61c801f"/>
-										<object refID="b8c6e61d801f"/>
-										<object refID="b8c6e61c8020"/>
-										<object refID="b8c6e61d8020"/>
-										<object refID="b8c6e61f8020"/>
-										<object refID="b8c6e61d8021"/>
-										<object refID="b8c6e61e8021"/>
-										<object refID="b8c6e61d8022"/>
-										<object refID="b8c6e61e8022"/>
-										<object refID="b8c6e61d8023"/>
-										<object refID="b8c6e61e8023"/>
-										<object refID="b8c6e61d8024"/>
-										<object refID="b8c6e61e8024"/>
-										<object refID="b8c6e6208024"/>
-										<object refID="b8c6e61e8025"/>
-										<object refID="b8c6e61f8025"/>
-										<object refID="b8c6e61e8026"/>
-										<object refID="b8c6e61f8026"/>
-										<object refID="b8c6e61e8027"/>
-										<object refID="b8c6e61f8027"/>
-										<object refID="b8c6e61e8028"/>
-										<object refID="b8c6e61f8028"/>
-										<object refID="b8c6e6218028"/>
-										<object refID="b8c6e61f8029"/>
-										<object refID="b8c733518029"/>
-										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="b8c6e5cbbfcf">
+										<object refID="964fd6a08fa0"/>
+										<object refID="964fd69e8fa1"/>
+										<object refID="964fd69f8fa1"/>
+										<object refID="964fd69e8fa2"/>
+										<object refID="964fd69f8fa2"/>
+										<object refID="964fd69e8fa3"/>
+										<object refID="964fd69f8fa3"/>
+										<object refID="964fd6a18fa3"/>
+										<object refID="964fd69f8fa4"/>
+										<object refID="964fd6a08fa4"/>
+										<object refID="964fd69f8fa5"/>
+										<object refID="964fd6a08fa5"/>
+										<object refID="964fd69f8fa6"/>
+										<object refID="964fd6a08fa6"/>
+										<object refID="964fd69f8fa7"/>
+										<object refID="964fd6a08fa7"/>
+										<object refID="964fd69f8fa8"/>
+										<object refID="964fd6a08fa8"/>
+										<object refID="964fd6a18fa8"/>
+										<object refID="964fd6a08fa9"/>
+										<object refID="964fd6a18fa9"/>
+										<object refID="964fd6a08faa"/>
+										<object refID="964fd6a18faa"/>
+										<object refID="964fd6a08fab"/>
+										<object refID="964fd6a18fab"/>
+										<object refID="964fd6a08fac"/>
+										<object refID="964fd6a18fac"/>
+										<object refID="964fd6a38fac"/>
+										<object refID="964fd6a18fad"/>
+										<object refID="964fd6a28fad"/>
+										<object refID="964fd6a18fae"/>
+										<object refID="964fd6a28fae"/>
+										<object refID="964fd6a18faf"/>
+										<object refID="964fd6a28faf"/>
+										<object refID="964fd6a18fb0"/>
+										<object refID="964fd6a28fb0"/>
+										<object refID="964fd6a18fb1"/>
+										<object refID="964fd6a28fb1"/>
+										<object refID="964fd6a38fb1"/>
+										<object refID="964fd6a28fb2"/>
+										<object refID="964fd6a38fb2"/>
+										<object refID="964fd6a28fb3"/>
+										<object refID="964fd6a38fb3"/>
+										<object refID="964fd6a28fb4"/>
+										<object refID="964fd6a38fb4"/>
+										<object refID="964fd6a28fb5"/>
+										<object refID="964fd6a38fb5"/>
+										<object refID="964fd6a48fb5"/>
+										<object refID="964fd6a38fb6"/>
+										<object refID="964fd6a48fb6"/>
+										<object refID="964fd6a38fb7"/>
+										<object refID="964fd6a48fb7"/>
+										<object refID="964fd6a38fb8"/>
+										<object refID="964fd6a48fb8"/>
+										<object refID="964fd6a38fb9"/>
+										<object refID="964fd6a48fb9"/>
+										<object refID="964fd6a68fb9"/>
+										<object refID="964fd6a48fba"/>
+										<object refID="964fd6a58fba"/>
+										<object refID="964fd6a48fbb"/>
+										<object refID="964fd6a58fbb"/>
+										<object refID="964fd6a48fbc"/>
+										<object refID="964fd6a58fbc"/>
+										<object refID="964fd6a48fbd"/>
+										<object refID="964fd6a58fbd"/>
+										<object refID="964fd6a78fbd"/>
+										<object refID="964fd6a58fbe"/>
+										<object refID="964fd6a68fbe"/>
+										<object refID="964fd6b08fbe"/>
+										<object refID="964fd6b18fbe"/>
+										<object refID="964fd6b08fbf"/>
+										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="964fd69d8fa0">
 											<property name="unixPermissions">
 												<string><![CDATA[775]]></string>
 											</property>
@@ -5194,7 +4633,7 @@ and any path to a file to read from that file]]></string>
 												<boolean>false</boolean>
 											</property>
 											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/lib]]></string>
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/lib]]></string>
 											</property>
 											<property name="shouldUninstall">
 												<boolean>true</boolean>
@@ -5212,81 +4651,82 @@ and any path to a file to read from that file]]></string>
 												<boolean>false</boolean>
 											</property>
 											<visualChildren>
-												<object refID="b8c6e615800b"/>
-												<object refID="b8c733518029"/>
-												<object refID="b8c6e614800c"/>
-												<object refID="b8c6e615800c"/>
-												<object refID="b8c6e614800d"/>
-												<object refID="b8c6e615800d"/>
-												<object refID="b8c6e616800d"/>
-												<object refID="b8c6e615800e"/>
-												<object refID="b8c6e616800e"/>
-												<object refID="b8c6e615800f"/>
-												<object refID="b8c6e616800f"/>
-												<object refID="b8c6e6158010"/>
-												<object refID="b8c6e6168010"/>
-												<object refID="b8c6e6158011"/>
-												<object refID="b8c6e6168011"/>
-												<object refID="b8c6e6188011"/>
-												<object refID="b8c6e6168012"/>
-												<object refID="b8c6e6178012"/>
-												<object refID="b8c6e6168013"/>
-												<object refID="b8c6e6178013"/>
-												<object refID="b8c6e6168014"/>
-												<object refID="b8c6e6178014"/>
-												<object refID="b8c6e6168015"/>
-												<object refID="b8c6e6178015"/>
-												<object refID="b8c6e6168016"/>
-												<object refID="b8c6e6178016"/>
-												<object refID="b8c6e6188016"/>
-												<object refID="b8c6e6178017"/>
-												<object refID="b8c6e6188017"/>
-												<object refID="b8c6e6178018"/>
-												<object refID="b8c6e6188018"/>
-												<object refID="b8c6e6198018"/>
-												<object refID="b8c6e61a8018"/>
-												<object refID="b8c6e61c8018"/>
-												<object refID="b8c6e61a8019"/>
-												<object refID="b8c6e61b8019"/>
-												<object refID="b8c6e61c8019"/>
-												<object refID="b8c6e61b801a"/>
-												<object refID="b8c6e61c801a"/>
-												<object refID="b8c6e61b801b"/>
-												<object refID="b8c6e61c801b"/>
-												<object refID="b8c6e61b801c"/>
-												<object refID="b8c6e61c801c"/>
-												<object refID="b8c6e61d801c"/>
-												<object refID="b8c6e61c801d"/>
-												<object refID="b8c6e61d801d"/>
-												<object refID="b8c6e61c801e"/>
-												<object refID="b8c6e61d801e"/>
-												<object refID="b8c6e61c801f"/>
-												<object refID="b8c6e61d801f"/>
-												<object refID="b8c6e61c8020"/>
-												<object refID="b8c6e61d8020"/>
-												<object refID="b8c6e61f8020"/>
-												<object refID="b8c6e61d8021"/>
-												<object refID="b8c6e61e8021"/>
-												<object refID="b8c6e61d8022"/>
-												<object refID="b8c6e61e8022"/>
-												<object refID="b8c6e61d8023"/>
-												<object refID="b8c6e61e8023"/>
-												<object refID="b8c6e61d8024"/>
-												<object refID="b8c6e61e8024"/>
-												<object refID="b8c6e6208024"/>
-												<object refID="b8c6e61e8025"/>
-												<object refID="b8c6e61f8025"/>
-												<object refID="b8c6e61e8026"/>
-												<object refID="b8c6e61f8026"/>
-												<object refID="b8c6e61e8027"/>
-												<object refID="b8c6e61f8027"/>
-												<object refID="b8c6e61e8028"/>
-												<object refID="b8c6e61f8028"/>
-												<object refID="b8c6e6218028"/>
-												<object refID="b8c6e61f8029"/>
+												<object refID="9650214a9009"/>
+												<object refID="964fd6a08fa0"/>
+												<object refID="964fd69e8fa1"/>
+												<object refID="964fd69f8fa1"/>
+												<object refID="964fd69e8fa2"/>
+												<object refID="964fd69f8fa2"/>
+												<object refID="964fd69e8fa3"/>
+												<object refID="964fd69f8fa3"/>
+												<object refID="964fd6a18fa3"/>
+												<object refID="964fd69f8fa4"/>
+												<object refID="964fd6a08fa4"/>
+												<object refID="964fd69f8fa5"/>
+												<object refID="964fd6a08fa5"/>
+												<object refID="964fd69f8fa6"/>
+												<object refID="964fd6a08fa6"/>
+												<object refID="964fd69f8fa7"/>
+												<object refID="964fd6a08fa7"/>
+												<object refID="964fd69f8fa8"/>
+												<object refID="964fd6a08fa8"/>
+												<object refID="964fd6a18fa8"/>
+												<object refID="964fd6a08fa9"/>
+												<object refID="964fd6a18fa9"/>
+												<object refID="964fd6a08faa"/>
+												<object refID="964fd6a18faa"/>
+												<object refID="964fd6a08fab"/>
+												<object refID="964fd6a18fab"/>
+												<object refID="964fd6a08fac"/>
+												<object refID="964fd6a18fac"/>
+												<object refID="964fd6a38fac"/>
+												<object refID="964fd6a18fad"/>
+												<object refID="964fd6a28fad"/>
+												<object refID="964fd6a18fae"/>
+												<object refID="964fd6a28fae"/>
+												<object refID="964fd6a18faf"/>
+												<object refID="964fd6a28faf"/>
+												<object refID="964fd6a18fb0"/>
+												<object refID="964fd6a28fb0"/>
+												<object refID="964fd6a18fb1"/>
+												<object refID="964fd6a28fb1"/>
+												<object refID="964fd6a38fb1"/>
+												<object refID="964fd6a28fb2"/>
+												<object refID="964fd6a38fb2"/>
+												<object refID="964fd6a28fb3"/>
+												<object refID="964fd6a38fb3"/>
+												<object refID="964fd6a28fb4"/>
+												<object refID="964fd6a38fb4"/>
+												<object refID="964fd6a28fb5"/>
+												<object refID="964fd6a38fb5"/>
+												<object refID="964fd6a48fb5"/>
+												<object refID="964fd6a38fb6"/>
+												<object refID="964fd6a48fb6"/>
+												<object refID="964fd6a38fb7"/>
+												<object refID="964fd6a48fb7"/>
+												<object refID="964fd6a38fb8"/>
+												<object refID="964fd6a48fb8"/>
+												<object refID="964fd6a38fb9"/>
+												<object refID="964fd6a48fb9"/>
+												<object refID="964fd6a68fb9"/>
+												<object refID="964fd6a48fba"/>
+												<object refID="964fd6a58fba"/>
+												<object refID="964fd6a48fbb"/>
+												<object refID="964fd6a58fbb"/>
+												<object refID="964fd6a48fbc"/>
+												<object refID="964fd6a58fbc"/>
+												<object refID="964fd6a48fbd"/>
+												<object refID="964fd6a58fbd"/>
+												<object refID="964fd6a78fbd"/>
+												<object refID="964fd6a58fbe"/>
+												<object refID="964fd6a68fbe"/>
+												<object refID="964fd6b08fbe"/>
+												<object refID="964fd6b18fbe"/>
+												<object refID="964fd6b08fbf"/>
 											</visualChildren>
 										</object>
-										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="63038acf97ea">
+										<object refID="964fd6b18fc0"/>
+										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="964fd6b18fbf">
 											<property name="unixPermissions">
 												<string><![CDATA[775]]></string>
 											</property>
@@ -5297,65 +4737,7 @@ and any path to a file to read from that file]]></string>
 												<boolean>false</boolean>
 											</property>
 											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/reports]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[reports]]></string>
-											</property>
-											<property name="removeRecursively">
-												<boolean>false</boolean>
-											</property>
-											<property name="totalSize">
-												<long>2518512</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallZipfile" objectID="d738d3038f45">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[PatronImport.zip]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/plugins/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[PatronImport.zip]]></string>
-											</property>
-											<property name="fileSize">
-												<long>9351</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="d738d3028f44">
-											<property name="unixPermissions">
-												<string><![CDATA[775]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/plugins]]></string>
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/plugins]]></string>
 											</property>
 											<property name="shouldUninstall">
 												<boolean>true</boolean>
@@ -5373,39 +4755,11 @@ and any path to a file to read from that file]]></string>
 												<boolean>false</boolean>
 											</property>
 											<visualChildren>
-												<object refID="d738d3038f45"/>
+												<object refID="964fd6b18fc0"/>
 											</visualChildren>
 										</object>
-										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="d73a57ab8f45">
-											<property name="unixPermissions">
-												<string><![CDATA[664]]></string>
-											</property>
-											<property name="sourceName">
-												<string><![CDATA[patronImport.xsd]]></string>
-											</property>
-											<property name="overrideUnixPermissions">
-												<boolean>false</boolean>
-											</property>
-											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf/]]></string>
-											</property>
-											<property name="shouldUninstall">
-												<boolean>true</boolean>
-											</property>
-											<property name="destinationName">
-												<string><![CDATA[patronImport.xsd]]></string>
-											</property>
-											<property name="fileSize">
-												<long>7636</long>
-											</property>
-											<property name="macBinary">
-												<boolean>false</boolean>
-											</property>
-											<property name="targetCheckKind">
-												<int>0</int>
-											</property>
-										</object>
-										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="ac606c739311">
+										<object refID="9650214a9009"/>
+										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="a7261695934e">
 											<property name="unixPermissions">
 												<string><![CDATA[775]]></string>
 											</property>
@@ -5416,7 +4770,732 @@ and any path to a file to read from that file]]></string>
 												<boolean>false</boolean>
 											</property>
 											<property name="sourcePath">
-												<string><![CDATA[/Users/leemandell/archivistsToolkit/atProject/conf]]></string>
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Accessions]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[Accessions]]></string>
+											</property>
+											<property name="removeRecursively">
+												<boolean>false</boolean>
+											</property>
+											<property name="totalSize">
+												<long>577536</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="a72617af9359">
+											<property name="unixPermissions">
+												<string><![CDATA[775]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Assessments]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[Assessments]]></string>
+											</property>
+											<property name="removeRecursively">
+												<boolean>false</boolean>
+											</property>
+											<property name="totalSize">
+												<long>183430</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="a72617b0935e">
+											<property name="unixPermissions">
+												<string><![CDATA[775]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/DigitalObjects]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[DigitalObjects]]></string>
+											</property>
+											<property name="removeRecursively">
+												<boolean>false</boolean>
+											</property>
+											<property name="totalSize">
+												<long>204336</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="a72617b49365">
+											<property name="unixPermissions">
+												<string><![CDATA[775]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/General]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[General]]></string>
+											</property>
+											<property name="removeRecursively">
+												<boolean>false</boolean>
+											</property>
+											<property name="totalSize">
+												<long>153041</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="a72617b5936c">
+											<property name="unixPermissions">
+												<string><![CDATA[775]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Locations]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[Locations]]></string>
+											</property>
+											<property name="removeRecursively">
+												<boolean>false</boolean>
+											</property>
+											<property name="totalSize">
+												<long>60764</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="a72617b6936f">
+											<property name="unixPermissions">
+												<string><![CDATA[775]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Names]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[Names]]></string>
+											</property>
+											<property name="removeRecursively">
+												<boolean>false</boolean>
+											</property>
+											<property name="totalSize">
+												<long>200943</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f29376">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[patronRecord_2010_10_06.jrxml]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[patronRecord_2010_10_06.jrxml]]></string>
+											</property>
+											<property name="fileSize">
+												<long>25279</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f19377">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[sub_nonPreferredNames.jasper]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[sub_nonPreferredNames.jasper]]></string>
+											</property>
+											<property name="fileSize">
+												<long>15316</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f29377">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[sub_nonPreferredNames.jrxml]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[sub_nonPreferredNames.jrxml]]></string>
+											</property>
+											<property name="fileSize">
+												<long>3479</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f19378">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[sub_patronAddresses.jasper]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[sub_patronAddresses.jasper]]></string>
+											</property>
+											<property name="fileSize">
+												<long>22062</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f29378">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[sub_patronAddresses.jrxml]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[sub_patronAddresses.jrxml]]></string>
+											</property>
+											<property name="fileSize">
+												<long>12413</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f39378">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[sub_patronFunding.jasper]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[sub_patronFunding.jasper]]></string>
+											</property>
+											<property name="fileSize">
+												<long>18925</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f29379">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[sub_patronFunding.jrxml]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[sub_patronFunding.jrxml]]></string>
+											</property>
+											<property name="fileSize">
+												<long>8779</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f39379">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[sub_patronGrants.jasper]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[sub_patronGrants.jasper]]></string>
+											</property>
+											<property name="fileSize">
+												<long>18904</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f2937a">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[sub_patronGrants.jrxml]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[sub_patronGrants.jrxml]]></string>
+											</property>
+											<property name="fileSize">
+												<long>8767</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f3937a">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[sub_patronPhoneNumbers.jasper]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[sub_patronPhoneNumbers.jasper]]></string>
+											</property>
+											<property name="fileSize">
+												<long>16099</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f2937b">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[sub_patronPhoneNumbers.jrxml]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[sub_patronPhoneNumbers.jrxml]]></string>
+											</property>
+											<property name="fileSize">
+												<long>4637</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f3937b">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[sub_patronPublications.jasper]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[sub_patronPublications.jasper]]></string>
+											</property>
+											<property name="fileSize">
+												<long>22129</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f5937b">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[sub_patronPublications.jrxml]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[sub_patronPublications.jrxml]]></string>
+											</property>
+											<property name="fileSize">
+												<long>10850</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f3937c">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[sub_patronVisits.jasper]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[sub_patronVisits.jasper]]></string>
+											</property>
+											<property name="fileSize">
+												<long>21612</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f4937c">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[sub_patronVisits.jrxml]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[sub_patronVisits.jrxml]]></string>
+											</property>
+											<property name="fileSize">
+												<long>11032</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f3937d">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[sub_patronVisitsSubjects.jasper]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[sub_patronVisitsSubjects.jasper]]></string>
+											</property>
+											<property name="fileSize">
+												<long>17963</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallFile" objectID="a72617f4937d">
+											<property name="unixPermissions">
+												<string><![CDATA[664]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[sub_PatronVisitsSubjects.jrxml]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons/]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[sub_PatronVisitsSubjects.jrxml]]></string>
+											</property>
+											<property name="fileSize">
+												<long>6433</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<property name="targetCheckKind">
+												<int>0</int>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="a72617f3937e">
+											<property name="unixPermissions">
+												<string><![CDATA[775]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Resources]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[Resources]]></string>
+											</property>
+											<property name="removeRecursively">
+												<boolean>false</boolean>
+											</property>
+											<property name="totalSize">
+												<long>765526</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="a7261804938d">
+											<property name="unixPermissions">
+												<string><![CDATA[775]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Subjects]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[Subjects]]></string>
+											</property>
+											<property name="removeRecursively">
+												<boolean>false</boolean>
+											</property>
+											<property name="totalSize">
+												<long>106321</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="964fd68c8f98">
+											<property name="unixPermissions">
+												<string><![CDATA[775]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/conf]]></string>
 											</property>
 											<property name="shouldUninstall">
 												<boolean>true</boolean>
@@ -5428,25 +5507,127 @@ and any path to a file to read from that file]]></string>
 												<boolean>false</boolean>
 											</property>
 											<property name="totalSize">
+												<long>599883</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="964fd6728f97">
+											<property name="unixPermissions">
+												<string><![CDATA[775]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/bin]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[bin]]></string>
+											</property>
+											<property name="removeRecursively">
+												<boolean>false</boolean>
+											</property>
+											<property name="totalSize">
+												<long>1230</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="a72617b99376">
+											<property name="unixPermissions">
+												<string><![CDATA[775]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports/Patrons]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[Patrons]]></string>
+											</property>
+											<property name="removeRecursively">
+												<boolean>false</boolean>
+											</property>
+											<property name="totalSize">
 												<long>1</long>
 											</property>
 											<property name="macBinary">
 												<boolean>false</boolean>
 											</property>
 											<visualChildren>
-												<object refID="ac606c8c931a"/>
-												<object refID="ac606c8b931b"/>
-												<object refID="ac606c8c931b"/>
-												<object refID="ac606c8d931b"/>
-												<object refID="ac606c8c931c"/>
-												<object refID="ac606c8d931c"/>
-												<object refID="e0dc05f683ae"/>
-												<object refID="e0dc05f783ae"/>
-												<object refID="e0dc05f883ae"/>
-												<object refID="8a744c5c8a8d"/>
-												<object refID="a85089878a93"/>
-												<object refID="536cff2eb32a"/>
-												<object refID="d73a57ab8f45"/>
+												<object refID="a72617f29376"/>
+												<object refID="a72617f19377"/>
+												<object refID="a72617f29377"/>
+												<object refID="a72617f19378"/>
+												<object refID="a72617f29378"/>
+												<object refID="a72617f39378"/>
+												<object refID="a72617f29379"/>
+												<object refID="a72617f39379"/>
+												<object refID="a72617f2937a"/>
+												<object refID="a72617f3937a"/>
+												<object refID="a72617f2937b"/>
+												<object refID="a72617f3937b"/>
+												<object refID="a72617f5937b"/>
+												<object refID="a72617f3937c"/>
+												<object refID="a72617f4937c"/>
+												<object refID="a72617f3937d"/>
+												<object refID="a72617f4937d"/>
+											</visualChildren>
+										</object>
+										<object class="com.zerog.ia.installer.actions.InstallDirectory" objectID="964fd6b08fc1">
+											<property name="unixPermissions">
+												<string><![CDATA[775]]></string>
+											</property>
+											<property name="sourceName">
+												<string><![CDATA[]]></string>
+											</property>
+											<property name="overrideUnixPermissions">
+												<boolean>false</boolean>
+											</property>
+											<property name="sourcePath">
+												<string><![CDATA[/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/reports]]></string>
+											</property>
+											<property name="shouldUninstall">
+												<boolean>true</boolean>
+											</property>
+											<property name="destinationName">
+												<string><![CDATA[reports]]></string>
+											</property>
+											<property name="removeRecursively">
+												<boolean>false</boolean>
+											</property>
+											<property name="totalSize">
+												<long>1</long>
+											</property>
+											<property name="macBinary">
+												<boolean>false</boolean>
+											</property>
+											<visualChildren>
+												<object refID="a7261695934e"/>
+												<object refID="a72617af9359"/>
+												<object refID="a72617b0935e"/>
+												<object refID="a72617b49365"/>
+												<object refID="a72617b5936c"/>
+												<object refID="a72617b6936f"/>
+												<object refID="a72617b99376"/>
+												<object refID="a72617f3937e"/>
+												<object refID="a7261804938d"/>
 											</visualChildren>
 										</object>
 									</installChildren>
@@ -6034,15 +6215,15 @@ and any path to a file to read from that file]]></string>
 								<string><![CDATA[775]]></string>
 							</property>
 							<visualChildren>
+								<object refID="964fd6b08fc1"/>
+								<object refID="964fd6b18fbf"/>
+								<object refID="964fd68c8f98"/>
+								<object refID="964fd6728f97"/>
+								<object refID="964fd69d8fa0"/>
 								<object refID="fecea42b8b6e"/>
 								<object refID="feceb64e8b71"/>
-								<object refID="ac6313dd9410"/>
 								<object refID="43c2d304a2de"/>
-								<object refID="ac606c739311"/>
 								<object refID="77cb50c38b25"/>
-								<object refID="b8c6e5cbbfcf"/>
-								<object refID="63038acf97ea"/>
-								<object refID="d738d3028f44"/>
 							</visualChildren>
 						</object>
 						<object class="com.zerog.ia.installer.GhostDirectory" objectID="feceb6578b76">
@@ -6073,7 +6254,16 @@ and any path to a file to read from that file]]></string>
 			</installChildren>
 		</object>
 	</installationObjects>
-	<restorationObjects count="1">
-		<object refID="63038acf97ea"/>
+	<restorationObjects count="10">
+		<object refID="a7261695934e"/>
+		<object refID="a72617af9359"/>
+		<object refID="a72617b0935e"/>
+		<object refID="a72617b49365"/>
+		<object refID="a72617b5936c"/>
+		<object refID="a72617b6936f"/>
+		<object refID="a72617f3937e"/>
+		<object refID="a7261804938d"/>
+		<object refID="964fd68c8f98"/>
+		<object refID="964fd6728f97"/>
 	</restorationObjects>
 </InstallAnywhere_Deployment_Project>

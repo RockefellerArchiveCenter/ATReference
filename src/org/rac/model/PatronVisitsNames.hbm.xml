@@ -15,9 +15,22 @@
 					 class="PatronVisits"
 					 column="patronVisitId"/>
 
+        <property name="form"
+                  column="form"
+                  type="string"/>
+
+        <property name="role"
+                  column="role"
+                  type="string"/>
+
 		<many-to-one name="name"
 					 class="org.archiviststoolkit.model.Names"
-					 column="nameId"/>
+					 column="nameId"
+                     not-null="true"
+                     access="field"
+                     fetch="join"
+                     outer-join="true"/>
+
 
 	</class>
 

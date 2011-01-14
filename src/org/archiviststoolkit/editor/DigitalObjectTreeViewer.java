@@ -211,215 +211,213 @@ public class DigitalObjectTreeViewer extends DomainEditorFields implements Mouse
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner non-commercial license
-        panel3 = new JPanel();
-        label2 = new JLabel();
-        resourceTitle = new JTextField();
-        label3 = new JLabel();
-        resourceId = new JTextField();
-        splitPane = new JSplitPane();
-        digitalObjectTreeScrollPane = new JScrollPane();
-        panel2 = new JPanel();
-        addChildButton = new JButton();
-        addSiblingBelowButton = new JButton();
-        deleteDigitalObjectButton = new JButton();
-        exportMetsButton = new JButton();
-        exportMARC = new JButton();
-        exportMODS = new JButton();
-        exportDC = new JButton();
-        CellConstraints cc = new CellConstraints();
+		// Generated using JFormDesigner non-commercial license
+		panel3 = new JPanel();
+		label2 = new JLabel();
+		resourceTitle = new JTextField();
+		label3 = new JLabel();
+		resourceId = new JTextField();
+		splitPane = new JSplitPane();
+		digitalObjectTreeScrollPane = new JScrollPane();
+		panel2 = new JPanel();
+		addChildButton = new JButton();
+		addSiblingBelowButton = new JButton();
+		deleteDigitalObjectButton = new JButton();
+		exportMetsButton = new JButton();
+		exportMARC = new JButton();
+		exportMODS = new JButton();
+		exportDC = new JButton();
+		CellConstraints cc = new CellConstraints();
 
-        //======== this ========
-        setPreferredSize(new Dimension(1000, 600));
-        setOpaque(false);
-        setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        setLayout(new FormLayout(
-            "default:grow",
-            "default, default, fill:default"));
+		//======== this ========
+		setPreferredSize(new Dimension(1000, 600));
+		setOpaque(false);
+		setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		setLayout(new FormLayout(
+			"default:grow",
+			"default, default, fill:default"));
 
-        //======== panel3 ========
-        {
-            panel3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-            panel3.setBackground(new Color(200, 205, 232));
-            panel3.setVisible(false);
-            panel3.setLayout(new FormLayout(
-                new ColumnSpec[] {
-                    FormFactory.DEFAULT_COLSPEC,
-                    FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                    new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
-                    FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                    FormFactory.DEFAULT_COLSPEC,
-                    FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                    FormFactory.DEFAULT_COLSPEC
-                },
-                RowSpec.decodeSpecs("default")));
+		//======== panel3 ========
+		{
+			panel3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+			panel3.setBackground(new Color(200, 205, 232));
+			panel3.setVisible(false);
+			panel3.setLayout(new FormLayout(
+				new ColumnSpec[] {
+					FormFactory.DEFAULT_COLSPEC,
+					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+					new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+					FormFactory.DEFAULT_COLSPEC,
+					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+					FormFactory.DEFAULT_COLSPEC
+				},
+				RowSpec.decodeSpecs("default")));
 
-            //---- label2 ----
-            label2.setText("Digtal Object Title: ");
-            label2.setForeground(new Color(0, 0, 102));
-            label2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-            panel3.add(label2, cc.xy(1, 1));
+			//---- label2 ----
+			label2.setText("Digtal Object Title: ");
+			label2.setForeground(new Color(0, 0, 102));
+			label2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+			panel3.add(label2, cc.xy(1, 1));
 
-            //---- resourceTitle ----
-            resourceTitle.setEditable(false);
-            resourceTitle.setOpaque(false);
-            resourceTitle.setBorder(null);
-            resourceTitle.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-            panel3.add(resourceTitle, cc.xywh(3, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
+			//---- resourceTitle ----
+			resourceTitle.setEditable(false);
+			resourceTitle.setOpaque(false);
+			resourceTitle.setBorder(null);
+			panel3.add(resourceTitle, cc.xywh(3, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
 
-            //---- label3 ----
-            label3.setText("Resource ID: ");
-            label3.setForeground(new Color(0, 0, 102));
-            label3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-            panel3.add(label3, cc.xy(5, 1));
+			//---- label3 ----
+			label3.setText("Resource ID: ");
+			label3.setForeground(new Color(0, 0, 102));
+			label3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+			panel3.add(label3, cc.xy(5, 1));
 
-            //---- resourceId ----
-            resourceId.setEditable(false);
-            resourceId.setOpaque(false);
-            resourceId.setBorder(null);
-            resourceId.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-            panel3.add(resourceId, cc.xywh(7, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
-        }
-        add(panel3, cc.xy(1, 1));
+			//---- resourceId ----
+			resourceId.setEditable(false);
+			resourceId.setOpaque(false);
+			resourceId.setBorder(null);
+			panel3.add(resourceId, cc.xywh(7, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
+		}
+		add(panel3, cc.xy(1, 1));
 
-        //======== splitPane ========
-        {
-            splitPane.setDividerLocation(300);
-            splitPane.setLastDividerLocation(300);
-            splitPane.setPreferredSize(new Dimension(1000, 600));
-            splitPane.setOpaque(false);
-            splitPane.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		//======== splitPane ========
+		{
+			splitPane.setDividerLocation(300);
+			splitPane.setLastDividerLocation(300);
+			splitPane.setPreferredSize(new Dimension(1000, 600));
+			splitPane.setOpaque(false);
+			splitPane.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 
-            //======== digitalObjectTreeScrollPane ========
-            {
-                digitalObjectTreeScrollPane.setPreferredSize(new Dimension(250, 384));
-                digitalObjectTreeScrollPane.setMinimumSize(new Dimension(250, 384));
-                digitalObjectTreeScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-                digitalObjectTreeScrollPane.setFocusable(false);
-                digitalObjectTreeScrollPane.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-                digitalObjectTreeScrollPane.setAutoscrolls(true);
-            }
-            splitPane.setLeftComponent(digitalObjectTreeScrollPane);
-        }
-        add(splitPane, cc.xy(1, 2));
+			//======== digitalObjectTreeScrollPane ========
+			{
+				digitalObjectTreeScrollPane.setPreferredSize(new Dimension(250, 384));
+				digitalObjectTreeScrollPane.setMinimumSize(new Dimension(250, 384));
+				digitalObjectTreeScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+				digitalObjectTreeScrollPane.setFocusable(false);
+				digitalObjectTreeScrollPane.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+				digitalObjectTreeScrollPane.setAutoscrolls(true);
+			}
+			splitPane.setLeftComponent(digitalObjectTreeScrollPane);
+		}
+		add(splitPane, cc.xy(1, 2));
 
-        //======== panel2 ========
-        {
-            panel2.setOpaque(false);
-            panel2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-            panel2.setLayout(new FormLayout(
-                new ColumnSpec[] {
-                    new ColumnSpec(ColumnSpec.CENTER, Sizes.DEFAULT, FormSpec.NO_GROW),
-                    FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                    FormFactory.DEFAULT_COLSPEC,
-                    FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                    FormFactory.DEFAULT_COLSPEC,
-                    FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                    FormFactory.UNRELATED_GAP_COLSPEC,
-                    FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                    FormFactory.DEFAULT_COLSPEC,
-                    FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                    FormFactory.DEFAULT_COLSPEC,
-                    FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                    FormFactory.DEFAULT_COLSPEC,
-                    FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                    FormFactory.DEFAULT_COLSPEC
-                },
-                RowSpec.decodeSpecs("default")));
+		//======== panel2 ========
+		{
+			panel2.setOpaque(false);
+			panel2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+			panel2.setLayout(new FormLayout(
+				new ColumnSpec[] {
+					new ColumnSpec(ColumnSpec.CENTER, Sizes.DEFAULT, FormSpec.NO_GROW),
+					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+					FormFactory.DEFAULT_COLSPEC,
+					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+					FormFactory.DEFAULT_COLSPEC,
+					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+					FormFactory.UNRELATED_GAP_COLSPEC,
+					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+					FormFactory.DEFAULT_COLSPEC,
+					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+					FormFactory.DEFAULT_COLSPEC,
+					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+					FormFactory.DEFAULT_COLSPEC,
+					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+					FormFactory.DEFAULT_COLSPEC
+				},
+				RowSpec.decodeSpecs("default")));
 
-            //---- addChildButton ----
-            addChildButton.setOpaque(false);
-            addChildButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-            addChildButton.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/addChild.jpg")));
-            addChildButton.setHorizontalTextPosition(SwingConstants.RIGHT);
-            addChildButton.setToolTipText("Add Child");
-            addChildButton.setText("<html><c>Add<br>Child</c></html>");
-            addChildButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    addChildActionPerformed(e);
-                }
-            });
-            panel2.add(addChildButton, cc.xy(1, 1));
+			//---- addChildButton ----
+			addChildButton.setOpaque(false);
+			addChildButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+			addChildButton.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/addChild.jpg")));
+			addChildButton.setHorizontalTextPosition(SwingConstants.RIGHT);
+			addChildButton.setToolTipText("Add Child");
+			addChildButton.setText("<html><c>Add<br>Child</c></html>");
+			addChildButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					addChildActionPerformed(e);
+				}
+			});
+			panel2.add(addChildButton, cc.xy(1, 1));
 
-            //---- addSiblingBelowButton ----
-            addSiblingBelowButton.setOpaque(false);
-            addSiblingBelowButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-            addSiblingBelowButton.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/addSibling.png")));
-            addSiblingBelowButton.setToolTipText("Add Sibling Above");
-            addSiblingBelowButton.setText("<html>Add<br>Sibling</html>");
-            addSiblingBelowButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    addSiblingBelowActionPerformed(e);
-                }
-            });
-            panel2.add(addSiblingBelowButton, cc.xy(3, 1));
+			//---- addSiblingBelowButton ----
+			addSiblingBelowButton.setOpaque(false);
+			addSiblingBelowButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+			addSiblingBelowButton.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/addSibling.png")));
+			addSiblingBelowButton.setToolTipText("Add Sibling Above");
+			addSiblingBelowButton.setText("<html>Add<br>Sibling</html>");
+			addSiblingBelowButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					addSiblingBelowActionPerformed(e);
+				}
+			});
+			panel2.add(addSiblingBelowButton, cc.xy(3, 1));
 
-            //---- deleteDigitalObjectButton ----
-            deleteDigitalObjectButton.setOpaque(false);
-            deleteDigitalObjectButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-            deleteDigitalObjectButton.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/delete.jpg")));
-            deleteDigitalObjectButton.setToolTipText("Delete Digital Object");
-            deleteDigitalObjectButton.setText("<html>Delete<br>Node</html>");
-            deleteDigitalObjectButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    deleteDigitalObjectButtonActionPerformed(e);
-                }
-            });
-            panel2.add(deleteDigitalObjectButton, cc.xy(5, 1));
+			//---- deleteDigitalObjectButton ----
+			deleteDigitalObjectButton.setOpaque(false);
+			deleteDigitalObjectButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+			deleteDigitalObjectButton.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/delete.jpg")));
+			deleteDigitalObjectButton.setToolTipText("Delete Digital Object");
+			deleteDigitalObjectButton.setText("<html>Delete<br>Node</html>");
+			deleteDigitalObjectButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					deleteDigitalObjectButtonActionPerformed(e);
+				}
+			});
+			panel2.add(deleteDigitalObjectButton, cc.xy(5, 1));
 
-            //---- exportMetsButton ----
-            exportMetsButton.setOpaque(false);
-            exportMetsButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-            exportMetsButton.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/exportMETS.jpg")));
-            exportMetsButton.setToolTipText("Export METS");
-            exportMetsButton.setText("<html>Export<br>METS</html>");
-            exportMetsButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    exportMetsButtonActionPerformed(e);
-                }
-            });
-            panel2.add(exportMetsButton, cc.xywh(9, 1, 1, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
+			//---- exportMetsButton ----
+			exportMetsButton.setOpaque(false);
+			exportMetsButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+			exportMetsButton.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/exportMETS.jpg")));
+			exportMetsButton.setToolTipText("Export METS");
+			exportMetsButton.setText("<html>Export<br>METS</html>");
+			exportMetsButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					exportMetsButtonActionPerformed(e);
+				}
+			});
+			panel2.add(exportMetsButton, cc.xywh(9, 1, 1, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
 
-            //---- exportMARC ----
-            exportMARC.setOpaque(false);
-            exportMARC.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-            exportMARC.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/exportMARC.jpg")));
-            exportMARC.setToolTipText("Export MARC");
-            exportMARC.setText("<html>Export<br>MARC</html>");
-            exportMARC.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    exportMARCActionPerformed(e);
-                }
-            });
-            panel2.add(exportMARC, cc.xywh(11, 1, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+			//---- exportMARC ----
+			exportMARC.setOpaque(false);
+			exportMARC.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+			exportMARC.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/exportMARC.jpg")));
+			exportMARC.setToolTipText("Export MARC");
+			exportMARC.setText("<html>Export<br>MARC</html>");
+			exportMARC.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					exportMARCActionPerformed(e);
+				}
+			});
+			panel2.add(exportMARC, cc.xywh(11, 1, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
-            //---- exportMODS ----
-            exportMODS.setOpaque(false);
-            exportMODS.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-            exportMODS.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/exportMODS.png")));
-            exportMODS.setToolTipText("Export MODS");
-            exportMODS.setText("<html>Export<br>MODS</html>");
-            exportMODS.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    exportMODSActionPerformed(e);
-                }
-            });
-            panel2.add(exportMODS, cc.xywh(13, 1, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+			//---- exportMODS ----
+			exportMODS.setOpaque(false);
+			exportMODS.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+			exportMODS.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/exportMODS.png")));
+			exportMODS.setToolTipText("Export MODS");
+			exportMODS.setText("<html>Export<br>MODS</html>");
+			exportMODS.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					exportMODSActionPerformed(e);
+				}
+			});
+			panel2.add(exportMODS, cc.xywh(13, 1, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
-            //---- exportDC ----
-            exportDC.setOpaque(false);
-            exportDC.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-            exportDC.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/exportDC.png")));
-            exportDC.setToolTipText("Export Dublin Core");
-            exportDC.setText("<html>Export<br>Dublin Core</html>");
-            exportDC.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    exportDCActionPerformed(e);
-                }
-            });
-            panel2.add(exportDC, cc.xywh(15, 1, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
-        }
-        add(panel2, cc.xy(1, 3));
+			//---- exportDC ----
+			exportDC.setOpaque(false);
+			exportDC.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+			exportDC.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/exportDC.png")));
+			exportDC.setToolTipText("Export Dublin Core");
+			exportDC.setText("<html>Export<br>Dublin Core</html>");
+			exportDC.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					exportDCActionPerformed(e);
+				}
+			});
+			panel2.add(exportDC, cc.xywh(15, 1, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+		}
+		add(panel2, cc.xy(1, 3));
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
@@ -627,22 +625,22 @@ public class DigitalObjectTreeViewer extends DomainEditorFields implements Mouse
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner non-commercial license
-    private JPanel panel3;
-    private JLabel label2;
-    private JTextField resourceTitle;
-    private JLabel label3;
-    private JTextField resourceId;
-    private JSplitPane splitPane;
-    private JScrollPane digitalObjectTreeScrollPane;
-    private JPanel panel2;
-    private JButton addChildButton;
-    private JButton addSiblingBelowButton;
-    private JButton deleteDigitalObjectButton;
-    private JButton exportMetsButton;
-    private JButton exportMARC;
-    private JButton exportMODS;
-    private JButton exportDC;
+	// Generated using JFormDesigner non-commercial license
+	private JPanel panel3;
+	private JLabel label2;
+	private JTextField resourceTitle;
+	private JLabel label3;
+	private JTextField resourceId;
+	private JSplitPane splitPane;
+	private JScrollPane digitalObjectTreeScrollPane;
+	private JPanel panel2;
+	private JButton addChildButton;
+	private JButton addSiblingBelowButton;
+	private JButton deleteDigitalObjectButton;
+	private JButton exportMetsButton;
+	private JButton exportMARC;
+	private JButton exportMODS;
+	private JButton exportDC;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 
 	/**

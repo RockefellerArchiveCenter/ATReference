@@ -136,7 +136,6 @@ public class NamePersonalNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_personalPrefix, cc.xy(1, 3));
 
 		//---- personalPrefix ----
-		personalPrefix.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		personalPrefix.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -165,7 +164,6 @@ public class NamePersonalNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_personalPrimaryName, cc.xy(1, 5));
 
 		//---- personalPrimaryName ----
-		personalPrimaryName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		personalPrimaryName.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -181,7 +179,6 @@ public class NamePersonalNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_personalRestOfName, cc.xy(1, 7));
 
 		//---- personalRestOfName ----
-		personalRestOfName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		personalRestOfName.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -197,7 +194,6 @@ public class NamePersonalNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_personalTitle, cc.xy(1, 9));
 
 		//---- personalSuffix2 ----
-		personalSuffix2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		personalSuffix2.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -213,7 +209,6 @@ public class NamePersonalNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_personalSuffix, cc.xy(1, 11));
 
 		//---- personalSuffix ----
-		personalSuffix.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		personalSuffix.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -229,7 +224,6 @@ public class NamePersonalNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_personalNumber, cc.xy(1, 13));
 
 		//---- personalNumber ----
-		personalNumber.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		personalNumber.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -245,7 +239,6 @@ public class NamePersonalNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_personalDates, cc.xy(1, 15));
 
 		//---- personalDates ----
-		personalDates.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		personalDates.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -261,7 +254,6 @@ public class NamePersonalNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_personalFullerForm, cc.xy(1, 17));
 
 		//---- personalFullerForm ----
-		personalFullerForm.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		personalFullerForm.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -277,7 +269,6 @@ public class NamePersonalNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_personalQualifier, cc.xy(1, 19));
 
 		//---- personalQualifier ----
-		personalQualifier.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		personalQualifier.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -310,9 +301,6 @@ public class NamePersonalNonPreferredFields extends NameNonPreferredNameFields {
 			label_sortName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			ATFieldInfo.assignLabelInfo(label_sortName, NonPreferredNames.class, NonPreferredNames.PROPERTYNAME_SORT_NAME);
 			panel1.add(label_sortName, cc.xy(1, 1));
-
-			//---- sortName ----
-			sortName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			panel1.add(sortName, cc.xy(3, 1));
 
 			//---- namePersonalDirectOrder2 ----

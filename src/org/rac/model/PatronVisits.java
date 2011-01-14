@@ -39,6 +39,7 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 	public static final String PROPERTYNAME_TOPIC = "topic";
 	public static final String PROPERTYNAME_RESEARCH_PURPOSE = "researchPurpose";
 	public static final String PROPERTYNAME_SUBJECTS = "subjects";
+	public static final String PROPERTYNAME_NAMES = "names";
 
 	@IncludeInApplicationConfiguration
 	@ExcludeFromDefaultValues
@@ -51,17 +52,14 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 
 	@IncludeInApplicationConfiguration(2)
 	@DefaultIncludeInSearchEditor
-	@ExcludeFromDefaultValues
 	@StringLengthValidationRequried(50)
 	private String contactArchivist = "";
 
 	@IncludeInApplicationConfiguration(3)
-	@ExcludeFromDefaultValues
-	@StringLengthValidationRequried(150)
+	@StringLengthValidationRequried()
 	private String topic = "";
 
 	@IncludeInApplicationConfiguration(3)
-	@ExcludeFromDefaultValues
 	@StringLengthValidationRequried(50)
 	private String researchPurpose = "";
 
@@ -114,6 +112,11 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 		this.patronVisitId = patronVisitId;
 	}
 
+	@Override
+	public String toString() {
+		return getVisitDate() + "-" + getTopic();
+	}
+
 	public Date getVisitDate() {
 		return this.visitDate;
 	}
@@ -134,7 +137,7 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 	}
 
 	public void setContactArchivist(String contactArchivist) {
-//		Object oldValue = getDescription();
+//		Object oldValue = getNotes();
 		this.contactArchivist = contactArchivist;
 //		firePropertyChange(PROPERTYNAME_SUBJECT_TERM_TYPE, oldValue, contactArchivist);
 	}
@@ -166,7 +169,7 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 
 	public boolean addSubject(PatronVisitsSubjects patronVisitsSubjects) {
 		if (patronVisitsSubjects == null)
-			throw new IllegalArgumentException("Can't add a null contact note.");
+			throw new IllegalArgumentException("Can't add a null subject.");
 		//make sure that the subject is not already linked
 		String subjectToAdd = patronVisitsSubjects.getSubjectTerm();
 		for (PatronVisitsSubjects link : getSubjects()) {

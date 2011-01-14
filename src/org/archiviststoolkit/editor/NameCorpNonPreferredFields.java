@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -117,7 +117,6 @@ public class NameCorpNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_corporatePrimary, cc.xy(1, 3));
 
 		//---- corporatePrimary ----
-		corporatePrimary.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		corporatePrimary.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -133,7 +132,6 @@ public class NameCorpNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_corporateSubordinate1, cc.xy(1, 5));
 
 		//---- corporateSubordinate1 ----
-		corporateSubordinate1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		corporateSubordinate1.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -149,7 +147,6 @@ public class NameCorpNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_corporateSubordinate2, cc.xy(1, 7));
 
 		//---- corporateSubordinate2 ----
-		corporateSubordinate2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		corporateSubordinate2.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -165,7 +162,6 @@ public class NameCorpNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_corporateNumber, cc.xy(1, 9));
 
 		//---- corporateNumber ----
-		corporateNumber.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		corporateNumber.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -181,7 +177,6 @@ public class NameCorpNonPreferredFields extends NameNonPreferredNameFields {
 		add(label_corporateQualifier, cc.xy(1, 11));
 
 		//---- corporateQualifier ----
-		corporateQualifier.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		corporateQualifier.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -214,14 +209,10 @@ public class NameCorpNonPreferredFields extends NameNonPreferredNameFields {
 			label_sortName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			ATFieldInfo.assignLabelInfo(label_sortName, NonPreferredNames.class, NonPreferredNames.PROPERTYNAME_SORT_NAME);
 			panel1.add(label_sortName, cc.xy(1, 1));
-
-			//---- sortName ----
-			sortName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			panel1.add(sortName, cc.xy(3, 1));
 
 			//---- namePersonalDirectOrder2 ----
 			namePersonalDirectOrder2.setText("Create automatically");
-			namePersonalDirectOrder2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			namePersonalDirectOrder2.setOpaque(false);
 			namePersonalDirectOrder2.addChangeListener(new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {

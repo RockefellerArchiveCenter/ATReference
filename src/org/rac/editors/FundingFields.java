@@ -22,6 +22,7 @@ import java.awt.*;
 import javax.swing.*;
 import com.jgoodies.forms.factories.*;
 import com.jgoodies.forms.layout.*;
+import org.archiviststoolkit.model.Users;
 import org.archiviststoolkit.swing.ATBasicComponentFactory;
 import org.rac.model.PatronFunding;
 import org.archiviststoolkit.mydomain.DomainEditorFields;
@@ -138,4 +139,5 @@ public class FundingFields extends DomainEditorFields {
 	private JScrollPane scrollPane48;
 	public JTextArea patronNotes;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
+
 }

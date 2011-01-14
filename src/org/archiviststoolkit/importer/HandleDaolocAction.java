@@ -56,7 +56,7 @@ public class HandleDaolocAction implements Action{
         daoDescS = EADHelper.removeTagsFromString(daoDescS);
         ArchDescriptionNotes adn = new ArchDescriptionNotes(dObjects);
         adn.setNoteType("General note");
-        adn.setUnits("General note");
+        adn.setTitle("General note");
         adn.setNoteContent(daoDescS);
         dObjects.addRepeatingData(adn);
     }   */

@@ -260,6 +260,8 @@ public class Names extends BasicNames {
 	private Set<NonPreferredNames> nonPreferredNames = new HashSet<NonPreferredNames>();
 	//    private Set accessionsNames = new HashSet();
 	private Set<ArchDescriptionNames> archDescriptionNames = new HashSet<ArchDescriptionNames>();
+	private Set<PatronVisitsNames> patronVisitsNames = new HashSet<PatronVisitsNames>();
+	private Set<PatronPublicationsNames> patronPublicationsNames = new HashSet<PatronPublicationsNames>();
 
 	/**
 	 * @return nameSource
@@ -893,5 +895,21 @@ public class Names extends BasicNames {
 
 	public void setUserDefinedText4(String userDefinedText4) {
 		this.userDefinedText4 = userDefinedText4;
+	}
+
+	public Set<PatronVisitsNames> getPatronVisitsNames() {
+		return patronVisitsNames;
+	}
+
+	public void setPatronVisitsNames(Set<PatronVisitsNames> patronVisitsNames) {
+		this.patronVisitsNames = patronVisitsNames;
+	}
+
+	public Set<PatronPublicationsNames> getPatronPublicationsNames() {
+		return patronPublicationsNames;
+	}
+
+	public void setPatronPublicationsNames(Set<PatronPublicationsNames> patronPublicationsNames) {
+		this.patronPublicationsNames = patronPublicationsNames;
 	}
 }

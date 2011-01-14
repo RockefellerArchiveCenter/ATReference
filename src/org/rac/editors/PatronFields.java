@@ -29,7 +29,6 @@ import javax.swing.event.*;
 import com.jgoodies.forms.factories.*;
 import com.jgoodies.forms.layout.*;
 import org.archiviststoolkit.ApplicationFrame;
-import org.archiviststoolkit.model.*;
 import org.archiviststoolkit.mydomain.*;
 import org.archiviststoolkit.mydomain.DomainObject;
 import org.archiviststoolkit.mydomain.DomainEditorFields;
@@ -116,9 +115,6 @@ public class PatronFields extends RAC_DomainEditorFields {
 	}
 
 	private void visitsTableMouseClicked(MouseEvent e) {
-		if (readingRoomLogon) {
-			//do nothing as they are not allowed to edit visits
-		} else {
 			if (e.getClickCount() == 2) {
 				try {
 					DomainEditor domainEditor = new DomainEditor(PatronVisits.class, this.getParentEditor(), "Patron Visits", new PatronVisitFields());
@@ -126,10 +122,9 @@ public class PatronFields extends RAC_DomainEditorFields {
 					domainEditor.setNavigationButtonListeners(domainEditor);
 					editRelatedRecord(visitsTable, PatronVisits.class, true, domainEditor);
 				} catch (UnsupportedTableModelException e1) {
-					new ErrorDialog("Error creating editor for Dates", e1).showDialog();
+					new ErrorDialog("Error creating editor for Visits", e1).showDialog();
 				}
 			}
-		}
 	}
 
 	private void addVisitActionPerformed() {
@@ -246,7 +241,7 @@ public class PatronFields extends RAC_DomainEditorFields {
 		try {
 			removeRelatedTableRow(phoneNumbersTable, this.getModel());
 		} catch (ObjectNotRemovedException e) {
-			new ErrorDialog("Address not removed", e).showDialog();
+			new ErrorDialog("Phone Number not removed", e).showDialog();
 		}
 	}
 
@@ -304,7 +299,7 @@ public class PatronFields extends RAC_DomainEditorFields {
 		return addAddress2;
 	}
 
-	private void setPreferedActionPerformed() {
+	private void setPreferedAddressActionPerformed() {
 		if (addressesTable.getSelectedRowCount() != 1) {
 			JOptionPane.showMessageDialog(this, "You must select one and only one address.");
 		} else {
@@ -319,6 +314,9 @@ public class PatronFields extends RAC_DomainEditorFields {
 					thisAddress.setPreferredAddress(false);
 				}
 			}
+			//set record to dirty
+			ApplicationFrame.getInstance().setRecordDirty();
+			
 			this.invalidate();
 			this.validate();
 			this.repaint();
@@ -327,7 +325,7 @@ public class PatronFields extends RAC_DomainEditorFields {
 
 	private void setPreferedPhoneNumberActionPerformed() {
 		if (phoneNumbersTable.getSelectedRowCount() != 1) {
-			JOptionPane.showMessageDialog(this, "You must select one and only one address.");
+			JOptionPane.showMessageDialog(this, "You must select one and only one phone number.");
 		} else {
 			ArrayList<DomainObject> selectedPhoneNumbers = phoneNumbersTable.getSelectedObjects();
 			PatronPhoneNumbers selectedPhoneNumber = (PatronPhoneNumbers)selectedPhoneNumbers.get(0);
@@ -340,19 +338,22 @@ public class PatronFields extends RAC_DomainEditorFields {
 					thisPhoneNumber.setPreferredPhoneNumber(false);
 				}
 			}
+			//set record to dirty
+			ApplicationFrame.getInstance().setRecordDirty();
+
 			this.invalidate();
 			this.validate();
 			this.repaint();
 		}
 	}
 
-	private void completedFormsTableMouseClicked(MouseEvent e) {
+	private void patronFormsTableMouseClicked(MouseEvent e) {
 		if (e.getClickCount() == 2) {
 			try {
-				DomainEditor domainEditor = new DomainEditor(CompletedForms.class, this.getParentEditor(), "Completed Forms", new CompletedFormFields());
-				domainEditor.setCallingTable(completedFormsTable);
+				DomainEditor domainEditor = new DomainEditor(PatronForms.class, this.getParentEditor(), "Completed Forms", new PatronFormsFields());
+				domainEditor.setCallingTable(patronFormsTable);
 				domainEditor.setNavigationButtonListeners(domainEditor);
-				editRelatedRecord(completedFormsTable, CompletedForms.class, true, domainEditor);
+				editRelatedRecord(patronFormsTable, PatronForms.class, true, domainEditor);
 			} catch (UnsupportedTableModelException e1) {
 				new ErrorDialog("Error creating editor for forms", e1).showDialog();
 			}
@@ -369,9 +370,9 @@ public class PatronFields extends RAC_DomainEditorFields {
 
 	private void addFormActionPerformed() {
 		try {
-			DomainEditor domainEditor = new DomainEditor(CompletedForms.class, this.getParentEditor(), "Completed Forms", new CompletedFormFields());
+			DomainEditor domainEditor = new DomainEditor(PatronForms.class, this.getParentEditor(), "Completed Forms", new PatronFormsFields());
 			domainEditor.setNavigationButtonListeners((ActionListener)this.getParentEditor());
-			addRelatedRecord(domainEditor, CompletedForms.class, completedFormsTable);
+			addRelatedRecord(domainEditor, PatronForms.class, patronFormsTable);
 		} catch (AddRelatedObjectException e) {
 			new ErrorDialog("Error adding address", e).showDialog();
 		} catch (DuplicateLinkException e) {
@@ -381,18 +382,25 @@ public class PatronFields extends RAC_DomainEditorFields {
 
 	private void removeFormActionPerformed() {
 		try {
-			removeRelatedTableRow(completedFormsTable, this.getModel());
+			removeRelatedTableRow(patronFormsTable, this.getModel());
 		} catch (ObjectNotRemovedException e) {
 			new ErrorDialog("Address not removed", e).showDialog();
 		}
 	}
 
+	private void howDidYouHearAboutUsItemStateChanged(ItemEvent e) {
+		if (e.getStateChange() == ItemEvent.SELECTED) {
+			addOtherTermIfNecessary(howDidYouHearAboutUs, panel14, Patrons.class, Patrons.PROPERTYNAME_HOW_DID_YOU_HEAR_ABOUT_US);
+		}
+
+	}
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		// Generated using JFormDesigner non-commercial license
-		sortNameDisplay = ATBasicComponentFactory.createTextField(detailsModel.getModel(Names.PROPERTYNAME_SORT_NAME));
+		sortNameDisplay = ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_SORT_NAME));
 		tabbedPane = new JTabbedPane();
-		panel3 = new JPanel();
+		mainPatronFieldsPanel = new JPanel();
 		panel1 = new JPanel();
 		panel7 = new JPanel();
 		label_namePersonalPrefix = new JLabel();
@@ -401,8 +409,6 @@ public class PatronFields extends RAC_DomainEditorFields {
 		namePersonalPrimaryName = ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_PRIMARY_NAME));
 		label_namePersonalRestOfName = new JLabel();
 		namePersonalRestOfName = ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_REST_OF_NAME));
-		label_title = new JLabel();
-		title = ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_TITLE));
 		label_namePersonalSuffix = new JLabel();
 		namePersonalSuffix = ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_SUFFIX));
 		separator1 = new JSeparator();
@@ -411,10 +417,12 @@ public class PatronFields extends RAC_DomainEditorFields {
 		addressType = ATBasicComponentFactory.createComboBox(detailsModel, Patrons.PROPERTYNAME_PATRON_TYPE, Patrons.class,40);
 		label_department = new JLabel();
 		department = ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_DEPARTMENT));
+		label_title = new JLabel();
+		title = ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_TITLE));
 		label_institutionalAffiliation = new JLabel();
 		institutionalAffiliation = ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_INSTITUTIONAL_AFFILIATION));
 		label_emailAddress2 = new JLabel();
-		addressType2 = ATBasicComponentFactory.createComboBox(detailsModel, Patrons.PROPERTYNAME_HOW_DID_YOU_HEAR_ABOUT_US, Patrons.class);
+		howDidYouHearAboutUs = ATBasicComponentFactory.createComboBox(detailsModel, Patrons.PROPERTYNAME_HOW_DID_YOU_HEAR_ABOUT_US, Patrons.class);
 		panel2 = new JPanel();
 		label_sortName = new JLabel();
 		panel5 = new JPanel();
@@ -437,7 +445,7 @@ public class PatronFields extends RAC_DomainEditorFields {
 		panel6 = new JPanel();
 		addAddress2 = new JButton();
 		removeAddress2 = new JButton();
-		setPrefered = new JButton();
+		setPreferedAddress = new JButton();
 		panel13 = new JPanel();
 		addPhoneNumber = new JButton();
 		removePhoneNumber = new JButton();
@@ -453,7 +461,7 @@ public class PatronFields extends RAC_DomainEditorFields {
 		separator3 = new JSeparator();
 		label_subjectScopeNote8 = new JLabel();
 		scrollPane13 = new JScrollPane();
-		completedFormsTable = new DomainSortableTable(CompletedForms.class);
+		patronFormsTable = new DomainSortableTable(PatronForms.class);
 		panel16 = new JPanel();
 		addForm = new JButton();
 		removeForm = new JButton();
@@ -478,6 +486,41 @@ public class PatronFields extends RAC_DomainEditorFields {
 		panel9 = new JPanel();
 		addPublication = new JButton();
 		removePublication = new JButton();
+		panel31 = new JPanel();
+		panel32 = new JPanel();
+		label_acknowledgementDate2 = new JLabel();
+		acknowledgementDate2 = ATBasicComponentFactory.createDateField(detailsModel.getModel( Patrons.PROPERTYNAME_USER_DEFINED_DATE1));
+		label_acknowledgementDate3 = new JLabel();
+		acknowledgementDate3 = ATBasicComponentFactory.createDateField(detailsModel.getModel(Patrons.PROPERTYNAME_USER_DEFINED_DATE2));
+		rights2 = ATBasicComponentFactory.createCheckBox(detailsModel, Patrons.PROPERTYNAME_USER_DEFINED_BOOLEAN1, Patrons.class);
+		rights3 = ATBasicComponentFactory.createCheckBox(detailsModel, Patrons.PROPERTYNAME_USER_DEFINED_BOOLEAN2, Patrons.class);
+		label_date1Begin2 = new JLabel();
+		date1Begin2 = ATBasicComponentFactory.createIntegerField(detailsModel,Patrons.PROPERTYNAME_USER_DEFINED_INTEGER1);
+		label_date1Begin3 = new JLabel();
+		date1Begin3 = ATBasicComponentFactory.createIntegerField(detailsModel, Patrons.PROPERTYNAME_USER_DEFINED_INTEGER2);
+		label_date1Begin4 = new JLabel();
+		extentNumber2 = ATBasicComponentFactory.createDoubleField(detailsModel, Patrons.PROPERTYNAME_USER_DEFINED_REAL1);
+		label_date1Begin5 = new JLabel();
+		extentNumber3 = ATBasicComponentFactory.createDoubleField(detailsModel, Patrons.PROPERTYNAME_USER_DEFINED_REAL2);
+		label_date1Begin6 = new JLabel();
+		dateExpression2 = ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_USER_DEFINED_STRING1),false);
+		label_date1Begin7 = new JLabel();
+		dateExpression3 = ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_USER_DEFINED_STRING2),false);
+		label_date1Begin8 = new JLabel();
+		dateExpression4 = ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_USER_DEFINED_STRING3),false);
+		label_date1Begin9 = new JLabel();
+		scrollPane44 = new JScrollPane();
+		title3 = ATBasicComponentFactory.createTextArea(detailsModel.getModel(Patrons.PROPERTYNAME_USER_DEFINED_TEXT1));
+		panel35 = new JPanel();
+		label_date1Begin10 = new JLabel();
+		scrollPane45 = new JScrollPane();
+		title4 = ATBasicComponentFactory.createTextArea(detailsModel.getModel(Patrons.PROPERTYNAME_USER_DEFINED_TEXT2));
+		label_date1Begin11 = new JLabel();
+		scrollPane46 = new JScrollPane();
+		title5 = ATBasicComponentFactory.createTextArea(detailsModel.getModel(Patrons.PROPERTYNAME_USER_DEFINED_TEXT3));
+		label_date1Begin12 = new JLabel();
+		scrollPane47 = new JScrollPane();
+		title6 = ATBasicComponentFactory.createTextArea(detailsModel.getModel(Patrons.PROPERTYNAME_USER_DEFINED_TEXT4));
 		CellConstraints cc = new CellConstraints();
 
 		//======== this ========
@@ -504,10 +547,10 @@ public class PatronFields extends RAC_DomainEditorFields {
 			tabbedPane.setBackground(new Color(200, 205, 232));
 			tabbedPane.setOpaque(true);
 
-			//======== panel3 ========
+			//======== mainPatronFieldsPanel ========
 			{
-				panel3.setOpaque(false);
-				panel3.setLayout(new FormLayout(
+				mainPatronFieldsPanel.setOpaque(false);
+				mainPatronFieldsPanel.setLayout(new FormLayout(
 					new ColumnSpec[] {
 						FormFactory.DEFAULT_COLSPEC,
 						FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
@@ -549,8 +592,6 @@ public class PatronFields extends RAC_DomainEditorFields {
 								new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
 							},
 							new RowSpec[] {
-								FormFactory.DEFAULT_ROWSPEC,
-								FormFactory.LINE_GAP_ROWSPEC,
 								FormFactory.DEFAULT_ROWSPEC,
 								FormFactory.LINE_GAP_ROWSPEC,
 								FormFactory.DEFAULT_ROWSPEC,
@@ -609,21 +650,11 @@ public class PatronFields extends RAC_DomainEditorFields {
 						});
 						panel7.add(namePersonalRestOfName, cc.xy(3, 5));
 
-						//---- label_title ----
-						label_title.setText("Title");
-						label_title.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-						ATFieldInfo.assignLabelInfo(label_title, Patrons.class, Patrons.PROPERTYNAME_TITLE);
-						panel7.add(label_title, cc.xy(1, 7));
-
-						//---- title ----
-						title.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-						panel7.add(title, cc.xy(3, 7));
-
 						//---- label_namePersonalSuffix ----
 						label_namePersonalSuffix.setText("Suffix");
 						label_namePersonalSuffix.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						ATFieldInfo.assignLabelInfo(label_namePersonalSuffix, Patrons.class, Patrons.PROPERTYNAME_SUFFIX);
-						panel7.add(label_namePersonalSuffix, cc.xy(1, 9));
+						panel7.add(label_namePersonalSuffix, cc.xy(1, 7));
 
 						//---- namePersonalSuffix ----
 						namePersonalSuffix.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
@@ -634,7 +665,7 @@ public class PatronFields extends RAC_DomainEditorFields {
 								sortNameConstruction(e);
 							}
 						});
-						panel7.add(namePersonalSuffix, cc.xy(3, 9));
+						panel7.add(namePersonalSuffix, cc.xy(3, 7));
 					}
 					panel1.add(panel7, cc.xy(1, 1));
 
@@ -652,6 +683,8 @@ public class PatronFields extends RAC_DomainEditorFields {
 								new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
 							},
 							new RowSpec[] {
+								FormFactory.DEFAULT_ROWSPEC,
+								FormFactory.LINE_GAP_ROWSPEC,
 								FormFactory.DEFAULT_ROWSPEC,
 								FormFactory.LINE_GAP_ROWSPEC,
 								FormFactory.DEFAULT_ROWSPEC,
@@ -678,26 +711,43 @@ public class PatronFields extends RAC_DomainEditorFields {
 						department.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						panel14.add(department, cc.xy(3, 3));
 
+						//---- label_title ----
+						label_title.setText("Title");
+						label_title.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+						ATFieldInfo.assignLabelInfo(label_title, Patrons.class, Patrons.PROPERTYNAME_TITLE);
+						panel14.add(label_title, cc.xy(1, 5));
+
+						//---- title ----
+						title.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+						panel14.add(title, cc.xy(3, 5));
+
 						//---- label_institutionalAffiliation ----
 						label_institutionalAffiliation.setText("<html>Institutional <br/>Affiliations</html>");
 						label_institutionalAffiliation.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						ATFieldInfo.assignLabelInfo(label_institutionalAffiliation, Patrons.class, Patrons.PROPERTYNAME_INSTITUTIONAL_AFFILIATION);
-						panel14.add(label_institutionalAffiliation, cc.xy(1, 5));
+						panel14.add(label_institutionalAffiliation, cc.xy(1, 7));
 
 						//---- institutionalAffiliation ----
 						institutionalAffiliation.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-						panel14.add(institutionalAffiliation, cc.xy(3, 5));
+						panel14.add(institutionalAffiliation, cc.xy(3, 7));
 
 						//---- label_emailAddress2 ----
 						label_emailAddress2.setText("<html>How did you <br/>hear about <br/>the archive</html>");
 						label_emailAddress2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						ATFieldInfo.assignLabelInfo(label_emailAddress2, Patrons.class, Patrons.PROPERTYNAME_HOW_DID_YOU_HEAR_ABOUT_US);
-						panel14.add(label_emailAddress2, cc.xy(1, 7));
-						panel14.add(addressType2, cc.xy(3, 7));
+						panel14.add(label_emailAddress2, cc.xy(1, 9));
+
+						//---- howDidYouHearAboutUs ----
+						howDidYouHearAboutUs.addItemListener(new ItemListener() {
+							public void itemStateChanged(ItemEvent e) {
+								howDidYouHearAboutUsItemStateChanged(e);
+							}
+						});
+						panel14.add(howDidYouHearAboutUs, cc.xy(3, 9));
 					}
 					panel1.add(panel14, cc.xy(5, 1));
 				}
-				panel3.add(panel1, cc.xywh(1, 1, 3, 1, CellConstraints.DEFAULT, CellConstraints.TOP));
+				mainPatronFieldsPanel.add(panel1, cc.xywh(1, 1, 3, 1, CellConstraints.DEFAULT, CellConstraints.TOP));
 
 				//======== panel2 ========
 				{
@@ -712,13 +762,13 @@ public class PatronFields extends RAC_DomainEditorFields {
 						},
 						RowSpec.decodeSpecs("default")));
 				}
-				panel3.add(panel2, cc.xy(3, 1));
+				mainPatronFieldsPanel.add(panel2, cc.xy(3, 1));
 
 				//---- label_sortName ----
 				label_sortName.setText("Sort Name");
 				label_sortName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				ATFieldInfo.assignLabelInfo(label_sortName, Patrons.class, Patrons.PROPERTYNAME_SORT_NAME);
-				panel3.add(label_sortName, cc.xy(1, 3));
+				mainPatronFieldsPanel.add(label_sortName, cc.xy(1, 3));
 
 				//======== panel5 ========
 				{
@@ -747,13 +797,13 @@ public class PatronFields extends RAC_DomainEditorFields {
 					namePersonalDirectOrder2.setText(ATFieldInfo.getLabel(Patrons.class, Patrons.PROPERTYNAME_CREATE_SORT_NAME_AUTOMATICALLY));
 					panel5.add(namePersonalDirectOrder2, cc.xy(3, 1));
 				}
-				panel3.add(panel5, cc.xy(3, 3));
+				mainPatronFieldsPanel.add(panel5, cc.xy(3, 3));
 
 				//---- label_partornNotes ----
 				label_partornNotes.setText("Patron Notes");
 				label_partornNotes.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				ATFieldInfo.assignLabelInfo(label_partornNotes, Patrons.class, Patrons.PROPERTYNAME_PATRON_NOTES);
-				panel3.add(label_partornNotes, cc.xy(1, 5));
+				mainPatronFieldsPanel.add(label_partornNotes, cc.xy(1, 5));
 
 				//======== scrollPane48 ========
 				{
@@ -769,13 +819,13 @@ public class PatronFields extends RAC_DomainEditorFields {
 					patronNotes.setMinimumSize(new Dimension(200, 16));
 					scrollPane48.setViewportView(patronNotes);
 				}
-				panel3.add(scrollPane48, cc.xy(3, 5));
+				mainPatronFieldsPanel.add(scrollPane48, cc.xy(3, 5));
 
 				//---- label_emailAddress1 ----
 				label_emailAddress1.setText("Email address");
 				label_emailAddress1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				ATFieldInfo.assignLabelInfo(label_emailAddress1, Patrons.class, Patrons.PROPERTYNAME_EMAIL1);
-				panel3.add(label_emailAddress1, cc.xy(1, 7));
+				mainPatronFieldsPanel.add(label_emailAddress1, cc.xy(1, 7));
 
 				//======== panel10 ========
 				{
@@ -809,7 +859,7 @@ public class PatronFields extends RAC_DomainEditorFields {
 					});
 					panel10.add(emailAddress2, cc.xy(3, 1));
 				}
-				panel3.add(panel10, cc.xy(3, 7));
+				mainPatronFieldsPanel.add(panel10, cc.xy(3, 7));
 
 				//======== panel4 ========
 				{
@@ -911,16 +961,16 @@ public class PatronFields extends RAC_DomainEditorFields {
 						});
 						panel6.add(removeAddress2, cc.xy(3, 1));
 
-						//---- setPrefered ----
-						setPrefered.setText("Set Preferred");
-						setPrefered.setOpaque(false);
-						setPrefered.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-						setPrefered.addActionListener(new ActionListener() {
+						//---- setPreferedAddress ----
+						setPreferedAddress.setText("Set Preferred");
+						setPreferedAddress.setOpaque(false);
+						setPreferedAddress.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+						setPreferedAddress.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								setPreferedActionPerformed();
+								setPreferedAddressActionPerformed();
 							}
 						});
-						panel6.add(setPrefered, cc.xy(5, 1));
+						panel6.add(setPreferedAddress, cc.xy(5, 1));
 					}
 					panel4.add(panel6, cc.xywh(1, 5, 1, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
 
@@ -974,9 +1024,9 @@ public class PatronFields extends RAC_DomainEditorFields {
 					}
 					panel4.add(panel13, cc.xywh(3, 5, 1, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
 				}
-				panel3.add(panel4, cc.xywh(1, 9, 3, 1));
+				mainPatronFieldsPanel.add(panel4, cc.xywh(1, 9, 3, 1));
 			}
-			tabbedPane.addTab("Patron Information", panel3);
+			tabbedPane.addTab("Patron Information", mainPatronFieldsPanel);
 
 
 			//======== panel11 ========
@@ -1089,7 +1139,7 @@ public class PatronFields extends RAC_DomainEditorFields {
 				panel11.add(separator3, cc.xy(1, 7));
 
 				//---- label_subjectScopeNote8 ----
-				label_subjectScopeNote8.setText("Completed Forms");
+				label_subjectScopeNote8.setText("Forms");
 				label_subjectScopeNote8.setVerticalAlignment(SwingConstants.TOP);
 				label_subjectScopeNote8.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				panel11.add(label_subjectScopeNote8, cc.xywh(1, 9, 1, 1, CellConstraints.DEFAULT, CellConstraints.TOP));
@@ -1099,15 +1149,15 @@ public class PatronFields extends RAC_DomainEditorFields {
 					scrollPane13.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 					scrollPane13.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 
-					//---- completedFormsTable ----
-					completedFormsTable.setPreferredScrollableViewportSize(new Dimension(450, 150));
-					completedFormsTable.addMouseListener(new MouseAdapter() {
+					//---- patronFormsTable ----
+					patronFormsTable.setPreferredScrollableViewportSize(new Dimension(450, 150));
+					patronFormsTable.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseClicked(MouseEvent e) {
-							completedFormsTableMouseClicked(e);
+							patronFormsTableMouseClicked(e);
 						}
 					});
-					scrollPane13.setViewportView(completedFormsTable);
+					scrollPane13.setViewportView(patronFormsTable);
 				}
 				panel11.add(scrollPane13, cc.xywh(1, 11, 1, 1, CellConstraints.DEFAULT, CellConstraints.FILL));
 
@@ -1356,6 +1406,279 @@ public class PatronFields extends RAC_DomainEditorFields {
 			}
 			tabbedPane.addTab("Funding and Publications", nonPreferredNamePanel);
 
+
+			//======== panel31 ========
+			{
+				panel31.setBackground(new Color(200, 205, 232));
+				panel31.setLayout(new FormLayout(
+					new ColumnSpec[] {
+						new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+						FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+						new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+					},
+					RowSpec.decodeSpecs("fill:default:grow")));
+				((FormLayout)panel31.getLayout()).setColumnGroups(new int[][] {{1, 3}});
+
+				//======== panel32 ========
+				{
+					panel32.setOpaque(false);
+					panel32.setLayout(new FormLayout(
+						new ColumnSpec[] {
+							FormFactory.DEFAULT_COLSPEC,
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+						},
+						new RowSpec[] {
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+						}));
+
+					//---- label_acknowledgementDate2 ----
+					label_acknowledgementDate2.setText("User Defined Date 1");
+					label_acknowledgementDate2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					ATFieldInfo.assignLabelInfo(label_acknowledgementDate2, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_DATE1);
+					panel32.add(label_acknowledgementDate2, cc.xy(1, 1));
+
+					//---- acknowledgementDate2 ----
+					acknowledgementDate2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					acknowledgementDate2.setColumns(10);
+					panel32.add(acknowledgementDate2, cc.xywh(3, 1, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+
+					//---- label_acknowledgementDate3 ----
+					label_acknowledgementDate3.setText("User Defined Date 2");
+					label_acknowledgementDate3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					ATFieldInfo.assignLabelInfo(label_acknowledgementDate3, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_DATE2);
+					panel32.add(label_acknowledgementDate3, cc.xy(1, 3));
+
+					//---- acknowledgementDate3 ----
+					acknowledgementDate3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					acknowledgementDate3.setColumns(10);
+					panel32.add(acknowledgementDate3, cc.xywh(3, 3, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+
+					//---- rights2 ----
+					rights2.setText("User Defined Boolean 1");
+					rights2.setOpaque(false);
+					rights2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					rights2.setText(ATFieldInfo.getLabel(Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_BOOLEAN1));
+					panel32.add(rights2, cc.xywh(1, 5, 3, 1));
+
+					//---- rights3 ----
+					rights3.setText("User Defined Boolean 2");
+					rights3.setOpaque(false);
+					rights3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					rights3.setText(ATFieldInfo.getLabel(Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_BOOLEAN2));
+					panel32.add(rights3, cc.xywh(1, 7, 3, 1));
+
+					//---- label_date1Begin2 ----
+					label_date1Begin2.setText("User Defined Integer 1");
+					label_date1Begin2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					ATFieldInfo.assignLabelInfo(label_date1Begin2, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_INTEGER1);
+					panel32.add(label_date1Begin2, cc.xy(1, 9));
+
+					//---- date1Begin2 ----
+					date1Begin2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					date1Begin2.setColumns(6);
+					panel32.add(date1Begin2, cc.xywh(3, 9, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+
+					//---- label_date1Begin3 ----
+					label_date1Begin3.setText("User Defined Integer 2");
+					label_date1Begin3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					ATFieldInfo.assignLabelInfo(label_date1Begin3, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_INTEGER2);
+					panel32.add(label_date1Begin3, cc.xy(1, 11));
+
+					//---- date1Begin3 ----
+					date1Begin3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					date1Begin3.setColumns(6);
+					panel32.add(date1Begin3, cc.xywh(3, 11, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+
+					//---- label_date1Begin4 ----
+					label_date1Begin4.setText("User Defined Real 1");
+					label_date1Begin4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					ATFieldInfo.assignLabelInfo(label_date1Begin4,Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_REAL1);
+					panel32.add(label_date1Begin4, cc.xy(1, 13));
+
+					//---- extentNumber2 ----
+					extentNumber2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					extentNumber2.setColumns(5);
+					panel32.add(extentNumber2, cc.xywh(3, 13, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+
+					//---- label_date1Begin5 ----
+					label_date1Begin5.setText("User Defined Real 2");
+					label_date1Begin5.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					ATFieldInfo.assignLabelInfo(label_date1Begin5, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_REAL2);
+					panel32.add(label_date1Begin5, cc.xy(1, 15));
+
+					//---- extentNumber3 ----
+					extentNumber3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					extentNumber3.setColumns(5);
+					panel32.add(extentNumber3, cc.xywh(3, 15, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+
+					//---- label_date1Begin6 ----
+					label_date1Begin6.setText("User Defined String 1");
+					label_date1Begin6.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					ATFieldInfo.assignLabelInfo(label_date1Begin6, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_STRING1);
+					panel32.add(label_date1Begin6, cc.xy(1, 17));
+
+					//---- dateExpression2 ----
+					dateExpression2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					panel32.add(dateExpression2, new CellConstraints(3, 17, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 0, 0, 5)));
+
+					//---- label_date1Begin7 ----
+					label_date1Begin7.setText("User Defined String 2");
+					label_date1Begin7.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					ATFieldInfo.assignLabelInfo(label_date1Begin7, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_STRING2);
+					panel32.add(label_date1Begin7, cc.xy(1, 19));
+
+					//---- dateExpression3 ----
+					dateExpression3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					panel32.add(dateExpression3, new CellConstraints(3, 19, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 0, 0, 5)));
+
+					//---- label_date1Begin8 ----
+					label_date1Begin8.setText("User Defined String 3");
+					label_date1Begin8.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					ATFieldInfo.assignLabelInfo(label_date1Begin8, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_STRING3);
+					panel32.add(label_date1Begin8, cc.xy(1, 21));
+
+					//---- dateExpression4 ----
+					dateExpression4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					panel32.add(dateExpression4, new CellConstraints(3, 21, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 0, 0, 5)));
+
+					//---- label_date1Begin9 ----
+					label_date1Begin9.setText("User Defined Text 1");
+					label_date1Begin9.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					ATFieldInfo.assignLabelInfo(label_date1Begin9, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_TEXT1);
+					panel32.add(label_date1Begin9, cc.xy(1, 23));
+
+					//======== scrollPane44 ========
+					{
+						scrollPane44.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+						scrollPane44.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+						scrollPane44.setPreferredSize(new Dimension(200, 68));
+
+						//---- title3 ----
+						title3.setRows(4);
+						title3.setLineWrap(true);
+						title3.setWrapStyleWord(true);
+						title3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+						title3.setMinimumSize(new Dimension(200, 16));
+						scrollPane44.setViewportView(title3);
+					}
+					panel32.add(scrollPane44, cc.xywh(1, 25, 3, 1));
+				}
+				panel31.add(panel32, cc.xy(1, 1));
+
+				//======== panel35 ========
+				{
+					panel35.setOpaque(false);
+					panel35.setLayout(new FormLayout(
+						ColumnSpec.decodeSpecs("default:grow"),
+						new RowSpec[] {
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+						}));
+
+					//---- label_date1Begin10 ----
+					label_date1Begin10.setText("User Defined Text 2");
+					label_date1Begin10.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					ATFieldInfo.assignLabelInfo(label_date1Begin10, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_TEXT2);
+					panel35.add(label_date1Begin10, cc.xy(1, 1));
+
+					//======== scrollPane45 ========
+					{
+						scrollPane45.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+						scrollPane45.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+						scrollPane45.setPreferredSize(new Dimension(200, 68));
+
+						//---- title4 ----
+						title4.setRows(4);
+						title4.setLineWrap(true);
+						title4.setWrapStyleWord(true);
+						title4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+						title4.setMinimumSize(new Dimension(200, 16));
+						scrollPane45.setViewportView(title4);
+					}
+					panel35.add(scrollPane45, cc.xy(1, 3));
+
+					//---- label_date1Begin11 ----
+					label_date1Begin11.setText("User Defined Text 3");
+					label_date1Begin11.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					ATFieldInfo.assignLabelInfo(label_date1Begin11, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_TEXT3);
+					panel35.add(label_date1Begin11, cc.xy(1, 5));
+
+					//======== scrollPane46 ========
+					{
+						scrollPane46.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+						scrollPane46.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+						scrollPane46.setPreferredSize(new Dimension(200, 68));
+
+						//---- title5 ----
+						title5.setRows(4);
+						title5.setLineWrap(true);
+						title5.setWrapStyleWord(true);
+						title5.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+						title5.setMinimumSize(new Dimension(200, 16));
+						scrollPane46.setViewportView(title5);
+					}
+					panel35.add(scrollPane46, cc.xy(1, 7));
+
+					//---- label_date1Begin12 ----
+					label_date1Begin12.setText("User Defined Text 4");
+					label_date1Begin12.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					ATFieldInfo.assignLabelInfo(label_date1Begin12, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_TEXT4);
+					panel35.add(label_date1Begin12, cc.xy(1, 9));
+
+					//======== scrollPane47 ========
+					{
+						scrollPane47.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+						scrollPane47.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+						scrollPane47.setPreferredSize(new Dimension(200, 68));
+
+						//---- title6 ----
+						title6.setRows(4);
+						title6.setLineWrap(true);
+						title6.setWrapStyleWord(true);
+						title6.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+						title6.setMinimumSize(new Dimension(200, 16));
+						scrollPane47.setViewportView(title6);
+					}
+					panel35.add(scrollPane47, cc.xy(1, 11));
+				}
+				panel31.add(panel35, cc.xy(3, 1));
+			}
+			tabbedPane.addTab("User Defined Fields", panel31);
+
 		}
 		add(tabbedPane, cc.xy(1, 2));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -1365,7 +1688,7 @@ public class PatronFields extends RAC_DomainEditorFields {
 	// Generated using JFormDesigner non-commercial license
 	private JTextField sortNameDisplay;
 	private JTabbedPane tabbedPane;
-	private JPanel panel3;
+	private JPanel mainPatronFieldsPanel;
 	private JPanel panel1;
 	private JPanel panel7;
 	private JLabel label_namePersonalPrefix;
@@ -1374,8 +1697,6 @@ public class PatronFields extends RAC_DomainEditorFields {
 	public JTextField namePersonalPrimaryName;
 	private JLabel label_namePersonalRestOfName;
 	public JTextField namePersonalRestOfName;
-	private JLabel label_title;
-	public JTextField title;
 	private JLabel label_namePersonalSuffix;
 	public JTextField namePersonalSuffix;
 	private JSeparator separator1;
@@ -1384,10 +1705,12 @@ public class PatronFields extends RAC_DomainEditorFields {
 	private JComboBox addressType;
 	private JLabel label_department;
 	public JTextField department;
+	private JLabel label_title;
+	public JTextField title;
 	private JLabel label_institutionalAffiliation;
 	public JTextField institutionalAffiliation;
 	private JLabel label_emailAddress2;
-	private JComboBox addressType2;
+	private JComboBox howDidYouHearAboutUs;
 	private JPanel panel2;
 	private JLabel label_sortName;
 	private JPanel panel5;
@@ -1410,7 +1733,7 @@ public class PatronFields extends RAC_DomainEditorFields {
 	private JPanel panel6;
 	private JButton addAddress2;
 	private JButton removeAddress2;
-	private JButton setPrefered;
+	private JButton setPreferedAddress;
 	private JPanel panel13;
 	private JButton addPhoneNumber;
 	private JButton removePhoneNumber;
@@ -1426,7 +1749,7 @@ public class PatronFields extends RAC_DomainEditorFields {
 	private JSeparator separator3;
 	private JLabel label_subjectScopeNote8;
 	private JScrollPane scrollPane13;
-	private DomainSortableTable completedFormsTable;
+	private DomainSortableTable patronFormsTable;
 	private JPanel panel16;
 	private JButton addForm;
 	private JButton removeForm;
@@ -1451,6 +1774,41 @@ public class PatronFields extends RAC_DomainEditorFields {
 	private JPanel panel9;
 	private JButton addPublication;
 	private JButton removePublication;
+	private JPanel panel31;
+	private JPanel panel32;
+	private JLabel label_acknowledgementDate2;
+	public JFormattedTextField acknowledgementDate2;
+	private JLabel label_acknowledgementDate3;
+	public JFormattedTextField acknowledgementDate3;
+	public JCheckBox rights2;
+	public JCheckBox rights3;
+	private JLabel label_date1Begin2;
+	public JFormattedTextField date1Begin2;
+	private JLabel label_date1Begin3;
+	public JFormattedTextField date1Begin3;
+	private JLabel label_date1Begin4;
+	public JFormattedTextField extentNumber2;
+	private JLabel label_date1Begin5;
+	public JFormattedTextField extentNumber3;
+	private JLabel label_date1Begin6;
+	public JTextField dateExpression2;
+	private JLabel label_date1Begin7;
+	public JTextField dateExpression3;
+	private JLabel label_date1Begin8;
+	public JTextField dateExpression4;
+	private JLabel label_date1Begin9;
+	private JScrollPane scrollPane44;
+	public JTextArea title3;
+	private JPanel panel35;
+	private JLabel label_date1Begin10;
+	private JScrollPane scrollPane45;
+	public JTextArea title4;
+	private JLabel label_date1Begin11;
+	private JScrollPane scrollPane46;
+	public JTextArea title5;
+	private JLabel label_date1Begin12;
+	private JScrollPane scrollPane47;
+	public JTextArea title6;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
 
@@ -1473,6 +1831,7 @@ public class PatronFields extends RAC_DomainEditorFields {
 		fundingTable.updateCollection(patronModel.getPatronFunding());
 		publicationsTable.updateCollection(patronModel.getPatronPublications());
 		phoneNumbersTable.updateCollection(patronModel.getPatronPhoneNumbers());
+		patronFormsTable.updateCollection(patronModel.getPatronForms());
 
         setPluginModel(); // update any plugins with this new domain object
     }
@@ -1490,9 +1849,17 @@ public class PatronFields extends RAC_DomainEditorFields {
     }
 
 	public void updateUIForClass0 (){
-		tabbedPane.remove(2);
+		tabbedPane.remove(3);
+		//visits
 		duplicateVisit.setEnabled(false);
 		removeVisit.setEnabled(false);
+		//forms
+		addForm.setEnabled(false);
+		removeForm.setEnabled(false);
+		//publications
+		addPublication.setEnabled(false);
+		removePublication.setEnabled(false);
+		
 		readingRoomLogon = true;
 	}
 

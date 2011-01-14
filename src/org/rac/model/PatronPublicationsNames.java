@@ -20,20 +20,33 @@ import org.archiviststoolkit.model.Names;
 import org.archiviststoolkit.mydomain.DomainObject;
 import org.archiviststoolkit.structure.ExcludeFromDefaultValues;
 import org.archiviststoolkit.structure.IncludeInApplicationConfiguration;
+import org.archiviststoolkit.structure.StringLengthValidationRequried;
 
 import java.io.Serializable;
 
 
-@ExcludeFromDefaultValues
 public class PatronPublicationsNames extends DomainObject implements Serializable, Comparable {
 
 	public static final String PROPERTYNAME_SORT_NAME = "sortName";
+	public static final String PROPERTYNAME_ROLE = "role";
+	public static final String PROPERTYNAME_FORM = "form";
+	public static final String PROPERTYNAME_NAME = "name";
 
 	@IncludeInApplicationConfiguration
+	@ExcludeFromDefaultValues
 	private Long patronPublicationsNamesId = null;
 
 	@IncludeInApplicationConfiguration(1)
+	@ExcludeFromDefaultValues
 	private Names name;
+
+	@IncludeInApplicationConfiguration(2)
+	@StringLengthValidationRequried
+	private String role = "";
+
+	@IncludeInApplicationConfiguration(3)
+	@StringLengthValidationRequried
+	private String form = "";
 
 	private PatronPublications patronPublication;
 
@@ -49,9 +62,14 @@ public class PatronPublicationsNames extends DomainObject implements Serializabl
 	/**
 	 * Full constructor;
 	 */
-	public PatronPublicationsNames(Names name, PatronPublications patronPublication) {
+	public PatronPublicationsNames(Names name,
+								   PatronPublications patronPublication,
+								   String role,
+								   String form) {
 		this.setName(name);
 		this.setPatronPublication(patronPublication);
+		this.setRole(role);
+		this.setForm(form);
 	}
 
 	// ********************** Accessor Methods ********************** //
@@ -91,5 +109,21 @@ public class PatronPublicationsNames extends DomainObject implements Serializabl
 
 	public void setPatronPublication(PatronPublications patronPublication) {
 		this.patronPublication = patronPublication;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getForm() {
+		return form;
+	}
+
+	public void setForm(String form) {
+		this.form = form;
 	}
 }

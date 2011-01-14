@@ -39,6 +39,8 @@ import java.util.*;
 
 public class Patrons extends DomainObject {
 
+	//todo remove this comment. It is a test of git
+
 
 	public static final String PROPERTYNAME_PATRON_TYPE = "patronType";
 
@@ -65,7 +67,7 @@ public class Patrons extends DomainObject {
 	public static final String PROPERTYNAME_PATRON_FUNDING = "patronFunding";
 	public static final String PROPERTYNAME_PATRON_PUBLICATIONS = "patronPublications";
 	public static final String PROPERTYNAME_PATRON_ADDRESSES = "patronAddresses";
-	public static final String PROPERTYNAME_COMPLETED_FORMS = "completedForms";
+	public static final String PROPERTYNAME_COMPLETED_FORMS = "patronForms";
 
 	//a suite of user defined fields
 	public static final String PROPERTYNAME_USER_DEFINED_DATE1 = "userDefinedDate1";
@@ -93,7 +95,6 @@ public class Patrons extends DomainObject {
 	private Long patronId;
 
 	@IncludeInApplicationConfiguration(2)
-	@ExcludeFromDefaultValues
 	@StringLengthValidationRequried
 	private String patronType = "";
 
@@ -158,12 +159,10 @@ public class Patrons extends DomainObject {
 	private String institutionalAffiliation = "";
 
 	@IncludeInApplicationConfiguration
-	@ExcludeFromDefaultValues
 	@StringLengthValidationRequried
 	private String title = "";
 
 	@IncludeInApplicationConfiguration
-	@ExcludeFromDefaultValues
 	@StringLengthValidationRequried
 	private String department = "";
 
@@ -172,15 +171,12 @@ public class Patrons extends DomainObject {
 	private String patronNotes = "";
 
 	@IncludeInApplicationConfiguration(4)
-	@ExcludeFromDefaultValues
 	private String email1 = "";
 
 	@IncludeInApplicationConfiguration
-	@ExcludeFromDefaultValues
 	private String email2 = "";
 
 	@IncludeInApplicationConfiguration
-	@ExcludeFromDefaultValues
 	private String howDidYouHearAboutUs = "";
 
 	//a suite of user defined fields
@@ -244,7 +240,7 @@ public class Patrons extends DomainObject {
 	private Set<PatronPublications> patronPublications = new HashSet<PatronPublications>();
 	private Set<PatronFunding> patronFunding = new HashSet<PatronFunding>();
 	private Set<PatronPhoneNumbers> patronPhoneNumbers = new HashSet<PatronPhoneNumbers>();
-	private Set<CompletedForms> completedForms = new HashSet<CompletedForms>();
+	private Set<PatronForms> patronForms = new HashSet<PatronForms>();
 
 	public Patrons() {
 	}
@@ -288,6 +284,8 @@ public class Patrons extends DomainObject {
 			removePatronFunding((PatronFunding) domainObject);
 		} else if (domainObject instanceof PatronPhoneNumbers) {
 			removePatronPhoneNumbers((PatronPhoneNumbers) domainObject);
+		} else if (domainObject instanceof PatronForms) {
+			removePatronForms((PatronForms) domainObject);
 		} else {
 			super.removeRelatedObject(domainObject);
 		}
@@ -310,6 +308,8 @@ public class Patrons extends DomainObject {
 			addPatronFunding((PatronFunding) domainObject);
 		} else if (domainObject instanceof PatronPhoneNumbers){
 			addPatronPhoneNumbers((PatronPhoneNumbers) domainObject);
+		} else if (domainObject instanceof PatronForms){
+			addPatronForms((PatronForms) domainObject);
 		} else {
 			super.addRelatedObject(domainObject);
 		}
@@ -332,8 +332,7 @@ public class Patrons extends DomainObject {
 				this.setSortName(StringHelper.concat(", ",
 						primaryName,
 						this.getPrefix(),
-						this.getSuffix(),
-						this.getTitle()));
+						this.getSuffix()));
 		}
 
 	}
@@ -661,26 +660,26 @@ public class Patrons extends DomainObject {
 		this.howDidYouHearAboutUs = howDidYouHearAboutUs;
 	}
 
-	public Set<CompletedForms> getCompletedForms() {
-		return completedForms;
+	public Set<PatronForms> getPatronForms() {
+		return patronForms;
 	}
 
-	public void setCompletedForms(Set<CompletedForms> completedForms) {
-		this.completedForms = completedForms;
+	public void setPatronForms(Set<PatronForms> patronForms) {
+		this.patronForms = patronForms;
 	}
 
-	public void addCompletedForms(CompletedForms completedForms) {
-		if (completedForms == null)
+	public void addPatronForms(PatronForms patronForms) {
+		if (patronForms == null)
 			throw new IllegalArgumentException("Can't add a null completed form.");
-		this.getCompletedForms().add(completedForms);
+		this.getPatronForms().add(patronForms);
 
 	}
 
-	private void removeCompletedForms(CompletedForms completedForm) {
-		if (completedForm == null)
+	private void removePatronForms(PatronForms patronForm) {
+		if (patronForm == null)
 			throw new IllegalArgumentException("Can't remove a null completed form.");
 
-		getCompletedForms().remove(completedForm);
+		getPatronForms().remove(patronForm);
 	}
 
 	public String getPrimaryName() {

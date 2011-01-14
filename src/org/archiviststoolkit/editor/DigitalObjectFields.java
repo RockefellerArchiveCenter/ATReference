@@ -310,7 +310,6 @@ public class DigitalObjectFields extends ArchDescriptionFields  {
 			digitalObjectTitle.setEditable(false);
 			digitalObjectTitle.setOpaque(false);
 			digitalObjectTitle.setBorder(null);
-			digitalObjectTitle.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			panel3.add(digitalObjectTitle, cc.xywh(3, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
 		}
 		add(panel3, cc.xywh(1, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
@@ -371,9 +370,6 @@ public class DigitalObjectFields extends ArchDescriptionFields  {
 						label_resourcesLanguageCode4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						ATFieldInfo.assignLabelInfo(label_resourcesLanguageCode4, DigitalObjects.class, DigitalObjects.PROPERTYNAME_LABEL);
 						panel1.add(label_resourcesLanguageCode4, cc.xy(1, 1));
-
-						//---- label ----
-						label.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						panel1.add(label, new CellConstraints(3, 1, 1, 1, CellConstraints.DEFAULT, CellConstraints.TOP, new Insets( 0, 0, 0, 5)));
 					}
 					panel16.add(panel1, cc.xy(1, 1));
@@ -411,7 +407,6 @@ public class DigitalObjectFields extends ArchDescriptionFields  {
 							title.setRows(4);
 							title.setLineWrap(true);
 							title.setWrapStyleWord(true);
-							title.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 							scrollPane42.setViewportView(title);
 						}
 						panel19.add(scrollPane42, cc.xywh(1, 3, 3, 1, CellConstraints.DEFAULT, CellConstraints.FILL));
@@ -438,7 +433,6 @@ public class DigitalObjectFields extends ArchDescriptionFields  {
 							{
 								scrollPane4.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 								scrollPane4.setPreferredSize(new Dimension(300, 50));
-								scrollPane4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 
 								//---- resourcesTable ----
 								resourcesTable.setPreferredScrollableViewportSize(new Dimension(300, 100));
@@ -525,9 +519,6 @@ public class DigitalObjectFields extends ArchDescriptionFields  {
 									label_resourcesDateExpression.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 									ATFieldInfo.assignLabelInfo(label_resourcesDateExpression, DigitalObjects.class, DigitalObjects.PROPERTYNAME_DATE_EXPRESSION);
 									panel20.add(label_resourcesDateExpression, cc.xy(3, 3));
-
-									//---- dateExpression ----
-									dateExpression.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 									panel20.add(dateExpression, cc.xy(5, 3));
 
 									//======== panel9 ========
@@ -560,7 +551,6 @@ public class DigitalObjectFields extends ArchDescriptionFields  {
 
 										//---- dateBegin ----
 										dateBegin.setColumns(4);
-										dateBegin.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 										panel9.add(dateBegin, cc.xy(5, 1));
 
 										//---- label_resourcesDateEnd ----
@@ -571,7 +561,6 @@ public class DigitalObjectFields extends ArchDescriptionFields  {
 
 										//---- dateEnd ----
 										dateEnd.setColumns(4);
-										dateEnd.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 										panel9.add(dateEnd, cc.xy(9, 1));
 									}
 									panel20.add(panel9, cc.xywh(3, 5, 3, 1));
@@ -640,7 +629,6 @@ public class DigitalObjectFields extends ArchDescriptionFields  {
 								title2.setRows(3);
 								title2.setLineWrap(true);
 								title2.setWrapStyleWord(true);
-								title2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 								scrollPane43.setViewportView(title2);
 							}
 							digitalObjectResourceRecordOnly.add(scrollPane43, cc.xywh(3, 5, 3, 1, CellConstraints.DEFAULT, CellConstraints.FILL));
@@ -685,9 +673,6 @@ public class DigitalObjectFields extends ArchDescriptionFields  {
 							componentLabel1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 							ATFieldInfo.assignLabelInfo(componentLabel1, DigitalObjects.class, DigitalObjects.PROPERTYNAME_COMPONENT_ID);
 							componentIDPanel.add(componentLabel1, cc.xy(1, 1));
-
-							//---- dateExpression2 ----
-							dateExpression2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 							componentIDPanel.add(dateExpression2, cc.xy(3, 1));
 						}
 						panel17.add(componentIDPanel, cc.xy(1, 5));

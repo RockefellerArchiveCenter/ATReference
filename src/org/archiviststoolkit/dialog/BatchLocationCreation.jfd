@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.5.0_07" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_18" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -318,6 +318,12 @@
               <void property="name"> 
                <string>building</string> 
               </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
+              </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
               <class>com.jgoodies.forms.layout.CellConstraints</class> 
@@ -369,6 +375,12 @@
               <string>javax.swing.JTextField</string> 
               <void property="name"> 
                <string>floor</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
               </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -422,6 +434,12 @@
               <void property="name"> 
                <string>room</string> 
               </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
+              </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
               <class>com.jgoodies.forms.layout.CellConstraints</class> 
@@ -473,6 +491,12 @@
               <string>javax.swing.JTextField</string> 
               <void property="name"> 
                <string>area</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
               </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -593,6 +617,12 @@
               <void property="name"> 
                <string>coordinate1Label</string> 
               </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
+              </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
               <class>com.jgoodies.forms.layout.CellConstraints</class> 
@@ -615,6 +645,12 @@
               </void> 
               <void property="name"> 
                <string>coordinate1Start</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
               </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -662,6 +698,12 @@
               <void property="name"> 
                <string>coordinate1End</string> 
               </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
+              </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
               <class>com.jgoodies.forms.layout.CellConstraints</class> 
@@ -708,6 +750,12 @@
               <void property="name"> 
                <string>coordinate2Label</string> 
               </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
+              </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
               <class>com.jgoodies.forms.layout.CellConstraints</class> 
@@ -730,6 +778,12 @@
               </void> 
               <void property="name"> 
                <string>coordinate2Start</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
               </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -777,6 +831,12 @@
               <void property="name"> 
                <string>coordinate2End</string> 
               </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
+              </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
               <class>com.jgoodies.forms.layout.CellConstraints</class> 
@@ -823,6 +883,12 @@
               <void property="name"> 
                <string>coordinate3Label</string> 
               </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
+              </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
               <class>com.jgoodies.forms.layout.CellConstraints</class> 
@@ -845,6 +911,12 @@
               </void> 
               <void property="name"> 
                <string>coordinate3Start</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
               </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -891,6 +963,12 @@
               </void> 
               <void property="name"> 
                <string>coordinate3End</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
               </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_20" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_22" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -94,7 +94,7 @@
         <void method="auxiliary"> 
          <void method="setProperty"> 
           <string>JavaCodeGenerator.customCreateCode</string> 
-          <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Names.PROPERTYNAME_SORT_NAME));</string> 
+          <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_SORT_NAME));</string> 
          </void> 
         </void> 
        </object> 
@@ -155,7 +155,7 @@
            <boolean>false</boolean> 
           </void> 
           <void property="name"> 
-           <string>panel3</string> 
+           <string>mainPatronFieldsPanel</string> 
           </void> 
           <void method="add"> 
            <object class="com.jformdesigner.model.FormContainer"> 
@@ -193,7 +193,7 @@
                </void> 
                <void method="setProperty"> 
                 <string>$rowSpecs</string> 
-                <string>default, linegap, default, linegap, default, linegap, default, linegap, default</string> 
+                <string>default, linegap, default, linegap, default, linegap, default</string> 
                </void> 
               </object> 
               <void method="setProperty"> 
@@ -422,82 +422,6 @@
                 <string>javax.swing.JLabel</string> 
                 <void method="setProperty"> 
                  <string>text</string> 
-                 <string>Title</string> 
-                </void> 
-                <void method="setProperty"> 
-                 <string>font</string> 
-                 <object idref="Font0"/> 
-                </void> 
-                <void property="name"> 
-                 <string>label_title</string> 
-                </void> 
-                <void method="auxiliary"> 
-                 <void method="setProperty"> 
-                  <string>JavaCodeGenerator.postInitCode</string> 
-                  <string>ATFieldInfo.assignLabelInfo(${field}, Patrons.class, Patrons.PROPERTYNAME_TITLE);</string> 
-                 </void> 
-                </void> 
-               </object> 
-               <object class="com.jformdesigner.model.FormLayoutConstraints"> 
-                <class>com.jgoodies.forms.layout.CellConstraints</class> 
-                <void method="setProperty"> 
-                 <string>gridY</string> 
-                 <int>7</int> 
-                </void> 
-               </object> 
-              </void> 
-              <void method="add"> 
-               <object class="com.jformdesigner.model.FormComponent"> 
-                <string>javax.swing.JTextField</string> 
-                <void method="setProperty"> 
-                 <string>$size</string> 
-                 <object id="Dimension0" class="java.awt.Dimension"> 
-                  <int>100</int> 
-                  <int>37</int> 
-                 </object> 
-                </void> 
-                <void method="setProperty"> 
-                 <string>$location</string> 
-                 <object id="Point0" class="java.awt.Point"> 
-                  <int>0</int> 
-                  <int>0</int> 
-                 </object> 
-                </void> 
-                <void method="setProperty"> 
-                 <string>font</string> 
-                 <object idref="Font0"/> 
-                </void> 
-                <void property="name"> 
-                 <string>title</string> 
-                </void> 
-                <void method="auxiliary"> 
-                 <void method="setProperty"> 
-                  <string>JavaCodeGenerator.variableModifiers</string> 
-                  <int>1</int> 
-                 </void> 
-                 <void method="setProperty"> 
-                  <string>JavaCodeGenerator.customCreateCode</string> 
-                  <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_TITLE));</string> 
-                 </void> 
-                </void> 
-               </object> 
-               <object class="com.jformdesigner.model.FormLayoutConstraints"> 
-                <class>com.jgoodies.forms.layout.CellConstraints</class> 
-                <void method="setProperty"> 
-                 <string>gridX</string> 
-                 <int>3</int> 
-                </void> 
-                <void method="setProperty"> 
-                 <string>gridY</string> 
-                 <int>7</int> 
-                </void> 
-               </object> 
-              </void> 
-              <void method="add"> 
-               <object class="com.jformdesigner.model.FormComponent"> 
-                <string>javax.swing.JLabel</string> 
-                <void method="setProperty"> 
-                 <string>text</string> 
                  <string>Suffix</string> 
                 </void> 
                 <void method="setProperty"> 
@@ -518,7 +442,7 @@
                 <class>com.jgoodies.forms.layout.CellConstraints</class> 
                 <void method="setProperty"> 
                  <string>gridY</string> 
-                 <int>9</int> 
+                 <int>7</int> 
                 </void> 
                </object> 
               </void> 
@@ -563,7 +487,7 @@
                 </void> 
                 <void method="setProperty"> 
                  <string>gridY</string> 
-                 <int>9</int> 
+                 <int>7</int> 
                 </void> 
                </object> 
               </void> 
@@ -618,7 +542,7 @@
                </void> 
                <void method="setProperty"> 
                 <string>$rowSpecs</string> 
-                <string>default, linegap, default, linegap, top:default, linegap, top:default</string> 
+                <string>default, linegap, default, linegap, default, linegap, top:default, linegap, top:default</string> 
                </void> 
               </object> 
               <void method="setProperty"> 
@@ -708,11 +632,17 @@
                 <string>javax.swing.JTextField</string> 
                 <void method="setProperty"> 
                  <string>$size</string> 
-                 <object idref="Dimension0"/> 
+                 <object id="Dimension0" class="java.awt.Dimension"> 
+                  <int>100</int> 
+                  <int>37</int> 
+                 </object> 
                 </void> 
                 <void method="setProperty"> 
                  <string>$location</string> 
-                 <object idref="Point0"/> 
+                 <object id="Point0" class="java.awt.Point"> 
+                  <int>0</int> 
+                  <int>0</int> 
+                 </object> 
                 </void> 
                 <void method="setProperty"> 
                  <string>font</string> 
@@ -749,6 +679,76 @@
                 <string>javax.swing.JLabel</string> 
                 <void method="setProperty"> 
                  <string>text</string> 
+                 <string>Title</string> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>font</string> 
+                 <object idref="Font0"/> 
+                </void> 
+                <void property="name"> 
+                 <string>label_title</string> 
+                </void> 
+                <void method="auxiliary"> 
+                 <void method="setProperty"> 
+                  <string>JavaCodeGenerator.postInitCode</string> 
+                  <string>ATFieldInfo.assignLabelInfo(${field}, Patrons.class, Patrons.PROPERTYNAME_TITLE);</string> 
+                 </void> 
+                </void> 
+               </object> 
+               <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+                <class>com.jgoodies.forms.layout.CellConstraints</class> 
+                <void method="setProperty"> 
+                 <string>gridY</string> 
+                 <int>5</int> 
+                </void> 
+               </object> 
+              </void> 
+              <void method="add"> 
+               <object class="com.jformdesigner.model.FormComponent"> 
+                <string>javax.swing.JTextField</string> 
+                <void method="setProperty"> 
+                 <string>$size</string> 
+                 <object idref="Dimension0"/> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>$location</string> 
+                 <object idref="Point0"/> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>font</string> 
+                 <object idref="Font0"/> 
+                </void> 
+                <void property="name"> 
+                 <string>title</string> 
+                </void> 
+                <void method="auxiliary"> 
+                 <void method="setProperty"> 
+                  <string>JavaCodeGenerator.variableModifiers</string> 
+                  <int>1</int> 
+                 </void> 
+                 <void method="setProperty"> 
+                  <string>JavaCodeGenerator.customCreateCode</string> 
+                  <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_TITLE));</string> 
+                 </void> 
+                </void> 
+               </object> 
+               <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+                <class>com.jgoodies.forms.layout.CellConstraints</class> 
+                <void method="setProperty"> 
+                 <string>gridX</string> 
+                 <int>3</int> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>gridY</string> 
+                 <int>5</int> 
+                </void> 
+               </object> 
+              </void> 
+              <void method="add"> 
+               <object class="com.jformdesigner.model.FormComponent"> 
+                <string>javax.swing.JLabel</string> 
+                <void method="setProperty"> 
+                 <string>text</string> 
                  <string>&lt;html&gt;Institutional &lt;br/&gt;Affiliations&lt;/html&gt;</string> 
                 </void> 
                 <void method="setProperty"> 
@@ -769,7 +769,7 @@
                 <class>com.jgoodies.forms.layout.CellConstraints</class> 
                 <void method="setProperty"> 
                  <string>gridY</string> 
-                 <int>5</int> 
+                 <int>7</int> 
                 </void> 
                </object> 
               </void> 
@@ -810,7 +810,7 @@
                 </void> 
                 <void method="setProperty"> 
                  <string>gridY</string> 
-                 <int>5</int> 
+                 <int>7</int> 
                 </void> 
                </object> 
               </void> 
@@ -843,7 +843,7 @@
                 <class>com.jgoodies.forms.layout.CellConstraints</class> 
                 <void method="setProperty"> 
                  <string>gridY</string> 
-                 <int>7</int> 
+                 <int>9</int> 
                 </void> 
                </object> 
               </void> 
@@ -851,13 +851,21 @@
                <object class="com.jformdesigner.model.FormComponent"> 
                 <string>javax.swing.JComboBox</string> 
                 <void property="name"> 
-                 <string>addressType2</string> 
+                 <string>howDidYouHearAboutUs</string> 
                 </void> 
                 <void method="auxiliary"> 
                  <void method="setProperty"> 
                   <string>JavaCodeGenerator.customCreateCode</string> 
                   <string>ATBasicComponentFactory.createComboBox(detailsModel, Patrons.PROPERTYNAME_HOW_DID_YOU_HEAR_ABOUT_US, Patrons.class);</string> 
                  </void> 
+                </void> 
+                <void method="addEvent"> 
+                 <object class="com.jformdesigner.model.FormEvent"> 
+                  <string>java.awt.event.ItemListener</string> 
+                  <string>itemStateChanged</string> 
+                  <string>howDidYouHearAboutUsItemStateChanged</string> 
+                  <boolean>true</boolean> 
+                 </object> 
                 </void> 
                </object> 
                <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -868,7 +876,7 @@
                 </void> 
                 <void method="setProperty"> 
                  <string>gridY</string> 
-                 <int>7</int> 
+                 <int>9</int> 
                 </void> 
                </object> 
               </void> 
@@ -1639,13 +1647,13 @@
                  <object idref="Font0"/> 
                 </void> 
                 <void property="name"> 
-                 <string>setPrefered</string> 
+                 <string>setPreferedAddress</string> 
                 </void> 
                 <void method="addEvent"> 
                  <object class="com.jformdesigner.model.FormEvent"> 
                   <string>java.awt.event.ActionListener</string> 
                   <string>actionPerformed</string> 
-                  <string>setPreferedActionPerformed</string> 
+                  <string>setPreferedAddressActionPerformed</string> 
                   <boolean>false</boolean> 
                  </object> 
                 </void> 
@@ -2172,7 +2180,7 @@
             <string>javax.swing.JLabel</string> 
             <void method="setProperty"> 
              <string>text</string> 
-             <string>Completed Forms</string> 
+             <string>Forms</string> 
             </void> 
             <void method="setProperty"> 
              <string>verticalAlignment</string> 
@@ -2223,19 +2231,19 @@
                <object idref="Dimension1"/> 
               </void> 
               <void property="name"> 
-               <string>completedFormsTable</string> 
+               <string>patronFormsTable</string> 
               </void> 
               <void method="auxiliary"> 
                <void method="setProperty"> 
                 <string>JavaCodeGenerator.customCreateCode</string> 
-                <string>new DomainSortableTable(CompletedForms.class);</string> 
+                <string>new DomainSortableTable(PatronForms.class);</string> 
                </void> 
               </void> 
               <void method="addEvent"> 
                <object class="com.jformdesigner.model.FormEvent"> 
                 <string>java.awt.event.MouseListener</string> 
                 <string>mouseClicked</string> 
-                <string>completedFormsTableMouseClicked</string> 
+                <string>patronFormsTableMouseClicked</string> 
                 <boolean>true</boolean> 
                </object> 
               </void> 
@@ -3072,6 +3080,1246 @@
           <void method="setProperty"> 
            <string>title</string> 
            <string>Funding and Publications</string> 
+          </void> 
+         </object> 
+        </void> 
+        <void method="add"> 
+         <object class="com.jformdesigner.model.FormContainer"> 
+          <string>javax.swing.JPanel</string> 
+          <object class="com.jformdesigner.model.FormLayoutManager"> 
+           <class>com.jgoodies.forms.layout.FormLayout</class> 
+           <void method="setProperty"> 
+            <string>$columnSpecs</string> 
+            <string>default:grow, labelcompgap, default:grow</string> 
+           </void> 
+           <void method="setProperty"> 
+            <string>$rowSpecs</string> 
+            <string>fill:default:grow</string> 
+           </void> 
+           <void method="setProperty"> 
+            <string>$columnGroupIds</string> 
+            <string>1, 0, 1</string> 
+           </void> 
+          </object> 
+          <void method="setProperty"> 
+           <string>background</string> 
+           <object class="java.awt.Color"> 
+            <int>200</int> 
+            <int>205</int> 
+            <int>232</int> 
+            <int>255</int> 
+           </object> 
+          </void> 
+          <void property="name"> 
+           <string>panel31</string> 
+          </void> 
+          <void method="add"> 
+           <object class="com.jformdesigner.model.FormContainer"> 
+            <string>javax.swing.JPanel</string> 
+            <object class="com.jformdesigner.model.FormLayoutManager"> 
+             <class>com.jgoodies.forms.layout.FormLayout</class> 
+             <void method="setProperty"> 
+              <string>$columnSpecs</string> 
+              <string>default, labelcompgap, default:grow</string> 
+             </void> 
+             <void method="setProperty"> 
+              <string>$rowSpecs</string> 
+              <string>default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, fill:default:grow</string> 
+             </void> 
+            </object> 
+            <void method="setProperty"> 
+             <string>opaque</string> 
+             <boolean>false</boolean> 
+            </void> 
+            <void property="name"> 
+             <string>panel32</string> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JLabel</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>User Defined Date 1</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object id="Font8" class="java.awt.Font"> 
+                <string>Trebuchet MS</string> 
+                <int>0</int> 
+                <int>13</int> 
+               </object> 
+              </void> 
+              <void property="name"> 
+               <string>label_acknowledgementDate2</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field}, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_DATE1);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JFormattedTextField</string> 
+              <void method="setProperty"> 
+               <string>$size</string> 
+               <object id="Dimension3" class="java.awt.Dimension"> 
+                <int>125</int> 
+                <int>22</int> 
+               </object> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>columns</string> 
+               <int>10</int> 
+              </void> 
+              <void property="name"> 
+               <string>acknowledgementDate2</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.customCreateCode</string> 
+                <string>ATBasicComponentFactory.createDateField(detailsModel.getModel( Patrons.PROPERTYNAME_USER_DEFINED_DATE1));</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.variableModifiers</string> 
+                <int>1</int> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>hAlign</string> 
+               <object class="com.jgoodies.forms.layout.CellConstraints" field="LEFT"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridX</string> 
+               <int>3</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JLabel</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>User Defined Date 2</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>label_acknowledgementDate3</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field}, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_DATE2);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>3</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JFormattedTextField</string> 
+              <void method="setProperty"> 
+               <string>$size</string> 
+               <object idref="Dimension3"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>columns</string> 
+               <int>10</int> 
+              </void> 
+              <void property="name"> 
+               <string>acknowledgementDate3</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.customCreateCode</string> 
+                <string>ATBasicComponentFactory.createDateField(detailsModel.getModel(Patrons.PROPERTYNAME_USER_DEFINED_DATE2));</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.variableModifiers</string> 
+                <int>1</int> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>hAlign</string> 
+               <object class="com.jgoodies.forms.layout.CellConstraints" field="LEFT"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridX</string> 
+               <int>3</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>3</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JCheckBox</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>User Defined Boolean 1</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>opaque</string> 
+               <boolean>false</boolean> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>rights2</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.variableModifiers</string> 
+                <int>1</int> 
+               </void> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.customCreateCode</string> 
+                <string>ATBasicComponentFactory.createCheckBox(detailsModel, Patrons.PROPERTYNAME_USER_DEFINED_BOOLEAN1, Patrons.class);</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>${field}.setText(ATFieldInfo.getLabel(Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_BOOLEAN1));</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>5</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridWidth</string> 
+               <int>3</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JCheckBox</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>User Defined Boolean 2</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>opaque</string> 
+               <boolean>false</boolean> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>rights3</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.variableModifiers</string> 
+                <int>1</int> 
+               </void> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.customCreateCode</string> 
+                <string>ATBasicComponentFactory.createCheckBox(detailsModel, Patrons.PROPERTYNAME_USER_DEFINED_BOOLEAN2, Patrons.class);</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>${field}.setText(ATFieldInfo.getLabel(Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_BOOLEAN2));</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>7</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridWidth</string> 
+               <int>3</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JLabel</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>User Defined Integer 1</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>label_date1Begin2</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field}, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_INTEGER1);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>9</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JFormattedTextField</string> 
+              <void method="setProperty"> 
+               <string>$size</string> 
+               <object idref="Dimension3"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>columns</string> 
+               <int>6</int> 
+              </void> 
+              <void property="name"> 
+               <string>date1Begin2</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.customCreateCode</string> 
+                <string>ATBasicComponentFactory.createIntegerField(detailsModel,Patrons.PROPERTYNAME_USER_DEFINED_INTEGER1);</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.variableModifiers</string> 
+                <int>1</int> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridX</string> 
+               <int>3</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>9</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>hAlign</string> 
+               <object class="com.jgoodies.forms.layout.CellConstraints" field="LEFT"/> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JLabel</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>User Defined Integer 2</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>label_date1Begin3</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field}, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_INTEGER2);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>11</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JFormattedTextField</string> 
+              <void method="setProperty"> 
+               <string>$size</string> 
+               <object idref="Dimension3"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>columns</string> 
+               <int>6</int> 
+              </void> 
+              <void property="name"> 
+               <string>date1Begin3</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.customCreateCode</string> 
+                <string>ATBasicComponentFactory.createIntegerField(detailsModel, Patrons.PROPERTYNAME_USER_DEFINED_INTEGER2);</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.variableModifiers</string> 
+                <int>1</int> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridX</string> 
+               <int>3</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>11</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>hAlign</string> 
+               <object class="com.jgoodies.forms.layout.CellConstraints" field="LEFT"/> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JLabel</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>User Defined Real 1</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>label_date1Begin4</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field},Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_REAL1);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>13</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JFormattedTextField</string> 
+              <void method="setProperty"> 
+               <string>$size</string> 
+               <object id="Dimension4" class="java.awt.Dimension"> 
+                <int>125</int> 
+                <int>22</int> 
+               </object> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>columns</string> 
+               <int>5</int> 
+              </void> 
+              <void property="name"> 
+               <string>extentNumber2</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.customCreateCode</string> 
+                <string>ATBasicComponentFactory.createDoubleField(detailsModel, Patrons.PROPERTYNAME_USER_DEFINED_REAL1);</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.variableModifiers</string> 
+                <int>1</int> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>13</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridX</string> 
+               <int>3</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>hAlign</string> 
+               <object class="com.jgoodies.forms.layout.CellConstraints" field="LEFT"/> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JLabel</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>User Defined Real 2</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>label_date1Begin5</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field}, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_REAL2);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>15</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JFormattedTextField</string> 
+              <void method="setProperty"> 
+               <string>$size</string> 
+               <object idref="Dimension4"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>columns</string> 
+               <int>5</int> 
+              </void> 
+              <void property="name"> 
+               <string>extentNumber3</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.customCreateCode</string> 
+                <string>ATBasicComponentFactory.createDoubleField(detailsModel, Patrons.PROPERTYNAME_USER_DEFINED_REAL2);</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.variableModifiers</string> 
+                <int>1</int> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>15</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridX</string> 
+               <int>3</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>hAlign</string> 
+               <object class="com.jgoodies.forms.layout.CellConstraints" field="LEFT"/> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JLabel</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>User Defined String 1</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>label_date1Begin6</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field}, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_STRING1);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>17</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JTextField</string> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>dateExpression2</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.variableModifiers</string> 
+                <int>1</int> 
+               </void> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.customCreateCode</string> 
+                <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_USER_DEFINED_STRING1),false);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>17</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>insets</string> 
+               <object id="Insets0" class="java.awt.Insets"> 
+                <int>0</int> 
+                <int>0</int> 
+                <int>0</int> 
+                <int>5</int> 
+               </object> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridX</string> 
+               <int>3</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JLabel</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>User Defined String 2</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>label_date1Begin7</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field}, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_STRING2);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>19</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JTextField</string> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>dateExpression3</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.variableModifiers</string> 
+                <int>1</int> 
+               </void> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.customCreateCode</string> 
+                <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_USER_DEFINED_STRING2),false);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>19</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>insets</string> 
+               <object idref="Insets0"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridX</string> 
+               <int>3</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JLabel</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>User Defined String 3</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>label_date1Begin8</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field}, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_STRING3);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>21</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JTextField</string> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>dateExpression4</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.variableModifiers</string> 
+                <int>1</int> 
+               </void> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.customCreateCode</string> 
+                <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Patrons.PROPERTYNAME_USER_DEFINED_STRING3),false);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>21</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>insets</string> 
+               <object idref="Insets0"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridX</string> 
+               <int>3</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JLabel</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>User Defined Text 1</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>label_date1Begin9</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field}, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_TEXT1);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>23</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormContainer"> 
+              <string>javax.swing.JScrollPane</string> 
+              <object class="com.jformdesigner.model.FormLayoutManager"> 
+               <class>javax.swing.JScrollPane</class> 
+              </object> 
+              <void method="setProperty"> 
+               <string>verticalScrollBarPolicy</string> 
+               <int>22</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>preferredSize</string> 
+               <object id="Dimension5" class="java.awt.Dimension"> 
+                <int>200</int> 
+                <int>68</int> 
+               </object> 
+              </void> 
+              <void property="name"> 
+               <string>scrollPane44</string> 
+              </void> 
+              <void method="add"> 
+               <object class="com.jformdesigner.model.FormComponent"> 
+                <string>javax.swing.JTextArea</string> 
+                <void method="setProperty"> 
+                 <string>rows</string> 
+                 <int>4</int> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>lineWrap</string> 
+                 <boolean>true</boolean> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>wrapStyleWord</string> 
+                 <boolean>true</boolean> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>font</string> 
+                 <object idref="Font8"/> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>minimumSize</string> 
+                 <object id="Dimension6" class="java.awt.Dimension"> 
+                  <int>200</int> 
+                  <int>16</int> 
+                 </object> 
+                </void> 
+                <void property="name"> 
+                 <string>title3</string> 
+                </void> 
+                <void method="auxiliary"> 
+                 <void method="setProperty"> 
+                  <string>JavaCodeGenerator.variableModifiers</string> 
+                  <int>1</int> 
+                 </void> 
+                 <void method="setProperty"> 
+                  <string>JavaCodeGenerator.customCreateCode</string> 
+                  <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Patrons.PROPERTYNAME_USER_DEFINED_TEXT1));</string> 
+                 </void> 
+                </void> 
+               </object> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>25</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridWidth</string> 
+               <int>3</int> 
+              </void> 
+             </object> 
+            </void> 
+           </object> 
+           <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+            <class>com.jgoodies.forms.layout.CellConstraints</class> 
+            <void method="setProperty"> 
+             <string>gridX</string> 
+             <int>1</int> 
+            </void> 
+            <void method="setProperty"> 
+             <string>gridY</string> 
+             <int>1</int> 
+            </void> 
+           </object> 
+          </void> 
+          <void method="add"> 
+           <object class="com.jformdesigner.model.FormContainer"> 
+            <string>javax.swing.JPanel</string> 
+            <object class="com.jformdesigner.model.FormLayoutManager"> 
+             <class>com.jgoodies.forms.layout.FormLayout</class> 
+             <void method="setProperty"> 
+              <string>$columnSpecs</string> 
+              <string>default:grow</string> 
+             </void> 
+             <void method="setProperty"> 
+              <string>$rowSpecs</string> 
+              <string>default, linegap, fill:default:grow, linegap, default, linegap, fill:default:grow, linegap, default, linegap, fill:default:grow</string> 
+             </void> 
+            </object> 
+            <void method="setProperty"> 
+             <string>opaque</string> 
+             <boolean>false</boolean> 
+            </void> 
+            <void property="name"> 
+             <string>panel35</string> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JLabel</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>User Defined Text 2</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>label_date1Begin10</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field}, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_TEXT2);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormContainer"> 
+              <string>javax.swing.JScrollPane</string> 
+              <object class="com.jformdesigner.model.FormLayoutManager"> 
+               <class>javax.swing.JScrollPane</class> 
+              </object> 
+              <void method="setProperty"> 
+               <string>verticalScrollBarPolicy</string> 
+               <int>22</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>preferredSize</string> 
+               <object idref="Dimension5"/> 
+              </void> 
+              <void property="name"> 
+               <string>scrollPane45</string> 
+              </void> 
+              <void method="add"> 
+               <object class="com.jformdesigner.model.FormComponent"> 
+                <string>javax.swing.JTextArea</string> 
+                <void method="setProperty"> 
+                 <string>rows</string> 
+                 <int>4</int> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>lineWrap</string> 
+                 <boolean>true</boolean> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>wrapStyleWord</string> 
+                 <boolean>true</boolean> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>font</string> 
+                 <object idref="Font8"/> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>minimumSize</string> 
+                 <object idref="Dimension6"/> 
+                </void> 
+                <void property="name"> 
+                 <string>title4</string> 
+                </void> 
+                <void method="auxiliary"> 
+                 <void method="setProperty"> 
+                  <string>JavaCodeGenerator.variableModifiers</string> 
+                  <int>1</int> 
+                 </void> 
+                 <void method="setProperty"> 
+                  <string>JavaCodeGenerator.customCreateCode</string> 
+                  <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Patrons.PROPERTYNAME_USER_DEFINED_TEXT2));</string> 
+                 </void> 
+                </void> 
+               </object> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>3</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JLabel</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>User Defined Text 3</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>label_date1Begin11</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field}, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_TEXT3);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>5</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormContainer"> 
+              <string>javax.swing.JScrollPane</string> 
+              <object class="com.jformdesigner.model.FormLayoutManager"> 
+               <class>javax.swing.JScrollPane</class> 
+              </object> 
+              <void method="setProperty"> 
+               <string>verticalScrollBarPolicy</string> 
+               <int>22</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>preferredSize</string> 
+               <object idref="Dimension5"/> 
+              </void> 
+              <void property="name"> 
+               <string>scrollPane46</string> 
+              </void> 
+              <void method="add"> 
+               <object class="com.jformdesigner.model.FormComponent"> 
+                <string>javax.swing.JTextArea</string> 
+                <void method="setProperty"> 
+                 <string>rows</string> 
+                 <int>4</int> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>lineWrap</string> 
+                 <boolean>true</boolean> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>wrapStyleWord</string> 
+                 <boolean>true</boolean> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>font</string> 
+                 <object idref="Font8"/> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>minimumSize</string> 
+                 <object idref="Dimension6"/> 
+                </void> 
+                <void property="name"> 
+                 <string>title5</string> 
+                </void> 
+                <void method="auxiliary"> 
+                 <void method="setProperty"> 
+                  <string>JavaCodeGenerator.variableModifiers</string> 
+                  <int>1</int> 
+                 </void> 
+                 <void method="setProperty"> 
+                  <string>JavaCodeGenerator.customCreateCode</string> 
+                  <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Patrons.PROPERTYNAME_USER_DEFINED_TEXT3));</string> 
+                 </void> 
+                </void> 
+               </object> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>7</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JLabel</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>User Defined Text 4</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void property="name"> 
+               <string>label_date1Begin12</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field}, Patrons.class, Patrons.PROPERTYNAME_USER_DEFINED_TEXT4);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>9</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormContainer"> 
+              <string>javax.swing.JScrollPane</string> 
+              <object class="com.jformdesigner.model.FormLayoutManager"> 
+               <class>javax.swing.JScrollPane</class> 
+              </object> 
+              <void method="setProperty"> 
+               <string>verticalScrollBarPolicy</string> 
+               <int>22</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font8"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>preferredSize</string> 
+               <object idref="Dimension5"/> 
+              </void> 
+              <void property="name"> 
+               <string>scrollPane47</string> 
+              </void> 
+              <void method="add"> 
+               <object class="com.jformdesigner.model.FormComponent"> 
+                <string>javax.swing.JTextArea</string> 
+                <void method="setProperty"> 
+                 <string>rows</string> 
+                 <int>4</int> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>lineWrap</string> 
+                 <boolean>true</boolean> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>wrapStyleWord</string> 
+                 <boolean>true</boolean> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>font</string> 
+                 <object idref="Font8"/> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>minimumSize</string> 
+                 <object idref="Dimension6"/> 
+                </void> 
+                <void property="name"> 
+                 <string>title6</string> 
+                </void> 
+                <void method="auxiliary"> 
+                 <void method="setProperty"> 
+                  <string>JavaCodeGenerator.variableModifiers</string> 
+                  <int>1</int> 
+                 </void> 
+                 <void method="setProperty"> 
+                  <string>JavaCodeGenerator.customCreateCode</string> 
+                  <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Patrons.PROPERTYNAME_USER_DEFINED_TEXT4));</string> 
+                 </void> 
+                </void> 
+               </object> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>11</int> 
+              </void> 
+             </object> 
+            </void> 
+           </object> 
+           <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+            <class>com.jgoodies.forms.layout.CellConstraints</class> 
+            <void method="setProperty"> 
+             <string>gridX</string> 
+             <int>3</int> 
+            </void> 
+            <void method="setProperty"> 
+             <string>gridY</string> 
+             <int>1</int> 
+            </void> 
+           </object> 
+          </void> 
+         </object> 
+         <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+          <null/> 
+          <void method="setProperty"> 
+           <string>title</string> 
+           <string>User Defined Fields</string> 
           </void> 
          </object> 
         </void> 

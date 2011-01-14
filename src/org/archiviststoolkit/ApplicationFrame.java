@@ -33,6 +33,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
 
 import org.archiviststoolkit.mydomain.*;
 import org.archiviststoolkit.importer.*;
@@ -64,8 +65,7 @@ import org.rac.dialogs.PatronManagement;
 import org.rac.importer.ImportPatronData2;
 import org.rac.model.*;
 import org.rac.model.validators.*;
-import edu.byu.plugins.importExport.BYU_MARCImportHandler;
-//import edu.yale.plugins.tasks.search.BoxLookup;
+import say.swing.JFontChooser;
 
 
 /**
@@ -184,6 +184,7 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 	private ConcreteAction admin_RepositoryProfile = null;
 	private ConcreteAction admin_RDE = null;
 	private ConcreteAction admin_RDE_DO = null;
+	private ConcreteAction admin_Font = null;
 
 	/**
 	 * The tools menu action.
@@ -192,11 +193,9 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 
 
 	/**
-	 * The tools menu action yale stuff.
+	 * The tools menu action rac stuff.
 	 */
 	private ConcreteAction RAC_nameImport = null;
-	private ConcreteAction BYU_MarcImporter = null;
-	private ConcreteAction YaleBoxLookup = null;
 
 
 	/**
@@ -524,6 +523,9 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
         admin_RDE_DO = new ConcreteAction("Configure Digital Objects Rapid Data Entry Screens");
 		admin_RDE_DO.addActionListener(this);
 
+        admin_Font = new ConcreteAction("Configure Font");
+		admin_Font.addActionListener(this);
+
         assessmentAction = new ConcreteAction("Assessment Records");
 		assessmentAction.addActionListener(this);
 
@@ -670,6 +672,10 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 		if (Users.doesCurrentUserHaveAccess(Users.ACCESS_CLASS_SUPERUSER)) {
 			setupMenu.add(admin_ConfigureApplication);
 		}
+
+        // add the menu to configure system font
+        setupMenu.add(admin_Font);
+
 		//todo RAC class 2 change - level 2 do not have any access to the setup menu
 		//since for level 2 the only thing they had access to was lookup list
 		//this is a cleaner way to remove that functionality and remove the empty setup menu
@@ -1017,6 +1023,33 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 				new ErrorDialog(this, "Error creating editor for NotesEtcTypes", e).showDialog();
 			}
 
+		} else if (actionEvent.getSource() == this.admin_Font) {
+            // get the current font if any
+            UserPreferences userPref = UserPreferences.getInstance();
+            Font font = userPref.getFont();
+
+            JFontChooser fontChooser = new JFontChooser();
+
+            if(font != null) {
+                fontChooser.setSelectedFont(font);
+            }
+
+            // now if a font is selected set it
+            int result = fontChooser.showDialog(this);
+            if (result == JFontChooser.OK_OPTION) {
+                font = fontChooser.getSelectedFont();
+                userPref.setFont(font);
+                userPref.saveToPreferences();
+
+                // update the UI now
+                UIManager.put("TextField.font", new FontUIResource(font));
+                UIManager.put("TextArea.font", new FontUIResource(font));
+                UIManager.put("Tree.font", new FontUIResource(font));
+                UIManager.put("Table.font", new FontUIResource(font));
+
+                SwingUtilities.updateComponentTreeUI(this);
+            }
+
 		} else if (actionEvent.getSource() == this.import_Subject) {
 			ATFileChooser filechooser = new ATFileChooser();
 			filechooser.setSize(600, 400);
@@ -1152,38 +1185,6 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 				performer.start();
 			}
 
-		} else if (actionEvent.getSource() == this.BYU_MarcImporter) {
-			filechooser = new ATFileChooser(new ImportOptionsMARC(), new SimpleFileFilter(".xml"));
-
-			if (filechooser.showOpenDialog(this, "Import") == JFileChooser.APPROVE_OPTION) {
-				controller = new DomainImportController();
-				handler = new BYU_MARCImportHandler((ImportOptionsMARC) filechooser.getAccessory());
-				Thread performer = new Thread(new Runnable() {
-					public void run() {
-						InfiniteProgressPanel monitor = ATProgressUtil.createModalProgressMonitor(ApplicationFrame.getInstance(), 1000, true);
-						monitor.start("Importing MARCXML...");
-						try {
-							handler.importFile(filechooser.getSelectedFile(), controller, monitor);
-						} catch (Exception e) {
-							monitor.close();
-							new ErrorDialog(ApplicationFrame.getInstance(), "", e).showDialog();
-						} finally {
-							monitor.close();
-						}
-						monitor = ATProgressUtil.createModalProgressMonitor(ApplicationFrame.getInstance(), 1000);
-						monitor.start("Loading lookup lists...");
-						try {
-							LookupListUtils.loadLookupLists();
-							monitor.setTextLine("Loading editors", 1);
-							DomainEditorFactory.getInstance().updateDomainEditors();
-						} finally {
-							monitor.close();
-						}
-					}
-				}, "ImportMARC");
-				performer.start();
-			}
-
 		} else if (actionEvent.getSource() == this.import_DigitalObjects) {
 			filechooser = new ATFileChooser(new ImportOptionsDigitalObjects(), new SimpleFileFilter(".txt"));
 
@@ -1239,6 +1240,7 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 				validatorFactory.addValidator(PatronVisits.class, new PatronVisitsValidator());
 				validatorFactory.addValidator(PatronPublications.class, new PatronPublicationsValidator());
 				validatorFactory.addValidator(PatronAddresses.class, new PatronAddressesValidator());
+				validatorFactory.addValidator(PatronForms.class, new PatronFormsValidator());
 				validatorFactory.addValidator(Services.class, new ServicesValidator());
 				dialog.showDialog();
 			} catch (DomainEditorCreationException e) {
@@ -1256,7 +1258,7 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 				new ErrorDialog(this, "Error creating editor for Patrons", e).showDialog();
 			}
 
-			//yale stuff
+			//rac stuff
 		} else if (actionEvent.getSource() == this.RAC_nameImport) {
 
 
@@ -1272,7 +1274,7 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 						try {
 							//load the custom patron validator
 							ValidatorFactory validatorFactory = ValidatorFactory.getInstance();
-							validatorFactory.addValidator(Names.class, new PatronsValidator());
+							validatorFactory.addValidator(Patrons.class, new PatronsImportValidator());
 							validatorFactory.addValidator(PatronFunding.class, new PatronFundingValidator());
 							validatorFactory.addValidator(PatronPhoneNumbers.class, new PatronPhoneNumbersValidator());
 							validatorFactory.addValidator(PatronVisits.class, new PatronVisitsValidator());
@@ -1282,7 +1284,7 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 //							File importFile = filechooser.getSelectedFile();
 							handler.importFile(filechooser.getSelectedFile(), controller, monitor);
 							//restore the regular names validator
-							validatorFactory.addValidator(Names.class, new NamesValidator());
+							validatorFactory.addValidator(Patrons.class, new PatronsValidator());
 						} catch (ImportException e) {
 							monitor.close();
 							new ErrorDialog(ApplicationFrame.getInstance(), "Import Problem", e).showDialog();
@@ -1328,18 +1330,6 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 				}, "RAC patron import");
 				performer.start();
 			}
-
-		} else if (actionEvent.getSource() == this.YaleBoxLookup) {
-
-//			try {
-//				BoxLookupReturnScreen returnScreen = new BoxLookupReturnScreen(ApplicationFrame.getInstance());
-//				returnScreen.showDialog();
-//			} catch (ClassNotFoundException e) {
-//				new ErrorDialog("", e).showDialog();
-//			} catch (SQLException e) {
-//				new ErrorDialog("", e).showDialog();
-//			}
-
 
 		} else { // must be a plugin action so get the plugin and display it. In the future it maynot have to be display, but we will handel that when we get to it
             ConcreteAction pluginAction = (ConcreteAction)actionEvent.getSource();

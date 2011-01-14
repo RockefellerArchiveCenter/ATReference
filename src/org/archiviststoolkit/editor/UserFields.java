@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -78,141 +78,125 @@ public class UserFields extends DomainEditorFields {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner non-commercial license
-        label1 = new JLabel();
-        userName = ATBasicComponentFactory.createTextField(
-                        detailsModel.getModel(Users.PROPERTYNAME_USERNAME));
-        label13 = new JLabel();
-        fullName = ATBasicComponentFactory.createTextField(detailsModel.getModel(Users.PROPERTYNAME_FULL_NAME));
-        label14 = new JLabel();
-        title = ATBasicComponentFactory.createTextField(detailsModel.getModel(Users.PROPERTYNAME_TITLE));
-        label15 = new JLabel();
-        department = ATBasicComponentFactory.createTextField(detailsModel.getModel(Users.PROPERTYNAME_DEPARTMENT));
-        label17 = new JLabel();
-        email = ATBasicComponentFactory.createTextField(detailsModel.getModel(Users.PROPERTYNAME_EMAIL));
-        label16 = new JLabel();
-        accessClass = ATBasicComponentFactory.createIntegerField(detailsModel,Users.PROPERTYNAME_ACCESS_CLASS);
-        label142 = new JLabel();
-        repository = ATBasicComponentFactory.createComboBox(detailsModel, Users.PROPERTYNAME_REPOSITORY, Repositories.getRepositoryList());
-        changePasswordButton = new JButton();
-        CellConstraints cc = new CellConstraints();
+		// Generated using JFormDesigner non-commercial license
+		label1 = new JLabel();
+		userName = ATBasicComponentFactory.createTextField(
+		                detailsModel.getModel(Users.PROPERTYNAME_USERNAME));
+		label13 = new JLabel();
+		fullName = ATBasicComponentFactory.createTextField(detailsModel.getModel(Users.PROPERTYNAME_FULL_NAME));
+		label14 = new JLabel();
+		title = ATBasicComponentFactory.createTextField(detailsModel.getModel(Users.PROPERTYNAME_TITLE));
+		label15 = new JLabel();
+		department = ATBasicComponentFactory.createTextField(detailsModel.getModel(Users.PROPERTYNAME_DEPARTMENT));
+		label17 = new JLabel();
+		email = ATBasicComponentFactory.createTextField(detailsModel.getModel(Users.PROPERTYNAME_EMAIL));
+		label16 = new JLabel();
+		accessClass = ATBasicComponentFactory.createIntegerField(detailsModel,Users.PROPERTYNAME_ACCESS_CLASS);
+		label142 = new JLabel();
+		repository = ATBasicComponentFactory.createComboBox(detailsModel, Users.PROPERTYNAME_REPOSITORY, Repositories.getRepositoryList());
+		changePasswordButton = new JButton();
+		CellConstraints cc = new CellConstraints();
 
-        //======== this ========
-        setBorder(Borders.DLU4_BORDER);
-        setBackground(new Color(234, 201, 250));
-        setOpaque(false);
-        setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        setLayout(new FormLayout(
-        	new ColumnSpec[] {
-        		FormFactory.DEFAULT_COLSPEC,
-        		FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-        		new ColumnSpec("max(default;400px):grow")
-        	},
-        	new RowSpec[] {
-        		FormFactory.DEFAULT_ROWSPEC,
-        		FormFactory.LINE_GAP_ROWSPEC,
-        		FormFactory.DEFAULT_ROWSPEC,
-        		FormFactory.LINE_GAP_ROWSPEC,
-        		FormFactory.DEFAULT_ROWSPEC,
-        		FormFactory.LINE_GAP_ROWSPEC,
-        		FormFactory.DEFAULT_ROWSPEC,
-        		FormFactory.LINE_GAP_ROWSPEC,
-        		FormFactory.DEFAULT_ROWSPEC,
-        		FormFactory.LINE_GAP_ROWSPEC,
-        		FormFactory.DEFAULT_ROWSPEC,
-        		FormFactory.LINE_GAP_ROWSPEC,
-        		FormFactory.DEFAULT_ROWSPEC,
-        		FormFactory.LINE_GAP_ROWSPEC,
-        		FormFactory.DEFAULT_ROWSPEC
-        	}));
+		//======== this ========
+		setBorder(Borders.DLU4_BORDER);
+		setBackground(new Color(234, 201, 250));
+		setOpaque(false);
+		setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		setLayout(new FormLayout(
+			new ColumnSpec[] {
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+				new ColumnSpec("max(default;400px):grow")
+			},
+			new RowSpec[] {
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.LINE_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.LINE_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.LINE_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.LINE_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.LINE_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.LINE_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.LINE_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC
+			}));
 
-        //---- label1 ----
-        label1.setText("Username");
-        label1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        ATFieldInfo.assignLabelInfo(label1, Users.class, Users.PROPERTYNAME_USERNAME);
-        add(label1, cc.xy(1, 1));
+		//---- label1 ----
+		label1.setText("Username");
+		label1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		ATFieldInfo.assignLabelInfo(label1, Users.class, Users.PROPERTYNAME_USERNAME);
+		add(label1, cc.xy(1, 1));
+		add(userName, cc.xy(3, 1));
 
-        //---- userName ----
-        userName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        add(userName, cc.xy(3, 1));
+		//---- label13 ----
+		label13.setText("Full Name");
+		label13.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		ATFieldInfo.assignLabelInfo(label13, Users.class, Users.PROPERTYNAME_FULL_NAME);
+		add(label13, cc.xy(1, 3));
+		add(fullName, cc.xy(3, 3));
 
-        //---- label13 ----
-        label13.setText("Full Name");
-        label13.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        ATFieldInfo.assignLabelInfo(label13, Users.class, Users.PROPERTYNAME_FULL_NAME);
-        add(label13, cc.xy(1, 3));
+		//---- label14 ----
+		label14.setText("Title");
+		label14.setVerticalAlignment(SwingConstants.TOP);
+		label14.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		ATFieldInfo.assignLabelInfo(label14, Users.class, Users.PROPERTYNAME_TITLE);
+		add(label14, cc.xywh(1, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.CENTER));
+		add(title, cc.xy(3, 5));
 
-        //---- fullName ----
-        fullName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        add(fullName, cc.xy(3, 3));
+		//---- label15 ----
+		label15.setText("Department");
+		label15.setVerticalAlignment(SwingConstants.TOP);
+		label15.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		ATFieldInfo.assignLabelInfo(label15, Users.class, Users.PROPERTYNAME_DEPARTMENT);
+		add(label15, cc.xywh(1, 7, 1, 1, CellConstraints.DEFAULT, CellConstraints.CENTER));
+		add(department, cc.xy(3, 7));
 
-        //---- label14 ----
-        label14.setText("Title");
-        label14.setVerticalAlignment(SwingConstants.TOP);
-        label14.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        ATFieldInfo.assignLabelInfo(label14, Users.class, Users.PROPERTYNAME_TITLE);
-        add(label14, cc.xywh(1, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.CENTER));
+		//---- label17 ----
+		label17.setText("email");
+		label17.setVerticalAlignment(SwingConstants.TOP);
+		label17.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		ATFieldInfo.assignLabelInfo(label17, Users.class, Users.PROPERTYNAME_EMAIL);
+		add(label17, cc.xywh(1, 9, 1, 1, CellConstraints.DEFAULT, CellConstraints.CENTER));
+		add(email, cc.xy(3, 9));
 
-        //---- title ----
-        title.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        add(title, cc.xy(3, 5));
+		//---- label16 ----
+		label16.setText("Access Class");
+		label16.setVerticalAlignment(SwingConstants.TOP);
+		label16.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		ATFieldInfo.assignLabelInfo(label16, Users.class, Users.PROPERTYNAME_ACCESS_CLASS);
+		add(label16, cc.xywh(1, 11, 1, 1, CellConstraints.DEFAULT, CellConstraints.CENTER));
 
-        //---- label15 ----
-        label15.setText("Department");
-        label15.setVerticalAlignment(SwingConstants.TOP);
-        label15.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        ATFieldInfo.assignLabelInfo(label15, Users.class, Users.PROPERTYNAME_DEPARTMENT);
-        add(label15, cc.xywh(1, 7, 1, 1, CellConstraints.DEFAULT, CellConstraints.CENTER));
+		//---- accessClass ----
+		accessClass.setColumns(3);
+		add(accessClass, cc.xywh(3, 11, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
-        //---- department ----
-        department.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        add(department, cc.xy(3, 7));
+		//---- label142 ----
+		label142.setText("Repository");
+		label142.setVerticalAlignment(SwingConstants.TOP);
+		label142.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		ATFieldInfo.assignLabelInfo(label142, Users.class, Users.PROPERTYNAME_REPOSITORY);
+		add(label142, cc.xywh(1, 13, 1, 1, CellConstraints.DEFAULT, CellConstraints.CENTER));
 
-        //---- label17 ----
-        label17.setText("email");
-        label17.setVerticalAlignment(SwingConstants.TOP);
-        label17.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        ATFieldInfo.assignLabelInfo(label17, Users.class, Users.PROPERTYNAME_EMAIL);
-        add(label17, cc.xywh(1, 9, 1, 1, CellConstraints.DEFAULT, CellConstraints.CENTER));
+		//---- repository ----
+		repository.setOpaque(false);
+		repository.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		add(repository, cc.xy(3, 13));
 
-        //---- email ----
-        email.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        add(email, cc.xy(3, 9));
-
-        //---- label16 ----
-        label16.setText("Access Class");
-        label16.setVerticalAlignment(SwingConstants.TOP);
-        label16.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        ATFieldInfo.assignLabelInfo(label16, Users.class, Users.PROPERTYNAME_ACCESS_CLASS);
-        add(label16, cc.xywh(1, 11, 1, 1, CellConstraints.DEFAULT, CellConstraints.CENTER));
-
-        //---- accessClass ----
-        accessClass.setColumns(3);
-        accessClass.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        add(accessClass, cc.xywh(3, 11, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
-
-        //---- label142 ----
-        label142.setText("Repository");
-        label142.setVerticalAlignment(SwingConstants.TOP);
-        label142.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        ATFieldInfo.assignLabelInfo(label142, Users.class, Users.PROPERTYNAME_REPOSITORY);
-        add(label142, cc.xywh(1, 13, 1, 1, CellConstraints.DEFAULT, CellConstraints.CENTER));
-
-        //---- repository ----
-        repository.setOpaque(false);
-        repository.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        add(repository, cc.xy(3, 13));
-
-        //---- changePasswordButton ----
-        changePasswordButton.setText("Change Password");
-        changePasswordButton.setOpaque(false);
-        changePasswordButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        changePasswordButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		changePasswordButtonActionPerformed(e);
-        	}
-        });
-        add(changePasswordButton, cc.xywh(3, 15, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+		//---- changePasswordButton ----
+		changePasswordButton.setText("Change Password");
+		changePasswordButton.setOpaque(false);
+		changePasswordButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		changePasswordButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				changePasswordButtonActionPerformed(e);
+			}
+		});
+		add(changePasswordButton, cc.xywh(3, 15, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
@@ -265,22 +249,22 @@ public class UserFields extends DomainEditorFields {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner non-commercial license
-    private JLabel label1;
-    private JTextField userName;
-    private JLabel label13;
-    private JTextField fullName;
-    private JLabel label14;
-    private JTextField title;
-    private JLabel label15;
-    private JTextField department;
-    private JLabel label17;
-    private JTextField email;
-    private JLabel label16;
-    private JFormattedTextField accessClass;
-    private JLabel label142;
-    public JComboBox repository;
-    private JButton changePasswordButton;
+	// Generated using JFormDesigner non-commercial license
+	private JLabel label1;
+	private JTextField userName;
+	private JLabel label13;
+	private JTextField fullName;
+	private JLabel label14;
+	private JTextField title;
+	private JLabel label15;
+	private JTextField department;
+	private JLabel label17;
+	private JTextField email;
+	private JLabel label16;
+	private JFormattedTextField accessClass;
+	private JLabel label142;
+	public JComboBox repository;
+	private JButton changePasswordButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
     private JTextField repositoryTextField = new JTextField();

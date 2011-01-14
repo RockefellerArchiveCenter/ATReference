@@ -22,7 +22,6 @@
 	
 	<list listType="1" name="Calendar" restrictToNmtoken="true">
 		
-        <usage className="org.archiviststoolkit.model.ArchDescriptionDates" field="calendar"/>
 		<value>gregorian</value>
 		
 	</list>
@@ -111,11 +110,9 @@
 		</pair>
 		
 	</list>
-	
+		
 	<list listType="1" name="Era" restrictToNmtoken="true">
 		
-        <usage className="org.archiviststoolkit.model.ArchDescriptionDates" field="era"/>
-
 		<value>ce</value>
 		
 	</list>
@@ -128,10 +125,8 @@
 		
 		<usage className="org.archiviststoolkit.model.ResourcesComponents" field="extentType"/>
 		
-        <usage className="org.archiviststoolkit.model.Deaccessions" field="extentType"/>
-
-        <usage className="org.archiviststoolkit.model.ArchDescriptionPhysicalDescriptions" field="extentType"/>
-
+		<usage className="org.archiviststoolkit.model.Deaccessions" field="extentType"/>
+		
 		<value>Cubic feet</value>
 		
 		<value>Linear feet</value>
@@ -160,6 +155,12 @@
 		
 		<value>Image-Service</value>
 		
+		<value>Image-Service-HighRes</value>
+		
+		<value>Image-Service-MedRes</value>
+		
+		<value>Image-Service-LowRes</value>
+		
 		<value>Image-Service-Edited</value>
 		
 		<value>Image-Thumbnail</value>
@@ -172,10 +173,14 @@
 				
 		<value>Text-Georeference</value>
 		
+		<value>Text-Master</value>
+		
 		<value>Text-OCR-Edited</value>
 		
 		<value>Text-OCR-Unedited</value>
 		
+		<value>Text-Service</value>
+
 		<value>Text-TEI-Transcripted</value>
 		
 		<value>Text-TEI-Translated</value>
@@ -216,8 +221,13 @@
 	
 	<list name="Name link form" listType="1">
 		
-		<usage className="org.archiviststoolkit.model.ArchDescriptionNames" field="form"/>
-		
+        <usage className="org.archiviststoolkit.model.ArchDescriptionNames" field="form"/>
+        
+        <!-- begin RAC patron module addition -->
+        <usage className="org.rac.model.PatronPublicationsNames" field="form"/>
+        <usage className="org.rac.model.PatronVisitsNames" field="form"/>
+        <!-- end RAC patron module addition -->
+
 		<value>Administration</value>
 		
 		<value>Archives</value>
@@ -4233,6 +4243,11 @@
 		
 	<list name="Name link creator / subject role" listType="2" pairedValues="true">
 		
+        <!-- begin RAC patron module addition -->
+        <usage className="org.rac.model.PatronPublicationsNames" field="role"/>
+        <usage className="org.rac.model.PatronVisitsNames" field="role"/>
+        <!-- end RAC patron module addition -->
+
 		<!--Role values for creator and subjects are drawn from the MARC list of relator terms at: http://www.loc.gov/marc/relators/relaterm.html  -->
 
 		<pair>
@@ -4323,6 +4338,14 @@
 
 		</pair>
 
+		<pair>
+
+			<value>Auctioneer</value>
+			
+			<code>auc</code>
+			
+		</pair>
+		
 		<pair>
 
 			<value>Author</value>
@@ -4429,6 +4452,14 @@
 
 		<pair>
 
+			<value>Bookseller</value>
+			
+			<code>bsl</code>
+			
+		</pair>
+		
+		<pair>
+
 			<value>Calligrapher</value>
 
 			<code>cll</code>
@@ -4483,6 +4514,14 @@
 
 		</pair>
 
+		<pair>
+
+			<value>Collector</value>
+			
+			<code>col</code>
+			
+		</pair>
+		
 		<pair>
 
 			<value>Collotyper</value>
@@ -4789,6 +4828,14 @@
 
 		<pair>
 
+			<value>Depositor</value>
+			
+			<code>dpt</code>
+			
+		</pair>
+		
+		<pair>
+
 			<value>Designer</value>
 
 			<code>dsr</code>
@@ -4819,6 +4866,14 @@
 
 		</pair>
 
+		<pair>
+
+			<value>Donor</value>
+			
+			<code>dnr</code>
+			
+		</pair>
+		
 		<pair>
 
 			<value>Draftsman</value>
@@ -4915,6 +4970,22 @@
 
 		</pair>
 
+		<pair>
+
+			<value>Former owner</value>
+			
+			<code>fmo</code>
+			
+		</pair>
+		
+		<pair>
+			
+			<value>Funder</value>
+			
+			<code>fnd</code>
+			
+		</pair>
+		
 		<pair>
 
 			<value>Honoree</value>
@@ -5195,6 +5266,14 @@
 
 		</pair>
 
+		<pair>
+
+			<value>Owner</value>
+			
+			<code>own</code>
+			
+		</pair>
+		
 		<pair>
 
 			<value>Papermaker</value>
@@ -5979,7 +6058,42 @@
 
     </list>
 
-    <list name="Patron type" listType="1">
+     <list listType="1" name="Era" restrictToNmtoken="true">
+
+       <usage className="org.archiviststoolkit.model.ArchDescriptionDates" field="era"/>
+
+		<value>ce</value>
+
+	</list>
+
+	<list listType="1" name="Calendar" restrictToNmtoken="true">
+
+       <usage className="org.archiviststoolkit.model.ArchDescriptionDates" field="calendar"/>
+		<value>gregorian</value>
+
+	</list>
+
+
+	<list name="Extent type" listType="1">
+
+		<usage className="org.archiviststoolkit.model.Accessions" field="extentType"/>
+
+		<usage className="org.archiviststoolkit.model.Resources" field="extentType"/>
+
+		<usage className="org.archiviststoolkit.model.ResourcesComponents" field="extentType"/>
+
+       <usage className="org.archiviststoolkit.model.Deaccessions" field="extentType"/>
+
+       <usage className="org.archiviststoolkit.model.ArchDescriptionPhysicalDescriptions" field="extentType"/>
+
+		<value>Cubic feet</value>
+
+		<value>Linear feet</value>
+
+	</list>
+
+        <!-- begin RAC patron module addition -->
+   <list name="Patron type" listType="1">
 
         <usage className="org.rac.model.Patrons" field="patronType"/>
 
@@ -6099,15 +6213,16 @@
 
     </list>
 
-    <list name="Completed Forms Type" listType="1">
+    <list name="Patrons Forms Type" listType="1">
 
-        <usage className="org.rac.model.CompletedForms" field="formType"/>
+        <usage className="org.rac.model.PatronForms" field="formType"/>
 
         <value>Permissions From</value>
 
         <value>Form without an interesting name</value>
 
     </list>
+        <!-- end RAC patron module addition -->
 
 
 

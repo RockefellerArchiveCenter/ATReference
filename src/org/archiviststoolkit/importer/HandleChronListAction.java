@@ -38,7 +38,7 @@ public class HandleChronListAction implements Action
             Head h = eadChronlist.getHead();
             if(h!=null)
                 EADHelper.setProperty(chronList,"title",(String)EADHelper.getClassFromList(h.getContent(),String.class));
-                //chronList.setUnits((String)EADHelper.getClassFromList(h.getContent(),String.class));
+                //chronList.setTitle((String)EADHelper.getClassFromList(h.getContent(),String.class));
             i2 = eadChronlist.getChronitem().iterator();
             Object obj=null;
             Date date = null;

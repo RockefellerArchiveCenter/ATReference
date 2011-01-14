@@ -42,8 +42,6 @@ public class PatronPhoneNumbers extends DomainObject {
 	private String phoneNumber;
 
 	@IncludeInApplicationConfiguration(2)
-	@DefaultIncludeInSearchEditor
-	@ExcludeFromDefaultValues
 	private String phoneNumberType = "";
 
 	@IncludeInApplicationConfiguration(3)
@@ -114,7 +112,7 @@ public class PatronPhoneNumbers extends DomainObject {
 	}
 
 	public void setPhoneNumberType(String phoneNumberType) {
-//		Object oldValue = getDescription();
+//		Object oldValue = getNotes();
 		this.phoneNumberType = phoneNumberType;
 //		firePropertyChange(PROPERTYNAME_SUBJECT_TERM_TYPE, oldValue, phoneNumberType);
 	}

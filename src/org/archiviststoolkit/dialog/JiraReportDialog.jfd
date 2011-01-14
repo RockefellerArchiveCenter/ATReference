@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.5.0_07" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_18" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -179,6 +179,12 @@
             <void property="name"> 
              <string>summary</string> 
             </void> 
+            <void method="auxiliary"> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
+             </void> 
+            </void> 
            </object> 
            <object class="com.jformdesigner.model.FormLayoutConstraints"> 
             <class>com.jgoodies.forms.layout.CellConstraints</class> 
@@ -246,6 +252,12 @@
               <void property="name"> 
                <string>detailedDescription</string> 
               </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
+              </void> 
              </object> 
             </void> 
            </object> 
@@ -311,6 +323,12 @@
               <void property="name"> 
                <string>emailAddress</string> 
               </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
+              </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
               <class>com.jgoodies.forms.layout.CellConstraints</class> 
@@ -344,6 +362,12 @@
               <string>javax.swing.JTextField</string> 
               <void property="name"> 
                <string>fullName</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
               </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 

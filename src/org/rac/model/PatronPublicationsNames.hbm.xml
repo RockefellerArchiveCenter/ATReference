@@ -11,6 +11,15 @@
 		</id>
 
 
+
+        <property name="form"
+                  column="form"
+                  type="string"/>
+
+        <property name="role"
+                  column="role"
+                  type="string"/>
+
 		<many-to-one name="patronPublication"
 					 class="PatronPublications"
 					 column="patronPublicationId"/>

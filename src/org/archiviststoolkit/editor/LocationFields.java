@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -137,9 +137,6 @@ public class LocationFields extends DomainEditorFields {
 		label1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label1, Locations.class, Locations.PROPERTYNAME_BUILDING);
 		add(label1, cc.xy(1, 1));
-
-		//---- building ----
-		building.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(building, cc.xy(3, 1));
 
 		//---- label2 ----
@@ -147,9 +144,6 @@ public class LocationFields extends DomainEditorFields {
 		label2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label2, Locations.class, Locations.PROPERTYNAME_FLOOR);
 		add(label2, cc.xy(1, 3));
-
-		//---- floor ----
-		floor.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(floor, cc.xy(3, 3));
 
 		//---- label3 ----
@@ -157,9 +151,6 @@ public class LocationFields extends DomainEditorFields {
 		label3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label3, Locations.class, Locations.PROPERTYNAME_ROOM);
 		add(label3, cc.xy(1, 5));
-
-		//---- room ----
-		room.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(room, cc.xy(3, 5));
 
 		//---- label4 ----
@@ -167,9 +158,6 @@ public class LocationFields extends DomainEditorFields {
 		label4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label4, Locations.class, Locations.PROPERTYNAME_AREA);
 		add(label4, cc.xy(1, 7));
-
-		//---- area ----
-		area.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(area, cc.xy(3, 7));
 
 		//---- separator2 ----
@@ -182,9 +170,6 @@ public class LocationFields extends DomainEditorFields {
 		label5.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label5, Locations.class, Locations.PROPERTYNAME_COORDINATE_1_LABEL);
 		add(label5, cc.xy(1, 11));
-
-		//---- coordinate1 ----
-		coordinate1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(coordinate1, cc.xy(3, 11));
 
 		//---- label_subjectSource2 ----
@@ -195,7 +180,6 @@ public class LocationFields extends DomainEditorFields {
 
 		//---- container1Value2 ----
 		container1Value2.setColumns(5);
-		container1Value2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(container1Value2, cc.xywh(3, 13, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
 		//---- label_subjectSource6 ----
@@ -203,9 +187,6 @@ public class LocationFields extends DomainEditorFields {
 		label_subjectSource6.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label_subjectSource6, Locations.class, Locations.PROPERTYNAME_COORDINATE_1_ALPHA_NUMERIC_INDICATOR);
 		add(label_subjectSource6, cc.xy(1, 15));
-
-		//---- containerLabel5 ----
-		containerLabel5.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(containerLabel5, cc.xy(3, 15));
 
 		//---- separator3 ----
@@ -218,9 +199,6 @@ public class LocationFields extends DomainEditorFields {
 		label6.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label6, Locations.class, Locations.PROPERTYNAME_COORDINATE_2_LABEL);
 		add(label6, cc.xy(1, 19));
-
-		//---- coordinate2 ----
-		coordinate2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(coordinate2, cc.xy(3, 19));
 
 		//---- label_subjectSource3 ----
@@ -231,7 +209,6 @@ public class LocationFields extends DomainEditorFields {
 
 		//---- container1Value3 ----
 		container1Value3.setColumns(5);
-		container1Value3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(container1Value3, cc.xywh(3, 21, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
 		//---- label_subjectSource7 ----
@@ -239,9 +216,6 @@ public class LocationFields extends DomainEditorFields {
 		label_subjectSource7.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label_subjectSource7, Locations.class, Locations.PROPERTYNAME_COORDINATE_2_ALPHA_NUMERIC_INDICATOR);
 		add(label_subjectSource7, cc.xy(1, 23));
-
-		//---- containerLabel6 ----
-		containerLabel6.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(containerLabel6, cc.xy(3, 23));
 
 		//---- separator4 ----
@@ -254,9 +228,6 @@ public class LocationFields extends DomainEditorFields {
 		label7.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label7, Locations.class, Locations.PROPERTYNAME_COORDINATE_3_LABEL);
 		add(label7, cc.xy(1, 27));
-
-		//---- coordinate3 ----
-		coordinate3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(coordinate3, cc.xy(3, 27));
 
 		//---- label_subjectSource4 ----
@@ -267,7 +238,6 @@ public class LocationFields extends DomainEditorFields {
 
 		//---- container1Value4 ----
 		container1Value4.setColumns(5);
-		container1Value4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(container1Value4, cc.xywh(3, 29, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
 		//---- label_subjectSource8 ----
@@ -275,9 +245,6 @@ public class LocationFields extends DomainEditorFields {
 		label_subjectSource8.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label_subjectSource8, Locations.class, Locations.PROPERTYNAME_COORDINATE_3_ALPHA_NUMERIC_INDICATOR);
 		add(label_subjectSource8, cc.xy(1, 31));
-
-		//---- containerLabel7 ----
-		containerLabel7.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(containerLabel7, cc.xy(3, 31));
 
 		//---- separator5 ----
@@ -290,9 +257,6 @@ public class LocationFields extends DomainEditorFields {
 		label8.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label8, Locations.class, Locations.PROPERTYNAME_CLASSIFICATION_NUMBER);
 		add(label8, cc.xy(1, 35));
-
-		//---- classificationNumber ----
-		classificationNumber.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(classificationNumber, cc.xy(3, 35));
 
 		//---- label9 ----
@@ -300,9 +264,6 @@ public class LocationFields extends DomainEditorFields {
 		label9.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label9, Locations.class, Locations.PROPERTYNAME_BARCODE);
 		add(label9, cc.xy(1, 37));
-
-		//---- barcode ----
-		barcode.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(barcode, cc.xy(3, 37));
 
 		//---- label10 ----

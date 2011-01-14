@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -39,6 +39,7 @@ import org.apache.log4j.Level;
 import org.rac.dialogs.ReadingRoomLogonDialog;
 
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.DefaultEditorKit;
 import java.util.Date;
@@ -109,6 +110,27 @@ public final class Main {
 		UserPreferences userPrefs = UserPreferences.getInstance();
 		userPrefs.populateFromPreferences();
 
+        Font userFont =  userPrefs.getFont();
+
+        // see if to use the default font
+        if(userFont == null) { // use the old default font
+            userFont = new Font("Trebuchet MS", Font.PLAIN, 13);   
+        }
+
+        // if font is not null 
+        if(userFont != null) {
+            UIManager.put("TextField.font", new FontUIResource(userFont));
+            UIManager.put("TextArea.font", new FontUIResource(userFont));
+            UIManager.put("PasswordField.font", new FontUIResource(userFont));
+            UIManager.put("Tree.font", new FontUIResource(userFont));
+            UIManager.put("Table.font", new FontUIResource(userFont));
+            UIManager.put("Label.font", new FontUIResource(userFont));
+            UIManager.put("ComboBox.font", new FontUIResource(userFont));
+            UIManager.put("ComboBoxItem.font", new FontUIResource(userFont));
+            //UIManager.put("TableHeader.font", new FontUIResource(userFont));
+        }
+
+        // now see if to bybass login
 		Boolean skipLogon = false;
 		if (args.length > 0) {
 			if (args[0].equalsIgnoreCase("bypassLogin")) {
@@ -248,6 +270,7 @@ public final class Main {
 		//this is for the reference module for reading rooms
 		if (ApplicationFrame.getInstance().getCurrentUser().getAccessClass() == Users.ACCESS_CLASS_REFERENCE_STAFF) {
 //			try {
+			EventQueue.invokeLater(new SplashScreenCloser());
 				 int status = JOptionPane.CANCEL_OPTION;
 				ReadingRoomLogonDialog logonDialog = new ReadingRoomLogonDialog(ApplicationFrame.getInstance());
 				 do {

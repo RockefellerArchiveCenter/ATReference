@@ -121,6 +121,10 @@ public class PatronNameAuthorityLookup extends JDialog {
 		linkingPanel = new JPanel();
 		label4 = new JLabel();
 		label3 = new JLabel();
+		label_role = new JLabel();
+		role = new JComboBox();
+		label_form = new JLabel();
+		form = new JComboBox();
 		buttonBarLinking = new JPanel();
 		linkButton = new JButton();
 		createName = new JButton();
@@ -264,6 +268,10 @@ public class PatronNameAuthorityLookup extends JDialog {
 							FormFactory.LINE_GAP_ROWSPEC,
 							FormFactory.DEFAULT_ROWSPEC,
 							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
 							FormFactory.DEFAULT_ROWSPEC
 						}));
 
@@ -274,6 +282,22 @@ public class PatronNameAuthorityLookup extends JDialog {
 					//---- label3 ----
 					label3.setText("Or hit enter if a Term is highlighted.");
 					linkingPanel.add(label3, cc.xywh(1, 3, 3, 1));
+
+					//---- label_role ----
+					label_role.setText("Role");
+					linkingPanel.add(label_role, cc.xy(1, 5));
+
+					//---- role ----
+					role.setOpaque(false);
+					linkingPanel.add(role, cc.xywh(3, 5, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+
+					//---- label_form ----
+					label_form.setText("Form Subdivision");
+					linkingPanel.add(label_form, cc.xy(1, 7));
+
+					//---- form ----
+					form.setOpaque(false);
+					linkingPanel.add(form, cc.xywh(3, 7, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
 					//======== buttonBarLinking ========
 					{
@@ -322,7 +346,7 @@ public class PatronNameAuthorityLookup extends JDialog {
 						});
 						buttonBarLinking.add(doneButton, cc.xy(5, 1));
 					}
-					linkingPanel.add(buttonBarLinking, cc.xywh(1, 5, 3, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT));
+					linkingPanel.add(buttonBarLinking, cc.xywh(1, 9, 3, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT));
 				}
 				contentPane.add(linkingPanel, cc.xywh(2, 6, 3, 1));
 
@@ -391,14 +415,14 @@ public class PatronNameAuthorityLookup extends JDialog {
                 try {
                     name = (Names)namesTableModel.getElementAt(selectedRow);
                     NameEnabledModel nameEnabledModel = (NameEnabledModel)parentEditor.getNameEnabledModel();
-                    DomainObject link = nameEnabledModel.addName(name, Patrons.NAME_LINK_FUNCTION_SUBJECT, "", "");
+                    DomainObject link = nameEnabledModel.addName(name, Patrons.NAME_LINK_FUNCTION_SUBJECT, this.getRole(), this.getForm());
                     if (link != null) {
                         parentEditor.getNamesTable().addDomainObject(link);
                     }
 					//set the record to dirty
 					ApplicationFrame.getInstance().setRecordDirty();
                 } catch (DuplicateLinkException e) {
-                    new ErrorDialog(this, "That name is already linked").showDialog();
+					JOptionPane.showMessageDialog(this, e.getMessage() + " is already linked to this record");
                 }
             }
 		}
@@ -469,6 +493,10 @@ public class PatronNameAuthorityLookup extends JDialog {
 	private JPanel linkingPanel;
 	private JLabel label4;
 	private JLabel label3;
+	private JLabel label_role;
+	private JComboBox role;
+	private JLabel label_form;
+	private JComboBox form;
 	private JPanel buttonBarLinking;
 	private JButton linkButton;
 	private JButton createName;
@@ -504,11 +532,20 @@ public class PatronNameAuthorityLookup extends JDialog {
 		this.pack();
 		initLookup();
 		setLocationRelativeTo(this.getOwner());
+		form.setModel(new DefaultComboBoxModel(LookupListUtils.getLookupListValues(LookupListUtils.LIST_NAME_NAME_LINK_FORM)));
+		role.setModel(new DefaultComboBoxModel(LookupListUtils.getLookupListValues(LookupListUtils.LIST_NAME_NAME_LINK_SUBJECT_CREATOR_ROLE)));
 		this.setVisible(true);
 
 		return (status);
 	}
 
+	public String getRole() {
+		return role.getSelectedItem().toString();
+	}
+
+	public String getForm() {
+		return form.getSelectedItem().toString();
+	}
 
 	public Names getNameModel() {
 		return nameModel;

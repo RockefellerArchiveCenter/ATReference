@@ -17,6 +17,7 @@
 package org.rac.model;
 
 import org.archiviststoolkit.model.Names;
+import org.archiviststoolkit.structure.StringLengthValidationRequried;
 import org.rac.model.PatronVisits;
 import org.archiviststoolkit.mydomain.DomainObject;
 import org.archiviststoolkit.structure.ExcludeFromDefaultValues;
@@ -25,17 +26,27 @@ import org.archiviststoolkit.structure.IncludeInApplicationConfiguration;
 import java.io.Serializable;
 
 
-@ExcludeFromDefaultValues
 public class PatronVisitsNames extends DomainObject implements Serializable, Comparable {
 
 	public static final String PROPERTYNAME_SORT_NAME = "sortName";
 	public static final String PROPERTYNAME_PATRON = "patron";
+	public static final String PROPERTYNAME_ROLE = "role";
+	public static final String PROPERTYNAME_FORM = "form";
+	public static final String PROPERTYNAME_NAME = "name";
 
 	@IncludeInApplicationConfiguration
+	@ExcludeFromDefaultValues
 	private Long patronVisitsNamesId = null;
 
 	@IncludeInApplicationConfiguration(1)
+	@ExcludeFromDefaultValues
 	private Names name;
+
+	@IncludeInApplicationConfiguration(2)
+	private String role = "";
+
+	@IncludeInApplicationConfiguration(3)
+	private String form = "";
 
 	private PatronVisits patronVisits;
 
@@ -93,5 +104,21 @@ public class PatronVisitsNames extends DomainObject implements Serializable, Com
 
 	public void setName(Names name) {
 		this.name = name;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getForm() {
+		return form;
+	}
+
+	public void setForm(String form) {
+		this.form = form;
 	}
 }

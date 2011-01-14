@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -93,7 +93,6 @@ public class DeaccessionsFields extends DomainEditorFields {
 			repositoryInfo.add(label15, cc.xy(1, 1));
 
 			//---- accessionDate ----
-			accessionDate.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			accessionDate.setColumns(12);
 			repositoryInfo.add(accessionDate, cc.xywh(3, 1, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
@@ -113,7 +112,6 @@ public class DeaccessionsFields extends DomainEditorFields {
 				subjectScopeNote.setLineWrap(true);
 				subjectScopeNote.setTabSize(20);
 				subjectScopeNote.setWrapStyleWord(true);
-				subjectScopeNote.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				scrollPane1.setViewportView(subjectScopeNote);
 			}
 			repositoryInfo.add(scrollPane1, cc.xy(3, 3));
@@ -134,7 +132,6 @@ public class DeaccessionsFields extends DomainEditorFields {
 				subjectScopeNote2.setLineWrap(true);
 				subjectScopeNote2.setTabSize(20);
 				subjectScopeNote2.setWrapStyleWord(true);
-				subjectScopeNote2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				scrollPane2.setViewportView(subjectScopeNote2);
 			}
 			repositoryInfo.add(scrollPane2, cc.xy(3, 5));
@@ -157,7 +154,6 @@ public class DeaccessionsFields extends DomainEditorFields {
 				panel1.add(label3, cc.xy(1, 1));
 
 				//---- extentNumber ----
-				extentNumber.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				extentNumber.setColumns(6);
 				panel1.add(extentNumber, cc.xywh(3, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
 
@@ -173,9 +169,6 @@ public class DeaccessionsFields extends DomainEditorFields {
 			label4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			ATFieldInfo.assignLabelInfo(label4, Deaccessions.class, Deaccessions.PROPERTYNAME_DISPOSITION);
 			repositoryInfo.add(label4, cc.xy(1, 9));
-
-			//---- repositoryName4 ----
-			repositoryName4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			repositoryInfo.add(repositoryName4, cc.xy(3, 9));
 
 			//---- rights ----

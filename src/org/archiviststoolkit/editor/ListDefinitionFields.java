@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -118,9 +118,6 @@ public class ListDefinitionFields extends ArchDescriptionStructuredDataFields {
 		label_subjectTerm.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label_subjectTerm, ListDefinition.class, ListDefinition.PROPERTYNAME_TITLE);
 		add(label_subjectTerm, cc.xy(1, 1));
-
-		//---- title ----
-		title.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(title, cc.xy(3, 1));
 
 		//---- label_subjectScopeNote2 ----
@@ -141,7 +138,6 @@ public class ListDefinitionFields extends ArchDescriptionStructuredDataFields {
 			ingestProblems.setLineWrap(true);
 			ingestProblems.setTabSize(20);
 			ingestProblems.setWrapStyleWord(true);
-			ingestProblems.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			scrollPane2.setViewportView(ingestProblems);
 		}
 		add(scrollPane2, cc.xy(3, 3));

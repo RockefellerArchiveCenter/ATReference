@@ -36,6 +36,7 @@ import org.rac.myDomain.PatronsDAO;
 public class ReadingRoomLogonDialog extends JDialog {
 
 	PatronsDAO patronDAO = new PatronsDAO();
+	private Boolean createNewRecord = false;
 
 	public ReadingRoomLogonDialog(Frame owner) {
 		super(owner);
@@ -48,12 +49,17 @@ public class ReadingRoomLogonDialog extends JDialog {
 	}
 
 	private void okButtonActionPerformed(ActionEvent e) {
+		createNewRecord = false;
+		checkAndClose();
+	}
+
+	private void checkAndClose() {
 		if (firstName.getText().length() == 0) {
 			JOptionPane.showMessageDialog(this, "You must enter a first name");
 		} else if (lastName.getText().length() == 0) {
-			JOptionPane.showMessageDialog(this, "You must enter a first name");
+			JOptionPane.showMessageDialog(this, "You must enter a last name");
 		} else {
-			status = javax.swing.JOptionPane.OK_OPTION;
+			status = JOptionPane.OK_OPTION;
 			this.setVisible(false);
 		}
 	}
@@ -71,6 +77,12 @@ public class ReadingRoomLogonDialog extends JDialog {
 		return lastName.getText();
 	}
 
+	private void addPatronActionPerformed() {
+		createNewRecord = true;
+		status = JOptionPane.OK_OPTION;
+		this.setVisible(false);
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		// Generated using JFormDesigner non-commercial license
@@ -84,6 +96,7 @@ public class ReadingRoomLogonDialog extends JDialog {
 		buttonBar = new JPanel();
 		okButton = new JButton();
 		cancelButton = new JButton();
+		addPatron = new JButton();
 		CellConstraints cc = new CellConstraints();
 
 		//======== this ========
@@ -148,7 +161,9 @@ public class ReadingRoomLogonDialog extends JDialog {
 						new ColumnSpec[] {
 							FormFactory.BUTTON_COLSPEC,
 							FormFactory.RELATED_GAP_COLSPEC,
-							FormFactory.BUTTON_COLSPEC
+							FormFactory.BUTTON_COLSPEC,
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							FormFactory.DEFAULT_COLSPEC
 						},
 						RowSpec.decodeSpecs("pref")));
 
@@ -171,6 +186,16 @@ public class ReadingRoomLogonDialog extends JDialog {
 						}
 					});
 					buttonBar.add(cancelButton, cc.xy(3, 1));
+
+					//---- addPatron ----
+					addPatron.setText("Add Patron");
+					addPatron.setOpaque(false);
+					addPatron.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							addPatronActionPerformed();
+						}
+					});
+					buttonBar.add(addPatron, cc.xy(5, 1));
 				}
 				panel1.add(buttonBar, cc.xywh(1, 3, 1, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
 			}
@@ -194,6 +219,7 @@ public class ReadingRoomLogonDialog extends JDialog {
 	private JPanel buttonBar;
 	private JButton okButton;
 	private JButton cancelButton;
+	private JButton addPatron;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 
 	/**
@@ -228,12 +254,16 @@ public class ReadingRoomLogonDialog extends JDialog {
 	}
 
 	public void searchAndDisplayRecord() throws LookupException, PersistenceException, UnsupportedTableModelException {
-		Names name = patronDAO.queryByFirstLastName(getFirstName(), getLastName());
+		Patrons patrons = patronDAO.queryByFirstLastName(getFirstName(), getLastName());
 		DomainEditor dialog;
-		if (name != null) {
-			dialog = new DomainEditor(Names.class, this, new PatronFields());
-			name = (Names) patronDAO.findByPrimaryKeyLongSession(name.getIdentifier());
-			dialog.setModel(name, null);
+		if (patrons != null ||getCreateNewRecord()) {
+			dialog = new DomainEditor(Patrons.class, this, "Patrons", new PatronFields());
+			if (getCreateNewRecord()) {
+				patrons = new Patrons();
+			} else {
+				patrons = (Patrons) patronDAO.findByPrimaryKeyLongSession(patrons.getIdentifier());
+			}
+			dialog.setModel(patrons, null);
 			dialog.disableNavigationButtons();
 			dialog.setButtonListeners();
 			dialog.setIncludeSaveButton(true);
@@ -246,7 +276,7 @@ public class ReadingRoomLogonDialog extends JDialog {
 			((PatronFields)dialog.editorFields).updateUIForClass0();
 			int status = dialog.showDialog();
 			if (status == JOptionPane.OK_OPTION) {
-				patronDAO.updateLongSession(name);
+				patronDAO.updateLongSession(patrons);
 			} else {
 				try {
 					patronDAO.closeLongSessionRollback();
@@ -259,5 +289,12 @@ public class ReadingRoomLogonDialog extends JDialog {
 		}
 
 	}
-	
+
+	public Boolean getCreateNewRecord() {
+		return createNewRecord;
+	}
+
+	public void setCreateNewRecord(Boolean createNewRecord) {
+		this.createNewRecord = createNewRecord;
+	}
 }

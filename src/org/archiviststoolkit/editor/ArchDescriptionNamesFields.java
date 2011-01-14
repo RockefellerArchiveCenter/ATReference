@@ -107,95 +107,94 @@ public class ArchDescriptionNamesFields extends DomainEditorFields {
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner non-commercial license
-        sortNameDisplay = new JTextField();
-        label_function = new JLabel();
-        function = new JComboBox();
-        label_role = new JLabel();
-        role = new JComboBox();
-        label_form = new JLabel();
-        form = ATBasicComponentFactory.createComboBox(detailsModel, ArchDescriptionNames.PROPERTYNAME_FORM, ArchDescriptionNames.class, true);
-        CellConstraints cc = new CellConstraints();
+		// Generated using JFormDesigner non-commercial license
+		sortNameDisplay = new JTextField();
+		label_function = new JLabel();
+		function = new JComboBox();
+		label_role = new JLabel();
+		role = new JComboBox();
+		label_form = new JLabel();
+		form = ATBasicComponentFactory.createComboBox(detailsModel, ArchDescriptionNames.PROPERTYNAME_FORM, ArchDescriptionNames.class, true);
+		CellConstraints cc = new CellConstraints();
 
-        //======== this ========
-        setBorder(Borders.DLU4_BORDER);
-        setBackground(new Color(234, 201, 250));
-        setOpaque(false);
-        setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        setLayout(new FormLayout(
-            new ColumnSpec[] {
-                FormFactory.DEFAULT_COLSPEC,
-                FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                new ColumnSpec("max(default;400px):grow")
-            },
-            new RowSpec[] {
-                FormFactory.DEFAULT_ROWSPEC,
-                FormFactory.LINE_GAP_ROWSPEC,
-                FormFactory.DEFAULT_ROWSPEC,
-                FormFactory.LINE_GAP_ROWSPEC,
-                FormFactory.DEFAULT_ROWSPEC,
-                FormFactory.LINE_GAP_ROWSPEC,
-                FormFactory.DEFAULT_ROWSPEC
-            }));
+		//======== this ========
+		setBorder(Borders.DLU4_BORDER);
+		setBackground(new Color(234, 201, 250));
+		setOpaque(false);
+		setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		setLayout(new FormLayout(
+			new ColumnSpec[] {
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+				new ColumnSpec("max(default;400px):grow")
+			},
+			new RowSpec[] {
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.LINE_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.LINE_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.LINE_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC
+			}));
 
-        //---- sortNameDisplay ----
-        sortNameDisplay.setEditable(false);
-        sortNameDisplay.setBorder(null);
-        sortNameDisplay.setForeground(new Color(0, 0, 102));
-        sortNameDisplay.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-        sortNameDisplay.setSelectionColor(new Color(204, 0, 51));
-        sortNameDisplay.setOpaque(false);
-        add(sortNameDisplay, cc.xywh(1, 1, 3, 1));
+		//---- sortNameDisplay ----
+		sortNameDisplay.setEditable(false);
+		sortNameDisplay.setBorder(null);
+		sortNameDisplay.setForeground(new Color(0, 0, 102));
+		sortNameDisplay.setSelectionColor(new Color(204, 0, 51));
+		sortNameDisplay.setOpaque(false);
+		add(sortNameDisplay, cc.xywh(1, 1, 3, 1));
 
-        //---- label_function ----
-        label_function.setText("Function");
-        ATFieldInfo.assignLabelInfo(label_function, ArchDescriptionNames.class, ArchDescriptionNames.PROPERTYNAME_NAME_LINK_FUNCTION);
-        add(label_function, cc.xy(1, 3));
+		//---- label_function ----
+		label_function.setText("Function");
+		ATFieldInfo.assignLabelInfo(label_function, ArchDescriptionNames.class, ArchDescriptionNames.PROPERTYNAME_NAME_LINK_FUNCTION);
+		add(label_function, cc.xy(1, 3));
 
-        //---- function ----
-        function.setOpaque(false);
-        function.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                functionActionPerformed(e);
-            }
-        });
-        function.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                functionFocusGained();
-            }
-        });
-        add(function, cc.xywh(3, 3, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+		//---- function ----
+		function.setOpaque(false);
+		function.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				functionActionPerformed(e);
+			}
+		});
+		function.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				functionFocusGained();
+			}
+		});
+		add(function, cc.xywh(3, 3, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
-        //---- label_role ----
-        label_role.setText("Role");
-        ATFieldInfo.assignLabelInfo(label_role, ArchDescriptionNames.class, ArchDescriptionNames.PROPERTYNAME_ROLE);
-        add(label_role, cc.xy(1, 5));
+		//---- label_role ----
+		label_role.setText("Role");
+		ATFieldInfo.assignLabelInfo(label_role, ArchDescriptionNames.class, ArchDescriptionNames.PROPERTYNAME_ROLE);
+		add(label_role, cc.xy(1, 5));
 
-        //---- role ----
-        role.setOpaque(false);
-        add(role, cc.xywh(3, 5, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+		//---- role ----
+		role.setOpaque(false);
+		add(role, cc.xywh(3, 5, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
-        //---- label_form ----
-        label_form.setText("Form Subdivision");
-        ATFieldInfo.assignLabelInfo(label_form, ArchDescriptionNames.class, ArchDescriptionNames.PROPERTYNAME_FORM);
-        add(label_form, cc.xy(1, 7));
+		//---- label_form ----
+		label_form.setText("Form Subdivision");
+		ATFieldInfo.assignLabelInfo(label_form, ArchDescriptionNames.class, ArchDescriptionNames.PROPERTYNAME_FORM);
+		add(label_form, cc.xy(1, 7));
 
-        //---- form ----
-        form.setOpaque(false);
-        add(form, cc.xywh(3, 7, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+		//---- form ----
+		form.setOpaque(false);
+		add(form, cc.xywh(3, 7, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner non-commercial license
-    private JTextField sortNameDisplay;
-    private JLabel label_function;
-    private JComboBox function;
-    private JLabel label_role;
-    private JComboBox role;
-    private JLabel label_form;
-    private JComboBox form;
+	// Generated using JFormDesigner non-commercial license
+	private JTextField sortNameDisplay;
+	private JLabel label_function;
+	private JComboBox function;
+	private JLabel label_role;
+	private JComboBox role;
+	private JLabel label_form;
+	private JComboBox form;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 
 	Vector nameLinkFunctionvalues;

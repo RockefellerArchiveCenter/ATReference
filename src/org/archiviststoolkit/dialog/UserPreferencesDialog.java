@@ -20,11 +20,14 @@ package org.archiviststoolkit.dialog;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.border.*;
+
 import com.jgoodies.forms.factories.*;
 import com.jgoodies.forms.layout.*;
+import org.archiviststoolkit.maintenance.ChooseOperation;
 import org.archiviststoolkit.util.UserPreferences;
 import org.archiviststoolkit.util.DatabaseConnectionInformation;
 import org.archiviststoolkit.util.DatabaseConnectionUtils;
@@ -32,7 +35,11 @@ import org.archiviststoolkit.hibernate.SessionFactory;
 import org.archiviststoolkit.swing.ATBasicComponentFactory;
 
 public class UserPreferencesDialog extends JDialog {
+    // hash map that contains the stored locations
     private HashMap savedConnections = new HashMap();
+
+    // use this to prevent any update events when the list connections is being loaded
+    private boolean loadingConnections = true;
 
 	public UserPreferencesDialog() {
 		super();
@@ -53,16 +60,16 @@ public class UserPreferencesDialog extends JDialog {
 	}
 
     private void storeConnectionUrlInformation() {
-        String selectedUrl = (String)connectionUrl.getSelectedItem();
+        String selectedUrl = (String) connectionUrl.getSelectedItem();
 
         // check to make sure that that selectedUrl is not blank before
         // attempting to store it
-        if(!selectedUrl.startsWith("jdbc:")) {
+        if (!selectedUrl.startsWith("jdbc:")) {
             return;
         }
 
         // now see if this connection url is already there., if not create a new one
-        if(!savedConnections.containsKey(selectedUrl)) {
+        if (!savedConnections.containsKey(selectedUrl)) {
             // create a new database connection url
             DatabaseConnectionInformation dbInfo = new DatabaseConnectionInformation();
             dbInfo.setDatabaseURL(selectedUrl);
@@ -74,7 +81,7 @@ public class UserPreferencesDialog extends JDialog {
             savedConnections.put(selectedUrl, dbInfo);
             connectionUrl.addItem(selectedUrl);
         } else { // update the information for already stored connection information
-            DatabaseConnectionInformation dbInfo = (DatabaseConnectionInformation)savedConnections.get(selectedUrl);
+            DatabaseConnectionInformation dbInfo = (DatabaseConnectionInformation) savedConnections.get(selectedUrl);
             dbInfo.setDatabaseURL(selectedUrl);
             dbInfo.setUsername(getUserName());
             dbInfo.setPassword(new String(getPassword()));
@@ -91,7 +98,7 @@ public class UserPreferencesDialog extends JDialog {
      */
     private void loadDatabaseConnectionInformation() {
         HashMap info = DatabaseConnectionUtils.loadDatabaseConnectionInformation();
-        if(info != null) {
+        if (info != null) {
             savedConnections = info;
 
             Map sortedMap = new TreeMap(savedConnections);
@@ -102,9 +109,12 @@ public class UserPreferencesDialog extends JDialog {
 
             //iterate through HashMap and ad to combo box
             while (itr.hasNext()) {
-                DatabaseConnectionInformation dbInfo = (DatabaseConnectionInformation)itr.next();
+                DatabaseConnectionInformation dbInfo = (DatabaseConnectionInformation) itr.next();
                 connectionUrl.addItem(dbInfo.toString());
             }
+
+            // set loading connection boolean to false
+            loadingConnections = false;
         }
     }
 
@@ -112,14 +122,61 @@ public class UserPreferencesDialog extends JDialog {
      * Method to update the connection url information displayed to user
      */
     private void updateConnectionUrlInformation() {
-        String selectedUrl = (String)connectionUrl.getSelectedItem();
-        if(savedConnections.containsKey(selectedUrl)) {
-            DatabaseConnectionInformation dbInfo = (DatabaseConnectionInformation)savedConnections.get(selectedUrl);
+        if (loadingConnections == true) {
+            return;
+        }
+
+        String selectedUrl = (String) connectionUrl.getSelectedItem();
+        if (savedConnections.containsKey(selectedUrl)) {
+            DatabaseConnectionInformation dbInfo = (DatabaseConnectionInformation) savedConnections.get(selectedUrl);
             userName.setText(dbInfo.getUsername());
             password.setText(dbInfo.getPassword());
             databaseTypes.setSelectedItem(dbInfo.getDatabaseType());
         }
     }
+
+    /**
+     * Method to hanlde actions from the database selector combo box
+     */
+	private void databaseTypesActionPerformed() {
+        String database = databaseTypes.getSelectedItem().toString();
+        String currentUrl = connectionUrl.getSelectedItem().toString();
+
+        if (database.equals(SessionFactory.DATABASE_TYPE_INTERNAL)) {
+            String internalDBUrl = getInternalDatabaseUrl();
+
+            // decide whether to show error messages to user
+            if (internalDBUrl != null && !currentUrl.contains("jdbc:hsqldb:")) {
+                connectionUrl.setSelectedItem(internalDBUrl);
+                userName.setText("SA");
+                password.setText("SA");
+            } else if (!currentUrl.contains("jdbc:hsqldb:")) {
+                // alert the user to configure the internal database
+                String message = "Please run the \"Maintenance Program\" to Configure\n" +
+                        "The Internal Database ...";
+
+                JOptionPane.showMessageDialog(this,
+                        message,
+                        "Internal Database not Configured",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }
+
+    private String getInternalDatabaseUrl() {
+        String prefix = "jdbc:hsqldb:file:";
+        String dbDirectoryName = System.getProperty("user.home") + System.getProperty("file.separator") + "at_db";
+        String dbFileName = dbDirectoryName + System.getProperty("file.separator") + "toolkitdb";
+
+        // see if to create the database directory
+        File dbFile = new File(dbFileName + ".log");
+
+        if (dbFile.exists()) {
+            return prefix + dbFileName;
+        } else {
+            return null;
+        }
+	}
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -139,7 +196,7 @@ public class UserPreferencesDialog extends JDialog {
 		label3 = new JLabel();
 		password = new JPasswordField();
 		label4 = new JLabel();
-		databaseTypes = ATBasicComponentFactory.createUnboundComboBox(SessionFactory.getDatabaseTypesList());
+		databaseTypes = ATBasicComponentFactory.createUnboundComboBox(SessionFactory.getDatabaseTypesList(true));
 		buttonBar = new JPanel();
 		saveButton = new JButton();
 		okButton = new JButton();
@@ -280,6 +337,11 @@ public class UserPreferencesDialog extends JDialog {
 
 					//---- databaseTypes ----
 					databaseTypes.setOpaque(false);
+					databaseTypes.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							databaseTypesActionPerformed();
+						}
+					});
 					contentPanel.add(databaseTypes, cc.xywh(3, 7, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 				}
 				panel1.add(contentPanel, cc.xy(1, 1));
@@ -400,7 +462,7 @@ public class UserPreferencesDialog extends JDialog {
 	}
 
 	public String getDatabaseUrl() {
-		return (String)connectionUrl.getSelectedItem();
+        return (String) connectionUrl.getSelectedItem();
 	}
 
 	public String getUserName() {
@@ -412,7 +474,7 @@ public class UserPreferencesDialog extends JDialog {
 	}
 
 	public String getDatabaseType() {
-		return (String)databaseTypes.getSelectedItem();
+        return (String) databaseTypes.getSelectedItem();
 	}
 
 	public void populateFromUserPreferences(UserPreferences userPrefs) {

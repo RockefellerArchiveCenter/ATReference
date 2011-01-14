@@ -48,7 +48,7 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 	 * Constructor which builds a DAO for this class.
 	 */
 	public PatronsDAO() {
-		super(Names.class);
+		super(Patrons.class);
 	}
 
 
@@ -57,8 +57,6 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 		Criteria criteria;
 		Set returnCollection = new HashSet();
 		Set subsequentCollections = null;
-		Set returnComponentCollection = new HashSet();
-		Set subsequentComponentCollections = null;
 		HashMap<DomainObject, String> contextMap = new HashMap<DomainObject, String>();
 		boolean includeComponents = false;
 
@@ -67,7 +65,6 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 		//two sets. Java does this with the set.retainAll() method.
 		boolean firstPass = true;
 		subsequentCollections = new HashSet();
-//		super.humanReadableSearchString = "";
 		for (QueryEditor.CriteriaRelationshipPairs criteriaPair : editor.getAltFormCriteria()) {
 			session = SessionFactory.getInstance().openSession(getPersistentClass());
 			criteria = processCriteria(session, editor.getClazz(), criteriaPair);
@@ -86,24 +83,16 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 				firstPass = false;
 			} else {
 				returnCollection.retainAll(subsequentCollections);
-				if (includeComponents) {
-					returnComponentCollection.retainAll(subsequentComponentCollections);
-				}
 			}
 		}
 
 		//deal with subject search
 		PatronQueryEditor patronQueryEditor = (PatronQueryEditor) editor;
 		Subjects selectedSubject = patronQueryEditor.getSelectedSubject();
-		DomainAccessObject patronDAO = null;
 		Collection patrons = null;
-		PatronVisits patronVisit;
 		String localHumanReadableSearchString;
-		try {
-			patronDAO = DomainAccessObjectFactory.getInstance().getDomainAccessObject(Names.class);
-		} catch (PersistenceException e) {
-			new ErrorDialog("Error creating patron domain access object", e).showDialog();
-		}
+		Set subjectCollection = new HashSet();
+
 		if (selectedSubject != null) {
 			//time to search through 2 tiers of records
 			//there is probably a hibernate way to do this but here we do it the brute force way.
@@ -113,13 +102,26 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			patrons = new HashSet();
 			PatronVisitsDAO visitLookup = new PatronVisitsDAO();
 			ArrayList patronVisits = new ArrayList(visitLookup.findBySubject(selectedSubject));
-			returnCollection = findPatronsBySubject(returnCollection, patrons, patronVisits);
+			subjectCollection = findPatronsBySubject(returnCollection, patrons, patronVisits);
+//			if (returnCollection.size() == 0) {
+//				returnCollection = subsequentCollections;
+//			} else {
+//				returnCollection.retainAll(subsequentCollections);
+//			}
 
 			//now search for subjects associated with publications
 			patrons = new HashSet();
 			PatronPublicationsDAO publicationsLookup = new PatronPublicationsDAO();
 			ArrayList patronPublications = new ArrayList(publicationsLookup.findBySubject(selectedSubject));
-			returnCollection = findPatronsBySubject(returnCollection, patrons, patronPublications);
+			subjectCollection = findPatronsBySubject(returnCollection, patrons, patronPublications);
+
+
+			if (returnCollection.size() == 0) {
+				returnCollection = subjectCollection;
+			} else {
+				returnCollection.retainAll(subjectCollection);
+			}
+
 		}
 
 
@@ -127,7 +129,7 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 		return returnCollection;
 	}
 
-	private Set findPatronsBySubject(Set returnCollection, Collection patrons, ArrayList linkedToSubjects) {
+	private Set findPatronsBySubject(Set subjectCollection, Collection patrons, ArrayList linkedToSubjects) {
 		PatronVisits patronVisit;
 		linkedToSubjects.toArray();
 		Patrons patronToAdd = null;
@@ -139,12 +141,13 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			}
 			patrons.add(patronToAdd);
 		}
-		if (returnCollection.size() == 0) {
-			returnCollection = new HashSet(patrons);
-		} else {
-			returnCollection.retainAll(patrons);
-		}
-		return returnCollection;
+		subjectCollection.addAll(patrons);
+//		if (subjectCollection.size() == 0) {
+//			subjectCollection = new HashSet(patrons);
+//		} else {
+//			subjectCollection.retainAll(patrons);
+//		}
+		return subjectCollection;
 	}
 
 	/**

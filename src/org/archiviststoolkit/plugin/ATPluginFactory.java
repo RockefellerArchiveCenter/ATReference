@@ -1,7 +1,7 @@
 package org.archiviststoolkit.plugin;
 
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2009 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2009 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -44,14 +44,17 @@ import java.util.ArrayList;
 public class ATPluginFactory {
     private static ATPluginFactory singleton = null;
     private PluginManager pluginManager; // this is actually what manages the plugins
+    private String[] cliParameters; // stores command line parameters
 
     /**
-	 * Default Constructor.
-	 */
-	private ATPluginFactory() {	}
+     * Default Constructor.
+     */
+    private ATPluginFactory() {
+    }
 
     /**
      * Method to return the singleton of this class
+     *
      * @return ATPluginFactory Singleton
      */
     public static ATPluginFactory getInstance() {
@@ -73,11 +76,12 @@ public class ATPluginFactory {
 
     /**
      * Method that loadsany plugins found in the plugin directory
+     *
      * @return boolean indicating f any plugins were found
      */
     public boolean parsePluginDirectory() {
         File pluginDirectory = new File("plugins");
-		if(!pluginDirectory.exists()) { // check to see if the directory actually exist before continuing
+        if (!pluginDirectory.exists()) { // check to see if the directory actually exist before continuing
             return false;
         }
 
@@ -99,13 +103,13 @@ public class ATPluginFactory {
             }
 
             pluginManager.publishPlugins(locations);
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Error loading plugins ...");
             e.printStackTrace();
             return false;
         }
 
-        if(plugins.length > 0) { // check to see if any plugins were in the directory
+        if (plugins.length > 0) { // check to see if any plugins were in the directory
             return true;
         } else {
             return false;
@@ -114,26 +118,27 @@ public class ATPluginFactory {
 
     /**
      * Method to return an list of all the plugin names and ids in a hasmap
+     *
      * @return HashMap containing the names and ids of all the plugins found
      */
     public HashMap getPluginNames() {
         HashMap<String, String> pluginNames = new HashMap<String, String>();
-        
+
         try {
             Iterator it = pluginManager.getRegistry().getPluginDescriptors().iterator();
 
-            while(it.hasNext()) {
+            while (it.hasNext()) {
                 PluginDescriptor pluginDescriptor = (PluginDescriptor) it.next();
                 String id = pluginDescriptor.getId();
-                ATPlugin plugin = (org.archiviststoolkit.plugin.ATPlugin)pluginManager.getPlugin(id);
+                ATPlugin plugin = (org.archiviststoolkit.plugin.ATPlugin) pluginManager.getPlugin(id);
                 String name = plugin.getName();
                 pluginNames.put(id, name);
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        if(pluginNames.size() == 0) {
+        if (pluginNames.size() == 0) {
             return null; // no plugins found so return null
         } else {
             return pluginNames;
@@ -143,22 +148,23 @@ public class ATPluginFactory {
     /**
      * Method to return the name of all plugins in a particular category.
      * It is used to add plugins to plugin menu in the main application frame
+     *
      * @return HashMap containing the names and ids of all the plugins found
      */
     public HashMap getPluginNamesByCategory(String inCategory) {
-         HashMap<String, String> pluginNames = new HashMap<String, String>();
+        HashMap<String, String> pluginNames = new HashMap<String, String>();
 
         try {
             Iterator it = pluginManager.getRegistry().getPluginDescriptors().iterator();
 
-            while(it.hasNext()) {
+            while (it.hasNext()) {
                 PluginDescriptor pluginDescriptor = (PluginDescriptor) it.next();
                 String id = pluginDescriptor.getId();
-                ATPlugin plugin = (org.archiviststoolkit.plugin.ATPlugin)pluginManager.getPlugin(id);
+                ATPlugin plugin = (org.archiviststoolkit.plugin.ATPlugin) pluginManager.getPlugin(id);
                 String name = plugin.getName();
                 String category = plugin.getCategory();
-                if(category.indexOf(inCategory) != -1) {
-                    if(plugin.getTaskList() == null) { // no list of task so just return the id and name
+                if (category.indexOf(inCategory) != -1) {
+                    if (plugin.getTaskList() == null) { // no list of task so just return the id and name
                         pluginNames.put(id, name);
                     } else { // list of task so return the name::task1::task2::task3 etc ...
                         String nameWithTask = getNameWithTask(name, plugin.getTaskList());
@@ -166,11 +172,11 @@ public class ATPluginFactory {
                     }
                 }
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        if(pluginNames.size() == 0) {
+        if (pluginNames.size() == 0) {
             return null; // no plugins in this category so return null
         } else {
             return pluginNames;
@@ -179,14 +185,15 @@ public class ATPluginFactory {
 
     /**
      * Method that combines the plugin name with any task the plugin has registered
-     * @param name The name of the plugin
+     *
+     * @param name     The name of the plugin
      * @param taskList The list of task
      * @return String with the combined name and task
      */
     private String getNameWithTask(String name, String[] taskList) {
         String nameWithTask = name;
-        for(int i = 0; i < taskList.length; i++) {
-            nameWithTask += "::" + taskList[i];    
+        for (int i = 0; i < taskList.length; i++) {
+            nameWithTask += "::" + taskList[i];
         }
 
         return nameWithTask;
@@ -194,13 +201,14 @@ public class ATPluginFactory {
 
     /**
      * Method to return a plugin given an id. If it can't be found then null is returned
+     *
      * @param id The id of the plugin to return
      * @return The ATPlugin found or null
      */
     public ATPlugin getPlugin(String id) {
         try {
-            return (ATPlugin)pluginManager.getPlugin(id);
-        } catch(Exception e) {
+            return (ATPlugin) pluginManager.getPlugin(id);
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
@@ -208,6 +216,7 @@ public class ATPluginFactory {
 
     /**
      * Method to get a record viewer plugin
+     *
      * @param domainObject The domain object to look for plugin for
      * @return The viewer plugin that is found or null
      */
@@ -217,6 +226,7 @@ public class ATPluginFactory {
 
     /**
      * Method to get a record editor plugin
+     *
      * @param domainObject The domain object to look for plugin for.
      * @return The editor plugin that is found or null
      */
@@ -226,14 +236,15 @@ public class ATPluginFactory {
 
     /**
      * Method to return the ATPlugin for a particular and domain object
+     *
      * @param domainObject The domain object to find a plugin for
-     * @param category The category to find a domain object for
+     * @param category     The category to find a domain object for
      * @return The plugin found or null if none can be located.
      */
     private ATPlugin getATPlugin(DomainObject domainObject, String category) {
         String editorType = getEditorTypeForDomainObject(domainObject);
 
-        if(editorType != null) {
+        if (editorType != null) {
             ATPlugin foundPlugin = null;
 
             try {
@@ -289,7 +300,7 @@ public class ATPluginFactory {
      * @return an ArrayList containing any plugins found
      */
     public ArrayList<ATPlugin> getEmbeddedDigitalObjectEditorPlugins() {
-        return getEmbeddedEditorPlugins(ATPlugin.DIGITALOBJECT_EDITOR, ATPlugin.EMBEDDED_EDITOR_CATEGORY);    
+        return getEmbeddedEditorPlugins(ATPlugin.DIGITALOBJECT_EDITOR, ATPlugin.EMBEDDED_EDITOR_CATEGORY);
     }
 
     /**
@@ -319,7 +330,7 @@ public class ATPluginFactory {
      * @return an ArrayList containing any plugins found
      */
     public ArrayList<ATPlugin> getEmbeddedAccessionEditorPlugins() {
-        return getEmbeddedEditorPlugins(ATPlugin.ACCESSION_EDITOR, ATPlugin.EMBEDDED_EDITOR_CATEGORY);    
+        return getEmbeddedEditorPlugins(ATPlugin.ACCESSION_EDITOR, ATPlugin.EMBEDDED_EDITOR_CATEGORY);
     }
 
     /**
@@ -330,6 +341,44 @@ public class ATPluginFactory {
      */
     public ArrayList<ATPlugin> getEmbeddedAssessmentEditorPlugins() {
         return getEmbeddedEditorPlugins(ATPlugin.ASSESSMENT_EDITOR, ATPlugin.EMBEDDED_EDITOR_CATEGORY);
+    }
+
+    /**
+     * Method to get a list of embedded plugins that will be added as entries
+     * in the rapid data entry drop down menu
+     *
+     * @return An Arraylist containing any plugins found
+     */
+    public ArrayList<ATPlugin> getRapidDataEntryPlugins() {
+        String category = ATPlugin.EMBEDDED_EDITOR_CATEGORY;
+        String editorType = ATPlugin.RAPID_DATA_ENTRY_EDITOR;
+
+        ArrayList<ATPlugin> foundPlugins = new ArrayList<ATPlugin>();
+
+        try {
+            Iterator it = pluginManager.getRegistry().getPluginDescriptors().iterator();
+
+            while (it.hasNext()) {
+                PluginDescriptor pluginDescriptor = (PluginDescriptor) it.next();
+                String id = pluginDescriptor.getId();
+                ATPlugin plugin = (org.archiviststoolkit.plugin.ATPlugin) pluginManager.getPlugin(id);
+
+                String cat = plugin.getCategory();
+                String et = plugin.getEditorType();
+
+                // check to make sure that the plugin is of the right category and
+                // editor type and that it has a panel that can be embedded into
+                // the resource editor panel
+                if (cat.indexOf(category) != -1 && et.indexOf(editorType) != -1 &&
+                        plugin.getRapidDataEntryPlugins() != null) {
+                    foundPlugins.add(plugin);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return foundPlugins;
     }
 
     /**
@@ -370,25 +419,74 @@ public class ATPluginFactory {
     }
 
     /**
+     * Method to return any command line plugins
+     *
+     * @return ArrayList containing any command line plugins that were found
+     */
+    public ArrayList<ATPlugin> getCLIPlugins() {
+        ArrayList<ATPlugin> foundPlugins = new ArrayList<ATPlugin>();
+
+        try {
+            Iterator it = pluginManager.getRegistry().getPluginDescriptors().iterator();
+
+            while (it.hasNext()) {
+                PluginDescriptor pluginDescriptor = (PluginDescriptor) it.next();
+                String id = pluginDescriptor.getId();
+                ATPlugin plugin = (org.archiviststoolkit.plugin.ATPlugin) pluginManager.getPlugin(id);
+
+                String cat = plugin.getCategory();
+
+                // check to make sure that the plugin is of the right category
+                if (cat.indexOf(ATPlugin.CLI_CATEGORY) != -1) {
+                    foundPlugins.add(plugin);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return foundPlugins;
+    }
+
+    /**
      * Method to return the editor type based on the domain object
+     *
      * @param domainObject The domain object to find the editor type for
      * @return The editor type or null if no editor can be found for this domain object
      */
     private String getEditorTypeForDomainObject(DomainObject domainObject) {
-        if(domainObject instanceof Names) {
+        if (domainObject instanceof Names) {
             return ATPlugin.NAME_EDITOR;
-        } else if(domainObject instanceof Subjects) {
+        } else if (domainObject instanceof Subjects) {
             return ATPlugin.SUBJECT_EDITOR;
-        } else if(domainObject instanceof Accessions) {
+        } else if (domainObject instanceof Accessions) {
             return ATPlugin.ACCESSION_EDITOR;
-        } else if(domainObject instanceof Resources) {
+        } else if (domainObject instanceof Resources) {
             return ATPlugin.RESOURCE_EDITOR;
-        } else if(domainObject instanceof DigitalObjects || domainObject instanceof ArchDescriptionDigitalInstances) {
+        } else if (domainObject instanceof DigitalObjects || domainObject instanceof ArchDescriptionDigitalInstances) {
             return ATPlugin.DIGITALOBJECT_EDITOR;
-        } else if(domainObject instanceof ArchDescriptionAnalogInstances) {
+        } else if (domainObject instanceof ArchDescriptionAnalogInstances) {
             return ATPlugin.INSTANCE_EDITOR;
         } else { // no editor type found so return null
             return null;
         }
+    }
+
+    /**
+     * Method to return any command line parameters
+     *
+     * @return String Array containing command line parameters
+     */
+    public String[] getCliParameters() {
+        return cliParameters;
+    }
+
+    /**
+     * Method to set any command line parameters. This is only used by command line programs
+     *
+     * @param cliParameters
+     */
+    public void setCliParameters(String[] cliParameters) {
+        this.cliParameters = cliParameters;
     }
 }

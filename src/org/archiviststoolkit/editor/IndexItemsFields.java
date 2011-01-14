@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -119,7 +119,6 @@ public class IndexItemsFields extends DomainEditorFields {
 			descritpion.setLineWrap(true);
 			descritpion.setTabSize(20);
 			descritpion.setWrapStyleWord(true);
-			descritpion.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			scrollPane1.setViewportView(descritpion);
 		}
 		add(scrollPane1, cc.xy(3, 1));
@@ -161,9 +160,6 @@ public class IndexItemsFields extends DomainEditorFields {
 		label_subjectScopeNote4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label_subjectScopeNote4, IndexItems.class, IndexItems.PROPERTYNAME_REFERENCE_TEXT);
 		add(label_subjectScopeNote4, cc.xywh(1, 7, 1, 1, CellConstraints.DEFAULT, CellConstraints.CENTER));
-
-		//---- referenceText ----
-		referenceText.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(referenceText, cc.xy(3, 7));
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}

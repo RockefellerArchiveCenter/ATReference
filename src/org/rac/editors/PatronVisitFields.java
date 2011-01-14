@@ -41,8 +41,12 @@ import org.rac.model.PatronVisitsNames;
 import org.rac.model.PatronVisitsSubjects;
 
 public class PatronVisitFields extends RAC_DomainEditorFields implements SubjectEnabledEditorFields, NameEnabledEditor {
+
+	Boolean readOnly = false;
+
 	public PatronVisitFields() {
 		initComponents();
+		initAccess();
 	}
 
 	/**
@@ -96,6 +100,49 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 		}
 	}
 
+	private void editNameRelationshipButtonActionPerformed() {
+		try {
+			DomainSortableTable namesTable = getNamesTable();
+			DomainEditor nameEditor = new DomainEditor(PatronVisitsNames.class, this.getParentEditor(), "Name Link", new PatronVisitNamesFields());
+			nameEditor.setCallingTable(namesTable);
+			nameEditor.setNavigationButtonListeners(nameEditor);
+			int selectedRow = namesTable.getSelectedRow();
+			if (selectedRow == -1) {
+				JOptionPane.showMessageDialog(this, "You must select a name to edit.", "warning", JOptionPane.WARNING_MESSAGE);
+			} else {
+				editRelatedRecord(namesTable, PatronVisitsNames.class, true, nameEditor);
+				namesTable.invalidate();
+				namesTable.validate();
+				namesTable.repaint();
+			}
+		} catch (UnsupportedTableModelException e) {
+			new ErrorDialog("Error creating editor", e).showDialog();
+		}
+
+	}
+
+	private void namesTableMouseClicked(MouseEvent e) {
+		if (readOnly) {
+			//do nothing as read only users can't change anything
+		} else {
+			if (e.getClickCount() == 2) {
+				try {
+					DomainSortableTable namesTable = getNamesTable();
+					DomainEditor nameEditor = new DomainEditor(PatronVisitsNames.class, this.getParentEditor(), "Name Link", new PatronVisitNamesFields());
+					nameEditor.setCallingTable(namesTable);
+					nameEditor.setNavigationButtonListeners(nameEditor);
+					editRelatedRecord(namesTable, this.getClass(), true, nameEditor);
+				} catch (UnsupportedTableModelException e1) {
+					new ErrorDialog("Error creating editor", e1).showDialog();
+				}
+			}
+			namesTable.invalidate();
+			namesTable.validate();
+			namesTable.repaint();
+		}
+
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		// Generated using JFormDesigner non-commercial license
@@ -118,6 +165,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 		scrollPane4 = new JScrollPane();
 		namesTable = new DomainSortableTable(PatronVisitsNames.class);
 		panel11 = new JPanel();
+		editNameRelationshipButton = new JButton();
 		addName = new JButton();
 		removeName = new JButton();
 		CellConstraints cc = new CellConstraints();
@@ -268,6 +316,12 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 
 				//---- namesTable ----
 				namesTable.setPreferredScrollableViewportSize(new Dimension(200, 200));
+				namesTable.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						namesTableMouseClicked(e);
+					}
+				});
 				scrollPane4.setViewportView(namesTable);
 			}
 			contentPanel.add(scrollPane4, cc.xywh(1, 17, 3, 1));
@@ -281,9 +335,22 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 					new ColumnSpec[] {
 						FormFactory.DEFAULT_COLSPEC,
 						FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+						FormFactory.DEFAULT_COLSPEC,
+						FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
 						FormFactory.DEFAULT_COLSPEC
 					},
 					RowSpec.decodeSpecs("default")));
+
+				//---- editNameRelationshipButton ----
+				editNameRelationshipButton.setText("Edit Name Link");
+				editNameRelationshipButton.setOpaque(false);
+				editNameRelationshipButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+				editNameRelationshipButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						editNameRelationshipButtonActionPerformed();
+					}
+				});
+				panel11.add(editNameRelationshipButton, cc.xy(1, 1));
 
 				//---- addName ----
 				addName.setText("Add Name");
@@ -294,7 +361,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 						addNameActionPerformed();
 					}
 				});
-				panel11.add(addName, cc.xy(1, 1));
+				panel11.add(addName, cc.xy(3, 1));
 
 				//---- removeName ----
 				removeName.setText("Remove Name");
@@ -305,7 +372,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 						removeNameActionPerformed();
 					}
 				});
-				panel11.add(removeName, cc.xy(3, 1));
+				panel11.add(removeName, cc.xy(5, 1));
 			}
 			contentPanel.add(panel11, cc.xywh(1, 19, 3, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
 		}
@@ -334,6 +401,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 	private JScrollPane scrollPane4;
 	private DomainSortableTable namesTable;
 	private JPanel panel11;
+	private JButton editNameRelationshipButton;
 	private JButton addName;
 	private JButton removeName;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
@@ -352,4 +420,21 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 	public DomainSortableTable getNamesTable() {
 		return namesTable;
 	}
+
+	private void initAccess() {
+		//set form to read only for reference staff
+		if (!Users.doesCurrentUserHaveAccess(Users.ACCESS_CLASS_BEGINNING_DATA_ENTRY)) {
+			readOnly = true;
+			setFormToReadOnly();
+			researchPurpose.setEnabled(false);
+			//subject buttons
+			addSubject.setEnabled(false);
+			removeSubject.setEnabled(false);
+			//name buttons
+			addName.setEnabled(false);
+			removeName.setEnabled(false);
+			editNameRelationshipButton.setEnabled(false);
+		}
+	}
+
 }

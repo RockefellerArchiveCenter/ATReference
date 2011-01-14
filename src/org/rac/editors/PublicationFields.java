@@ -40,8 +40,12 @@ import org.rac.model.PatronPublicationsNames;
 import org.rac.model.PatronPublicationsSubjects;
 
 public class PublicationFields extends RAC_DomainEditorFields implements SubjectEnabledEditorFields, NameEnabledEditor {
+
+	Boolean readOnly = false;
+
 	public PublicationFields() {
 		initComponents();
+		initAccess();
 	}
 
 	public Component getInitialFocusComponent() {
@@ -82,6 +86,49 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 		}
 	}
 
+	private void editNameRelationshipButtonActionPerformed() {
+		try {
+			DomainSortableTable namesTable = getNamesTable();
+			DomainEditor nameEditor = new DomainEditor(PatronPublicationsNames.class, this.getParentEditor(), "Name Link", new PatronPublicationNamesFields());
+			nameEditor.setCallingTable(namesTable);
+			nameEditor.setNavigationButtonListeners(nameEditor);
+			int selectedRow = namesTable.getSelectedRow();
+			if (selectedRow == -1) {
+				JOptionPane.showMessageDialog(this, "You must select a name to edit.", "warning", JOptionPane.WARNING_MESSAGE);
+			} else {
+				editRelatedRecord(namesTable, PatronPublicationsNames.class, true, nameEditor);
+				namesTable.invalidate();
+				namesTable.validate();
+				namesTable.repaint();
+			}
+		} catch (UnsupportedTableModelException e) {
+			new ErrorDialog("Error creating editor", e).showDialog();
+		}
+
+	}
+
+	private void namesTableMouseClicked(MouseEvent e) {
+		if (readOnly) {
+			//do nothing as read only users can't change anything
+		} else {
+			if (e.getClickCount() == 2) {
+				try {
+					DomainSortableTable namesTable = getNamesTable();
+					DomainEditor nameEditor = new DomainEditor(PatronPublicationsNames.class, this.getParentEditor(), "Name Link", new PatronPublicationNamesFields());
+					nameEditor.setCallingTable(namesTable);
+					nameEditor.setNavigationButtonListeners(nameEditor);
+					editRelatedRecord(namesTable, this.getClass(), true, nameEditor);
+				} catch (UnsupportedTableModelException e1) {
+					new ErrorDialog("Error creating editor", e1).showDialog();
+				}
+			}
+			namesTable.invalidate();
+			namesTable.validate();
+			namesTable.repaint();
+		}
+
+	}
+
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -92,7 +139,7 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 		Label_title = new JLabel();
 		title = ATBasicComponentFactory.createTextField(detailsModel.getModel(PatronPublications.PROPERTYNAME_PUBLICATION_TITLE));
 		label_addressTypeOther = new JLabel();
-		fundingDate = ATBasicComponentFactory.createDateField(detailsModel.getModel(PatronPublications.PROPERTYNAME_PUBLICATION_DATE));
+		publicationDate = ATBasicComponentFactory.createTextField(detailsModel.getModel(PatronPublications.PROPERTYNAME_PUBLICATION_DATE));
 		label_publisher = new JLabel();
 		publisher = ATBasicComponentFactory.createTextField(detailsModel.getModel(PatronPublications.PROPERTYNAME_PUBLISHER));
 		label_collaborators = new JLabel();
@@ -108,6 +155,7 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 		scrollPane4 = new JScrollPane();
 		namesTable = new DomainSortableTable(PatronPublicationsNames.class);
 		panel11 = new JPanel();
+		editNameRelationshipButton = new JButton();
 		addName = new JButton();
 		removeName = new JButton();
 		CellConstraints cc = new CellConstraints();
@@ -177,10 +225,9 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 			ATFieldInfo.assignLabelInfo(label_addressTypeOther, PatronPublications.class, PatronPublications.PROPERTYNAME_PUBLICATION_DATE);
 			contentPanel.add(label_addressTypeOther, cc.xy(1, 5));
 
-			//---- fundingDate ----
-			fundingDate.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-			fundingDate.setColumns(10);
-			contentPanel.add(fundingDate, cc.xy(3, 5));
+			//---- publicationDate ----
+			publicationDate.setColumns(30);
+			contentPanel.add(publicationDate, cc.xy(3, 5));
 
 			//---- label_publisher ----
 			label_publisher.setText("Publisher");
@@ -250,7 +297,7 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 					RowSpec.decodeSpecs("default")));
 
 				//---- addSubject ----
-				addSubject.setText("Add Subject");
+				addSubject.setText("Add Subject Link");
 				addSubject.setOpaque(false);
 				addSubject.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				addSubject.addActionListener(new ActionListener() {
@@ -261,7 +308,7 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 				panel10.add(addSubject, cc.xy(1, 1));
 
 				//---- removeSubject ----
-				removeSubject.setText("Remove Subject");
+				removeSubject.setText("Remove Subject Link");
 				removeSubject.setOpaque(false);
 				removeSubject.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				removeSubject.addActionListener(new ActionListener() {
@@ -281,6 +328,12 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 
 				//---- namesTable ----
 				namesTable.setPreferredScrollableViewportSize(new Dimension(200, 200));
+				namesTable.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						namesTableMouseClicked(e);
+					}
+				});
 				scrollPane4.setViewportView(namesTable);
 			}
 			contentPanel.add(scrollPane4, cc.xywh(1, 19, 3, 1));
@@ -294,12 +347,25 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 					new ColumnSpec[] {
 						FormFactory.DEFAULT_COLSPEC,
 						FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+						FormFactory.DEFAULT_COLSPEC,
+						FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
 						FormFactory.DEFAULT_COLSPEC
 					},
 					RowSpec.decodeSpecs("default")));
 
+				//---- editNameRelationshipButton ----
+				editNameRelationshipButton.setText("Edit Name Link");
+				editNameRelationshipButton.setOpaque(false);
+				editNameRelationshipButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+				editNameRelationshipButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						editNameRelationshipButtonActionPerformed();
+					}
+				});
+				panel11.add(editNameRelationshipButton, cc.xy(1, 1));
+
 				//---- addName ----
-				addName.setText("Add Name");
+				addName.setText("Add Name Link");
 				addName.setOpaque(false);
 				addName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				addName.addActionListener(new ActionListener() {
@@ -307,10 +373,10 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 						addNameActionPerformed();
 					}
 				});
-				panel11.add(addName, cc.xy(1, 1));
+				panel11.add(addName, cc.xy(3, 1));
 
 				//---- removeName ----
-				removeName.setText("Remove Name");
+				removeName.setText("Remove Name Link");
 				removeName.setOpaque(false);
 				removeName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				removeName.addActionListener(new ActionListener() {
@@ -318,7 +384,7 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 						removeNameActionPerformed();
 					}
 				});
-				panel11.add(removeName, cc.xy(3, 1));
+				panel11.add(removeName, cc.xy(5, 1));
 			}
 			contentPanel.add(panel11, cc.xywh(1, 21, 3, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
 		}
@@ -334,7 +400,7 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 	private JLabel Label_title;
 	private JTextField title;
 	private JLabel label_addressTypeOther;
-	public JFormattedTextField fundingDate;
+	private JTextField publicationDate;
 	private JLabel label_publisher;
 	private JTextField publisher;
 	private JLabel label_collaborators;
@@ -350,6 +416,7 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 	private JScrollPane scrollPane4;
 	private DomainSortableTable namesTable;
 	private JPanel panel11;
+	private JButton editNameRelationshipButton;
 	private JButton addName;
 	private JButton removeName;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
@@ -382,4 +449,21 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 	public DomainSortableTable getNamesTable() {
 		return namesTable;
 	}
+
+	private void initAccess() {
+		//set form to read only for reference staff
+		if (!Users.doesCurrentUserHaveAccess(Users.ACCESS_CLASS_BEGINNING_DATA_ENTRY)) {
+			readOnly = true;
+			setFormToReadOnly();
+			publicationType.setEnabled(false);
+			//subject buttons
+			addSubject.setEnabled(false);
+			removeSubject.setEnabled(false);
+			//name buttons
+			addName.setEnabled(false);
+			removeName.setEnabled(false);
+			editNameRelationshipButton.setEnabled(false);
+		}
+	}
+
 }

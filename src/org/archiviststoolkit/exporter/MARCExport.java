@@ -101,6 +101,13 @@ public class MARCExport {
         addDataField(record, _710);
         set852(record, resource);
         set856(record, resource);
+
+        // See if there are any marcxml export helpers for doing further modifications to the exported xml
+        ExportHelperFactory helperFactory = ExportHelperFactory.getInstance();
+        if(helperFactory.getMarcXMLHelper() != null) {
+            helperFactory.getMarcXMLHelper().addInformationToMarcXML(resource, record, progressPanel, internal);
+        }
+
         try {
 
             context = 

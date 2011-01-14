@@ -334,7 +334,7 @@
     </target>
 
     <target name="generatePatronImportWithJaxb">
-        <xjc schema="conf/patronImportDraft.xsd" destdir="./src" package="org.rac.structure.patronImportSchema"/>
+        <xjc schema="conf/patronImport.xsd" destdir="./src" package="org.rac.structure.patronImportSchema"/>
     </target>
 
 	<target name="javadoc">

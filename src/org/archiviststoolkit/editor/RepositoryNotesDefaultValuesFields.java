@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -100,9 +100,6 @@ public class RepositoryNotesDefaultValuesFields extends DomainEditorFields {
 		label_subjectScopeNote2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label_subjectScopeNote2, RepositoryNotesDefaultValues.class, RepositoryNotesDefaultValues.PROPERTYNAME_DEFAULT_TITLE);
 		add(label_subjectScopeNote2, cc.xywh(1, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.TOP));
-
-		//---- defaultTitle ----
-		defaultTitle.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(defaultTitle, cc.xy(3, 3));
 
 		//---- label_subjectScopeNote ----
@@ -123,7 +120,6 @@ public class RepositoryNotesDefaultValuesFields extends DomainEditorFields {
 			defaultContent.setLineWrap(true);
 			defaultContent.setTabSize(20);
 			defaultContent.setWrapStyleWord(true);
-			defaultContent.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			scrollPane1.setViewportView(defaultContent);
 		}
 		add(scrollPane1, cc.xywh(3, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.FILL));

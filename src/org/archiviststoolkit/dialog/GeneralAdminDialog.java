@@ -360,7 +360,7 @@ public class GeneralAdminDialog extends JDialog implements ActionListener{
                         int size = deleteList.size();
                         for (DomainObject domainObject : deleteList) {
                             try {
-                                access.deleteLongSession(domainObject);
+                                access.deleteLongSession(domainObject, false);
                                 getContentTable().getEventList().remove(domainObject);
                                 if (getClazz() == Locations.class) {
                                     LocationsUtils.removeLocationToLookupList((Locations) domainObject);
@@ -484,7 +484,8 @@ public class GeneralAdminDialog extends JDialog implements ActionListener{
 	protected java.util.List<DomainObject> currentObjectSublist;
 
 
-	public final void showDialog() {
+	//todo rac removed final so that it can be overwritten
+	public void showDialog() {
 
 		this.pack();
 		setLocationRelativeTo(this.getOwner());

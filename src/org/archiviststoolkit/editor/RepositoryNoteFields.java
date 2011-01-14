@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -101,7 +101,7 @@ public class RepositoryNoteFields extends DomainEditorFields {
 
 		//======== scrollPane1 ========
 		{
-			scrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+			scrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			scrollPane1.setMaximumSize(new Dimension(32767, 100));
 			scrollPane1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			scrollPane1.setPreferredSize(new Dimension(600, 324));
@@ -111,7 +111,6 @@ public class RepositoryNoteFields extends DomainEditorFields {
 			noteText.setLineWrap(true);
 			noteText.setTabSize(20);
 			noteText.setWrapStyleWord(true);
-			noteText.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			scrollPane1.setViewportView(noteText);
 		}
 		add(scrollPane1, cc.xy(3, 7));

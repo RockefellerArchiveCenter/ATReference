@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.5.0_16" class="java.beans.XMLDecoder"> 
+<java version="1.5.0_22" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -137,6 +137,12 @@
           </void> 
           <void property="name"> 
            <string>resourceTitle</string> 
+          </void> 
+          <void method="auxiliary"> 
+           <void method="setProperty"> 
+            <string>font.noCode</string> 
+            <boolean>true</boolean> 
+           </void> 
           </void> 
          </object> 
          <object class="com.jformdesigner.model.FormLayoutConstraints"> 

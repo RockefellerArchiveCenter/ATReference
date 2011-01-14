@@ -22,13 +22,15 @@ import java.awt.*;
 import javax.swing.*;
 import com.jgoodies.forms.factories.*;
 import com.jgoodies.forms.layout.*;
+import org.archiviststoolkit.model.Users;
 import org.archiviststoolkit.structure.ATFieldInfo;
 import org.archiviststoolkit.swing.ATBasicComponentFactory;
-import org.rac.model.CompletedForms;
+import org.rac.model.PatronForms;
 
-public class CompletedFormFields extends RAC_DomainEditorFields {
-	public CompletedFormFields() {
+public class PatronFormsFields extends RAC_DomainEditorFields {
+	public PatronFormsFields() {
 		initComponents();
+		initAccess();
 	}
 
 	@Override
@@ -41,12 +43,13 @@ public class CompletedFormFields extends RAC_DomainEditorFields {
 		// Generated using JFormDesigner non-commercial license
 		panel1 = new JPanel();
 		Label_FormType = new JLabel();
-		formType = ATBasicComponentFactory.createComboBox(detailsModel, CompletedForms.PROPERTYNAME_FORM_TYPE, CompletedForms.class,40);
+		formType = ATBasicComponentFactory.createComboBox(detailsModel, PatronForms.PROPERTYNAME_FORM_TYPE, PatronForms.class,40);
+		label_dateCompleted = new JLabel();
+		dateCompleted = ATBasicComponentFactory.createDateField(detailsModel.getModel(PatronForms.PROPERTYNAME_DATE_COMPLETED));
+		rights2 = ATBasicComponentFactory.createCheckBox(detailsModel, PatronForms.PROPERTYNAME_COMPLETED, PatronForms.class);
 		label_description = new JLabel();
 		scrollPane48 = new JScrollPane();
-		description = ATBasicComponentFactory.createTextArea(detailsModel.getModel(CompletedForms.PROPERTYNAME_DESCRIPTION));
-		label_dateCompleted = new JLabel();
-		dateCompleted = ATBasicComponentFactory.createDateField(detailsModel.getModel(CompletedForms.PROPERTYNAME_DATE_COMPLETED));
+		description = ATBasicComponentFactory.createTextArea(detailsModel.getModel(PatronForms.PROPERTYNAME_NOTES));
 		CellConstraints cc = new CellConstraints();
 
 		//======== this ========
@@ -66,21 +69,40 @@ public class CompletedFormFields extends RAC_DomainEditorFields {
 				new RowSpec[] {
 					FormFactory.DEFAULT_ROWSPEC,
 					FormFactory.LINE_GAP_ROWSPEC,
-					new RowSpec(RowSpec.TOP, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+					FormFactory.DEFAULT_ROWSPEC,
 					FormFactory.LINE_GAP_ROWSPEC,
-					FormFactory.DEFAULT_ROWSPEC
+					FormFactory.DEFAULT_ROWSPEC,
+					FormFactory.LINE_GAP_ROWSPEC,
+					new RowSpec(RowSpec.TOP, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
 				}));
 
 			//---- Label_FormType ----
 			Label_FormType.setText("Form Type");
-			ATFieldInfo.assignLabelInfo(Label_FormType, CompletedForms.class, CompletedForms.PROPERTYNAME_FORM_TYPE);
+			ATFieldInfo.assignLabelInfo(Label_FormType, PatronForms.class, PatronForms.PROPERTYNAME_FORM_TYPE);
 			panel1.add(Label_FormType, cc.xy(1, 1));
 			panel1.add(formType, cc.xy(3, 1));
 
+			//---- label_dateCompleted ----
+			label_dateCompleted.setText("Date Completed");
+			ATFieldInfo.assignLabelInfo(label_dateCompleted, PatronForms.class, PatronForms.PROPERTYNAME_DATE_COMPLETED);
+			panel1.add(label_dateCompleted, cc.xy(1, 3));
+
+			//---- dateCompleted ----
+			dateCompleted.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+			dateCompleted.setColumns(10);
+			panel1.add(dateCompleted, cc.xy(3, 3));
+
+			//---- rights2 ----
+			rights2.setText("Completed");
+			rights2.setOpaque(false);
+			rights2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+			rights2.setText(ATFieldInfo.getLabel(PatronForms.class, PatronForms.PROPERTYNAME_COMPLETED));
+			panel1.add(rights2, cc.xywh(1, 5, 3, 1));
+
 			//---- label_description ----
-			label_description.setText("Description");
-			ATFieldInfo.assignLabelInfo(label_description, CompletedForms.class, CompletedForms.PROPERTYNAME_DESCRIPTION);
-			panel1.add(label_description, cc.xy(1, 3));
+			label_description.setText("Notes");
+			ATFieldInfo.assignLabelInfo(label_description, PatronForms.class, PatronForms.PROPERTYNAME_NOTES);
+			panel1.add(label_description, cc.xy(1, 7));
 
 			//======== scrollPane48 ========
 			{
@@ -96,17 +118,7 @@ public class CompletedFormFields extends RAC_DomainEditorFields {
 				description.setMinimumSize(new Dimension(200, 16));
 				scrollPane48.setViewportView(description);
 			}
-			panel1.add(scrollPane48, cc.xywh(3, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.FILL));
-
-			//---- label_dateCompleted ----
-			label_dateCompleted.setText("Date Completed");
-			ATFieldInfo.assignLabelInfo(label_dateCompleted, CompletedForms.class, CompletedForms.PROPERTYNAME_DATE_COMPLETED);
-			panel1.add(label_dateCompleted, cc.xy(1, 5));
-
-			//---- dateCompleted ----
-			dateCompleted.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-			dateCompleted.setColumns(10);
-			panel1.add(dateCompleted, cc.xy(3, 5));
+			panel1.add(scrollPane48, cc.xywh(3, 7, 1, 1, CellConstraints.DEFAULT, CellConstraints.FILL));
 		}
 		add(panel1, cc.xy(1, 1));
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -117,10 +129,20 @@ public class CompletedFormFields extends RAC_DomainEditorFields {
 	private JPanel panel1;
 	private JLabel Label_FormType;
 	private JComboBox formType;
+	private JLabel label_dateCompleted;
+	public JFormattedTextField dateCompleted;
+	public JCheckBox rights2;
 	private JLabel label_description;
 	private JScrollPane scrollPane48;
 	public JTextArea description;
-	private JLabel label_dateCompleted;
-	public JFormattedTextField dateCompleted;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
+
+	private void initAccess() {
+		//set form to read only for reference staff
+		if (!Users.doesCurrentUserHaveAccess(Users.ACCESS_CLASS_BEGINNING_DATA_ENTRY)) {
+			setFormToReadOnly();
+			formType.setEnabled(false);
+		}
+	}
+
 }

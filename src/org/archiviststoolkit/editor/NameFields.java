@@ -280,41 +280,6 @@ public class NameFields extends DomainEditorFields {
 		panel2 = new JPanel();
 		addNoteButton = new JButton();
 		removeContactNoteButton = new JButton();
-		panel31 = new JPanel();
-		panel32 = new JPanel();
-		label_acknowledgementDate2 = new JLabel();
-		acknowledgementDate2 = ATBasicComponentFactory.createDateField(detailsModel.getModel( Names.PROPERTYNAME_USER_DEFINED_DATE1));
-		label_acknowledgementDate3 = new JLabel();
-		acknowledgementDate3 = ATBasicComponentFactory.createDateField(detailsModel.getModel(Names.PROPERTYNAME_USER_DEFINED_DATE2));
-		rights2 = ATBasicComponentFactory.createCheckBox(detailsModel, Names.PROPERTYNAME_USER_DEFINED_BOOLEAN1, Names.class);
-		rights3 = ATBasicComponentFactory.createCheckBox(detailsModel, Names.PROPERTYNAME_USER_DEFINED_BOOLEAN2, Names.class);
-		label_date1Begin2 = new JLabel();
-		date1Begin2 = ATBasicComponentFactory.createIntegerField(detailsModel,Names.PROPERTYNAME_USER_DEFINED_INTEGER1);
-		label_date1Begin3 = new JLabel();
-		date1Begin3 = ATBasicComponentFactory.createIntegerField(detailsModel, Names.PROPERTYNAME_USER_DEFINED_INTEGER2);
-		label_date1Begin4 = new JLabel();
-		extentNumber2 = ATBasicComponentFactory.createDoubleField(detailsModel, Names.PROPERTYNAME_USER_DEFINED_REAL1);
-		label_date1Begin5 = new JLabel();
-		extentNumber3 = ATBasicComponentFactory.createDoubleField(detailsModel, Names.PROPERTYNAME_USER_DEFINED_REAL2);
-		label_date1Begin6 = new JLabel();
-		dateExpression2 = ATBasicComponentFactory.createTextField(detailsModel.getModel(Names.PROPERTYNAME_USER_DEFINED_STRING1),false);
-		label_date1Begin7 = new JLabel();
-		dateExpression3 = ATBasicComponentFactory.createTextField(detailsModel.getModel(Names.PROPERTYNAME_USER_DEFINED_STRING2),false);
-		label_date1Begin8 = new JLabel();
-		dateExpression4 = ATBasicComponentFactory.createTextField(detailsModel.getModel(Names.PROPERTYNAME_USER_DEFINED_STRING3),false);
-		label_date1Begin9 = new JLabel();
-		scrollPane44 = new JScrollPane();
-		title3 = ATBasicComponentFactory.createTextArea(detailsModel.getModel(Names.PROPERTYNAME_USER_DEFINED_TEXT1));
-		panel35 = new JPanel();
-		label_date1Begin10 = new JLabel();
-		scrollPane45 = new JScrollPane();
-		title4 = ATBasicComponentFactory.createTextArea(detailsModel.getModel(Names.PROPERTYNAME_USER_DEFINED_TEXT2));
-		label_date1Begin11 = new JLabel();
-		scrollPane46 = new JScrollPane();
-		title5 = ATBasicComponentFactory.createTextArea(detailsModel.getModel(Names.PROPERTYNAME_USER_DEFINED_TEXT3));
-		label_date1Begin12 = new JLabel();
-		scrollPane47 = new JScrollPane();
-		title6 = ATBasicComponentFactory.createTextArea(detailsModel.getModel(Names.PROPERTYNAME_USER_DEFINED_TEXT4));
 		CellConstraints cc = new CellConstraints();
 
 		//======== this ========
@@ -330,7 +295,6 @@ public class NameFields extends DomainEditorFields {
 		sortNameDisplay.setEditable(false);
 		sortNameDisplay.setBorder(null);
 		sortNameDisplay.setForeground(new Color(0, 0, 102));
-		sortNameDisplay.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		sortNameDisplay.setSelectionColor(new Color(204, 0, 51));
 		sortNameDisplay.setOpaque(false);
 		add(sortNameDisplay, cc.xy(1, 1));
@@ -445,7 +409,6 @@ public class NameFields extends DomainEditorFields {
 						nameDescriptionNote.setRows(8);
 						nameDescriptionNote.setLineWrap(true);
 						nameDescriptionNote.setWrapStyleWord(true);
-						nameDescriptionNote.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						scrollPane2.setViewportView(nameDescriptionNote);
 					}
 					descriptionPanel.add(scrollPane2, cc.xy(3, 3));
@@ -465,7 +428,6 @@ public class NameFields extends DomainEditorFields {
 						nameCitation.setRows(8);
 						nameCitation.setLineWrap(true);
 						nameCitation.setWrapStyleWord(true);
-						nameCitation.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						scrollPane23.setViewportView(nameCitation);
 					}
 					descriptionPanel.add(scrollPane23, cc.xy(3, 5));
@@ -695,9 +657,6 @@ public class NameFields extends DomainEditorFields {
 				label_nameContactAddress3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				ATFieldInfo.assignLabelInfo(label_nameContactAddress3, Names.class, Names.PROPERTYNAME_SALUTATION);
 				contactInfoPanel.add(label_nameContactAddress3, cc.xy(1, 1));
-
-				//---- salutation ----
-				salutation.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				contactInfoPanel.add(salutation, cc.xywh(3, 1, 9, 1));
 
 				//---- label_nameContactAddress1 ----
@@ -705,9 +664,6 @@ public class NameFields extends DomainEditorFields {
 				label_nameContactAddress1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				ATFieldInfo.assignLabelInfo(label_nameContactAddress1, Names.class, Names.PROPERTYNAME_CONTACT_ADDRESS_1);
 				contactInfoPanel.add(label_nameContactAddress1, cc.xy(1, 3));
-
-				//---- nameContactAddress1 ----
-				nameContactAddress1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				contactInfoPanel.add(nameContactAddress1, cc.xywh(3, 3, 9, 1));
 
 				//---- label_nameContactAddress2 ----
@@ -715,9 +671,6 @@ public class NameFields extends DomainEditorFields {
 				label_nameContactAddress2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				ATFieldInfo.assignLabelInfo(label_nameContactAddress2, Names.class, Names.PROPERTYNAME_CONTACT_ADDRESS_2);
 				contactInfoPanel.add(label_nameContactAddress2, cc.xy(1, 5));
-
-				//---- nameContactAddress2 ----
-				nameContactAddress2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				contactInfoPanel.add(nameContactAddress2, cc.xywh(3, 5, 9, 1));
 
 				//---- label_nameContactCity ----
@@ -725,9 +678,6 @@ public class NameFields extends DomainEditorFields {
 				label_nameContactCity.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				ATFieldInfo.assignLabelInfo(label_nameContactCity, Names.class, Names.PROPERTYNAME_CONTACT_CITY);
 				contactInfoPanel.add(label_nameContactCity, cc.xy(1, 7));
-
-				//---- nameContactCity ----
-				nameContactCity.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				contactInfoPanel.add(nameContactCity, cc.xy(3, 7));
 
 				//---- label_nameContactRegion ----
@@ -735,9 +685,6 @@ public class NameFields extends DomainEditorFields {
 				label_nameContactRegion.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				ATFieldInfo.assignLabelInfo(label_nameContactRegion, Names.class, Names.PROPERTYNAME_CONTACT_REGION);
 				contactInfoPanel.add(label_nameContactRegion, cc.xy(5, 7));
-
-				//---- nameContactRegion ----
-				nameContactRegion.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				contactInfoPanel.add(nameContactRegion, cc.xy(7, 7));
 
 				//---- label_nameContactMailCode ----
@@ -745,9 +692,6 @@ public class NameFields extends DomainEditorFields {
 				label_nameContactMailCode.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				ATFieldInfo.assignLabelInfo(label_nameContactMailCode, Names.class, Names.PROPERTYNAME_CONTACT_MAIL_CODE);
 				contactInfoPanel.add(label_nameContactMailCode, cc.xy(9, 7));
-
-				//---- nameContactMailCode ----
-				nameContactMailCode.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				contactInfoPanel.add(nameContactMailCode, cc.xy(11, 7));
 
 				//---- label_nameContactCountry ----
@@ -755,9 +699,6 @@ public class NameFields extends DomainEditorFields {
 				label_nameContactCountry.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				ATFieldInfo.assignLabelInfo(label_nameContactCountry, Names.class, Names.PROPERTYNAME_CONTACT_COUNTRY);
 				contactInfoPanel.add(label_nameContactCountry, cc.xy(1, 9));
-
-				//---- nameContactCountry ----
-				nameContactCountry.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				contactInfoPanel.add(nameContactCountry, cc.xywh(3, 9, 9, 1));
 
 				//---- label_nameContactPhone ----
@@ -765,9 +706,6 @@ public class NameFields extends DomainEditorFields {
 				label_nameContactPhone.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				ATFieldInfo.assignLabelInfo(label_nameContactPhone, Names.class, Names.PROPERTYNAME_CONTACT_PHONE);
 				contactInfoPanel.add(label_nameContactPhone, cc.xy(1, 11));
-
-				//---- nameContactPhone ----
-				nameContactPhone.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				contactInfoPanel.add(nameContactPhone, cc.xywh(3, 11, 5, 1));
 
 				//---- label_nameContactFax ----
@@ -775,9 +713,6 @@ public class NameFields extends DomainEditorFields {
 				label_nameContactFax.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				ATFieldInfo.assignLabelInfo(label_nameContactFax, Names.class, Names.PROPERTYNAME_CONTACT_FAX);
 				contactInfoPanel.add(label_nameContactFax, cc.xy(9, 11));
-
-				//---- nameContactFax ----
-				nameContactFax.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				contactInfoPanel.add(nameContactFax, cc.xy(11, 11));
 
 				//---- label_nameContactEmail ----
@@ -785,9 +720,6 @@ public class NameFields extends DomainEditorFields {
 				label_nameContactEmail.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				ATFieldInfo.assignLabelInfo(label_nameContactEmail, Names.class, Names.PROPERTYNAME_CONTACT_EMAIL);
 				contactInfoPanel.add(label_nameContactEmail, cc.xy(1, 13));
-
-				//---- nameContactEmail ----
-				nameContactEmail.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				contactInfoPanel.add(nameContactEmail, cc.xywh(3, 13, 9, 1));
 
 				//---- label_nameContactName ----
@@ -795,9 +727,6 @@ public class NameFields extends DomainEditorFields {
 				label_nameContactName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				ATFieldInfo.assignLabelInfo(label_nameContactName, Names.class, Names.PROPERTYNAME_CONTACT_NAME);
 				contactInfoPanel.add(label_nameContactName, cc.xy(1, 15));
-
-				//---- nameContactName ----
-				nameContactName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				contactInfoPanel.add(nameContactName, cc.xywh(3, 15, 9, 1));
 
 				//---- label_nameContactNotes ----
@@ -869,279 +798,6 @@ public class NameFields extends DomainEditorFields {
 			}
 			tabbedPane.addTab("Contact Info", contactInfoPanel);
 
-
-			//======== panel31 ========
-			{
-				panel31.setBackground(new Color(200, 205, 232));
-				panel31.setLayout(new FormLayout(
-					new ColumnSpec[] {
-						new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
-						FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-						new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-					},
-					RowSpec.decodeSpecs("fill:default:grow")));
-				((FormLayout)panel31.getLayout()).setColumnGroups(new int[][] {{1, 3}});
-
-				//======== panel32 ========
-				{
-					panel32.setOpaque(false);
-					panel32.setLayout(new FormLayout(
-						new ColumnSpec[] {
-							FormFactory.DEFAULT_COLSPEC,
-							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-							new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-						},
-						new RowSpec[] {
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-						}));
-
-					//---- label_acknowledgementDate2 ----
-					label_acknowledgementDate2.setText("User Defined Date 1");
-					label_acknowledgementDate2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					ATFieldInfo.assignLabelInfo(label_acknowledgementDate2, Names.class, Names.PROPERTYNAME_USER_DEFINED_DATE1);
-					panel32.add(label_acknowledgementDate2, cc.xy(1, 1));
-
-					//---- acknowledgementDate2 ----
-					acknowledgementDate2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					acknowledgementDate2.setColumns(10);
-					panel32.add(acknowledgementDate2, cc.xywh(3, 1, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
-
-					//---- label_acknowledgementDate3 ----
-					label_acknowledgementDate3.setText("User Defined Date 2");
-					label_acknowledgementDate3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					ATFieldInfo.assignLabelInfo(label_acknowledgementDate3, Names.class, Names.PROPERTYNAME_USER_DEFINED_DATE2);
-					panel32.add(label_acknowledgementDate3, cc.xy(1, 3));
-
-					//---- acknowledgementDate3 ----
-					acknowledgementDate3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					acknowledgementDate3.setColumns(10);
-					panel32.add(acknowledgementDate3, cc.xywh(3, 3, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
-
-					//---- rights2 ----
-					rights2.setText("User Defined Boolean 1");
-					rights2.setOpaque(false);
-					rights2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					rights2.setText(ATFieldInfo.getLabel(Names.class, Names.PROPERTYNAME_USER_DEFINED_BOOLEAN1));
-					panel32.add(rights2, cc.xywh(1, 5, 3, 1));
-
-					//---- rights3 ----
-					rights3.setText("User Defined Boolean 2");
-					rights3.setOpaque(false);
-					rights3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					rights3.setText(ATFieldInfo.getLabel(Accessions.class, Accessions.PROPERTYNAME_USER_DEFINED_BOOLEAN2));
-					panel32.add(rights3, cc.xywh(1, 7, 3, 1));
-
-					//---- label_date1Begin2 ----
-					label_date1Begin2.setText("User Defined Integer 1");
-					label_date1Begin2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					ATFieldInfo.assignLabelInfo(label_date1Begin2, Names.class, Names.PROPERTYNAME_USER_DEFINED_INTEGER1);
-					panel32.add(label_date1Begin2, cc.xy(1, 9));
-
-					//---- date1Begin2 ----
-					date1Begin2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					date1Begin2.setColumns(6);
-					panel32.add(date1Begin2, cc.xywh(3, 9, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
-
-					//---- label_date1Begin3 ----
-					label_date1Begin3.setText("User Defined Integer 2");
-					label_date1Begin3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					ATFieldInfo.assignLabelInfo(label_date1Begin3, Names.class, Names.PROPERTYNAME_USER_DEFINED_INTEGER2);
-					panel32.add(label_date1Begin3, cc.xy(1, 11));
-
-					//---- date1Begin3 ----
-					date1Begin3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					date1Begin3.setColumns(6);
-					panel32.add(date1Begin3, cc.xywh(3, 11, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
-
-					//---- label_date1Begin4 ----
-					label_date1Begin4.setText("User Defined Real 1");
-					label_date1Begin4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					ATFieldInfo.assignLabelInfo(label_date1Begin4,Names.class, Names.PROPERTYNAME_USER_DEFINED_REAL1);
-					panel32.add(label_date1Begin4, cc.xy(1, 13));
-
-					//---- extentNumber2 ----
-					extentNumber2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					extentNumber2.setColumns(5);
-					panel32.add(extentNumber2, cc.xywh(3, 13, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
-
-					//---- label_date1Begin5 ----
-					label_date1Begin5.setText("User Defined Real 2");
-					label_date1Begin5.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					ATFieldInfo.assignLabelInfo(label_date1Begin5, Names.class, Names.PROPERTYNAME_USER_DEFINED_REAL2);
-					panel32.add(label_date1Begin5, cc.xy(1, 15));
-
-					//---- extentNumber3 ----
-					extentNumber3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					extentNumber3.setColumns(5);
-					panel32.add(extentNumber3, cc.xywh(3, 15, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
-
-					//---- label_date1Begin6 ----
-					label_date1Begin6.setText("User Defined String 1");
-					label_date1Begin6.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					ATFieldInfo.assignLabelInfo(label_date1Begin6, Names.class, Names.PROPERTYNAME_USER_DEFINED_STRING1);
-					panel32.add(label_date1Begin6, cc.xy(1, 17));
-
-					//---- dateExpression2 ----
-					dateExpression2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					panel32.add(dateExpression2, new CellConstraints(3, 17, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 0, 0, 5)));
-
-					//---- label_date1Begin7 ----
-					label_date1Begin7.setText("User Defined String 2");
-					label_date1Begin7.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					ATFieldInfo.assignLabelInfo(label_date1Begin7, Names.class, Names.PROPERTYNAME_USER_DEFINED_STRING2);
-					panel32.add(label_date1Begin7, cc.xy(1, 19));
-
-					//---- dateExpression3 ----
-					dateExpression3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					panel32.add(dateExpression3, new CellConstraints(3, 19, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 0, 0, 5)));
-
-					//---- label_date1Begin8 ----
-					label_date1Begin8.setText("User Defined String 3");
-					label_date1Begin8.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					ATFieldInfo.assignLabelInfo(label_date1Begin8, Names.class, Names.PROPERTYNAME_USER_DEFINED_STRING3);
-					panel32.add(label_date1Begin8, cc.xy(1, 21));
-
-					//---- dateExpression4 ----
-					dateExpression4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					panel32.add(dateExpression4, new CellConstraints(3, 21, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 0, 0, 5)));
-
-					//---- label_date1Begin9 ----
-					label_date1Begin9.setText("User Defined Text 1");
-					label_date1Begin9.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					ATFieldInfo.assignLabelInfo(label_date1Begin9, Names.class, Names.PROPERTYNAME_USER_DEFINED_TEXT1);
-					panel32.add(label_date1Begin9, cc.xy(1, 23));
-
-					//======== scrollPane44 ========
-					{
-						scrollPane44.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-						scrollPane44.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-						scrollPane44.setPreferredSize(new Dimension(200, 68));
-
-						//---- title3 ----
-						title3.setRows(4);
-						title3.setLineWrap(true);
-						title3.setWrapStyleWord(true);
-						title3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-						title3.setMinimumSize(new Dimension(200, 16));
-						scrollPane44.setViewportView(title3);
-					}
-					panel32.add(scrollPane44, cc.xywh(1, 25, 3, 1));
-				}
-				panel31.add(panel32, cc.xy(1, 1));
-
-				//======== panel35 ========
-				{
-					panel35.setOpaque(false);
-					panel35.setLayout(new FormLayout(
-						ColumnSpec.decodeSpecs("default:grow"),
-						new RowSpec[] {
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-						}));
-
-					//---- label_date1Begin10 ----
-					label_date1Begin10.setText("User Defined Text 2");
-					label_date1Begin10.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					ATFieldInfo.assignLabelInfo(label_date1Begin10, Names.class, Names.PROPERTYNAME_USER_DEFINED_TEXT2);
-					panel35.add(label_date1Begin10, cc.xy(1, 1));
-
-					//======== scrollPane45 ========
-					{
-						scrollPane45.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-						scrollPane45.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-						scrollPane45.setPreferredSize(new Dimension(200, 68));
-
-						//---- title4 ----
-						title4.setRows(4);
-						title4.setLineWrap(true);
-						title4.setWrapStyleWord(true);
-						title4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-						title4.setMinimumSize(new Dimension(200, 16));
-						scrollPane45.setViewportView(title4);
-					}
-					panel35.add(scrollPane45, cc.xy(1, 3));
-
-					//---- label_date1Begin11 ----
-					label_date1Begin11.setText("User Defined Text 3");
-					label_date1Begin11.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					ATFieldInfo.assignLabelInfo(label_date1Begin11, Names.class, Names.PROPERTYNAME_USER_DEFINED_TEXT3);
-					panel35.add(label_date1Begin11, cc.xy(1, 5));
-
-					//======== scrollPane46 ========
-					{
-						scrollPane46.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-						scrollPane46.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-						scrollPane46.setPreferredSize(new Dimension(200, 68));
-
-						//---- title5 ----
-						title5.setRows(4);
-						title5.setLineWrap(true);
-						title5.setWrapStyleWord(true);
-						title5.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-						title5.setMinimumSize(new Dimension(200, 16));
-						scrollPane46.setViewportView(title5);
-					}
-					panel35.add(scrollPane46, cc.xy(1, 7));
-
-					//---- label_date1Begin12 ----
-					label_date1Begin12.setText("User Defined Text 4");
-					label_date1Begin12.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					ATFieldInfo.assignLabelInfo(label_date1Begin12, Names.class, Names.PROPERTYNAME_USER_DEFINED_TEXT4);
-					panel35.add(label_date1Begin12, cc.xy(1, 9));
-
-					//======== scrollPane47 ========
-					{
-						scrollPane47.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-						scrollPane47.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-						scrollPane47.setPreferredSize(new Dimension(200, 68));
-
-						//---- title6 ----
-						title6.setRows(4);
-						title6.setLineWrap(true);
-						title6.setWrapStyleWord(true);
-						title6.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-						title6.setMinimumSize(new Dimension(200, 16));
-						scrollPane47.setViewportView(title6);
-					}
-					panel35.add(scrollPane47, cc.xy(1, 11));
-				}
-				panel31.add(panel35, cc.xy(3, 1));
-			}
-			tabbedPane.addTab("User defined fields", panel31);
-
 		}
 		add(tabbedPane, cc.xy(1, 2));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -1212,41 +868,6 @@ public class NameFields extends DomainEditorFields {
 	private JPanel panel2;
 	private JButton addNoteButton;
 	private JButton removeContactNoteButton;
-	private JPanel panel31;
-	private JPanel panel32;
-	private JLabel label_acknowledgementDate2;
-	public JFormattedTextField acknowledgementDate2;
-	private JLabel label_acknowledgementDate3;
-	public JFormattedTextField acknowledgementDate3;
-	public JCheckBox rights2;
-	public JCheckBox rights3;
-	private JLabel label_date1Begin2;
-	public JFormattedTextField date1Begin2;
-	private JLabel label_date1Begin3;
-	public JFormattedTextField date1Begin3;
-	private JLabel label_date1Begin4;
-	public JFormattedTextField extentNumber2;
-	private JLabel label_date1Begin5;
-	public JFormattedTextField extentNumber3;
-	private JLabel label_date1Begin6;
-	public JTextField dateExpression2;
-	private JLabel label_date1Begin7;
-	public JTextField dateExpression3;
-	private JLabel label_date1Begin8;
-	public JTextField dateExpression4;
-	private JLabel label_date1Begin9;
-	private JScrollPane scrollPane44;
-	public JTextArea title3;
-	private JPanel panel35;
-	private JLabel label_date1Begin10;
-	private JScrollPane scrollPane45;
-	public JTextArea title4;
-	private JLabel label_date1Begin11;
-	private JScrollPane scrollPane46;
-	public JTextArea title5;
-	private JLabel label_date1Begin12;
-	private JScrollPane scrollPane47;
-	public JTextArea title6;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
 

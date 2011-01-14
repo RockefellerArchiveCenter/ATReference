@@ -239,7 +239,7 @@ public class DCExport {
         JAXBElement type;
         // updateMap for(ArchDescriptionSubjects subject:digitalObjects.getSubjects())
         // updateMap {
-            // updateMap String typeS = subject.getDescription().getSubjectTermType();
+            // updateMap String typeS = subject.getSubject().getSubjectTermType();
             // updateMap if(typeS.equalsIgnoreCase("Curriculum objective (658)"))
             // updateMap {
                 // updateMap etype = new ElementType();

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.5.0_16" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_18" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -42,10 +42,12 @@
         <void method="setProperty"> 
          <string>border</string> 
          <object class="javax.swing.border.EmptyBorder"> 
-          <int>0</int> 
-          <int>10</int> 
-          <int>0</int> 
-          <int>10</int> 
+          <object class="java.awt.Insets"> 
+           <int>0</int> 
+           <int>10</int> 
+           <int>0</int> 
+           <int>10</int> 
+          </object> 
          </object> 
         </void> 
         <void property="name"> 
@@ -323,6 +325,10 @@
                 <string>JavaCodeGenerator.customCreateCode</string> 
                 <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Assessments.PROPERTYNAME_WHO_DID_SURVEY));</string> 
                </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
               </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -380,6 +386,10 @@
                <void method="setProperty"> 
                 <string>JavaCodeGenerator.customCreateCode</string> 
                 <string>ATBasicComponentFactory.createDoubleField(detailsModel, Assessments.PROPERTYNAME_AMOUNT_OF_TIME_SURVEY_TOOK);</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
                </void> 
               </void> 
              </object> 
@@ -499,6 +509,10 @@
                <void method="setProperty"> 
                 <string>JavaCodeGenerator.customCreateCode</string> 
                 <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Assessments.PROPERTYNAME_WHO_NEEDS_TO_REVIEW));</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
                </void> 
               </void> 
              </object> 
@@ -931,6 +945,10 @@
                   <string>JavaCodeGenerator.customCreateCode</string> 
                   <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Assessments.PROPERTYNAME_REVIEW_NOTE));</string> 
                  </void> 
+                 <void method="setProperty"> 
+                  <string>font.noCode</string> 
+                  <boolean>true</boolean> 
+                 </void> 
                 </void> 
                </object> 
               </void> 
@@ -1127,6 +1145,10 @@
                 <string>JavaCodeGenerator.customCreateCode</string> 
                 <string>ATBasicComponentFactory.createIntegerField(detailsModel, Assessments.PROPERTYNAME_CONDITION_OF_MATERIAL_RATING, 1, 5);</string> 
                </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
               </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -1181,6 +1203,10 @@
                 <string>JavaCodeGenerator.customCreateCode</string> 
                 <string>ATBasicComponentFactory.createIntegerField(detailsModel, Assessments.PROPERTYNAME_QUALITY_OF_HOUSING_RATING, 1, 5);</string> 
                </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
               </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -1234,6 +1260,10 @@
                <void method="setProperty"> 
                 <string>JavaCodeGenerator.customCreateCode</string> 
                 <string>ATBasicComponentFactory.createIntegerField(detailsModel, Assessments.PROPERTYNAME_PHYSICAL_ACCESS_RATING, 1, 5);</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
                </void> 
               </void> 
              </object> 
@@ -1293,6 +1323,10 @@
                 <string>JavaCodeGenerator.customCreateCode</string> 
                 <string>ATBasicComponentFactory.createIntegerField(detailsModel, Assessments.PROPERTYNAME_INTELLECTUAL_ACCESS_RATING, 1, 5);</string> 
                </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
               </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -1346,6 +1380,10 @@
                <void method="setProperty"> 
                 <string>JavaCodeGenerator.customCreateCode</string> 
                 <string>ATBasicComponentFactory.createIntegerField(detailsModel, Assessments.PROPERTYNAME_DOCUMENTATION_QUALITY_RATING, 1, 5);</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
                </void> 
               </void> 
               <void method="addEvent"> 
@@ -1412,6 +1450,10 @@
                <void method="setProperty"> 
                 <string>JavaCodeGenerator.customCreateCode</string> 
                 <string>ATBasicComponentFactory.createIntegerField(detailsModel, Assessments.PROPERTYNAME_INTEREST_RATING, 1, 5);</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
                </void> 
               </void> 
               <void method="addEvent"> 
@@ -1483,6 +1525,10 @@
                 <string>JavaCodeGenerator.customCreateCode</string> 
                 <string>ATBasicComponentFactory.createIntegerField(detailsModel, Assessments.PROPERTYNAME_RESEARCH_VALUE_RATING);</string> 
                </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
               </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -1536,6 +1582,10 @@
                <void method="setProperty"> 
                 <string>JavaCodeGenerator.customCreateCode</string> 
                 <string>ATBasicComponentFactory.createIntegerField(detailsModel, Assessments.PROPERTYNAME_USER_NUMERICAL_RATING1, 1, 5);</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
                </void> 
               </void> 
              </object> 
@@ -1594,6 +1644,10 @@
                <void method="setProperty"> 
                 <string>JavaCodeGenerator.customCreateCode</string> 
                 <string>ATBasicComponentFactory.createIntegerField(detailsModel, Assessments.PROPERTYNAME_USER_NUMERICAL_RATING2, 1, 5);</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
                </void> 
               </void> 
              </object> 
@@ -2013,6 +2067,10 @@
                   <string>JavaCodeGenerator.customCreateCode</string> 
                   <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Assessments.PROPERTYNAME_GENERAL_NOTE));</string> 
                  </void> 
+                 <void method="setProperty"> 
+                  <string>font.noCode</string> 
+                  <boolean>true</boolean> 
+                 </void> 
                 </void> 
                </object> 
               </void> 
@@ -2131,6 +2189,10 @@
                 <string>JavaCodeGenerator.customCreateCode</string> 
                 <string>ATBasicComponentFactory.createDoubleField(detailsModel, Assessments.PROPERTYNAME_ESTIMATED_PROCESSING_TIME_PER_FOOT);</string> 
                </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
               </void> 
               <void method="addEvent"> 
                <object class="com.jformdesigner.model.FormEvent"> 
@@ -2196,6 +2258,10 @@
                <void method="setProperty"> 
                 <string>JavaCodeGenerator.customCreateCode</string> 
                 <string>ATBasicComponentFactory.createDoubleField(detailsModel, Assessments.PROPERTYNAME_TOTAL_EXTENT);</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
                </void> 
               </void> 
               <void method="addEvent"> 
@@ -2266,6 +2332,10 @@
                <void method="setProperty"> 
                 <string>JavaCodeGenerator.customCreateCode</string> 
                 <string>ATBasicComponentFactory.createDoubleField(detailsModel, Assessments.PROPERTYNAME_TOTAL_ESTIMATED_PROCESSING_TIME);</string> 
+               </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
                </void> 
               </void> 
              </object> 
@@ -2786,6 +2856,10 @@
                  <void method="setProperty"> 
                   <string>JavaCodeGenerator.customCreateCode</string> 
                   <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Assessments.PROPERTYNAME_CONSERVATION_NOTE));</string> 
+                 </void> 
+                 <void method="setProperty"> 
+                  <string>font.noCode</string> 
+                  <boolean>true</boolean> 
                  </void> 
                 </void> 
                </object> 
@@ -3781,6 +3855,10 @@
                   <string>JavaCodeGenerator.customCreateCode</string> 
                   <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Assessments.PROPERTYNAME_EXHIBITION_VALUE_NOTE));</string> 
                  </void> 
+                 <void method="setProperty"> 
+                  <string>font.noCode</string> 
+                  <boolean>true</boolean> 
+                 </void> 
                 </void> 
                </object> 
               </void> 
@@ -3983,6 +4061,10 @@
                   <string>JavaCodeGenerator.customCreateCode</string> 
                   <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Assessments.PROPERTYNAME_SPECIAL_FORMAT_NOTE));</string> 
                  </void> 
+                 <void method="setProperty"> 
+                  <string>font.noCode</string> 
+                  <boolean>true</boolean> 
+                 </void> 
                 </void> 
                </object> 
               </void> 
@@ -4083,6 +4165,10 @@
                   <string>JavaCodeGenerator.customCreateCode</string> 
                   <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Assessments.PROPERTYNAME_MONETARY_VALUE_NOTE));</string> 
                  </void> 
+                 <void method="setProperty"> 
+                  <string>font.noCode</string> 
+                  <boolean>true</boolean> 
+                 </void> 
                 </void> 
                </object> 
               </void> 
@@ -4148,10 +4234,12 @@
         <void method="setProperty"> 
          <string>border</string> 
          <object class="javax.swing.border.EmptyBorder"> 
-          <int>0</int> 
-          <int>10</int> 
-          <int>0</int> 
-          <int>10</int> 
+          <object class="java.awt.Insets"> 
+           <int>0</int> 
+           <int>10</int> 
+           <int>0</int> 
+           <int>10</int> 
+          </object> 
          </object> 
         </void> 
         <void property="name"> 

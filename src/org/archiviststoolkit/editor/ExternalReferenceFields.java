@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -94,9 +94,6 @@ public class ExternalReferenceFields extends DomainEditorFields {
 		label1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label1, ExternalReference.class, ExternalReference.PROPERTYNAME_TITLE);
 		add(label1, cc.xy(1, 1));
-
-		//---- title ----
-		title.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(title, cc.xywh(3, 1, 7, 1));
 
 		//---- label2 ----
@@ -104,9 +101,6 @@ public class ExternalReferenceFields extends DomainEditorFields {
 		label2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label2, ExternalReference.class, ExternalReference.PROPERTYNAME_HREF);
 		add(label2, cc.xy(1, 3));
-
-		//---- href ----
-		href.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(href, cc.xywh(3, 3, 7, 1));
 
 		//---- actuateLabel ----

@@ -44,7 +44,6 @@ public class PatronFunding extends DomainObject {
 
 	@IncludeInApplicationConfiguration(2)
 	@DefaultIncludeInSearchEditor
-	@ExcludeFromDefaultValues
 	private String fundingType;
 
 	@IncludeInApplicationConfiguration
@@ -124,7 +123,7 @@ public class PatronFunding extends DomainObject {
 	}
 
 	public void setFundingType(String fundingType) {
-//		Object oldValue = getDescription();
+//		Object oldValue = getNotes();
 		this.fundingType = fundingType;
 //		firePropertyChange(PROPERTYNAME_SUBJECT_TERM_TYPE, oldValue, subject);
 	}

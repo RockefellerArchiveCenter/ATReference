@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_12" class="java.beans.XMLDecoder"> 
+<java version="1.5.0_22" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -286,6 +286,10 @@
                   <string>JavaCodeGenerator.customCreateCode</string> 
                   <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Resources.PROPERTYNAME_OTHER_LEVEL),false);</string> 
                  </void> 
+                 <void method="setProperty"> 
+                  <string>font.noCode</string> 
+                  <boolean>true</boolean> 
+                 </void> 
                 </void> 
                </object> 
                <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -389,6 +393,10 @@
                    <void method="setProperty"> 
                     <string>JavaCodeGenerator.customCreateCode</string> 
                     <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(ArchDescription.PROPERTYNAME_TITLE),false);</string> 
+                   </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
                    </void> 
                   </void> 
                  </object> 
@@ -632,6 +640,10 @@
                       <string>JavaCodeGenerator.customCreateCode</string> 
                       <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(ArchDescription.PROPERTYNAME_DATE_EXPRESSION),false);</string> 
                      </void> 
+                     <void method="setProperty"> 
+                      <string>font.noCode</string> 
+                      <boolean>true</boolean> 
+                     </void> 
                     </void> 
                    </object> 
                    <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -762,6 +774,10 @@
                     <string>JavaCodeGenerator.variableModifiers</string> 
                     <int>1</int> 
                    </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
+                   </void> 
                   </void> 
                  </object> 
                  <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -839,6 +855,10 @@
                    <void method="setProperty"> 
                     <string>JavaCodeGenerator.variableModifiers</string> 
                     <int>1</int> 
+                   </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
                    </void> 
                   </void> 
                  </object> 
@@ -963,6 +983,10 @@
                     <string>JavaCodeGenerator.variableModifiers</string> 
                     <int>1</int> 
                    </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
+                   </void> 
                   </void> 
                  </object> 
                  <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -1040,6 +1064,10 @@
                    <void method="setProperty"> 
                     <string>JavaCodeGenerator.variableModifiers</string> 
                     <int>1</int> 
+                   </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
                    </void> 
                   </void> 
                  </object> 
@@ -1273,6 +1301,10 @@
                  <void method="setProperty"> 
                   <string>JavaCodeGenerator.customCreateCode</string> 
                   <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Resources.PROPERTYNAME_REPOSITORY_PROCESSING_NOTE),false);</string> 
+                 </void> 
+                 <void method="setProperty"> 
+                  <string>font.noCode</string> 
+                  <boolean>true</boolean> 
                  </void> 
                 </void> 
                </object> 
@@ -1583,6 +1615,10 @@
                     <string>JavaCodeGenerator.customCreateCode</string> 
                     <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Resources.PROPERTYNAME_RESOURCE_IDENTIFIER_1));</string> 
                    </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
+                   </void> 
                   </void> 
                  </object> 
                  <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -1615,6 +1651,10 @@
                    <void method="setProperty"> 
                     <string>JavaCodeGenerator.customCreateCode</string> 
                     <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Resources.PROPERTYNAME_RESOURCE_IDENTIFIER_2));</string> 
+                   </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
                    </void> 
                   </void> 
                  </object> 
@@ -1649,6 +1689,10 @@
                     <string>JavaCodeGenerator.customCreateCode</string> 
                     <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Resources.PROPERTYNAME_RESOURCE_IDENTIFIER_3));</string> 
                    </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
+                   </void> 
                   </void> 
                  </object> 
                  <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -1681,6 +1725,10 @@
                    <void method="setProperty"> 
                     <string>JavaCodeGenerator.customCreateCode</string> 
                     <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Resources.PROPERTYNAME_RESOURCE_IDENTIFIER_4));</string> 
+                   </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
                    </void> 
                   </void> 
                  </object> 
@@ -1798,6 +1846,12 @@
                     <void method="setProperty"> 
                      <string>font</string> 
                      <object idref="Font0"/> 
+                    </void> 
+                    <void method="auxiliary"> 
+                     <void method="setProperty"> 
+                      <string>font.noCode</string> 
+                      <boolean>true</boolean> 
+                     </void> 
                     </void> 
                     <void property="name"> 
                      <string>scrollPane4</string> 
@@ -2030,6 +2084,10 @@
                         <string>JavaCodeGenerator.variableModifiers</string> 
                         <int>1</int> 
                        </void> 
+                       <void method="setProperty"> 
+                        <string>font.noCode</string> 
+                        <boolean>true</boolean> 
+                       </void> 
                       </void> 
                      </object> 
                      <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -2066,6 +2124,10 @@
                        <void method="setProperty"> 
                         <string>JavaCodeGenerator.customCreateCode</string> 
                         <string>ATBasicComponentFactory.createComboBox(detailsModel, Resources.PROPERTYNAME_EXTENT_TYPE, Resources.class);</string> 
+                       </void> 
+                       <void method="setProperty"> 
+                        <string>font.noCode</string> 
+                        <boolean>true</boolean> 
                        </void> 
                       </void> 
                      </object> 
@@ -2187,6 +2249,10 @@
                        <void method="setProperty"> 
                         <string>JavaCodeGenerator.customCreateCode</string> 
                         <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Resources.PROPERTYNAME_CONTAINER_SUMMARY),false);</string> 
+                       </void> 
+                       <void method="setProperty"> 
+                        <string>font.noCode</string> 
+                        <boolean>true</boolean> 
                        </void> 
                       </void> 
                      </object> 
@@ -2356,6 +2422,12 @@
                     <void method="setProperty"> 
                      <string>font</string> 
                      <object idref="Font0"/> 
+                    </void> 
+                    <void method="auxiliary"> 
+                     <void method="setProperty"> 
+                      <string>font.noCode</string> 
+                      <boolean>true</boolean> 
+                     </void> 
                     </void> 
                     <void property="name"> 
                      <string>scrollPane6</string> 
@@ -2785,6 +2857,12 @@
              <string>font</string> 
              <object idref="Font0"/> 
             </void> 
+            <void method="auxiliary"> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
+             </void> 
+            </void> 
             <void property="name"> 
              <string>scrollPane1</string> 
             </void> 
@@ -3085,6 +3163,12 @@
             <void method="setProperty"> 
              <string>font</string> 
              <object idref="Font0"/> 
+            </void> 
+            <void method="auxiliary"> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
+             </void> 
             </void> 
             <void property="name"> 
              <string>scrollPane3</string> 
@@ -3856,6 +3940,10 @@
                   <string>JavaCodeGenerator.customCreateCode</string> 
                   <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Resources.PROPERTYNAME_EAD_FA_UNIQUE_IDENTIFIER),false);</string> 
                  </void> 
+                 <void method="setProperty"> 
+                  <string>font.noCode</string> 
+                  <boolean>true</boolean> 
+                 </void> 
                 </void> 
                </object> 
                <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -3921,6 +4009,10 @@
                  <void method="setProperty"> 
                   <string>JavaCodeGenerator.customCreateCode</string> 
                   <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Resources.PROPERTYNAME_EAD_FA_LOCATION),false);</string> 
+                 </void> 
+                 <void method="setProperty"> 
+                  <string>font.noCode</string> 
+                  <boolean>true</boolean> 
                  </void> 
                 </void> 
                </object> 
@@ -4043,6 +4135,10 @@
                     <string>JavaCodeGenerator.customCreateCode</string> 
                     <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Resources.PROPERTYNAME_FINDING_AID_TITLE));</string> 
                    </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
+                   </void> 
                   </void> 
                  </object> 
                 </void> 
@@ -4159,6 +4255,10 @@
                     <string>JavaCodeGenerator.customCreateCode</string> 
                     <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Resources.PROPERTYNAME_FINDING_AID_SUBTITLE));</string> 
                    </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
+                   </void> 
                   </void> 
                  </object> 
                 </void> 
@@ -4252,6 +4352,10 @@
                     <string>JavaCodeGenerator.customCreateCode</string> 
                     <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Resources.PROPERTYNAME_FINDING_AID_FILING_TITLE));</string> 
                    </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
+                   </void> 
                   </void> 
                  </object> 
                 </void> 
@@ -4319,6 +4423,10 @@
                  <void method="setProperty"> 
                   <string>JavaCodeGenerator.customCreateCode</string> 
                   <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Resources.PROPERTYNAME_FINDING_AID_DATE),false);</string> 
+                 </void> 
+                 <void method="setProperty"> 
+                  <string>font.noCode</string> 
+                  <boolean>true</boolean> 
                  </void> 
                 </void> 
                </object> 
@@ -4433,6 +4541,10 @@
                    <void method="setProperty"> 
                     <string>JavaCodeGenerator.customCreateCode</string> 
                     <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Resources.PROPERTYNAME_AUTHOR));</string> 
+                   </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
                    </void> 
                   </void> 
                  </object> 
@@ -4623,6 +4735,10 @@
                    <void method="setProperty"> 
                     <string>JavaCodeGenerator.customCreateCode</string> 
                     <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Resources.PROPERTYNAME_LANGUAGE_OF_FINDING_AID));</string> 
+                   </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
                    </void> 
                   </void> 
                  </object> 
@@ -4823,6 +4939,10 @@
                     <string>JavaCodeGenerator.customCreateCode</string> 
                     <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Resources.PROPERTYNAME_SPONSOR_NOTE));</string> 
                    </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
+                   </void> 
                   </void> 
                  </object> 
                 </void> 
@@ -4934,6 +5054,10 @@
                    <void method="setProperty"> 
                     <string>JavaCodeGenerator.customCreateCode</string> 
                     <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Resources.PROPERTYNAME_EDITION_STATEMENT));</string> 
+                   </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
                    </void> 
                   </void> 
                  </object> 
@@ -5047,6 +5171,10 @@
                     <string>JavaCodeGenerator.customCreateCode</string> 
                     <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Resources.PROPERTYNAME_SERIES));</string> 
                    </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
+                   </void> 
                   </void> 
                  </object> 
                 </void> 
@@ -5114,6 +5242,10 @@
                  <void method="setProperty"> 
                   <string>JavaCodeGenerator.customCreateCode</string> 
                   <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Resources.PROPERTYNAME_REVISION_DATE),false);</string> 
+                 </void> 
+                 <void method="setProperty"> 
+                  <string>font.noCode</string> 
+                  <boolean>true</boolean> 
                  </void> 
                 </void> 
                </object> 
@@ -5228,6 +5360,10 @@
                    <void method="setProperty"> 
                     <string>JavaCodeGenerator.customCreateCode</string> 
                     <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Resources.PROPERTYNAME_REVISION_DESCRIPTION));</string> 
+                   </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
                    </void> 
                   </void> 
                  </object> 
@@ -5439,6 +5575,10 @@
                    <void method="setProperty"> 
                     <string>JavaCodeGenerator.customCreateCode</string> 
                     <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(Resources.PROPERTYNAME_FINDING_AID_NOTE));</string> 
+                   </void> 
+                   <void method="setProperty"> 
+                    <string>font.noCode</string> 
+                    <boolean>true</boolean> 
                    </void> 
                   </void> 
                  </object> 

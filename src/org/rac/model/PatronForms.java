@@ -27,25 +27,29 @@ import org.archiviststoolkit.structure.IncludeInApplicationConfiguration;
 
 import java.util.Date;
 
-public class CompletedForms extends DomainObject {
+public class PatronForms extends DomainObject {
 
 	public static final String PROPERTYNAME_FORM_TYPE = "formType";
-	public static final String PROPERTYNAME_DESCRIPTION = "description";
+	public static final String PROPERTYNAME_NOTES = "notes";
 	public static final String PROPERTYNAME_DATE_COMPLETED = "dateCompleted";
+	public static final String PROPERTYNAME_COMPLETED = "completed";
 
 	@IncludeInApplicationConfiguration
 	@ExcludeFromDefaultValues
-	private Long completedFormId;
+	private Long patronFormId;
 
 	@IncludeInApplicationConfiguration(1)
 	@DefaultIncludeInSearchEditor
-	@ExcludeFromDefaultValues
 	private String formType;
 
 	@IncludeInApplicationConfiguration(2)
 	@DefaultIncludeInSearchEditor
 	@ExcludeFromDefaultValues
-	private String description = "";
+	private String notes = "";
+
+	@IncludeInApplicationConfiguration(4)
+	@DefaultIncludeInSearchEditor
+	private Boolean completed;
 
 	@IncludeInApplicationConfiguration(3)
 	@ExcludeFromDefaultValues
@@ -56,22 +60,22 @@ public class CompletedForms extends DomainObject {
 	/**
 	 * Creates a new instance of Subject
 	 */
-	public CompletedForms() {
+	public PatronForms() {
 		formType = "";
 	}
 
-	public CompletedForms(String formType) {
+	public PatronForms(String formType) {
 		this.formType = formType;
 	}
 
-	public CompletedForms(Patrons patron) {
+	public PatronForms(Patrons patron) {
 		this.patron = patron;
 		formType = "";
 	}
 
-	public CompletedForms(String formType, String description, Patrons patron) {
+	public PatronForms(String formType, String notes, Patrons patron) {
 		this.formType = formType;
-		this.description = description;
+		this.notes = notes;
 		this.patron = patron;
 	}
 
@@ -79,22 +83,22 @@ public class CompletedForms extends DomainObject {
 	 * @return Returns the identifier.
 	 */
 	public Long getIdentifier() {
-		return getCompletedFormId();
+		return getPatronFormId();
 	}
 
 	/**
 	 * @param identifier The identifier to set.
 	 */
 	public void setIdentifier(Long identifier) {
-		this.setCompletedFormId(identifier);
+		this.setPatronFormId(identifier);
 	}
 
-	public Long getCompletedFormId() {
-		return completedFormId;
+	public Long getPatronFormId() {
+		return patronFormId;
 	}
 
-	public void setCompletedFormId(Long completedFormId) {
-		this.completedFormId = completedFormId;
+	public void setPatronFormId(Long patronFormId) {
+		this.patronFormId = patronFormId;
 	}
 
 	public String getFormType() {
@@ -102,24 +106,20 @@ public class CompletedForms extends DomainObject {
 	}
 
 	public void setFormType(String formType) {
-//		Object oldValue = getFundingDate();
 		this.formType = formType;
-//		firePropertyChange(PROPERTYNAME_SUBJECT_TERM, oldValue, formType);
 
 	}
 
-	public String getDescription() {
-		if (this.description != null) {
-			return this.description;
+	public String getNotes() {
+		if (this.notes != null) {
+			return this.notes;
 		} else {
 			return "";
 		}
 	}
 
-	public void setDescription(String description) {
-//		Object oldValue = getDescription();
-		this.description = description;
-//		firePropertyChange(PROPERTYNAME_SUBJECT_TERM_TYPE, oldValue, description);
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 
@@ -137,5 +137,13 @@ public class CompletedForms extends DomainObject {
 
 	public void setPatron(Patrons patron) {
 		this.patron = patron;
+	}
+
+	public Boolean getCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(Boolean completed) {
+		this.completed = completed;
 	}
 }

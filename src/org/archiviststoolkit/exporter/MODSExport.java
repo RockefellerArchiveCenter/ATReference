@@ -333,7 +333,7 @@ public class MODSExport {
             } else if (isNoteTitle(note, 
                                    "Immediate Source of Acquisition note")) {
                 NoteType noteM = obj.createNoteType();
-                noteM.setUtType("acquistion");
+                noteM.setUtType("acquisition");
                 noteM.setDisplayLabel(note.getTitle());
                 if(!(StringHelper.isNotEmpty(note.getTitle())))
                     noteM.setDisplayLabel(note.getType());
@@ -653,7 +653,7 @@ public class MODSExport {
             // update map if (isSubjectTermType(aSubject, "Curriculum Objective (658)")) {
             // update map    TargetAudienceType target = obj.createTargetAudienceType();
             // update map    target.setAuthority(subjectAbbrev);
-            // update map    target.setValue(aSubject.getDescription().getSubjectTerm());
+            // update map    target.setValue(aSubject.getSubject().getSubjectTerm());
             // update map    modsGroup.add(target);
             // update map}
 

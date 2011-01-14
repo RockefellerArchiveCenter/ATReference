@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.5.0_07" class="java.beans.XMLDecoder"> 
+<java version="1.5.0_22" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -97,6 +97,10 @@
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Locations.PROPERTYNAME_BUILDING));</string> 
          </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
         </void> 
        </object> 
        <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -162,6 +166,10 @@
          <void method="setProperty"> 
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Locations.PROPERTYNAME_FLOOR));</string> 
+         </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
          </void> 
         </void> 
        </object> 
@@ -233,6 +241,10 @@
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Locations.PROPERTYNAME_ROOM));</string> 
          </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
         </void> 
        </object> 
        <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -302,6 +314,10 @@
          <void method="setProperty"> 
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Locations.PROPERTYNAME_AREA));</string> 
+         </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
          </void> 
         </void> 
        </object> 
@@ -409,6 +425,10 @@
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Locations.PROPERTYNAME_COORDINATE_1_LABEL));</string> 
          </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
         </void> 
        </object> 
        <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -489,6 +509,10 @@
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createDoubleField(detailsModel,Locations.PROPERTYNAME_COORDINATE_1_NUMERIC_INDICATOR);</string> 
          </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
         </void> 
        </object> 
        <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -562,6 +586,10 @@
          <void method="setProperty"> 
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Locations.PROPERTYNAME_COORDINATE_1_ALPHA_NUMERIC_INDICATOR));</string> 
+         </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
          </void> 
         </void> 
        </object> 
@@ -660,6 +688,10 @@
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Locations.PROPERTYNAME_COORDINATE_2_LABEL));</string> 
          </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
         </void> 
        </object> 
        <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -734,6 +766,10 @@
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createDoubleField(detailsModel,Locations.PROPERTYNAME_COORDINATE_2_NUMERIC_INDICATOR);</string> 
          </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
         </void> 
        </object> 
        <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -807,6 +843,10 @@
          <void method="setProperty"> 
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Locations.PROPERTYNAME_COORDINATE_2_ALPHA_NUMERIC_INDICATOR));</string> 
+         </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
          </void> 
         </void> 
        </object> 
@@ -905,6 +945,10 @@
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Locations.PROPERTYNAME_COORDINATE_3_LABEL));</string> 
          </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
         </void> 
        </object> 
        <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -979,6 +1023,10 @@
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createDoubleField(detailsModel,Locations.PROPERTYNAME_COORDINATE_3_NUMERIC_INDICATOR);</string> 
          </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
         </void> 
        </object> 
        <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -1052,6 +1100,10 @@
          <void method="setProperty"> 
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Locations.PROPERTYNAME_COORDINATE_3_ALPHA_NUMERIC_INDICATOR));</string> 
+         </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
          </void> 
         </void> 
        </object> 
@@ -1150,6 +1202,10 @@
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Locations.PROPERTYNAME_CLASSIFICATION_NUMBER));</string> 
          </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
+         </void> 
         </void> 
        </object> 
        <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -1219,6 +1275,10 @@
          <void method="setProperty"> 
           <string>JavaCodeGenerator.customCreateCode</string> 
           <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Locations.PROPERTYNAME_BARCODE));</string> 
+         </void> 
+         <void method="setProperty"> 
+          <string>font.noCode</string> 
+          <boolean>true</boolean> 
          </void> 
         </void> 
        </object> 

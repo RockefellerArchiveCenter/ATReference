@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.5.0_07" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_18" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -186,6 +186,10 @@
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_REPOSITORY_NAME));</string> 
              </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
+             </void> 
             </void> 
            </object> 
            <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -247,6 +251,10 @@
              <void method="setProperty"> 
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_SHORT_NAME));</string> 
+             </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
              </void> 
             </void> 
            </object> 
@@ -314,6 +322,10 @@
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_INSTITUTION_NAME));</string> 
              </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
+             </void> 
             </void> 
            </object> 
            <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -379,6 +391,10 @@
              <void method="setProperty"> 
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_REPOSITORY_ADDRESS1));</string> 
+             </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
              </void> 
             </void> 
            </object> 
@@ -446,6 +462,10 @@
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_REPOSITORY_ADDRESS2));</string> 
              </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
+             </void> 
             </void> 
            </object> 
            <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -511,6 +531,10 @@
              <void method="setProperty"> 
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_REPOSITORY_ADDRESS3));</string> 
+             </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
              </void> 
             </void> 
            </object> 
@@ -578,6 +602,10 @@
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_REPOSITORY_CITY));</string> 
              </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
+             </void> 
             </void> 
            </object> 
            <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -643,6 +671,10 @@
              <void method="setProperty"> 
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_REPOSITORY_REGION));</string> 
+             </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
              </void> 
             </void> 
            </object> 
@@ -710,6 +742,10 @@
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_REPOSITORY_COUNTRY));</string> 
              </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
+             </void> 
             </void> 
            </object> 
            <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -775,6 +811,10 @@
              <void method="setProperty"> 
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_REPOSITORY_MAILCODE));</string> 
+             </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
              </void> 
             </void> 
            </object> 
@@ -842,6 +882,10 @@
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_REPOSITORY_TELEPHONE));</string> 
              </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
+             </void> 
             </void> 
            </object> 
            <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -907,6 +951,10 @@
              <void method="setProperty"> 
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_REPOSITORY_FAX));</string> 
+             </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
              </void> 
             </void> 
            </object> 
@@ -974,6 +1022,10 @@
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_REPOSITORY_EMAIL));</string> 
              </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
+             </void> 
             </void> 
            </object> 
            <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -1039,6 +1091,10 @@
              <void method="setProperty"> 
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_REPOSITORY_URL));</string> 
+             </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
              </void> 
             </void> 
            </object> 
@@ -1106,6 +1162,10 @@
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_REPOSITORY_COUNTRY_CODE));</string> 
              </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
+             </void> 
             </void> 
            </object> 
            <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -1171,6 +1231,10 @@
              <void method="setProperty"> 
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_REPOSITORY_AGENCY_CODE));</string> 
+             </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
              </void> 
             </void> 
            </object> 
@@ -1242,6 +1306,10 @@
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_NCES_ID));</string> 
              </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
+             </void> 
             </void> 
            </object> 
            <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -1311,6 +1379,10 @@
              <void method="setProperty"> 
               <string>JavaCodeGenerator.customCreateCode</string> 
               <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(Repositories.PROPERTYNAME_BRANDING_DEVICE));</string> 
+             </void> 
+             <void method="setProperty"> 
+              <string>font.noCode</string> 
+              <boolean>true</boolean> 
              </void> 
             </void> 
            </object> 

@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -122,12 +122,12 @@ public class BatchLocationCreation extends JDialog {
 			dialogPane.setBorder(null);
 			dialogPane.setBackground(new Color(200, 205, 232));
 			dialogPane.setLayout(new FormLayout(
-					ColumnSpec.decodeSpecs("default:grow"),
-					new RowSpec[]{
-							new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.NO_GROW),
-							FormFactory.LINE_GAP_ROWSPEC,
-							new RowSpec(RowSpec.TOP, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-					}));
+				ColumnSpec.decodeSpecs("default:grow"),
+				new RowSpec[] {
+					new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.NO_GROW),
+					FormFactory.LINE_GAP_ROWSPEC,
+					new RowSpec(RowSpec.TOP, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+				}));
 
 			//======== HeaderPanel ========
 			{
@@ -135,26 +135,26 @@ public class BatchLocationCreation extends JDialog {
 				HeaderPanel.setOpaque(false);
 				HeaderPanel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 				HeaderPanel.setLayout(new FormLayout(
-						new ColumnSpec[]{
-								new ColumnSpec(Sizes.bounded(Sizes.MINIMUM, Sizes.dluX(100), Sizes.dluX(200))),
-								new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-						},
-						RowSpec.decodeSpecs("default")));
+					new ColumnSpec[] {
+						new ColumnSpec(Sizes.bounded(Sizes.MINIMUM, Sizes.dluX(100), Sizes.dluX(200))),
+						new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+					},
+					RowSpec.decodeSpecs("default")));
 
 				//======== panel2 ========
 				{
 					panel2.setBackground(new Color(80, 69, 57));
 					panel2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					panel2.setLayout(new FormLayout(
-							new ColumnSpec[]{
-									FormFactory.RELATED_GAP_COLSPEC,
-									new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-							},
-							new RowSpec[]{
-									FormFactory.RELATED_GAP_ROWSPEC,
-									FormFactory.DEFAULT_ROWSPEC,
-									FormFactory.RELATED_GAP_ROWSPEC
-							}));
+						new ColumnSpec[] {
+							FormFactory.RELATED_GAP_COLSPEC,
+							new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+						},
+						new RowSpec[] {
+							FormFactory.RELATED_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.RELATED_GAP_ROWSPEC
+						}));
 
 					//---- mainHeaderLabel ----
 					mainHeaderLabel.setText("Project Management");
@@ -169,16 +169,16 @@ public class BatchLocationCreation extends JDialog {
 					panel3.setBackground(new Color(66, 60, 111));
 					panel3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					panel3.setLayout(new FormLayout(
-							new ColumnSpec[]{
-									FormFactory.RELATED_GAP_COLSPEC,
-									new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
-									FormFactory.RELATED_GAP_COLSPEC
-							},
-							new RowSpec[]{
-									FormFactory.RELATED_GAP_ROWSPEC,
-									FormFactory.DEFAULT_ROWSPEC,
-									FormFactory.RELATED_GAP_ROWSPEC
-							}));
+						new ColumnSpec[] {
+							FormFactory.RELATED_GAP_COLSPEC,
+							new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+							FormFactory.RELATED_GAP_COLSPEC
+						},
+						new RowSpec[] {
+							FormFactory.RELATED_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.RELATED_GAP_ROWSPEC
+						}));
 
 					//---- subHeaderLabel ----
 					subHeaderLabel.setText("Batch Location Creation");
@@ -195,49 +195,49 @@ public class BatchLocationCreation extends JDialog {
 				panel1.setOpaque(false);
 				panel1.setBorder(Borders.DLU4_BORDER);
 				panel1.setLayout(new FormLayout(
-						ColumnSpec.decodeSpecs("default:grow"),
-						new RowSpec[]{
-								FormFactory.DEFAULT_ROWSPEC,
-								FormFactory.LINE_GAP_ROWSPEC,
-								FormFactory.DEFAULT_ROWSPEC
-						}));
+					ColumnSpec.decodeSpecs("default:grow"),
+					new RowSpec[] {
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.LINE_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC
+					}));
 
 				//======== contentPanel ========
 				{
 					contentPanel.setOpaque(false);
 					contentPanel.setLayout(new FormLayout(
-							new ColumnSpec[]{
-									FormFactory.DEFAULT_COLSPEC,
-									FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-									FormFactory.DEFAULT_COLSPEC,
-									FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-									FormFactory.DEFAULT_COLSPEC,
-									FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-									FormFactory.DEFAULT_COLSPEC,
-									FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-									FormFactory.DEFAULT_COLSPEC,
-									FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-									new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-							},
-							new RowSpec[]{
-									FormFactory.DEFAULT_ROWSPEC,
-									FormFactory.LINE_GAP_ROWSPEC,
-									FormFactory.DEFAULT_ROWSPEC,
-									FormFactory.LINE_GAP_ROWSPEC,
-									FormFactory.DEFAULT_ROWSPEC,
-									FormFactory.LINE_GAP_ROWSPEC,
-									FormFactory.DEFAULT_ROWSPEC,
-									FormFactory.LINE_GAP_ROWSPEC,
-									FormFactory.DEFAULT_ROWSPEC,
-									FormFactory.LINE_GAP_ROWSPEC,
-									FormFactory.DEFAULT_ROWSPEC,
-									FormFactory.LINE_GAP_ROWSPEC,
-									FormFactory.DEFAULT_ROWSPEC,
-									FormFactory.LINE_GAP_ROWSPEC,
-									FormFactory.DEFAULT_ROWSPEC,
-									FormFactory.LINE_GAP_ROWSPEC,
-									FormFactory.DEFAULT_ROWSPEC
-							}));
+						new ColumnSpec[] {
+							FormFactory.DEFAULT_COLSPEC,
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							FormFactory.DEFAULT_COLSPEC,
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							FormFactory.DEFAULT_COLSPEC,
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							FormFactory.DEFAULT_COLSPEC,
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							FormFactory.DEFAULT_COLSPEC,
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+						},
+						new RowSpec[] {
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.LINE_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC
+						}));
 
 					//---- label1 ----
 					label1.setText("Building");
@@ -353,13 +353,13 @@ public class BatchLocationCreation extends JDialog {
 					buttonBar.setBorder(Borders.BUTTON_BAR_GAP_BORDER);
 					buttonBar.setOpaque(false);
 					buttonBar.setLayout(new FormLayout(
-							new ColumnSpec[]{
-									FormFactory.GLUE_COLSPEC,
-									FormFactory.BUTTON_COLSPEC,
-									FormFactory.RELATED_GAP_COLSPEC,
-									FormFactory.BUTTON_COLSPEC
-							},
-							RowSpec.decodeSpecs("pref")));
+						new ColumnSpec[] {
+							FormFactory.GLUE_COLSPEC,
+							FormFactory.BUTTON_COLSPEC,
+							FormFactory.RELATED_GAP_COLSPEC,
+							FormFactory.BUTTON_COLSPEC
+						},
+						RowSpec.decodeSpecs("pref")));
 
 					//---- generateButton ----
 					generateButton.setText("Generate");

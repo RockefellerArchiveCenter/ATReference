@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -304,9 +304,6 @@ public class RDEScreenFields extends DomainEditorFields {
 		label_RDE_name.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		ATFieldInfo.assignLabelInfo(label_RDE_name, RDEScreen.class, RDEScreen.PROPERTYNAME_NAME_RDE_SCREEN_NAME);
 		add(label_RDE_name, cc.xy(1, 1));
-
-		//---- rdeScreenName ----
-		rdeScreenName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(rdeScreenName, cc.xy(3, 1));
 
 		//======== panel1 ========

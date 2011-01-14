@@ -42,6 +42,9 @@
            <xs:element name="patronVisits" type="patronVisits" minOccurs="0" maxOccurs="unbounded"/>
            <xs:element name="patronFunding" type="patronFunding" minOccurs="0" maxOccurs="unbounded"/>
            <xs:element name="patronPublications" type="patronPublications" minOccurs="0" maxOccurs="unbounded"/>
+           <xs:element name="patronForms" type="patronForms" minOccurs="0" maxOccurs="unbounded"/>
+           <xs:element name="racPatronSubjects" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+           <xs:element name="racPatronTopics" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
        </xs:sequence>
     </xs:complexType>
     
@@ -74,6 +77,7 @@
             <xs:element name="topic" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="visitDate" type="xs:date" minOccurs="1" maxOccurs="1"/>
             <xs:element name="patronVisitsSubjects" type="patronVisitsSubjects" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="patronVisitsNames" type="patronVisitsNames" minOccurs="0" maxOccurs="unbounded"></xs:element>
         </xs:sequence>
     </xs:complexType>
     
@@ -82,6 +86,74 @@
             <xs:element name="subjectTerm" type="xs:string"  minOccurs="1" maxOccurs="1"/>
             <xs:element name="subjectTermType" type="xs:string" minOccurs="1" maxOccurs="1"/>
             <xs:element name="subjectSource" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="patronVisitsNames">
+        <xs:sequence>
+            <xs:element name="nameLinkRole" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="nameLinkForm" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="name" type="nameComplexType"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="nameComplexType">
+        <xs:sequence>
+            <xs:element name="nameType" minOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Person"/>
+                        <xs:enumeration value="Family"/>
+                        <xs:enumeration value="Corporate Body"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="number" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="qualifier" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="nameSource" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="nameRule" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="descriptionType" minOccurs="0" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Administrative History"/>
+                        <xs:enumeration value="Biography"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="descriptionNote" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="citation" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="salutation" type="xs:string" minOccurs="0"/>
+            <xs:element name="contactAddress1" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="contactAddress2" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="contactCity" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="contactRegion" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="contactCountry" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="contactMailCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="contactPhone" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="contactFax" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="contactEmail" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="contactName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element name="familyName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="familyNamePrefix" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+                <xs:sequence>
+                    <xs:element name="corporatePrimaryName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="corporateSubordinate1" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="corporateSubordinate2" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+                <xs:sequence>
+                    <xs:element name="personalPrimaryName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="personalRestOfName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="personalPrefix" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="personalSuffix" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="personalDates" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="personalFullerForm" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="personalTitle" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="personalDirectOrder" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:choice>
         </xs:sequence>
     </xs:complexType>
     
@@ -96,12 +168,13 @@
     
     <xs:complexType name="patronPublications">
         <xs:sequence>
-            <xs:element name="publicationDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="publicationDate" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="publicationTitle" type="xs:string" minOccurs="1" maxOccurs="1"/>
             <xs:element name="publicationType" type="xs:string" minOccurs="1" maxOccurs="1"/>
             <xs:element name="publisher" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="collaborators" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="patronPublicationsSubjects" type="patronPublicationsSubjects" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="patronPublicationsNames" type="patronPublicationsNames" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
     
@@ -112,15 +185,22 @@
             <xs:element name="subjectSource" type="xs:string" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-        
-    <!-- check validation rules- checked against DD, need to check against program -->
-    <!-- re-check field names-->
- 
-
-   
     
-    <!--Notes: 
-        
-        Email- now linked to address, is req for each address if req at all, so made not req) -->
- 
+    <xs:complexType name="patronPublicationsNames">
+        <xs:sequence>
+            <xs:element name="nameLinkRole" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="nameLinkForm" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="name" type="nameComplexType"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="patronForms">
+        <xs:sequence>
+            <xs:element name="dateCompleted" type="xs:date" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="notes" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="formType" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="completed" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
 </xs:schema>

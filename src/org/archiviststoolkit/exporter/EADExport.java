@@ -1394,8 +1394,8 @@ public class EADExport {
         	eadBib.setAudience("internal");
     	}
         Head h = new Head();
-        /*if (StringHelper.isNotEmpty(bib.getUnits()))
-            h.getContent().add(bib.getUnits());
+        /*if (StringHelper.isNotEmpty(bib.getTitle()))
+            h.getContent().add(bib.getTitle());
         else
             h.getContent().add(bib.getRepeatingDataType());
         */
@@ -1473,7 +1473,7 @@ public class EADExport {
         Ref ref = new Ref();
         indeX.setId(index.getPersistentId());
         Indexentry indexEntry = new Indexentry();
-        //h.getContent().add(index.getUnits());
+        //h.getContent().add(index.getTitle());
         
         Persname p = new Persname();
         if (StringHelper.isNotEmpty(index.getTitle())){
@@ -2105,10 +2105,15 @@ public class EADExport {
             barcode = instance.getBarcode();
 
             Container container1 = new Container();
-            /*if (StringHelper.isNotEmpty(barcode))
-                container1.setLabel(barcode); */
 
+            // if barcode is present place it in the label
+            if (StringHelper.isNotEmpty(barcode)) {
+                String label = instanceType + " (" + barcode + ")";
+                container1.setLabel(label);
+            } else {
             container1.setLabel(instanceType);
+            }
+
             container1.setId(parentId);
 
             if (null != type)

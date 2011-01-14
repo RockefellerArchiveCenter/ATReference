@@ -1574,7 +1574,7 @@ public class DomainTableWorkSurface implements WorkSurface, MouseListener, Actio
      */
     private boolean openRecordReadOnly(RecordLocks recordLock) {
         // TODO Uncomment this block of code once the read only mode has been solidify
-//        String message = "This record is already in use by " + recordLock.getCategory() + ".\nDo you want to open it in read only mode?";
+//        String message = "This record is already in use by " + recordLock.getUserName() + ".\nDo you want to open it in read only mode?";
 //
 //        int option = JOptionPane.showConfirmDialog(ApplicationFrame.getInstance(),
 //            message, "Record in Use", JOptionPane.YES_NO_OPTION);

@@ -307,6 +307,28 @@
 				<one-to-many class="ArchDescriptionNames"/>
 			</set>
 
+            <set name="patronVisitsNames"
+                  cascade="all-delete-orphan"
+                  inverse="true"
+                  lazy="true"
+                  access="field">
+                 <key>
+                     <column name="nameId" not-null="true"/>
+                 </key>
+                 <one-to-many class="org.rac.model.PatronVisitsNames"/>
+             </set>
+
+             <set name="patronPublicationsNames"
+                  cascade="all-delete-orphan"
+                  inverse="true"
+                  lazy="true"
+                  access="field">
+                 <key>
+                     <column name="nameId" not-null="true"/>
+                 </key>
+                 <one-to-many class="org.rac.model.PatronPublicationsNames"/>
+             </set>
+
 		</union-subclass>
 
 	</class>

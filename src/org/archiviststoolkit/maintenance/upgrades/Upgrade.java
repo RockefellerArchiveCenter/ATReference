@@ -27,6 +27,9 @@ import java.sql.*;
 public abstract class Upgrade {
 
 	protected String errorString;
+    protected DeferredWizardResult.ResultProgressHandle progress;
+    protected int currentStep;
+    protected int totalSteps;
 
 	public String getErrorString() {
 		return errorString;
@@ -72,6 +75,20 @@ public abstract class Upgrade {
      */
     protected boolean runPostDBInitializationSQLCode(Connection conn) {
         return true;
+    }
+
+    /**
+     * Method to set the progress bar so that users can alerted at the progress inside
+     * the step it self.
+     *
+     * @param progress The progress monitor
+     * @param currentStep The current step
+     * @param totalSteps  The total number of steps
+     */
+    protected void setResultProgressHandle(DeferredWizardResult.ResultProgressHandle progress, int currentStep, int totalSteps) {
+        this.progress = progress;
+        this.currentStep = currentStep;
+        this.totalSteps = totalSteps;
     }
 
 	protected void fixListValues(Connection conn, String listName, String oldListItem, String newListItem) throws SQLException {

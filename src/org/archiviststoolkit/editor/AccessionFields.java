@@ -454,7 +454,6 @@ public class AccessionFields extends ArchDescriptionFields {
 			accessionTitle.setEditable(false);
 			accessionTitle.setOpaque(false);
 			accessionTitle.setBorder(null);
-			accessionTitle.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			panel6.add(accessionTitle, cc.xywh(5, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
 
 			//---- label3 ----
@@ -549,21 +548,9 @@ public class AccessionFields extends ArchDescriptionFields {
 						label_accessionNumber1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						ATFieldInfo.assignLabelInfo(label_accessionNumber1, Accessions.class, Accessions.PROPERTYNAME_ACCESSION_NUMBER);
 						panel12.add(label_accessionNumber1, cc.xywh(1, 1, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
-
-						//---- accessionNumber1 ----
-						accessionNumber1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						panel12.add(accessionNumber1, cc.xywh(3, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
-
-						//---- accessionNumber2 ----
-						accessionNumber2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						panel12.add(accessionNumber2, cc.xy(5, 1));
-
-						//---- accessionNumber3 ----
-						accessionNumber3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						panel12.add(accessionNumber3, cc.xy(7, 1));
-
-						//---- accessionNumber4 ----
-						accessionNumber4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						panel12.add(accessionNumber4, cc.xy(9, 1));
 					}
 					panel11.add(panel12, cc.xy(1, 1));
@@ -592,7 +579,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						panel34.add(label_accessionDate, cc.xy(1, 1));
 
 						//---- accessionDate ----
-						accessionDate.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						accessionDate.setColumns(10);
 						panel34.add(accessionDate, cc.xywh(3, 1, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 					}
@@ -702,7 +688,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						panel27.add(label_resourceType, cc.xywh(1, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
 
 						//---- resourceType ----
-						resourceType.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						resourceType.setOpaque(false);
 						panel27.add(resourceType, cc.xywh(3, 1, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 					}
@@ -724,7 +709,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						title.setRows(4);
 						title.setLineWrap(true);
 						title.setWrapStyleWord(true);
-						title.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						scrollPane42.setViewportView(title);
 					}
 					panel11.add(scrollPane42, cc.xy(1, 11));
@@ -784,12 +768,10 @@ public class AccessionFields extends ArchDescriptionFields {
 								panel21.add(labelExtentNumber, cc.xy(1, 1));
 
 								//---- extentNumber ----
-								extentNumber.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 								extentNumber.setColumns(5);
 								panel21.add(extentNumber, cc.xy(3, 1));
 
 								//---- extentType ----
-								extentType.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 								extentType.setOpaque(false);
 								panel21.add(extentType, cc.xy(5, 1));
 							}
@@ -811,7 +793,6 @@ public class AccessionFields extends ArchDescriptionFields {
 								containerSummary.setRows(4);
 								containerSummary.setLineWrap(true);
 								containerSummary.setWrapStyleWord(true);
-								containerSummary.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 								scrollPane423.setViewportView(containerSummary);
 							}
 							panel20.add(scrollPane423, cc.xywh(2, 7, 1, 1, CellConstraints.DEFAULT, CellConstraints.FILL));
@@ -949,9 +930,6 @@ public class AccessionFields extends ArchDescriptionFields {
 								label_dateExpression.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 								ATFieldInfo.assignLabelInfo(label_dateExpression, Accessions.class, Accessions.PROPERTYNAME_DATE_EXPRESSION);
 								panel4.add(label_dateExpression, cc.xywh(1, 1, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
-
-								//---- dateExpression ----
-								dateExpression.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 								panel4.add(dateExpression, new CellConstraints(3, 1, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 0, 0, 5)));
 							}
 							panel5.add(panel4, cc.xywh(1, 1, 9, 1));
@@ -966,9 +944,6 @@ public class AccessionFields extends ArchDescriptionFields {
 							label_date1Begin.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 							ATFieldInfo.assignLabelInfo(label_date1Begin, Accessions.class, Accessions.PROPERTYNAME_DATE_BEGIN);
 							panel5.add(label_date1Begin, cc.xy(3, 5));
-
-							//---- date1Begin ----
-							date1Begin.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 							panel5.add(date1Begin, cc.xywh(5, 5, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
 
 							//---- label_date1End ----
@@ -978,7 +953,6 @@ public class AccessionFields extends ArchDescriptionFields {
 							panel5.add(label_date1End, cc.xy(7, 5));
 
 							//---- date1End ----
-							date1End.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 							date1End.addFocusListener(new FocusAdapter() {
 								@Override
 								public void focusGained(FocusEvent e) {
@@ -997,9 +971,6 @@ public class AccessionFields extends ArchDescriptionFields {
 							label_bulkDateBegin.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 							ATFieldInfo.assignLabelInfo(label_bulkDateBegin, Accessions.class, Accessions.PROPERTYNAME_BULK_DATE_BEGIN);
 							panel5.add(label_bulkDateBegin, cc.xy(3, 9));
-
-							//---- bulkDateBegin ----
-							bulkDateBegin.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 							panel5.add(bulkDateBegin, cc.xywh(5, 9, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
 
 							//---- label_bulkDateEnd ----
@@ -1009,7 +980,6 @@ public class AccessionFields extends ArchDescriptionFields {
 							panel5.add(label_bulkDateEnd, cc.xy(7, 9));
 
 							//---- bulkDateEnd ----
-							bulkDateEnd.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 							bulkDateEnd.addFocusListener(new FocusAdapter() {
 								@Override
 								public void focusGained(FocusEvent e) {
@@ -1158,7 +1128,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						title2.setRows(4);
 						title2.setLineWrap(true);
 						title2.setWrapStyleWord(true);
-						title2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						scrollPane43.setViewportView(title2);
 					}
 					panel13.add(scrollPane43, cc.xy(1, 17));
@@ -1241,7 +1210,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						accessionTransactionNote.setRows(4);
 						accessionTransactionNote.setLineWrap(true);
 						accessionTransactionNote.setWrapStyleWord(true);
-						accessionTransactionNote.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						accessionTransactionNote.setMinimumSize(new Dimension(200, 16));
 						scrollPane4224.setViewportView(accessionTransactionNote);
 					}
@@ -1262,7 +1230,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						description.setRows(5);
 						description.setLineWrap(true);
 						description.setWrapStyleWord(true);
-						description.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						description.setMinimumSize(new Dimension(200, 16));
 						scrollPane2.setViewportView(description);
 					}
@@ -1283,7 +1250,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						condition.setRows(5);
 						condition.setLineWrap(true);
 						condition.setWrapStyleWord(true);
-						condition.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						condition.setMinimumSize(new Dimension(200, 16));
 						scrollPane22.setViewportView(condition);
 					}
@@ -1328,7 +1294,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						inventory.setRows(5);
 						inventory.setLineWrap(true);
 						inventory.setWrapStyleWord(true);
-						inventory.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						inventory.setMinimumSize(new Dimension(200, 16));
 						scrollPane23.setViewportView(inventory);
 					}
@@ -1350,7 +1315,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						accessionDispositionNote.setRows(4);
 						accessionDispositionNote.setLineWrap(true);
 						accessionDispositionNote.setWrapStyleWord(true);
-						accessionDispositionNote.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						accessionDispositionNote.setMinimumSize(new Dimension(200, 16));
 						scrollPane4223.setViewportView(accessionDispositionNote);
 					}
@@ -1489,7 +1453,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					panel32.add(label_acknowledgementDate2, cc.xy(1, 1));
 
 					//---- acknowledgementDate2 ----
-					acknowledgementDate2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					acknowledgementDate2.setColumns(10);
 					panel32.add(acknowledgementDate2, cc.xywh(3, 1, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
@@ -1500,7 +1463,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					panel32.add(label_acknowledgementDate3, cc.xy(1, 3));
 
 					//---- acknowledgementDate3 ----
-					acknowledgementDate3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					acknowledgementDate3.setColumns(10);
 					panel32.add(acknowledgementDate3, cc.xywh(3, 3, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
@@ -1525,7 +1487,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					panel32.add(label_date1Begin2, cc.xy(1, 9));
 
 					//---- date1Begin2 ----
-					date1Begin2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					date1Begin2.setColumns(6);
 					panel32.add(date1Begin2, cc.xywh(3, 9, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
@@ -1536,7 +1497,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					panel32.add(label_date1Begin3, cc.xy(1, 11));
 
 					//---- date1Begin3 ----
-					date1Begin3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					date1Begin3.setColumns(6);
 					panel32.add(date1Begin3, cc.xywh(3, 11, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
@@ -1547,7 +1507,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					panel32.add(label_date1Begin4, cc.xy(1, 13));
 
 					//---- extentNumber2 ----
-					extentNumber2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					extentNumber2.setColumns(5);
 					panel32.add(extentNumber2, cc.xywh(3, 13, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
@@ -1558,7 +1517,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					panel32.add(label_date1Begin5, cc.xy(1, 15));
 
 					//---- extentNumber3 ----
-					extentNumber3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					extentNumber3.setColumns(5);
 					panel32.add(extentNumber3, cc.xywh(3, 15, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
@@ -1567,9 +1525,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					label_date1Begin6.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					ATFieldInfo.assignLabelInfo(label_date1Begin6, Accessions.class, Accessions.PROPERTYNAME_USER_DEFINED_STRING1);
 					panel32.add(label_date1Begin6, cc.xy(1, 17));
-
-					//---- dateExpression2 ----
-					dateExpression2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					panel32.add(dateExpression2, new CellConstraints(3, 17, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 0, 0, 5)));
 
 					//---- label_date1Begin7 ----
@@ -1577,9 +1532,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					label_date1Begin7.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					ATFieldInfo.assignLabelInfo(label_date1Begin7, Accessions.class, Accessions.PROPERTYNAME_USER_DEFINED_STRING2);
 					panel32.add(label_date1Begin7, cc.xy(1, 19));
-
-					//---- dateExpression3 ----
-					dateExpression3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					panel32.add(dateExpression3, new CellConstraints(3, 19, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 0, 0, 5)));
 
 					//---- label_date1Begin8 ----
@@ -1587,9 +1539,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					label_date1Begin8.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					ATFieldInfo.assignLabelInfo(label_date1Begin8, Accessions.class, Accessions.PROPERTYNAME_USER_DEFINED_STRING3);
 					panel32.add(label_date1Begin8, cc.xy(1, 21));
-
-					//---- dateExpression4 ----
-					dateExpression4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					panel32.add(dateExpression4, new CellConstraints(3, 21, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 0, 0, 5)));
 
 					//---- label_date1Begin9 ----
@@ -1608,7 +1557,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						title3.setRows(4);
 						title3.setLineWrap(true);
 						title3.setWrapStyleWord(true);
-						title3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						title3.setMinimumSize(new Dimension(200, 16));
 						scrollPane44.setViewportView(title3);
 					}
@@ -1651,7 +1599,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						title4.setRows(4);
 						title4.setLineWrap(true);
 						title4.setWrapStyleWord(true);
-						title4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						title4.setMinimumSize(new Dimension(200, 16));
 						scrollPane45.setViewportView(title4);
 					}
@@ -1673,7 +1620,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						title5.setRows(4);
 						title5.setLineWrap(true);
 						title5.setWrapStyleWord(true);
-						title5.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						title5.setMinimumSize(new Dimension(200, 16));
 						scrollPane46.setViewportView(title5);
 					}
@@ -1695,7 +1641,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						title6.setRows(4);
 						title6.setLineWrap(true);
 						title6.setWrapStyleWord(true);
-						title6.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						title6.setMinimumSize(new Dimension(200, 16));
 						scrollPane47.setViewportView(title6);
 					}
@@ -1945,7 +1890,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					panel39.add(label_acknowledgementDate4, cc.xy(5, 3));
 
 					//---- acknowledgementDate4 ----
-					acknowledgementDate4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					acknowledgementDate4.setColumns(10);
 					panel39.add(acknowledgementDate4, cc.xywh(7, 3, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
@@ -1963,7 +1907,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					panel39.add(label_agreementSent2, cc.xy(5, 5));
 
 					//---- agreementSent2 ----
-					agreementSent2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					agreementSent2.setColumns(10);
 					panel39.add(agreementSent2, cc.xywh(7, 5, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
@@ -1981,7 +1924,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					panel39.add(label_agreementReceived, cc.xy(5, 7));
 
 					//---- agreementReceived ----
-					agreementReceived.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					agreementReceived.setColumns(10);
 					panel39.add(agreementReceived, cc.xywh(7, 7, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
@@ -1999,7 +1941,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					panel39.add(label_agreementReceived2, cc.xy(5, 9));
 
 					//---- agreementReceived2 ----
-					agreementReceived2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					agreementReceived2.setColumns(10);
 					panel39.add(agreementReceived2, cc.xywh(7, 9, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
@@ -2018,7 +1959,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						terms3.setRows(4);
 						terms3.setLineWrap(true);
 						terms3.setWrapStyleWord(true);
-						terms3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						terms3.setMinimumSize(new Dimension(200, 16));
 						scrollPane435.setViewportView(terms3);
 					}
@@ -2054,7 +1994,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						terms.setRows(4);
 						terms.setLineWrap(true);
 						terms.setWrapStyleWord(true);
-						terms.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						terms.setMinimumSize(new Dimension(200, 16));
 						scrollPane432.setViewportView(terms);
 					}
@@ -2082,7 +2021,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						terms2.setRows(4);
 						terms2.setLineWrap(true);
 						terms2.setWrapStyleWord(true);
-						terms2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						terms2.setMinimumSize(new Dimension(200, 16));
 						scrollPane433.setViewportView(terms2);
 					}
@@ -2160,9 +2098,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					label_resourceType4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					ATFieldInfo.assignLabelInfo(label_resourceType4, Accessions.class, Accessions.PROPERTYNAME_PROCESSORS);
 					panel37.add(label_resourceType4, cc.xywh(1, 5, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
-
-					//---- dateExpression5 ----
-					dateExpression5.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					panel37.add(dateExpression5, new CellConstraints(3, 5, 3, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 0, 0, 5)));
 
 					//---- label_processingPlan ----
@@ -2181,7 +2116,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						processingPlan.setRows(4);
 						processingPlan.setLineWrap(true);
 						processingPlan.setWrapStyleWord(true);
-						processingPlan.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						processingPlan.setMinimumSize(new Dimension(200, 16));
 						scrollPane4222.setViewportView(processingPlan);
 					}
@@ -2194,7 +2128,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					panel37.add(label_dateProcessed3, cc.xy(1, 11));
 
 					//---- dateProcessed3 ----
-					dateProcessed3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					dateProcessed3.setColumns(10);
 					panel37.add(dateProcessed3, cc.xywh(3, 11, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
@@ -2232,7 +2165,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					panel37.add(label_dateProcessed, cc.xy(3, 15));
 
 					//---- dateProcessed ----
-					dateProcessed.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					dateProcessed.setColumns(10);
 					panel37.add(dateProcessed, cc.xywh(5, 15, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
@@ -2250,7 +2182,6 @@ public class AccessionFields extends ArchDescriptionFields {
 					panel37.add(label_dateProcessed2, cc.xy(3, 17));
 
 					//---- dateProcessed2 ----
-					dateProcessed2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 					dateProcessed2.setColumns(10);
 					panel37.add(dateProcessed2, cc.xywh(5, 17, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
@@ -2270,7 +2201,6 @@ public class AccessionFields extends ArchDescriptionFields {
 						catalogedNote.setRows(4);
 						catalogedNote.setLineWrap(true);
 						catalogedNote.setWrapStyleWord(true);
-						catalogedNote.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 						catalogedNote.setMinimumSize(new Dimension(200, 16));
 						scrollPane434.setViewportView(catalogedNote);
 					}

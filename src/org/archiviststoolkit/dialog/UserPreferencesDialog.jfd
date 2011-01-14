@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_12" class="java.beans.XMLDecoder"> 
+<java version="1.5.0_26" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -425,6 +425,10 @@
                 <string>JavaCodeGenerator.variableGetter</string> 
                 <boolean>true</boolean> 
                </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
               </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -487,6 +491,10 @@
                 <string>JavaCodeGenerator.variableGetter</string> 
                 <boolean>true</boolean> 
                </void> 
+               <void method="setProperty"> 
+                <string>font.noCode</string> 
+                <boolean>true</boolean> 
+               </void> 
               </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -546,8 +554,16 @@
               <void method="auxiliary"> 
                <void method="setProperty"> 
                 <string>JavaCodeGenerator.customCreateCode</string> 
-                <string>ATBasicComponentFactory.createUnboundComboBox(SessionFactory.getDatabaseTypesList());</string> 
+                <string>ATBasicComponentFactory.createUnboundComboBox(SessionFactory.getDatabaseTypesList(true));</string> 
                </void> 
+              </void> 
+              <void method="addEvent"> 
+               <object class="com.jformdesigner.model.FormEvent"> 
+                <string>java.awt.event.ActionListener</string> 
+                <string>actionPerformed</string> 
+                <string>databaseTypesActionPerformed</string> 
+                <boolean>false</boolean> 
+               </object> 
               </void> 
              </object> 
              <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -766,7 +782,7 @@
        <string>size</string> 
        <object class="java.awt.Dimension"> 
         <int>485</int> 
-        <int>255</int> 
+        <int>275</int> 
        </object> 
       </void> 
      </object> 

@@ -40,12 +40,11 @@ import edu.harvard.hul.ois.mets.helper.MetsWriter;
 import edu.harvard.hul.ois.mets.helper.PCData;
 
 import edu.harvard.hul.ois.mets.helper.PreformedXML;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import java.util.HashMap;
-import java.util.Set;
-import java.util.Vector;
+import java.util.*;
 
 import org.archiviststoolkit.model.DigitalObjects;
 import org.archiviststoolkit.model.FileVersions;
@@ -60,36 +59,36 @@ import org.archiviststoolkit.util.StringHelper;
 public class METSExport {
     private String metadataType;
     private InfiniteProgressPanel progressPanel;
-    private int order=1;
+    private int order = 1;
 	private boolean debug = false;
-    private int pOrder=0;
-    
-    public static Resources getResourceFromDigitalObject(DigitalObjects digitalObject){
+    private int pOrder = 0;
+
+    public static Resources getResourceFromDigitalObject(DigitalObjects digitalObject) {
     	Resources resource = null;
-    	if(digitalObject.getDigitalInstance() != null && digitalObject.getDigitalInstance().getResource()==null && digitalObject.getDigitalInstance().getResourceComponent()!=null)
+        if (digitalObject.getDigitalInstance() != null && digitalObject.getDigitalInstance().getResource() == null && digitalObject.getDigitalInstance().getResourceComponent() != null)
     		resource = MARCExport.getResourceFromResourceComponent(digitalObject.getDigitalInstance().getResourceComponent());
-    	else if(digitalObject.getDigitalInstance() != null && digitalObject.getDigitalInstance().getResource()!=null){
+        else if (digitalObject.getDigitalInstance() != null && digitalObject.getDigitalInstance().getResource() != null) {
     		resource = digitalObject.getDigitalInstance().getResource();
     	}
     	return resource;
     }
     
-    public void convertDBRecordToFile(DigitalObjects digitalObject, java.io.File outputFile, InfiniteProgressPanel progressPanel, boolean internalOnly,String metadataType) throws IOException, MetsException{
-        this.metadataType=metadataType;
-        this.progressPanel=progressPanel;
+    public void convertDBRecordToFile(DigitalObjects digitalObject, java.io.File outputFile, InfiniteProgressPanel progressPanel, boolean internalOnly, String metadataType) throws IOException, MetsException {
+        this.metadataType = metadataType;
+        this.progressPanel = progressPanel;
         ElementType etype = new ElementType();
-        Mets mets = new Mets ();
+        Mets mets = new Mets();
         mets.setOBJID(digitalObject.getMetsIdentifier());   
         mets.setTYPE(digitalObject.getObjectType());
         mets.setLABEL(digitalObject.getTitle());
-        mets.setPROFILE ("Archivists' Toolkit Profile");
-        MetsHdr metsHdr = new MetsHdr ();
+        mets.setPROFILE("Archivists' Toolkit Profile");
+        MetsHdr metsHdr = new MetsHdr();
         metsHdr.setCREATEDATE(new java.util.Date());
-        Agent agent = new Agent ();
+        Agent agent = new Agent();
         agent.setROLE(Role.CREATOR);
         agent.setTYPE(Type.ORGANIZATION);
 
-		Name name = new Name ();
+        Name name = new Name();
 		//Resources resource = getResourceFromDigitalObject(digitalObject);
 		String rName = null;
 		String rUrl = null;
@@ -103,8 +102,8 @@ public class METSExport {
 
 		}*/
 
-        if(StringHelper.isNotEmpty(rName))
-			name.getContent().add (new PCData(rName));
+        if (StringHelper.isNotEmpty(rName))
+            name.getContent().add(new PCData(rName));
 		//name.getContent().add (new PCData("Archivists' Toolkit"));
         agent.getContent().add(name);
         Note note = new Note();
@@ -112,7 +111,7 @@ public class METSExport {
         agent.getContent().add(note);
         note = new Note();
 		//String rUrl = digitalObject.getDigitalInstance().getResource().getRepository().getUrl();
-        if(StringHelper.isNotEmpty(rUrl)){
+        if (StringHelper.isNotEmpty(rUrl)) {
         	note.getContent().add(new PCData(rUrl));        
         //note.getContent().add(new PCData("http://www.archiviststoolkit.org"));
         agent.getContent().add(note);  

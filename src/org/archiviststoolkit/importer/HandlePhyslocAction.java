@@ -69,10 +69,10 @@ public class HandlePhyslocAction implements Action {
         //adn.setNoteContent(physlocString.toString());
         if (label != null)
             EADHelper.setProperty(adn, "title", label);
-        //adn.setUnits(label);
+        //adn.setTitle(label);
         else
             EADHelper.setProperty(adn, "title", "Location note");
-        //adn.setUnits("Location Note");
+        //adn.setTitle("Location Note");    
         adn.setSequenceNumber(EADInfo.sequence++);
         adn.setPersistentId(EADInfo.getReferenceTOResources().getNextPersistentIdAndIncrement());
         EADInfo.addIdPairs(((Physloc)o).getId(), adn.getPersistentId());

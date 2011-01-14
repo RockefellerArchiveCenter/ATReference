@@ -63,7 +63,7 @@ public class ArchDescriptionDates extends DomainObject {
 	@ExcludeFromDefaultValues
 	private Integer dateBegin;
 
-	//@IncludeInApplicationConfiguration
+	@IncludeInApplicationConfiguration
 	@ExcludeFromDefaultValues
 	private Integer dateEnd;
 

@@ -31,129 +31,129 @@ import java.io.*;
 
 public class DatabaseConnectionUtils {
 
-	private static ResourceBundle resourceBundle = ResourceBundle.getBundle("org.archiviststoolkit.resources.messages.messages");
-	private static String versionString = resourceBundle.getString("archiviststoolkit.releasenumber");
+    private static ResourceBundle resourceBundle = ResourceBundle.getBundle("org.archiviststoolkit.resources.messages.messages");
+    private static String versionString = resourceBundle.getString("archiviststoolkit.releasenumber");
 
-	public static final String CHECK_VERSION_FROM_MAIN = "main";
-	public static final String CHECK_VERSION_FROM_UPGRADE = "upgrade";
-	public static final String CHECK_VERSION_FROM_UTILITIES = "utilities";
+    public static final String CHECK_VERSION_FROM_MAIN = "main";
+    public static final String CHECK_VERSION_FROM_UPGRADE = "upgrade";
+    public static final String CHECK_VERSION_FROM_UTILITIES = "utilities";
 
-	private static String errorString = "";
+    private static String errorString = "";
 
     private static final String CONNECTION_INFO_FILENAME = "atdbinfo.txt";
 
-	public static Boolean testDbConnection() {
+    public static Boolean testDbConnection() {
 
-		try {
-			Connection conn = openConnection();
-			String dummySQL = "SELECT count(*) FROM Constants";
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(dummySQL);
-			rs.close();
-			stmt.close();
-			return true;
-			// everything is ok
-		}
-		catch (SQLException se) {
-			ErrorDialog dialog;
-			if (se.getMessage().contains("Unknown database")) {
-				dialog = new ErrorDialog("The database you are accessing does not exist. Please check the settings and try again.",
-						ErrorDialog.DIALOG_TYPE_ERROR);
-			} else if (se.getMessage().contains("No suitable driver")) {
-				dialog = new ErrorDialog("The database you are accessing is not a " + SessionFactory.getDatabaseType()
-						+ " database. Please check the settings and try again.",
-						ErrorDialog.DIALOG_TYPE_ERROR);
-			} else if (se.getMessage().contains("constants")) {
-				dialog = new ErrorDialog("It appears that the database you are using has not been initialized."
-						+ " Please contact your database administrator and make sure the database has been initialized using the " +
-						"AT Maintenance program.",
-						ErrorDialog.DIALOG_TYPE_ERROR);
-			} else if (se.getMessage().contains("Access denied for user")) {
-				dialog = new ErrorDialog("The username and password to not have permission for this database. Please check the settings and try again.",
-						ErrorDialog.DIALOG_TYPE_ERROR);
-			} else {
-				dialog = new ErrorDialog("There is a problem with the database connection. Please check the settings and try again",
-						StringHelper.getStackTrace(se));
-			}
-			dialog.showDialog();
-			return false;
-		} catch (ClassNotFoundException e) {
-			ErrorDialog dialog = new ErrorDialog("The jdbc driver is missing",
-					StringHelper.getStackTrace(e), ErrorDialog.DIALOG_TYPE_ERROR);
-			dialog.showDialog();
-			return false;
-		}
+        try {
+            Connection conn = openConnection();
+            String dummySQL = "SELECT count(*) FROM Constants";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(dummySQL);
+            rs.close();
+            stmt.close();
+            return true;
+            // everything is ok
+        }
+        catch (SQLException se) {
+            ErrorDialog dialog;
+            if (se.getMessage().contains("Unknown database")) {
+                dialog = new ErrorDialog("The database you are accessing does not exist. Please check the settings and try again.",
+                        ErrorDialog.DIALOG_TYPE_ERROR);
+            } else if (se.getMessage().contains("No suitable driver")) {
+                dialog = new ErrorDialog("The database you are accessing is not a " + SessionFactory.getDatabaseType()
+                        + " database. Please check the settings and try again.",
+                        ErrorDialog.DIALOG_TYPE_ERROR);
+            } else if (se.getMessage().contains("constants")) {
+                dialog = new ErrorDialog("It appears that the database you are using has not been initialized."
+                        + " Please contact your database administrator and make sure the database has been initialized using the " +
+                        "AT Maintenance program.",
+                        ErrorDialog.DIALOG_TYPE_ERROR);
+            } else if (se.getMessage().contains("Access denied for user")) {
+                dialog = new ErrorDialog("The username and password to not have permission for this database. Please check the settings and try again.",
+                        ErrorDialog.DIALOG_TYPE_ERROR);
+            } else {
+                dialog = new ErrorDialog("There is a problem with the database connection. Please check the settings and try again",
+                        StringHelper.getStackTrace(se));
+            }
+            dialog.showDialog();
+            return false;
+        } catch (ClassNotFoundException e) {
+            ErrorDialog dialog = new ErrorDialog("The jdbc driver is missing",
+                    StringHelper.getStackTrace(e), ErrorDialog.DIALOG_TYPE_ERROR);
+            dialog.showDialog();
+            return false;
+        }
 
-	}
+    }
 
 
-	public static Boolean checkVersion(String calledFrom) throws ClassNotFoundException, SQLException {
+    public static Boolean checkVersion(String calledFrom) throws ClassNotFoundException, SQLException {
 
-		Connection conn = openConnection();
-		DatabaseVersion databaseVersion = getDatabaseVersionInfo(conn);
-		int majorVersion = databaseVersion.getMajorVersion();
-		int minorVersion = databaseVersion.getMinorVersion();
-		int updateVersion = databaseVersion.getUpdateVersion();
+        Connection conn = openConnection();
+        DatabaseVersion databaseVersion = getDatabaseVersionInfo(conn);
+        int majorVersion = databaseVersion.getMajorVersion();
+        int minorVersion = databaseVersion.getMinorVersion();
+        int updateVersion = databaseVersion.getUpdateVersion();
 
-		if (databaseVersion != null) {
-			Integer compareVersion = Constants.compareVersions(versionString,
-					majorVersion,
-					minorVersion,
-					updateVersion);
-			if (calledFrom.equals(DatabaseConnectionUtils.CHECK_VERSION_FROM_MAIN)) {
-				if (compareVersion == Constants.VERSION_LESS) {
-					VersionMismatch dialog = new VersionMismatch("AT version " + versionString
-							+ " will not work with this database. This database is using version "
-							+ majorVersion + "." + minorVersion + "." + updateVersion + ".", Constants.VERSION_LESS);
-					dialog.showDialog();
-					return false;
-				} else if (compareVersion == Constants.VERSION_GREATER) {
-					VersionMismatch dialog = new VersionMismatch("AT version " + versionString
-							+ " will not work with this database. This database is using version "
-							+ majorVersion + "." + minorVersion + "." + updateVersion + ".", Constants.VERSION_GREATER);
-					dialog.showDialog();
-					return false;
-				}
-			} else if (calledFrom.equals(DatabaseConnectionUtils.CHECK_VERSION_FROM_UPGRADE)) {
-				if (compareVersion == Constants.VERSION_LESS) {
-					errorString = "AT version " + versionString + " will not work with this database. This database is using version "
-							+ majorVersion + "." + minorVersion + "." + updateVersion + ".";
-					return false;
-				} else if (compareVersion == Constants.VERSION_EQUAL) {
-					errorString = "Both client and database are at version " + versionString
-							+ ". No upgrade is necessary.";
-					return false;
-				}
-			} else if (calledFrom.equals(DatabaseConnectionUtils.CHECK_VERSION_FROM_UTILITIES)) {
-				if (compareVersion != Constants.VERSION_EQUAL) {
-					errorString = "AT version " + versionString
-							+ " will not work with this database. This database is using version "
-							+ majorVersion + "." + minorVersion + "." + updateVersion + ".";
-					return false;
-				}
-			}
-		} else {
-			//incorrect number of constants records
-			ErrorDialog dialog = new ErrorDialog("There are more than one constants record. Please contact your systemn administrator");
-			dialog.showDialog();
-			return false;
-		}
-		return true;
+        if (databaseVersion != null) {
+            Integer compareVersion = Constants.compareVersions(versionString,
+                    majorVersion,
+                    minorVersion,
+                    updateVersion);
+            if (calledFrom.equals(DatabaseConnectionUtils.CHECK_VERSION_FROM_MAIN)) {
+                if (compareVersion == Constants.VERSION_LESS) {
+                    VersionMismatch dialog = new VersionMismatch("AT version " + versionString
+                            + " will not work with this database. This database is using version "
+                            + majorVersion + "." + minorVersion + "." + updateVersion + ".", Constants.VERSION_LESS);
+                    dialog.showDialog();
+                    return false;
+                } else if (compareVersion == Constants.VERSION_GREATER) {
+                    VersionMismatch dialog = new VersionMismatch("AT version " + versionString
+                            + " will not work with this database. This database is using version "
+                            + majorVersion + "." + minorVersion + "." + updateVersion + ".", Constants.VERSION_GREATER);
+                    dialog.showDialog();
+                    return false;
+                }
+            } else if (calledFrom.equals(DatabaseConnectionUtils.CHECK_VERSION_FROM_UPGRADE)) {
+                if (compareVersion == Constants.VERSION_LESS) {
+                    errorString = "AT version " + versionString + " will not work with this database. This database is using version "
+                            + majorVersion + "." + minorVersion + "." + updateVersion + ".";
+                    return false;
+                } else if (compareVersion == Constants.VERSION_EQUAL) {
+                    errorString = "Both client and database are at version " + versionString
+                            + ". No upgrade is necessary.";
+                    return false;
+                }
+            } else if (calledFrom.equals(DatabaseConnectionUtils.CHECK_VERSION_FROM_UTILITIES)) {
+                if (compareVersion != Constants.VERSION_EQUAL) {
+                    errorString = "AT version " + versionString
+                            + " will not work with this database. This database is using version "
+                            + majorVersion + "." + minorVersion + "." + updateVersion + ".";
+                    return false;
+                }
+            }
+        } else {
+            //incorrect number of constants records
+            ErrorDialog dialog = new ErrorDialog("There are more than one constants record. Please contact your systemn administrator");
+            dialog.showDialog();
+            return false;
+        }
+        return true;
 
-	}
+    }
 
-	public static Boolean checkPermissions(String databaseType) throws ClassNotFoundException {
-		Connection conn = null;
-		try {
-			String dummySQL = "";
+    public static Boolean checkPermissions(String databaseType) throws ClassNotFoundException {
+        Connection conn = null;
+        try {
+            String dummySQL = "";
             conn = openConnection();
-			conn.setAutoCommit(false);
+            conn.setAutoCommit(false);
 
             if (databaseType.equals(SessionFactory.DATABASE_TYPE_MYSQL)) {
-				dummySQL = "ALTER TABLE Constants modify majorVersion varchar(10)";
-			} else if(databaseType.equals(SessionFactory.DATABASE_TYPE_MICROSOFT_SQL_SERVER)) {
-				dummySQL = "ALTER TABLE Constants ALTER COLUMN majorVersion INT";
-			} else if(databaseType.equals(SessionFactory.DATABASE_TYPE_ORACLE)) {
+                dummySQL = "ALTER TABLE Constants modify majorVersion varchar(10)";
+            } else if (databaseType.equals(SessionFactory.DATABASE_TYPE_MICROSOFT_SQL_SERVER)) {
+                dummySQL = "ALTER TABLE Constants ALTER COLUMN majorVersion INT";
+            } else if (databaseType.equals(SessionFactory.DATABASE_TYPE_ORACLE)) {
                 dummySQL = "ALTER TABLE Constants modify (majorVersion NUMBER(10,0))";
             } else { // unknown database type so just assume we can upgrade
                 return true;
@@ -161,23 +161,24 @@ public class DatabaseConnectionUtils {
 
             Statement stmt = conn.createStatement();
             stmt.execute(dummySQL);
-			conn.rollback();
-			conn.close();
+            conn.rollback();
+            conn.close();
 
             // we got this far so the can probable go ahead with the upgrade
             return true;
-		} catch (SQLException e) {
-			try {
-				conn.close();
-			} catch (SQLException e1) {
-				return false;
-			}
-			return false;
-		}
-	}
+        } catch (SQLException e) {
+            try {
+                conn.close();
+            } catch (SQLException e1) {
+                return false;
+            }
+            return false;
+        }
+    }
 
     /**
      * Method to check to see if a database being initialized is empty
+     *
      * @param databaseType The type of the database
      * @return Null if the database is empty or String if it is not empty, or an error occured
      */
@@ -186,14 +187,16 @@ public class DatabaseConnectionUtils {
         try {
             String sqlStatement = "";
             conn = openConnection(databaseUrl, username, password);
-			conn.setAutoCommit(false);
+            conn.setAutoCommit(false);
 
             if (databaseType.equals(SessionFactory.DATABASE_TYPE_MYSQL)) {
-				sqlStatement = "SHOW TABLES";
-			} else if(databaseType.equals(SessionFactory.DATABASE_TYPE_MICROSOFT_SQL_SERVER)) {
-				sqlStatement = "SELECT * FROM sys.tables";
-			} else if(databaseType.equals(SessionFactory.DATABASE_TYPE_ORACLE)) {
+                sqlStatement = "SHOW TABLES";
+            } else if (databaseType.equals(SessionFactory.DATABASE_TYPE_MICROSOFT_SQL_SERVER)) {
+                sqlStatement = "SELECT * FROM sys.tables";
+            } else if (databaseType.equals(SessionFactory.DATABASE_TYPE_ORACLE)) {
                 sqlStatement = "SELECT table_name FROM user_tables";
+            } else if (databaseType.equals(SessionFactory.DATABASE_TYPE_INTERNAL)) {
+                sqlStatement = "SELECT * FROM INFORMATION_SCHEMA.TABLES where table_schema='PUBLIC'";
             } else { // unknown database type so we can't do an checking
                 return "Unknown database type so unable to do check";
             }
@@ -202,33 +205,34 @@ public class DatabaseConnectionUtils {
             ResultSet rs = stmt.executeQuery(sqlStatement);
 
             // check the size of the statement so if there were any tables
-            if(rs.next()) {
+            if (rs.next()) {
                 return "You must supply an empty database";
             } else {
                 return null;
             }
-		} catch (SQLException e) {
-			try {
-				if(conn != null) {
+        } catch (SQLException e) {
+            try {
+                if (conn != null) {
                     conn.close();
                 }
-			} catch (SQLException e1) {
-				return "An SQL error occured when closing database connection";
-			}
+            } catch (SQLException e1) {
+                return "An SQL error occured when closing database connection";
+            }
             return "An SQL error occured when checking if database is empty";
-		}
+        }
     }
 
-	private static Connection openConnection() throws ClassNotFoundException, SQLException {
-		Class.forName(SessionFactory.getDriverClass());
-		Connection conn = DriverManager.getConnection(SessionFactory.getDatabaseUrl(),
-				SessionFactory.getUserName(),
-				SessionFactory.getPassword());
-		return conn;
-	}
+    private static Connection openConnection() throws ClassNotFoundException, SQLException {
+        Class.forName(SessionFactory.getDriverClass());
+        Connection conn = DriverManager.getConnection(SessionFactory.getDatabaseUrl(),
+                SessionFactory.getUserName(),
+                SessionFactory.getPassword());
+        return conn;
+    }
 
     /**
      * Method to return a connection based on the database url, username and password provided
+     *
      * @param databaseUrl
      * @param username
      * @param password
@@ -238,66 +242,67 @@ public class DatabaseConnectionUtils {
      */
     private static Connection openConnection(String databaseUrl, String username, String password) throws ClassNotFoundException, SQLException {
         Class.forName(SessionFactory.getDriverClass());
-		Connection conn = DriverManager.getConnection(databaseUrl,
-				username,
-				password);
-		return conn;
+        Connection conn = DriverManager.getConnection(databaseUrl,
+                username,
+                password);
+        return conn;
     }
 
-	public static String getErrorString() {
-		return errorString;
-	}
+    public static String getErrorString() {
+        return errorString;
+    }
 
-	public static void setErrorString(String errorString) {
-		DatabaseConnectionUtils.errorString = errorString;
-	}
+    public static void setErrorString(String errorString) {
+        DatabaseConnectionUtils.errorString = errorString;
+    }
 
-	public static DatabaseVersion getDatabaseVersionInfo(Connection conn) throws SQLException {
+    public static DatabaseVersion getDatabaseVersionInfo(Connection conn) throws SQLException {
 
-		String dummySQL = "SELECT Constants.majorVersion, Constants.minorVersion, Constants.updateVersion FROM Constants";
-		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery(dummySQL);
+        String dummySQL = "SELECT Constants.majorVersion, Constants.minorVersion, Constants.updateVersion FROM Constants";
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(dummySQL);
 //		rs.next();
 //		return new DatabaseVersion(rs.getInt(1), rs.getInt(2), rs.getInt(3));
-		if (rs.next()) {
-			return new DatabaseVersion(rs.getInt(1), rs.getInt(2), rs.getInt(3));
+        if (rs.next()) {
+            return new DatabaseVersion(rs.getInt(1), rs.getInt(2), rs.getInt(3));
 //            if (rs.isLast()) {
 //                return new DatabaseVersion(rs.getInt(1), rs.getInt(2), rs.getInt(3));
 //            } else {
 //                return null;
 //            }
-		} else {
-			return null;
-		}
-	}
+        } else {
+            return null;
+        }
+    }
 
-	public static class DatabaseVersion {
-		private int majorVersion;
-		private int minorVersion;
-		private int updateVersion;
+    public static class DatabaseVersion {
+        private int majorVersion;
+        private int minorVersion;
+        private int updateVersion;
 
-		public DatabaseVersion(int majorVersion, int minorVersion, int updateVersion) {
-			this.majorVersion = majorVersion;
-			this.minorVersion = minorVersion;
-			this.updateVersion = updateVersion;
-		}
+        public DatabaseVersion(int majorVersion, int minorVersion, int updateVersion) {
+            this.majorVersion = majorVersion;
+            this.minorVersion = minorVersion;
+            this.updateVersion = updateVersion;
+        }
 
 
-		public int getMajorVersion() {
-			return majorVersion;
-		}
+        public int getMajorVersion() {
+            return majorVersion;
+        }
 
-		public int getMinorVersion() {
-			return minorVersion;
-		}
+        public int getMinorVersion() {
+            return minorVersion;
+        }
 
-		public int getUpdateVersion() {
-			return updateVersion;
-		}
-	}
+        public int getUpdateVersion() {
+            return updateVersion;
+        }
+    }
 
     /**
      * Method to read in saved connection information from a text file
+     *
      * @return A hashmap containing any saved database connection objects
      */
     public static HashMap loadDatabaseConnectionInformation() {
@@ -309,7 +314,7 @@ public class DatabaseConnectionUtils {
         File file = new File(filename);
 
         // if file exists then read in database information
-        if(file.exists()) {
+        if (file.exists()) {
             try {
                 //use buffering, reading one line at a time
                 //FileReader always assumes default encoding is OK!
@@ -323,7 +328,7 @@ public class DatabaseConnectionUtils {
                     * it returns an empty String if two newlines appear in a row.
                     */
                     while ((line = input.readLine()) != null) {
-                        if(!line.startsWith("##")) { // skip header information
+                        if (!line.startsWith("##")) { // skip header information
                             String[] sa = line.split("\\s*\\t\\s*");
                             DatabaseConnectionInformation dbInfo = new DatabaseConnectionInformation();
                             dbInfo.setDatabaseURL(sa[0]);
@@ -370,13 +375,13 @@ public class DatabaseConnectionUtils {
             Map sortedMap = new TreeMap(savedConnections); // sort the hashmap
 
             Collection c = sortedMap.values();
-            
+
             //obtain an Iterator for Collection
             Iterator itr = c.iterator();
 
             //iterate through HashMap values iterator
             while (itr.hasNext()) {
-                DatabaseConnectionInformation dbinfo = (DatabaseConnectionInformation)itr.next();
+                DatabaseConnectionInformation dbinfo = (DatabaseConnectionInformation) itr.next();
                 buffer.append(dbinfo.getDatabaseURL()).append("\t");
                 buffer.append(dbinfo.getUsername()).append("\t");
                 buffer.append(dbinfo.getPassword()).append("\t");
@@ -387,7 +392,7 @@ public class DatabaseConnectionUtils {
             Writer output = new BufferedWriter(new FileWriter(file));
             output.write(buffer.toString());
             output.close();
-        } catch(IOException e) { // just print the stack trace for now
+        } catch (IOException e) { // just print the stack trace for now
             e.printStackTrace();
         }
     }

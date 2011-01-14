@@ -30,7 +30,6 @@ import org.archiviststoolkit.model.Subjects;
 import org.archiviststoolkit.mydomain.*;
 import org.archiviststoolkit.structure.*;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,6 +41,7 @@ public class PatronPublications extends DomainObject implements SubjectEnabledMo
 	public static final String PROPERTYNAME_PUBLISHER = "publisher";
 	public static final String PROPERTYNAME_COLLABORATORS = "collaborators";
 	public static final String PROPERTYNAME_SUBJECTS = "subjects";
+	public static final String PROPERTYNAME_NAMES = "names";
 
 	@IncludeInApplicationConfiguration
 	@ExcludeFromDefaultValues
@@ -50,11 +50,10 @@ public class PatronPublications extends DomainObject implements SubjectEnabledMo
 	@IncludeInApplicationConfiguration (1)
 	@DefaultIncludeInSearchEditor
 	@ExcludeFromDefaultValues
-	private Date publicationDate;
+	private String publicationDate;
 
 	@IncludeInApplicationConfiguration(3)
 	@DefaultIncludeInSearchEditor
-	@ExcludeFromDefaultValues
 	private String publicationType;
 
 	@IncludeInApplicationConfiguration(2)
@@ -81,7 +80,7 @@ public class PatronPublications extends DomainObject implements SubjectEnabledMo
 		publicationTitle = "";
 	}
 
-	public PatronPublications(Date publicationDate) {
+	public PatronPublications(String publicationDate) {
 		this.publicationDate = publicationDate;
 		publicationTitle = "";
 	}
@@ -91,7 +90,7 @@ public class PatronPublications extends DomainObject implements SubjectEnabledMo
 		publicationTitle = "";
 	}
 
-	public PatronPublications(Date publicationDate, String publicationTitle, String publisher, Patrons name) {
+	public PatronPublications(String publicationDate, String publicationTitle, String publisher, Patrons name) {
 		this.publicationDate = publicationDate;
 		this.publicationTitle = "";
 		this.publicationTitle = publicationTitle;
@@ -121,11 +120,11 @@ public class PatronPublications extends DomainObject implements SubjectEnabledMo
 		this.patronPublicationId = patronPublicationId;
 	}
 
-	public Date getPublicationDate() {
+	public String getPublicationDate() {
 		return this.publicationDate;
 	}
 
-	public void setPublicationDate(Date publicationDate) {
+	public void setPublicationDate(String publicationDate) {
 //		Object oldValue = getFundingDate();
 		this.publicationDate = publicationDate;
 //		firePropertyChange(PROPERTYNAME_SUBJECT_TERM, oldValue, publicationDate);
@@ -141,7 +140,7 @@ public class PatronPublications extends DomainObject implements SubjectEnabledMo
 	}
 
 	public void setPublicationTitle(String publicationTitle) {
-//		Object oldValue = getDescription();
+//		Object oldValue = getNotes();
 		this.publicationTitle = publicationTitle;
 //		firePropertyChange(PROPERTYNAME_SUBJECT_TERM_TYPE, oldValue, subject);
 	}
@@ -292,7 +291,7 @@ public class PatronPublications extends DomainObject implements SubjectEnabledMo
 		if (containsNameLink(name.getSortName())) {
 			throw new DuplicateLinkException(name.getSortName());
 		} else {
-			PatronPublicationsNames link = new PatronPublicationsNames(name, this);
+			PatronPublicationsNames link = new PatronPublicationsNames(name, this, role, form);
 			if (addName(link)) {
 				return (link);
 			} else {

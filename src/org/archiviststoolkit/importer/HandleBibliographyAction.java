@@ -43,7 +43,7 @@ public class HandleBibliographyAction implements Action
             //          has been changed from a streaming type to an intrinsic data type 
             //          without calling clearParameters() first.
             //if (head==null)head = "";            
-            //appBibElement.setUnits(head);
+            //appBibElement.setTitle(head);
             EADHelper.setProperty(appBibElement,"title",head);
             String nh = EADHelper.ArrayListofNodesToString(notHandled);
             //TODO work around to fix strange errror

@@ -247,6 +247,39 @@ public class DomainAccessObjectImpl implements DomainAccessObject, DomainAccessL
 		this.notifyListeners(new DomainAccessEvent(DomainAccessEvent.UPDATE, domainObject));
 	}
 
+    /**
+     * Method to update a domain object with that excepts a session
+     *
+     * @param domainObject
+     * @param session
+     * @throws PersistenceException
+     */
+    public final void update(final DomainObject domainObject, Session session) throws PersistenceException {
+        Transaction tx = null;
+
+        try {
+            updateClassSpecific(domainObject, session);
+            tx = session.beginTransaction();
+            session.saveOrUpdate(domainObject);
+            tx.commit();
+        } catch (HibernateException hibernateException) {
+            try {
+                tx.rollback();
+            } catch (HibernateException e) {
+                //todo log error
+            }
+            throw new PersistenceException("failed to update, class: " + this.getClass() + " object: " + domainObject, hibernateException);
+        } catch (Exception sqlException) {
+            try {
+                tx.rollback();
+            } catch (HibernateException e) {
+                //todo log error
+            }
+            throw new PersistenceException("failed to update, class: " + this.getClass() + " object: " + domainObject, sqlException);
+        }
+
+        this.notifyListeners(new DomainAccessEvent(DomainAccessEvent.UPDATE, domainObject));
+    }
 
 	/**
 	 * Update the instance within this DAO.
@@ -430,7 +463,7 @@ public class DomainAccessObjectImpl implements DomainAccessObject, DomainAccessL
 	 * @throws LookupException fails if we cannot execute the lookup
 	 */
 
-	private DomainObject findByPrimaryKeyCommon(final Long identifier, Session session) throws LookupException {
+    public DomainObject findByPrimaryKeyCommon(final Long identifier, Session session) throws LookupException {
 
 		DomainObject domainObject;
 
@@ -585,7 +618,7 @@ public class DomainAccessObjectImpl implements DomainAccessObject, DomainAccessL
 	}
 
 	public void closeLongSessionRollback() throws SQLException {
-		if(longSession.isOpen()) { // check to see of the long session is open before trying to close it
+        if (longSession.isOpen()) { // check to see of the long session is open before trying to close it
             longSession.connection().rollback();
 		    SessionFactory.getInstance().closeSession(longSession);
         }
@@ -743,11 +776,11 @@ public class DomainAccessObjectImpl implements DomainAccessObject, DomainAccessL
 			return findByQueryEditorAlt(editor, progressPanel);
 
 		} else if (!includeComponents) {
-			Session session = SessionFactory.getInstance().openSession(getPersistentClass());
+            Session session = SessionFactory.getInstance().openSession(null, getPersistentClass(), true);
 			Criteria criteria = processQueryEditorCriteria(session, editor.getClazz(), editor);
 
             // if searching digital object then need to see if to only search for parent digital objects
-            if(persistentClass == DigitalObjects.class && !editor.getIncludeComponents()) {
+            if (persistentClass == DigitalObjects.class && !editor.getIncludeComponents()) {
                 criteria.add(Restrictions.isNull("parent"));
             }
 
@@ -761,7 +794,7 @@ public class DomainAccessObjectImpl implements DomainAccessObject, DomainAccessL
 			HashMap<ResourcesComponents, Resources> componentParentResourceMap = new HashMap<ResourcesComponents, Resources>();
 
 
-			Session session = SessionFactory.getInstance().openSession(getPersistentClass());
+            Session session = SessionFactory.getInstance().openSession(null, getPersistentClass(), true);
 
 			ATSearchCriterion comparison1 = editor.getCriterion1();
 			ATSearchCriterion comparison2 = editor.getCriterion2();
@@ -815,8 +848,10 @@ public class DomainAccessObjectImpl implements DomainAccessObject, DomainAccessL
 					component = (ResourcesComponents) object;
 					progressPanel.setTextLine("Gathering resources by component matches " + count++ + " of " + numberOfComponents, 2);
 					resource = resourceDao.findResourceByComponent(component);
+                    if (doesUserHaveAccessRightsToResource(resource)) {
 					resourcesAndComponetsResults.add(new ResourcesComponentsSearchResult(resource, component, comparison1.getContext()));
 				}
+                }
 				SessionFactory.getInstance().closeSession(session);
 				return resourcesAndComponetsResults;
 
@@ -879,16 +914,41 @@ public class DomainAccessObjectImpl implements DomainAccessObject, DomainAccessL
 		for (Object o : collection) {
 			if (o instanceof Resources) {
 				resource = (Resources) o;
+                if (doesUserHaveAccessRightsToResource(resource)) {
 				resourcesAndComponetsResults.add(new ResourcesComponentsSearchResult(resource, contextMap.get(resource)));
+                }
 			} else if (o instanceof ResourcesComponents && componentParentResourceMap != null) {
 				component = (ResourcesComponents) o;
 				resource = componentParentResourceMap.get(component);
-				if (resource != null) {
+                if (resource != null &&
+                        doesUserHaveAccessRightsToResource(resource)) {
 					resourcesAndComponetsResults.add(new ResourcesComponentsSearchResult(resource, component, contextMap.get(component)));
 				}
 			}
 		}
 	}
+
+    /**
+     * Method to check to see if the user has the rights to access the resource that
+     * was return from a search based on if they have the right to access records from the
+     * repository of the return resource record
+     *
+     * @param resource The resource to check
+     * @return true if the user can access the resource, false if they can't
+     */
+    private boolean doesUserHaveAccessRightsToResource(Resources resource) {
+        if (ApplicationFrame.getInstance().getCurrentUser() != null &&
+                !Users.doesCurrentUserHaveAccess(Users.ACCESS_CLASS_SUPERUSER)) {
+
+            if (ApplicationFrame.getInstance().getCurrentUser().getRepository().equals(resource.getRepository())) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        return true; // just return true to allow user to access the resource
+    }
 
 	private Criteria processQueryEditorCriteria(Session session, Class clazz, QueryEditor editor) {
 		Criteria criteria = session.createCriteria(clazz);
@@ -941,11 +1001,11 @@ public class DomainAccessObjectImpl implements DomainAccessObject, DomainAccessL
 			subsequentCollections = new HashSet();
 			humanReadableSearchString = "";
 			for (QueryEditor.CriteriaRelationshipPairs criteriaPair : editor.getAltFormCriteria()) {
-				session = SessionFactory.getInstance().openSession(getPersistentClass());
+                session = SessionFactory.getInstance().openSession(null, getPersistentClass(), true);
 				criteria = processCriteria(session, editor.getClazz(), criteriaPair);
 
                 // if searching digital objects then need to see if to only search for parent digital objects
-                if(persistentClass == DigitalObjects.class && !editor.getIncludeComponents()) {
+                if (persistentClass == DigitalObjects.class && !editor.getIncludeComponents()) {
                     criteria.add(Restrictions.isNull("parent"));
                 }
 

@@ -214,7 +214,7 @@
             <one-to-many class="PatronPhoneNumbers"/>
         </set>
 
-        <set name="completedForms"
+        <set name="patronForms"
              cascade="all-delete-orphan"
              inverse="true"
              lazy="true"
@@ -222,7 +222,7 @@
             <key>
                 <column name="patronId" not-null="true"/>
             </key>
-            <one-to-many class="CompletedForms"/>
+            <one-to-many class="PatronForms"/>
         </set>
 
 

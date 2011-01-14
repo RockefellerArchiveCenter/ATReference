@@ -35,7 +35,9 @@
 		<!--<property name="connection.pool_size">10</property>-->
 
 		<property name="hibernate.c3p0.min_size">5</property>
-		 <property name="hibernate.c3p0.max_size">100</property>
+        <!--This maxsize was changed from a 100 to 15 on 8/30/2010-->
+        <property name="hibernate.c3p0.max_size">15</property>
+        <property name="hibernate.c3p0.timeout">299</property>
 		 <!--<property name="hibernate.c3p0.timeout">300</property>-->
 		 <!--<property name="hibernate.c3p0.max_statements">50</property>-->
 		 <!--<property name="hibernate.c3p0.idle_test_period">3000</property>-->
@@ -133,7 +135,7 @@
         <!--mapping for services-->
         <mapping resource="org/rac/model/Services.hbm.xml"/>
         <!--mapping for forms completed by patorns-->
-        <mapping resource="org/rac/model/CompletedForms.hbm.xml"/>
+        <mapping resource="org/rac/model/PatronForms.hbm.xml"/>
 
 	</session-factory>
 

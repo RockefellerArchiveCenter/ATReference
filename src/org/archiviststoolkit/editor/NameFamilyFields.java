@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -130,7 +130,6 @@ public class NameFamilyFields extends NamePrimaryNameFields {
 		add(label_nameFamilyName, cc.xy(1, 3));
 
 		//---- nameFamilyName ----
-		nameFamilyName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		nameFamilyName.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -146,7 +145,6 @@ public class NameFamilyFields extends NamePrimaryNameFields {
 		add(label_nameFamilyNamePrefix, cc.xy(1, 5));
 
 		//---- nameFamilyNamePrefix ----
-		nameFamilyNamePrefix.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		nameFamilyNamePrefix.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -162,7 +160,6 @@ public class NameFamilyFields extends NamePrimaryNameFields {
 		add(label_nameFamilyQualifier, cc.xy(1, 7));
 
 		//---- nameFamilyQualifier ----
-		nameFamilyQualifier.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		nameFamilyQualifier.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -179,7 +176,6 @@ public class NameFamilyFields extends NamePrimaryNameFields {
 
 		//---- nameSource ----
 		nameSource.setOpaque(false);
-		nameSource.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		nameSource.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sortNameConstruction(e);
@@ -195,7 +191,6 @@ public class NameFamilyFields extends NamePrimaryNameFields {
 
 		//---- nameRule ----
 		nameRule.setOpaque(false);
-		nameRule.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		nameRule.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sortNameConstruction(e);
@@ -228,9 +223,6 @@ public class NameFamilyFields extends NamePrimaryNameFields {
 			label_sortName2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			ATFieldInfo.assignLabelInfo(label_sortName2, Names.class, Names.PROPERTYNAME_SORT_NAME);
 			panel4.add(label_sortName2, cc.xy(1, 1));
-
-			//---- sortName ----
-			sortName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			panel4.add(sortName, cc.xy(3, 1));
 
 			//---- namePersonalDirectOrder2 ----

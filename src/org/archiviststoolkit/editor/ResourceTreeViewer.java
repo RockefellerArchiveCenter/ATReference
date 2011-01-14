@@ -22,6 +22,9 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.*;
 import net.antonioshome.swing.treewrapper.TreeWrapper;
 import org.archiviststoolkit.ApplicationFrame;
+import org.archiviststoolkit.plugin.ATPluginFactory;
+import org.archiviststoolkit.plugin.ATPlugin;
+import org.archiviststoolkit.plugin.RDEPlugin;
 import org.archiviststoolkit.dialog.ATFileChooser;
 import org.archiviststoolkit.dialog.ErrorDialog;
 import org.archiviststoolkit.dialog.LocationAssignmentResources;
@@ -61,9 +64,11 @@ import java.awt.event.MouseListener;
 import java.io.*;
 import java.util.EventObject;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class ResourceTreeViewer extends DomainEditorFields implements MouseListener {
-
+    private ArrayList<ATPlugin> plugins = null; // stores any RDE plugins
+    private HashMap<String, RDEPlugin> rdePlugins = null; // stores any panels from the RDE plugins
 	private static String ABOVE = "above";
 	private static String BELOW = "below";
 
@@ -87,6 +92,9 @@ public class ResourceTreeViewer extends DomainEditorFields implements MouseListe
 		initMenu();
 		resourcePanel = new ResourceFields();
 		resourceComponentsPanel = new ResourceComponentsFields();
+
+        // load any rapid data entry screen plugins
+        initPlugins();
 	}
 
 	private void addChildActionPerformed(ActionEvent e) {
@@ -280,8 +288,15 @@ public class ResourceTreeViewer extends DomainEditorFields implements MouseListe
                         dialog = rdeDialogs.get(title);
                     } else { // create new dialog and catch it
                         RdePanelContainer container = RDEFactory.getInstance().getContainer(title);
+
+                        // check to see if to load rde dialog or rde plugin
+                        if (container != null) {
                         dialog = new RapidResourceComponentDataEntry2(this.getParentEditor(), resourceModel, container);
                         rdeDialogs.put(title, dialog);
+                        } else {
+                            selectRapidDataEntryPlugin(title);
+                            return;
+                        }
                     }
 
                     Boolean done = false;
@@ -468,7 +483,6 @@ public class ResourceTreeViewer extends DomainEditorFields implements MouseListe
 			resourceTitle.setEditable(false);
 			resourceTitle.setOpaque(false);
 			resourceTitle.setBorder(null);
-			resourceTitle.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			panel6.add(resourceTitle, cc.xywh(5, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
 
 			//---- label3 ----
@@ -1120,4 +1134,51 @@ public class ResourceTreeViewer extends DomainEditorFields implements MouseListe
 	public void updateJTree() {
 		resourceTree.updateUI();
 	}
+
+    /**
+     * Method that initializes any rapid data entry plugins. RDE plugins are subplugins that
+     * are contained within regualr plugins, but get added to the rapid data entry drop down
+     * menu
+     */
+    private void initPlugins() {
+        rdePlugins = new HashMap<String, RDEPlugin>();
+
+        plugins = ATPluginFactory.getInstance().getRapidDataEntryPlugins();
+        if (plugins != null) {
+            for (ATPlugin plugin : plugins) {
+                plugin.setEditorField(this);
+
+                // get the plugin panels which may be JPanels or even JDialogs
+                HashMap pluginPanels = plugin.getRapidDataEntryPlugins();
+                for (Object key : pluginPanels.keySet()) {
+                    String panelName = (String) key;
+                    RDEPlugin rdePlugin = (RDEPlugin) pluginPanels.get(key);
+
+                    rdePlugins.put(panelName, rdePlugin);
+                    rapidDataentryScreens.addItem(panelName);
+                }
+            }
+        }
+    }
+
+    /**
+     * Method to launch the appropriate Rapid Data Entry plugin.
+     * This plugin can either launch a dialog, or just execute program
+     * logic.
+     *
+     * @param title The title of the rde plugin used to find it in the
+     *              hashmap
+     */
+    private void selectRapidDataEntryPlugin(String title) {
+        RDEPlugin rdePlugin = rdePlugins.get(title);
+
+        // ok now we have a jpanel lets do something interesting
+        rdePlugin.setModel((Resources)this.getModel(), currentResourcesCommon);
+
+        if (rdePlugin.hasDialog()) {
+            rdePlugin.showPlugin(getParentEditor(), title);
+        } else {
+            rdePlugin.doTask();
+        }
+    }
 }
