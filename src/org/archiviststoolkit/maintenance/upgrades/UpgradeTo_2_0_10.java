@@ -49,7 +49,7 @@ public class UpgradeTo_2_0_10 extends Upgrade {
 	}
 
 	protected boolean upgradeNeeded(Connection conn) throws SQLException {
-		return Constants.compareVersions("2.0.11", DatabaseConnectionUtils.getDatabaseVersionInfo(conn)) == Constants.VERSION_GREATER;
+		return Constants.compareVersions("2.0.10", DatabaseConnectionUtils.getDatabaseVersionInfo(conn)) == Constants.VERSION_GREATER;
 	}
 
 	protected boolean runPostDBInitializationSQLCode(Connection conn) {
