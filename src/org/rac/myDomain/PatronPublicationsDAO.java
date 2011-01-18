@@ -26,6 +26,7 @@ import org.archiviststoolkit.mydomain.DomainAccessObjectImpl;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.rac.model.PatronPublications;
+import org.rac.model.PatronPublicationsNames;
 import org.rac.model.PatronPublicationsSubjects;
 
 import java.util.Collection;
@@ -42,6 +43,15 @@ public class PatronPublicationsDAO extends DomainAccessObjectImpl {
 		return  session.createCriteria(PatronPublications.class)
 				.createCriteria(PatronPublications.PROPERTYNAME_SUBJECTS)
 					.add(Restrictions.eq(PatronPublicationsSubjects.PROPERTYNAME_SUBJECT, subject)).list();
+
+	}
+
+	public Collection findByName(Names name) {
+
+		Session session = SessionFactory.getInstance().openSession();
+		return  session.createCriteria(PatronPublications.class)
+				.createCriteria(PatronPublications.PROPERTYNAME_NAMES)
+					.add(Restrictions.eq(PatronPublicationsNames.PROPERTYNAME_NAME, name)).list();
 
 	}
 }

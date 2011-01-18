@@ -58,11 +58,6 @@ public class PatronAddressesValidator extends ATAbstractValidator {
 			support.addError(ATFieldInfo.getFieldInfo(PatronAddresses.class, PatronAddresses.PROPERTYNAME_CITY).getFieldLabel(),
 					"is mandatory");
 
-		//region is mandatory
-		if (ValidationUtils.isBlank(modelToValidate.getRegion()))
-			support.addError(ATFieldInfo.getFieldInfo(PatronAddresses.class, PatronAddresses.PROPERTYNAME_REGION).getFieldLabel(),
-					"is mandatory");
-
 		//mail code is mandatory
 		if (ValidationUtils.isBlank(modelToValidate.getMailCode()))
 			support.addError(ATFieldInfo.getFieldInfo(PatronAddresses.class, PatronAddresses.PROPERTYNAME_MAIL_CODE).getFieldLabel(),

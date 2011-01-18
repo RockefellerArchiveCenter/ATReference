@@ -34,7 +34,9 @@ import java.util.Collection;
 public class LocationsUtils {
 
 	private static SortedList locationsGlazedList;
-	/** event list that hosts the issues */
+    /**
+     * event list that hosts the issues
+     */
 	private static EventList locationEventList = new BasicEventList();
 
 	public static SortedList getLocationsGlazedList() {
@@ -43,6 +45,10 @@ public class LocationsUtils {
 
 	public static void initLocationLookupList() {
 		try {
+            // clear the event list so we done get duplicates if this
+            // method is called more than once
+            locationEventList.clear();
+
 			DomainAccessObject dao = DomainAccessObjectFactory.getInstance().getDomainAccessObject(Locations.class);
 			locationEventList.addAll(dao.findAll(LockMode.READ));
 			locationsGlazedList = new SortedList(locationEventList);
@@ -75,9 +81,9 @@ public class LocationsUtils {
 			int count = locations.size();
 
 
-			for (Object object: locations) {
+            for (Object object : locations) {
 				System.out.println(count--);
-				location = (Locations)object;
+                location = (Locations) object;
 				oldLabel = location.getCoordinate1Label();
 				update = false;
 				if (oldLabel != null && oldLabel.length() > 0) {

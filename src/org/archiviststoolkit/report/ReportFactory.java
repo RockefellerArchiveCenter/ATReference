@@ -40,6 +40,7 @@ import java.awt.*;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import org.rac.model.Patrons;
 
 
 /**
@@ -93,8 +94,9 @@ public final class ReportFactory {
             initClassLookups(Assessments.class);
             initClassLookups(AssessmentsSearchResult.class);
             initClassLookups(DigitalObjects.class);
-            initClassLookups(ResourcesComponentsSearchResult.class);
-        } catch (UnsupportedClassException e) {
+			initClassLookups(ResourcesComponentsSearchResult.class);
+			initClassLookups(Patrons.class);
+          } catch (UnsupportedClassException e) {
             new ErrorDialog(ApplicationFrame.getInstance(), "Error initializing reports", e).showDialog();
         } catch (JRException e) {
             new ErrorDialog(ApplicationFrame.getInstance(), "Error initializing reports", e).showDialog();
@@ -268,8 +270,10 @@ public final class ReportFactory {
 					currentClass = Assessments.class;
                 } else if (directoryName.equalsIgnoreCase("digitalobjects")) {
 					currentClass = DigitalObjects.class;
-                } else if (directoryName.equalsIgnoreCase("resourcescomponentssearchresult")) {
+				} else if (directoryName.equalsIgnoreCase("resourcescomponentssearchresult")) {
 					currentClass = ResourcesComponentsSearchResult.class;
+				} else if (directoryName.equalsIgnoreCase("patrons")) {
+					currentClass = Patrons.class;
                 }
 
                 if (currentClass != null) {

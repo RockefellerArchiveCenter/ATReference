@@ -60,6 +60,9 @@ public final class SessionFactory {
 	public static final String DATABASE_TYPE_ORACLE = "Oracle";
 	public static final String DATABASE_TYPE_MICROSOFT_SQL_SERVER = "Microsoft SQL Server";
 
+    // setup a database type of Internal which is just an embedded hypersql
+    public static final String DATABASE_TYPE_INTERNAL = "Internal Database";
+
 	/**
      * Singleton instance handle.
      */
@@ -98,6 +101,7 @@ public final class SessionFactory {
             } else {
                 properties.setProperty("hibernate.connection.url", getDatabaseUrl());
             }
+
 			//deal with oracle specific settings
 			if (SessionFactory.databaseType.equals(DATABASE_TYPE_ORACLE)) {
 				properties.setProperty("hibernate.jdbc.batch_size", "0");
@@ -308,6 +312,9 @@ public final class SessionFactory {
 		} else if (databaseType.equals(DATABASE_TYPE_ORACLE)) {
 			setDriverClass("oracle.jdbc.OracleDriver");
 			setHibernateDialect("org.hibernate.dialect.Oracle10gDialect");
+        } else if (databaseType.equals(DATABASE_TYPE_INTERNAL)) {
+            setDriverClass("org.hsqldb.jdbcDriver");
+            setHibernateDialect("org.hibernate.dialect.HSQLDialect");
 		} else {
 			throw new UnsupportedDatabaseType(databaseType);
 		}
@@ -342,10 +349,12 @@ public final class SessionFactory {
 		returnVector.add(DATABASE_TYPE_MYSQL);
 		returnVector.add(DATABASE_TYPE_ORACLE);
 		returnVector.add(DATABASE_TYPE_MICROSOFT_SQL_SERVER);
+        returnVector.add(DATABASE_TYPE_INTERNAL);
+
 //		returnVector.add("zBadDatabaseType");
 		Collections.sort(returnVector);
 		if (addBlankAtBeginning) {
-			returnVector.add(0,"");
+            returnVector.add(0, "");
 		}
 		return returnVector;
 	}

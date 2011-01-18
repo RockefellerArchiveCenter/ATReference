@@ -86,12 +86,14 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			}
 		}
 
-		//deal with subject search
+		//deal with subject and names search
 		PatronQueryEditor patronQueryEditor = (PatronQueryEditor) editor;
 		Subjects selectedSubject = patronQueryEditor.getSelectedSubject();
+		Names selectedName = patronQueryEditor.getSelectedName();
 		Collection patrons = null;
 		String localHumanReadableSearchString;
 		Set subjectCollection = new HashSet();
+		Set nameCollection = new HashSet();
 
 		if (selectedSubject != null) {
 			//time to search through 2 tiers of records
@@ -99,15 +101,11 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			localHumanReadableSearchString = StringHelper.concat(" <font color='red'>and</font> ", getHumanReadableSearchString(), " Subject equals " + selectedSubject.getSubjectTerm());
 			setHumanReadableSearchString(localHumanReadableSearchString);
 
+			//now search for subjects associated with visits
 			patrons = new HashSet();
 			PatronVisitsDAO visitLookup = new PatronVisitsDAO();
 			ArrayList patronVisits = new ArrayList(visitLookup.findBySubject(selectedSubject));
 			subjectCollection = findPatronsBySubject(returnCollection, patrons, patronVisits);
-//			if (returnCollection.size() == 0) {
-//				returnCollection = subsequentCollections;
-//			} else {
-//				returnCollection.retainAll(subsequentCollections);
-//			}
 
 			//now search for subjects associated with publications
 			patrons = new HashSet();
@@ -120,6 +118,33 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 				returnCollection = subjectCollection;
 			} else {
 				returnCollection.retainAll(subjectCollection);
+			}
+
+		}
+
+		if (selectedName != null) {
+			//time to search through 2 tiers of records
+			//there is probably a hibernate way to do this but here we do it the brute force way.
+			localHumanReadableSearchString = StringHelper.concat(" <font color='red'>and</font> ", getHumanReadableSearchString(), " Subject equals " + selectedName.getSortName());
+			setHumanReadableSearchString(localHumanReadableSearchString);
+
+			//now search for names associated with visits
+			patrons = new HashSet();
+			PatronVisitsDAO visitLookup = new PatronVisitsDAO();
+			ArrayList patronVisits = new ArrayList(visitLookup.findByName(selectedName));
+			nameCollection = findPatronsByName(returnCollection, patrons, patronVisits);
+
+			//now search for names associated with publications
+			patrons = new HashSet();
+			PatronPublicationsDAO publicationsLookup = new PatronPublicationsDAO();
+			ArrayList patronPublications = new ArrayList(publicationsLookup.findByName(selectedName));
+			nameCollection = findPatronsByName(returnCollection, patrons, patronPublications);
+
+
+			if (returnCollection.size() == 0) {
+				returnCollection = nameCollection;
+			} else {
+				returnCollection.retainAll(nameCollection);
 			}
 
 		}
@@ -142,150 +167,25 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			patrons.add(patronToAdd);
 		}
 		subjectCollection.addAll(patrons);
-//		if (subjectCollection.size() == 0) {
-//			subjectCollection = new HashSet(patrons);
-//		} else {
-//			subjectCollection.retainAll(patrons);
-//		}
+
 		return subjectCollection;
 	}
 
-	/**
-	 * Find a collection of domain objects by direct hql query.
-	 *
-	 * @param editor an AT query editor
-	 * @return the collection of domain objects
-	 */
-//	public final Collection findByQueryEditor(final QueryEditor editor, InfiniteProgressPanel progressPanel) {
-//
-//		boolean includeComponents = false;
-//		if (persistentClass == Resources.class && editor.getIncludeComponents()) {
-//			includeComponents = true;
-//		}
-//		if (editor.getAlternateQuery()) {
-//			return findByQueryEditorAlt(editor, progressPanel);
-//
-//		} else if (!includeComponents) {
-//			Session session = SessionFactory.getInstance().openSession(getPersistentClass());
-//			Criteria criteria = processQueryEditorCriteria(session, editor.getClazz(), editor);
-//
-//            // if searching digital object then need to see if to only search for parent digital objects
-//            if(persistentClass == DigitalObjects.class && !editor.getIncludeComponents()) {
-//                criteria.add(Restrictions.isNull("parent"));
-//            }
-//
-//            Collection collection = criteria.list();
-//			SessionFactory.getInstance().closeSession(session);
-//			return collection;
-//
-//		} else {
-//			Collection<ResourcesComponentsSearchResult> resourcesAndComponetsResults = new ArrayList<ResourcesComponentsSearchResult>();
-//			HashMap<DomainObject, String> contextMap = new HashMap<DomainObject, String>();
-//			HashMap<ResourcesComponents, Resources> componentParentResourceMap = new HashMap<ResourcesComponents, Resources>();
-//
-//
-//			Session session = SessionFactory.getInstance().openSession(getPersistentClass());
-//
-//			ATSearchCriterion comparison1 = editor.getCriterion1();
-//			ATSearchCriterion comparison2 = editor.getCriterion2();
-//
-//
-//			Criteria criteria = session.createCriteria(editor.getClazz());
-//			criteria.add(comparison1.getCiterion());
-//			Collection collection = criteria.list();
-//
-//			if (comparison2.getCiterion() == null) {
-//				addContextInfo(contextMap, collection, comparison1.getContext());
-//				addResourcesCommonToComponetResultSet(collection, resourcesAndComponetsResults, contextMap);
-//				humanReadableSearchString = comparison1.getSearchString();
-//			} else {
-//				// we have a boolean search
-//				Set returnCollection = new HashSet(collection);
-//				criteria = session.createCriteria(editor.getClazz());
-//				criteria.add(comparison2.getCiterion());
-//				Collection collection2 = criteria.list();
-//				if (editor.getChosenBoolean1().equalsIgnoreCase("and")) {
-//					returnCollection.retainAll(collection2);
-//					humanReadableSearchString = comparison1.getSearchString() + " and " + comparison2.getSearchString();
-//				} else {
-//					returnCollection.addAll(collection2);
-//					humanReadableSearchString = comparison1.getSearchString() + " or " + comparison2.getSearchString();
-//				}
-//				addContextInfo(contextMap, collection, comparison1.getContext());
-//				addContextInfo(contextMap, collection2, comparison2.getContext());
-//				addResourcesCommonToComponetResultSet(returnCollection, resourcesAndComponetsResults, contextMap);
-//
-//			}
-//			SessionFactory.getInstance().closeSession(session);
-//
-//
-//			Resources resource;
-////			addResourcesCommonToComponetResultSet(collection, resourcesAndComponetsResults, null);
-//
-//			ResourcesDAO resourceDao = new ResourcesDAO();
-//			progressPanel.setTextLine("Searching for components that match the criteria", 2);
-//
-//			session = SessionFactory.getInstance().openSession(ResourcesComponents.class);
-//			criteria = session.createCriteria(ResourcesComponents.class);
-//			criteria.add(comparison1.getCiterion());
-//			Collection components = criteria.list();
-//			addContextInfo(contextMap, components, comparison1.getContext());
-//			ResourcesComponents component;
-//			if (comparison2.getCiterion() == null) {
-//				int numberOfComponents = components.size();
-//				int count = 1;
-//				for (Object object : components) {
-//					component = (ResourcesComponents) object;
-//					progressPanel.setTextLine("Gathering resources by component matches " + count++ + " of " + numberOfComponents, 2);
-//					resource = resourceDao.findResourceByComponent(component);
-//					resourcesAndComponetsResults.add(new ResourcesComponentsSearchResult(resource, component, comparison1.getContext()));
-//				}
-//				SessionFactory.getInstance().closeSession(session);
-//				return resourcesAndComponetsResults;
-//
-//			} else {
-//
-//				criteria = session.createCriteria(ResourcesComponents.class);
-//				criteria.add(comparison2.getCiterion());
-//				Collection components2 = criteria.list();
-//				addContextInfo(contextMap, components2, comparison2.getContext());
-//
-//				Set returnCollection = new HashSet(components);
-//				if (editor.getChosenBoolean1().equalsIgnoreCase("and")) {
-//					returnCollection.retainAll(components2);
-//				} else {
-//					returnCollection.addAll(components2);
-//				}
-//				//find the parents for all the components
-//				for (Object object : returnCollection) {
-//					int numberOfComponents = components.size();
-//					int count = 1;
-//					component = (ResourcesComponents) object;
-//					progressPanel.setTextLine("Gathering resources by component matches " + count++ + " of " + numberOfComponents, 2);
-//					resource = resourceDao.findResourceByComponent(component);
-//					componentParentResourceMap.put(component, resource);
-//				}
-//				addResourcesCommonToComponetResultSet(returnCollection, resourcesAndComponetsResults, contextMap, componentParentResourceMap);
-//				return resourcesAndComponetsResults;
-//			}
-//
-//
-////			criteria = processQueryEditorCriteria(session, ResourcesComponents.class, editor);
-//////			Collection components = criteria.list();
-//////			ResourcesComponents component;
-////			int numberOfComponents = components.size();
-////			int count = 1;
-////			for (Object object : components) {
-////				component = (ResourcesComponents) object;
-////				progressPanel.setTextLine("Gathering resources by component matches " + count++ + " of " + numberOfComponents, 2);
-////				resource = resourceDao.findResourceByComponent(component);
-////				resourcesAndComponetsResults.add(new ResourcesComponentsSearchResult(resource, component, "dummy string"));
-////			}
-////			SessionFactory.getInstance().closeSession(session);
-////			return resourcesAndComponetsResults;
-//
-//		}
-//	}
+	private Set findPatronsByName(Set nameCollection, Collection patrons, ArrayList linkedToNames) {
+		linkedToNames.toArray();
+		Patrons patronToAdd = null;
+		for (Object o : linkedToNames) {
+			if (o instanceof PatronVisits) {
+				patronToAdd = ((PatronVisits)o).getPatron();
+			} else if (o instanceof PatronPublications){
+				patronToAdd = ((PatronPublications)o).getPatron();
+			}
+			patrons.add(patronToAdd);
+		}
+		nameCollection.addAll(patrons);
+
+		return nameCollection;
+	}
 
 
 	/**
@@ -323,11 +223,11 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 		return criteria;
 	}
 
-	public Names queryByFirstLastName(String firstName, String lastName) {
+	public Patrons queryByFirstLastName(String firstName, String lastName) {
 		Session session = SessionFactory.getInstance().openSession(getPersistentClass());
-		return (Names) session.createCriteria(this.getPersistentClass())
-				.add(Restrictions.eq(Names.PROPERTYNAME_PERSONAL_REST_OF_NAME, firstName))
-				.add(Restrictions.eq(Names.PROPERTYNAME_PERSONAL_PRIMARY_NAME, lastName)).uniqueResult();
+		return (Patrons) session.createCriteria(this.getPersistentClass())
+				.add(Restrictions.eq(Patrons.PROPERTYNAME_REST_OF_NAME, firstName))
+				.add(Restrictions.eq(Patrons.PROPERTYNAME_PRIMARY_NAME, lastName)).uniqueResult();
 
 	}
 }

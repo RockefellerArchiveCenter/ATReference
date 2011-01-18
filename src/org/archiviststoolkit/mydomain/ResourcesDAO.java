@@ -31,10 +31,8 @@ import org.archiviststoolkit.exceptions.ObjectNotRemovedException;
 import org.archiviststoolkit.exceptions.DeleteException;
 import org.hibernate.*;
 import org.hibernate.criterion.Expression;
-import java.util.Set;
-import java.util.Collection;
-import java.util.ArrayList;
-import java.util.HashMap;
+
+import java.util.*;
 import java.sql.SQLException;
 
 public class ResourcesDAO extends DomainAccessObjectImpl {
@@ -482,6 +480,9 @@ public class ResourcesDAO extends DomainAccessObjectImpl {
 			} else {
 				component.setResourceComponentParent((ResourcesComponents)mergeTo);
 			}
+
+            // call method to reset the parent resource for digital instances
+            resetParentResourceForDigitalInstances(component, mergeToParentResource);
 		}
 		try {
 			updateLongSession(mergeToParentResource, false);
@@ -492,6 +493,32 @@ public class ResourcesDAO extends DomainAccessObjectImpl {
 		tx.commit();
 		return count;
 	}
+
+    /**
+     * Method to reset the parent resource record for digital instances. This
+     * is a recursive method since all the children of the components need
+     * to be process also
+     *
+     * @param component The component to check
+     * @param mergeToParentResource
+     */
+    private void resetParentResourceForDigitalInstances(ResourcesComponents component, Resources mergeToParentResource) {
+        SortedSet<ResourcesComponents> childComponents = component.getResourcesComponents();
+
+        if(childComponents.size() != 0) {
+            for (ResourcesComponents childComponent : childComponents) {
+                resetParentResourceForDigitalInstances(childComponent,  mergeToParentResource);
+            }
+        }
+
+        // update any instances with the new parent resource
+        for (ArchDescriptionInstances instance : component.getInstances()) {
+             if (instance instanceof ArchDescriptionDigitalInstances) {
+                ArchDescriptionDigitalInstances digitalInstance = (ArchDescriptionDigitalInstances) instance;
+                digitalInstance.setParentResource(mergeToParentResource);
+             }
+        }
+    }
 
 	private int rollBackAndThrowMergeException(Session session, Transaction tx, Exception e) throws MergeException {
 		tx.rollback();

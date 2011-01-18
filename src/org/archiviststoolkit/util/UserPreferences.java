@@ -37,6 +37,9 @@ public class UserPreferences {
 	public static final String DATABASE_PASSWORD = "databasePassword";
 	public static final String SAVE_PATH = "savepath";
 	public static final String DATABASE_TYPE = "databaseType";
+	public static final String FONT_FAMILY = "fontFamily";
+	public static final String FONT_STYLE = "fontStyle";
+    public static final String FONT_SIZE = "fontSize";
 
 	private static UserPreferences singleton = null;
 
@@ -56,6 +59,7 @@ public class UserPreferences {
 	private String databasePassword = "";
 	private String savePath = "";
 	private String databaseType = "";
+    private Font font = null;
 
 	public String getDatabaseUrl() {
 		return databaseUrl;
@@ -68,6 +72,15 @@ public class UserPreferences {
 		this.setDatabasePassword(userPrefs.get(DATABASE_PASSWORD, ""));
 		this.setDatabaseType(userPrefs.get(DATABASE_TYPE, SessionFactory.DATABASE_TYPE_MYSQL));
 		this.setSavePath(userPrefs.get(SAVE_PATH, "."));
+
+        // now get information for the user defined font
+        String fontFamily = userPrefs.get(FONT_FAMILY,"");
+        int fontStyle =  Integer.parseInt(userPrefs.get(FONT_STYLE,"" + Font.PLAIN));
+        int fontSize = Integer.parseInt(userPrefs.get(FONT_SIZE,"12"));
+
+        if(StringHelper.isNotEmpty(fontFamily.trim())) {
+            font = new Font(fontFamily, fontStyle, fontSize);
+        }
 	}
 
 	public void saveToPreferences() {
@@ -77,6 +90,14 @@ public class UserPreferences {
 		userPrefs.put(DATABASE_PASSWORD, this.getDatabasePassword());
 		userPrefs.put(DATABASE_TYPE, this.getDatabaseType());
 		userPrefs.put(SAVE_PATH, this.getSavePath());
+
+        // see if to set the font preferences
+        if(font != null) {
+            userPrefs.put(FONT_FAMILY, font.getFamily());
+            userPrefs.put(FONT_STYLE,"" + font.getStyle());
+            userPrefs.put(FONT_SIZE,"" + font.getSize());
+        }
+
 		try {
 			userPrefs.flush();
 		} catch (BackingStoreException e) {
@@ -168,4 +189,20 @@ public class UserPreferences {
 	public void setDatabaseType(String databaseType) {
 		this.databaseType = databaseType;
 	}
+
+    /**
+     * Method to return the user defined font
+     */
+    public Font getFont() {
+        return font;
+    }
+
+   /**
+     * Set the user defined font
+     *
+     * @param font
+     */
+    public void setFont(Font font) {
+        this.font = font;
+    }
 }

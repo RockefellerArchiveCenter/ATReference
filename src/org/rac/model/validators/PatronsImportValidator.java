@@ -59,9 +59,9 @@ public class PatronsImportValidator extends ATAbstractValidator {
 			support.addError(primaryNameFieldlabel, "is mandatory");
 		}
 
-		if (ValidationUtils.isBlank(modelToValidate.getRestOfName())) {
-			support.addError(restOfNameFieldLabel, "is mandatory");
-		}
+//		if (ValidationUtils.isBlank(modelToValidate.getRestOfName())) {
+//			support.addError(restOfNameFieldLabel, "is mandatory");
+//		}
 
 //		Boolean emailAddress = false;
 		Boolean phoneNumber = false;
