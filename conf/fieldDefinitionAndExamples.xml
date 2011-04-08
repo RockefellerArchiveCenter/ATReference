@@ -3381,5 +3381,369 @@ Snowman
         <Examples></Examples>
     </RECORD>
 
+    <RECORD>
+        <ClassName>Patrons</ClassName>
+        <PropertyName>department</PropertyName>
+        <Element_Label>Department</Element_Label>
+        <Definition>A division or branch within an institution or organization with which the patron is affiliated.</Definition>
+        <Examples>History Department, Office of Human Resources</Examples>
+    </RECORD>
+    
+    <RECORD>
+        <ClassName>Patrons</ClassName>
+        <PropertyName>email1</PropertyName>
+        <Element_Label>Email1</Element_Label>
+        <Definition>Electronic mail address by which the patron can be reached. </Definition>
+        <Examples>tgarner@ufl.edu</Examples>
+    </RECORD>
+    
+        <RECORD>
+        <ClassName>Patrons</ClassName>
+        <PropertyName>email2</PropertyName>
+        <Element_Label>Email2</Element_Label>
+        <Definition>Electronic mail address by which the patron can be reached. </Definition>
+        <Examples>tgarner@ufl.edu</Examples>
+    </RECORD>
+    
+    <RECORD>
+        <ClassName>Patrons</ClassName>
+        <PropertyName>howDidYouHearAboutUs</PropertyName>
+        <Element_Label>How Did You Hear About Us</Element_Label>
+        <Definition>A controlled list of ways the patron discovered the archive/collection.</Definition>
+        <Examples>colleague referral, donor referral, publication citation</Examples>
+    </RECORD>
+
+    <RECORD>
+        <ClassName>Patrons</ClassName>
+        <PropertyName>institutionalAffiliation</PropertyName>
+        <Element_Label>Institutional Affiliation</Element_Label>
+        <Definition>An organization or institution with which the patron is associated.</Definition>
+        <Examples>University of Chicago, Acme Discount Film Works, Massachusetts Historical Society</Examples>
+    </RECORD>
+
+    <RECORD>
+        <ClassName>Patrons</ClassName>
+        <PropertyName>patronNotes</PropertyName>
+        <Element_Label>Patron Notes</Element_Label>
+        <Definition>General note field for capturing information that cannot be appropriately accommodated by other fields.</Definition>
+        <Examples>Patron will be in Stockholm doing research during June and would like photocopies requested during their most recent visit sent to their hotel.</Examples>
+    </RECORD>
+    
+    <RECORD>
+        <ClassName>Patrons</ClassName>
+        <PropertyName>patronType</PropertyName>
+        <Element_Label>Patron Type</Element_Label>
+        <Definition>A controlled list of categories describing the kind of patron.</Definition>
+        <Examples>academic appointment, donor representative, graduate student</Examples>
+    </RECORD>
+    
+    <RECORD>
+        <ClassName>Patrons</ClassName>
+        <PropertyName>prefix</PropertyName>
+        <Element_Label>Prefix</Element_Label>
+        <Definition>Any word associated with a name that in regular use would come before the name.</Definition>
+        <Examples>Mrs., Mr., Ms.</Examples>
+    </RECORD>
+    
+      <RECORD>
+        <ClassName>Patrons</ClassName>
+        <PropertyName>primaryName</PropertyName>
+        <Element_Label>Primary Name</Element_Label>
+        <Definition>The Family name, surname, or primary name of the individual.</Definition>
+        <Examples>Livingston (for Livingston, Gilbert H.)</Examples>
+    </RECORD>
+    
+        <RECORD>
+        <ClassName>Patrons</ClassName>
+        <PropertyName>restOfName</PropertyName>
+        <Element_Label>Rest Of Name</Element_Label>
+        <Definition>The given name of the individual along with middle name or initials if necessary to differentiate the name from other similar names.</Definition>
+        <Examples>James Andrew (for Castle, James Andrew)</Examples>
+    </RECORD>
+    
+        <RECORD>
+        <ClassName>Patrons</ClassName>
+        <PropertyName>sortName</PropertyName>
+        <Element_Label>Sort Name</Element_Label>
+        <Definition>The complete concatenated version of the name containing all individual elements. This is the form as it will be shown within Archivists' Toolkit displays and is exported in reports and standardized outputs such as MARCXML and EAD</Definition>
+        <Examples>Ackerman, Michael D.</Examples>
+    </RECORD>
+    
+        <RECORD>
+        <ClassName>Patrons</ClassName>
+        <PropertyName>suffix</PropertyName>
+        <Element_Label>Suffix</Element_Label>
+        <Definition>Any word associated with a name that in regular use would come after the name</Definition>
+        <Examples>Sr., Jr., III</Examples>
+    </RECORD>
+
+    <RECORD>
+        <ClassName>Patrons</ClassName>
+        <PropertyName>title</PropertyName>
+        <Element_Label>Title</Element_Label>
+        <Definition>Titles and other words associated with a name. It may include titles designating rank, office, or nobility, terms of address, and other words or phrases associated with the name.</Definition>
+        <Examples>Sir, Chief, Emperor</Examples>
+    </RECORD>
+    
+        <RECORD>
+        <ClassName>PatronAddresses</ClassName>
+        <PropertyName>address1</PropertyName>
+        <Element_Label>Address1</Element_Label>
+        <Definition>Street or postal address for the patron.</Definition>
+        <Examples>112 Main St. P.O. Box 27</Examples>
+    </RECORD>
+    
+        <RECORD>
+        <ClassName>PatronAddresses</ClassName>
+        <PropertyName>address2</PropertyName>
+        <Element_Label>Address2</Element_Label>
+        <Definition>Additional address information needed to record the address of the patron.</Definition>
+        <Examples>Unit 2</Examples>
+    </RECORD>
+    
+        <RECORD>
+        <ClassName>PatronAddresses</ClassName>
+        <PropertyName>address3</PropertyName>
+        <Element_Label>Address3</Element_Label>
+        <Definition>Additional address information needed to record the address of the patron.</Definition>
+        <Examples>Room 105</Examples>
+    </RECORD>
+    
+        <RECORD>
+        <ClassName>PatronAddresses</ClassName>
+        <PropertyName>addressString</PropertyName>
+        <Element_Label>Address</Element_Label>
+        <Definition>Physical addresses of the patron, including mailing and billing. There is no limit to the number of addresses that can be recorded.</Definition>
+        <Examples></Examples>
+    </RECORD>
+    
+        <RECORD>
+        <ClassName>PatronAddresses</ClassName>
+        <PropertyName>addressType</PropertyName>
+        <Element_Label>Address Type</Element_Label>
+        <Definition>A controlled list of descriptive labels for the type of physical address being recorded.</Definition>
+        <Examples>mailing, billing, other</Examples>
+    </RECORD>
+    
+        <RECORD>
+        <ClassName>PatronAddresses</ClassName>
+        <PropertyName>city</PropertyName>
+        <Element_Label>City</Element_Label>
+        <Definition>City or town in which the patron is located.</Definition>
+        <Examples>New York, Ottawa</Examples>
+    </RECORD>
+
+    <RECORD>
+        <ClassName>PatronAddresses</ClassName>
+        <PropertyName>country</PropertyName>
+        <Element_Label>Country</Element_Label>
+        <Definition>Name of the country in which the patron is located.</Definition>
+        <Examples>US, Canada</Examples>
+    </RECORD>
+    
+        <RECORD>
+        <ClassName>PatronAddresses</ClassName>
+        <PropertyName>mailCode</PropertyName>
+        <Element_Label>Mail Code</Element_Label>
+        <Definition>Zip code or other postal code used in the address.</Definition>
+        <Examples>10118, K1R 7A8</Examples>
+    </RECORD>
+    
+        <RECORD>
+        <ClassName>PatronAddresses</ClassName>
+        <PropertyName>preferredAddress</PropertyName>
+        <Element_Label>Preferred Address</Element_Label>
+        <Definition>A designation to indicate to the repository which address is preferred for contacting and sending material to the patron. Only one address can be marked as preferred.</Definition>
+        <Examples></Examples>
+    </RECORD>
+    
+        <RECORD>
+        <ClassName>PatronAddresses</ClassName>
+        <PropertyName>region</PropertyName>
+        <Element_Label>Region</Element_Label>
+        <Definition>State, province, etc. in which the city is located. The choice of whether to use a mailing code (NY) or full name (New York) is up to the repository.</Definition>
+        <Examples>NY, Ontario</Examples>
+    </RECORD>
+    
+    
+    <RECORD>
+        <ClassName>PatronForms</ClassName>
+        <PropertyName>completed</PropertyName>
+        <Element_Label>Completed</Element_Label>
+        <Definition>Checkbox to indicate if a form has been completed. This functionality is somewhat redundant, but is in place to enable legacy data or institutions who may wish to record that a form was completed but not the exact date it was signed.</Definition>
+        <Examples></Examples>
+    </RECORD>
+    
+    
+    <RECORD>
+        <ClassName>PatronForms</ClassName>
+        <PropertyName>dateCompleted</PropertyName>
+        <Element_Label>Date Completed</Element_Label>
+        <Definition>Date the form is signed by the patron recorded in MM/DD/YYYY format.</Definition>
+        <Examples>11/23/1999</Examples>
+    </RECORD>
+    
+    
+    <RECORD>
+        <ClassName>PatronForms</ClassName>
+        <PropertyName>formType</PropertyName>
+        <Element_Label>Form Type</Element_Label>
+        <Definition>A controlled list of forms required by the repository for the patron to sign in order to conduct research or request services. </Definition>
+        <Examples>Rules overning the Use of Manuscripts, Request for Copies, Permission to Publish</Examples>
+    </RECORD>
+    
+    
+    <RECORD>
+        <ClassName>PatronForms</ClassName>
+        <PropertyName>notes</PropertyName>
+        <Element_Label>Notes</Element_Label>
+        <Definition>General note field for capturing information that cannot be appropriately accommodated by other fields. May be used to provide a summary as to the nature and need for the form being recorded.</Definition>
+        <Examples></Examples>
+    </RECORD>
+    
+        <RECORD>
+        <ClassName>PatronFunding</ClassName>
+        <PropertyName>awardDetails</PropertyName>
+        <Element_Label>Award Details</Element_Label>
+        <Definition>Additional information regarding the nature of the funding awarded to the patron, including award amount, timeframe, and any stipulations on expenses covered.</Definition>
+        <Examples></Examples>
+    </RECORD>
+    
+        <RECORD>
+        <ClassName>PatronFunding</ClassName>
+        <PropertyName>fundingDate</PropertyName>
+        <Element_Label>Date Funded</Element_Label>
+        <Definition>Date the funding is officially awarded to the patron recorded in MM/DD/YYYY format.</Definition>
+        <Examples></Examples>
+    </RECORD>
+    
+        <RECORD>
+        <ClassName>PatronFunding</ClassName>
+        <PropertyName>fundingType</PropertyName>
+        <Element_Label>Funding Type</Element_Label>
+        <Definition>A controlled list of types of funding available to the patron for their research. The list is fully customizable.</Definition>
+        <Examples>grant, internship, scholarship</Examples>
+    </RECORD>
+    
+     <RECORD>
+        <ClassName>PatronFunding</ClassName>
+        <PropertyName>topic</PropertyName>
+        <Element_Label>Topic</Element_Label>
+        <Definition>A detailed free text description of the patron's research topic for the specific grant being recorded.</Definition>
+        <Examples></Examples>
+    </RECORD>
+    
+       <RECORD>
+        <ClassName>PatronPhoneNumbers</ClassName>
+        <PropertyName>patronPhoneNumberId</PropertyName>
+        <Element_Label>Patron Phone Number Id</Element_Label>
+        <Definition></Definition>
+        <Examples></Examples>
+    </RECORD>
+    
+       <RECORD>
+        <ClassName>PatronPhoneNumbers</ClassName>
+        <PropertyName>phoneNumber</PropertyName>
+        <Element_Label>Phone Number</Element_Label>
+        <Definition>Telephone numbers for contacting the patron, including home, work, and cell. There is no limit to the number of phone numbers that can be recorded.</Definition>
+        <Examples></Examples>
+    </RECORD>
+    
+       <RECORD>
+        <ClassName>PatronPhoneNumbers</ClassName>
+        <PropertyName>phoneNumberType</PropertyName>
+        <Element_Label>Phone Number Type</Element_Label>
+        <Definition>A controlled list of descriptive labels for the type of phone number being recorded. </Definition>
+        <Examples>home, mobile, work</Examples>
+    </RECORD>
+    
+       <RECORD>
+        <ClassName>PatronPhoneNumbers</ClassName>
+        <PropertyName>preferredPhoneNumber</PropertyName>
+        <Element_Label>Preferred Phone Number</Element_Label>
+        <Definition>A designation to indicate to the repository which number is preferred for contacting the patron. Only one number can be marked as preferred.</Definition>
+        <Examples>312-555-2453 or +44 34521 554 644</Examples>
+    </RECORD>
+    
+       <RECORD>
+        <ClassName>PatronPublications</ClassName>
+        <PropertyName>collaborators</PropertyName>
+        <Element_Label>Collaborators</Element_Label>
+        <Definition>Anyone the patron worked or cooperated with on creating the work being cited, such as a co-author.</Definition>
+        <Examples>Rabb, Catherine S.</Examples>
+    </RECORD>
+    
+       <RECORD>
+        <ClassName>PatronPublications</ClassName>
+        <PropertyName>publicationDate</PropertyName>
+        <Element_Label>Publication Date</Element_Label>
+        <Definition>Date the work being cited was published.</Definition>
+        <Examples>11/23/1996, Spring 2008, 1999, March 1988</Examples>
+    </RECORD>
+    
+       <RECORD>
+        <ClassName>PatronPublications</ClassName>
+        <PropertyName>publicationTitle</PropertyName>
+        <Element_Label>Publication Title</Element_Label>
+        <Definition>Full distinguishing name of the work being cited.</Definition>
+        <Examples>Dangerous Donations: Northern Philanthropy and Southern Black Education, 1902-1930.</Examples>
+    </RECORD>
+    
+       <RECORD>
+        <ClassName>PatronPublications</ClassName>
+        <PropertyName>publicationType</PropertyName>
+        <Element_Label>Publication Type</Element_Label>
+        <Definition>A controlled list of types of publications typically generated by patrons.</Definition>
+        <Examples>article, book, film, thesis/dissertation</Examples>
+    </RECORD>
+    
+       <RECORD>
+        <ClassName>PatronPublications</ClassName>
+        <PropertyName>publisher</PropertyName>
+        <Element_Label>Publisher</Element_Label>
+        <Definition>Location of publication; Person, company, or organization responsible for publishing the work being cited; and serial information if applicable.</Definition>
+        <Examples>Chapel Hill:The University of North Carolina Press; History of Education Quarterly, Vol. 8</Examples>
+    </RECORD>
+    
+      <RECORD>
+        <ClassName>PatronPublicationsSubjects</ClassName>
+        <PropertyName>subject</PropertyName>
+        <Element_Label>Subject</Element_Label>
+        <Definition>Links to authorized subjects describing the primary research topic, including topical terms, geographic terms, and names.</Definition>
+        <Examples>Bearn, Alexander G., 1923-2009; Charitable uses, trusts, and foundations; Education--Southern States--History--20th century</Examples>
+    </RECORD>
+    
+      <RECORD>
+        <ClassName>PatronVisits</ClassName>
+        <PropertyName>contactArchivist</PropertyName>
+        <Element_Label>Contact Archivist</Element_Label>
+        <Definition>The name of the archivist assisting the patron with their research.</Definition>
+        <Examples>Agnes Booker</Examples>
+    </RECORD>
+    
+      <RECORD>
+     <ClassName>PatronVisits</ClassName>
+        <PropertyName>patronVisitId</PropertyName>
+        <Element_Label>Patron Visit Id</Element_Label>
+        <Definition></Definition>
+        <Examples></Examples>
+    </RECORD>
+
+      <RECORD>
+     <ClassName>PatronVisits</ClassName>
+        <PropertyName>topic</PropertyName>
+        <Element_Label>Topic</Element_Label>
+        <Definition>A detailed free text description of the patron's research topic for the specific visit being recorded</Definition>
+        <Examples></Examples>
+    </RECORD>
+    
+      <RECORD>
+     <ClassName>PatronVisits</ClassName>
+        <PropertyName>visitDate</PropertyName>
+        <Element_Label>Visit Date</Element_Label>
+        <Definition>Date the patron visits the repository recorded in MM/DD/YYYY</Definition>
+        <Examples>11/23/1996</Examples>
+    </RECORD>
+
 
 </RECORDS>
