@@ -20,6 +20,9 @@
 	<variable name="TEST_PREFERRED" class="java.lang.String">
 		<variableExpression><![CDATA[("" + $F{preferredAddress})]]></variableExpression>
 	</variable>
+	<variable name="TEST_USA" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{country}.equalsIgnoreCase("United States") & $F{preferredAddress}.equals( Boolean.TRUE )? Integer.valueOf(1) : Integer.valueOf(0)]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -94,7 +97,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{address3}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement key="textField-9" positionType="Float" mode="Transparent" x="10" y="41" width="250" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="textField-9" positionType="Float" mode="Transparent" x="10" y="36" width="250" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box leftPadding="10" rightPadding="10">
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -107,7 +110,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{mailCode}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement key="textField-8" positionType="Float" mode="Transparent" x="10" y="36" width="250" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="textField-8" positionType="Float" mode="Transparent" x="10" y="41" width="250" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box leftPadding="10" rightPadding="10">
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>

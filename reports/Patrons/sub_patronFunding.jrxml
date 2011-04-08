@@ -3,14 +3,14 @@
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="13"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
 	<field name="awardDetails" class="java.lang.String"/>
 	<field name="fundingType" class="java.lang.String"/>
-	<field name="fundingDate" class="java.util.Date"/>
+	<field name="fundingDate" class="java.lang.String"/>
 	<field name="topic" class="java.lang.String"/>
 	<variable name="GRANTS_COUNT" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[$F{fundingType}]]></variableExpression>
@@ -125,7 +125,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
 					<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$F{fundingDate}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fundingDate}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
