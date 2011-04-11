@@ -39,22 +39,22 @@
 		<variableExpression><![CDATA["TRUE"]]></variableExpression>
 	</variable>
 	<variable name="IS_TYPE_ARTICLE" class="java.lang.String" calculation="Count">
-		<variableExpression><![CDATA[$F{publicationType}.equalsIgnoreCase("article")  ? "1" : "0"]]></variableExpression>
+		<variableExpression><![CDATA[$F{publicationType}.equalsIgnoreCase("article") ? "1" : "0"]]></variableExpression>
 	</variable>
 	<variable name="IS_TYPE_JOURNAL" class="java.lang.String">
-		<variableExpression><![CDATA[$F{publicationType}.equalsIgnoreCase("journal article")  ? "1" : "0"]]></variableExpression>
+		<variableExpression><![CDATA[$F{publicationType}.equalsIgnoreCase("journal article") ? "1" : "0"]]></variableExpression>
 	</variable>
 	<variable name="IS_TYPE_BOOK" class="java.lang.String">
-		<variableExpression><![CDATA[$F{publicationType}.equalsIgnoreCase("book")  ? "1" : "0"]]></variableExpression>
+		<variableExpression><![CDATA[$F{publicationType}.equalsIgnoreCase("book") ? "1" : "0"]]></variableExpression>
 	</variable>
 	<variable name="IS_TYPE_ONLINE" class="java.lang.String">
-		<variableExpression><![CDATA[$F{publicationType}.equalsIgnoreCase("online article")  ? "1" : "0"]]></variableExpression>
+		<variableExpression><![CDATA[$F{publicationType}.equalsIgnoreCase("online article") ? "1" : "0"]]></variableExpression>
 	</variable>
 	<variable name="IS_TYPE_THESIS" class="java.lang.String">
-		<variableExpression><![CDATA[$F{publicationType}.equalsIgnoreCase("thesis/dissertation")  ? "1" : "0"]]></variableExpression>
+		<variableExpression><![CDATA[$F{publicationType}.equalsIgnoreCase("thesis/dissertation") ? "1" : "0"]]></variableExpression>
 	</variable>
 	<variable name="IS_TYPE_OTHER" class="java.lang.String">
-		<variableExpression><![CDATA[$V{IS_TYPE_ARTICLE}.equalsIgnoreCase("0") & $V{IS_TYPE_BOOK}.equalsIgnoreCase("0") &  $V{IS_TYPE_THESIS}.equalsIgnoreCase("0") &  $V{IS_TYPE_JOURNAL}.equalsIgnoreCase("0") & $V{IS_TYPE_ONLINE}.equalsIgnoreCase("0") & $V{IS_TYPE_WEB}.equalsIgnoreCase("0")? "1" : "0"]]></variableExpression>
+		<variableExpression><![CDATA[$V{IS_TYPE_ARTICLE}.equalsIgnoreCase("0") & $V{IS_TYPE_BOOK}.equalsIgnoreCase("0") & $V{IS_TYPE_THESIS}.equalsIgnoreCase("0") & $V{IS_TYPE_JOURNAL}.equalsIgnoreCase("0") & $V{IS_TYPE_ONLINE}.equalsIgnoreCase("0") & $V{IS_TYPE_WEB}.equalsIgnoreCase("0")? "1" : "0"]]></variableExpression>
 	</variable>
 	<variable name="TYPE_ARTICLE_COUNT" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[Double.valueOf($V{IS_TYPE_ARTICLE})]]></variableExpression>
@@ -76,10 +76,40 @@
 		<variableExpression><![CDATA[Double.valueOf($V{IS_TYPE_OTHER})]]></variableExpression>
 	</variable>
 	<variable name="IS_TYPE_WEB" class="java.lang.String">
-		<variableExpression><![CDATA[$F{publicationType}.equalsIgnoreCase("web page")  ? "1" : "0"]]></variableExpression>
+		<variableExpression><![CDATA[$F{publicationType}.equalsIgnoreCase("web page") ? "1" : "0"]]></variableExpression>
 	</variable>
 	<variable name="TYPE_WEB_COUNT" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[Double.valueOf($V{IS_TYPE_WEB})]]></variableExpression>
+	</variable>
+	<variable name="CREATOR" class="java.lang.String">
+		<variableExpression><![CDATA[("" + $F{publicationAuthor}).equals("") ? $P{PATRON_NAME} + $V{OTHER_CREATOR} : $F{publicationAuthor}  +  $V{OTHER_CREATOR}]]></variableExpression>
+	</variable>
+	<variable name="OTHER_CREATOR" class="java.lang.String">
+		<variableExpression><![CDATA[("" + $F{collaborators}).equals("") ? "" : (", " + $F{collaborators})]]></variableExpression>
+	</variable>
+	<variable name="PLACE_OF_PUBLICATION" class="java.lang.String">
+		<variableExpression><![CDATA[("" + $F{locationOfPublication}).equals("") ? "N.p." : $F{locationOfPublication}]]></variableExpression>
+	</variable>
+	<variable name="DATE" class="java.lang.String">
+		<variableExpression><![CDATA[("" + $F{publicationDate}).equals("null") ? "n.d." : "" +  $F{publicationDate}]]></variableExpression>
+	</variable>
+	<variable name="PUBLISHER" class="java.lang.String">
+		<variableExpression><![CDATA[("" + $F{publisher}).equals("") ? "n.p." : $F{publisher}]]></variableExpression>
+	</variable>
+	<variable name="PAGES" class="java.lang.String">
+		<variableExpression><![CDATA[("" + $F{pageNumbers}).equals("") ? "n.p." : "" + $F{pageNumbers}]]></variableExpression>
+	</variable>
+	<variable name="SERIAL" class="java.lang.String">
+		<variableExpression><![CDATA[("" + $F{serialTitle}).equals("") ? "No Serial Title" : "" + $F{serialTitle}]]></variableExpression>
+	</variable>
+	<variable name="VOLUME" class="java.lang.String">
+		<variableExpression><![CDATA[("" + $F{issueVolume}).equals("") ? "No volume, no issue number" : "" + $F{issueVolume}]]></variableExpression>
+	</variable>
+	<variable name="URL" class="java.lang.String">
+		<variableExpression><![CDATA[("" + $F{url}).equals("") ? "No URL" : "" + $F{url}]]></variableExpression>
+	</variable>
+	<variable name="ACCESSED" class="java.lang.String">
+		<variableExpression><![CDATA[("" + $F{dateAccessed}).equals("") ? "n.d." : "" + $F{dateAccessed}]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -91,18 +121,18 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="7" splitType="Prevent"/>
+		<band height="3" splitType="Prevent"/>
 	</columnHeader>
 	<detail>
-		<band height="60" splitType="Stretch">
+		<band height="55" splitType="Stretch">
 			<line>
-				<reportElement key="line-1" positionType="Float" mode="Opaque" x="0" y="56" width="499" height="1" forecolor="#999999" backcolor="#FFFFFF"/>
+				<reportElement key="line-1" positionType="Float" mode="Opaque" x="0" y="51" width="499" height="1" forecolor="#999999" backcolor="#FFFFFF"/>
 				<graphicElement fill="Solid">
 					<pen lineWidth="0.25" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement key="textField-5" positionType="Float" mode="Transparent" x="10" y="3" width="474" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF">
+				<reportElement key="textField-5" positionType="Float" mode="Transparent" x="10" y="5" width="474" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF">
 					<printWhenExpression><![CDATA[$V{IS_TYPE_ARTICLE}.equals("1") ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<box leftPadding="10" rightPadding="10">
@@ -114,10 +144,10 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single" markup="styled">
 					<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{publicationAuthor} + ". " + "\"" + $F{publicationTitle} + ".\" " + $F{locationOfPublication} + ":" + "<i>" + $F{serialTitle} + "</i>" + ", "+ $F{publicationDate} + ", " + $F{pageNumbers} + ". "]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{CREATOR} + ". " + "\"" + $F{publicationTitle} + ".\" " + "<i>" + $V{SERIAL} + "</i>" + ", " + $V{DATE} + ", " + $V{PAGES} + ". "]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement key="textField-5" positionType="Float" mode="Transparent" x="10" y="8" width="474" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF">
+				<reportElement key="textField-5" positionType="Float" mode="Transparent" x="10" y="0" width="474" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF">
 					<printWhenExpression><![CDATA[$V{IS_TYPE_BOOK}.equals("1") ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<box leftPadding="10" rightPadding="10">
@@ -129,10 +159,10 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single" markup="styled">
 					<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{publicationAuthor} + ". " + "<i>" + $F{publicationTitle} + "</i>" + ". " + $F{locationOfPublication} + ": " + $F{publisher} + ", "+ $F{publicationDate} + "."]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{CREATOR} + ". " + "<i>" + $F{publicationTitle} + "</i>" + ". " + $V{PLACE_OF_PUBLICATION} + ": " + $V{PUBLISHER} + ", " + $V{DATE} + "."]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement key="textField-5" positionType="Float" mode="Transparent" x="10" y="13" width="474" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF">
+				<reportElement key="textField-5" positionType="Float" mode="Transparent" x="10" y="10" width="474" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF">
 					<printWhenExpression><![CDATA[$V{IS_TYPE_THESIS}.equals("1") ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<box leftPadding="10" rightPadding="10">
@@ -144,10 +174,10 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single" markup="styled">
 					<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{publicationAuthor} + ". " + $F{publicationDate} + ". <i>" + $F{publicationTitle} + "</i>" + ". Thesis, " + $F{publisher} + "."]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{CREATOR} + ". " + $V{DATE} + ". <i>" + $F{publicationTitle} + "</i>" + ". Thesis, " + $V{PUBLISHER} + "."]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement key="textField-5" positionType="Float" mode="Transparent" x="10" y="18" width="474" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF">
+				<reportElement key="textField-5" positionType="Float" mode="Transparent" x="10" y="15" width="474" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF">
 					<printWhenExpression><![CDATA[$V{IS_TYPE_OTHER}.equals("1") ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<box leftPadding="10" rightPadding="10">
@@ -159,10 +189,10 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single" markup="styled">
 					<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{publicationAuthor} + ". " + $F{publicationDate} + ". <i>" + $F{publicationTitle} + "</i>. " + $F{publicationType} +". " + $F{publisher} + "."]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{CREATOR} + ". " + $V{DATE} + ". <i>" + $F{publicationTitle} + "</i>. " + $F{publicationType} + ". " + $V{PUBLISHER} + "."]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement key="textField-5" positionType="Float" mode="Transparent" x="10" y="23" width="474" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF">
+				<reportElement key="textField-5" positionType="Float" mode="Transparent" x="10" y="20" width="474" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF">
 					<printWhenExpression><![CDATA[$V{IS_TYPE_JOURNAL}.equals("1") ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<box leftPadding="10" rightPadding="10">
@@ -174,20 +204,20 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single" markup="styled">
 					<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{publicationAuthor} + ". " + "\"" + $F{publicationTitle} + "\"" + ". " + "<i>" + $F{serialTitle} + "</i> " + $F{issueVolume} + "(" + $F{publicationDate} + ")" + ": " + $F{pageNumbers} + "."]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{CREATOR} + ". " + "\"" + $F{publicationTitle} + "\"" + ". " + "<i>" + $V{SERIAL} + "</i> " + $V{VOLUME} + "(" + $V{DATE} + ")" + ": " + $V{PAGES} + "."]]></textFieldExpression>
 			</textField>
 			<subreport isUsingCache="true" runToBottom="false">
-				<reportElement key="subreport-5" positionType="Float" mode="Transparent" x="24" y="38" width="444" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="subreport-5" positionType="Float" mode="Transparent" x="24" y="35" width="444" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<dataSourceExpression><![CDATA[$V{patronVisitsSubjectsDataSource}]]></dataSourceExpression>
 				<subreportExpression class="java.lang.String"><![CDATA[$P{BASE_PATH} + "/sub_patronVisitsSubjects.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true" runToBottom="false">
-				<reportElement key="subreport-6" positionType="Float" mode="Transparent" x="24" y="46" width="444" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="subreport-6" positionType="Float" mode="Transparent" x="24" y="43" width="444" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<dataSourceExpression><![CDATA[$V{patronVisitsNamesDataSource}]]></dataSourceExpression>
 				<subreportExpression class="java.lang.String"><![CDATA[$P{BASE_PATH} + "/sub_patronVisitsNames.jasper"]]></subreportExpression>
 			</subreport>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement key="textField-5" positionType="Float" mode="Transparent" x="10" y="28" width="474" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF">
+				<reportElement key="textField-5" positionType="Float" mode="Transparent" x="10" y="25" width="474" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF">
 					<printWhenExpression><![CDATA[$V{IS_TYPE_ONLINE}.equals("1") ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<box leftPadding="10" rightPadding="10">
@@ -199,10 +229,10 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single" markup="styled">
 					<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{publicationAuthor} + ". " + "\"" + $F{publicationTitle} + " " + "<i>" + $F{serialTitle} + "</i> "  + "\"" + ". " + $F{issueVolume} + "(" + $F{publicationDate} + ")" + ", " + $F{pageNumbers} + ", " + $F{url} + "(accessed: " + $F{dateAccessed} + ")."]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{CREATOR} + ". " + "\"" + $F{publicationTitle} + " " + "<i>" + $V{SERIAL} + "</i> " + "\"" + ". " + $V{VOLUME} + "(" + $V{DATE} + ")" + ", " + $V{PAGES} + ", " + $V{URL} + " (accessed: " + $F{dateAccessed} + ")."]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement key="textField-5" positionType="Float" mode="Transparent" x="10" y="33" width="474" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF">
+				<reportElement key="textField-5" positionType="Float" mode="Transparent" x="10" y="30" width="474" height="5" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF">
 					<printWhenExpression><![CDATA[$V{IS_TYPE_WEB}.equals("1") ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<box leftPadding="10" rightPadding="10">
@@ -214,7 +244,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single" markup="styled">
 					<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{publicationAuthor} + ". " + "\"" + $F{publicationTitle} +  "\"" + ". "  + $F{publicationDate} + ". "  + $F{url} + "(accessed: " + $F{dateAccessed} + ")."]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{CREATOR} + ". " + "\"" + $F{publicationTitle} + "\"" + ". " + $V{DATE} + ". " + $V{URL} + " (accessed: " + $F{dateAccessed} + ")."]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
