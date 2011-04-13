@@ -5,8 +5,8 @@
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="284"/>
-	<property name="ireport.y" value="485"/>
+	<property name="ireport.x" value="49"/>
+	<property name="ireport.y" value="755"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
@@ -47,19 +47,22 @@
 	<variable name="PUBLICATION_TYPE_ARTICLE_COUNT" class="java.lang.Double" calculation="Sum"/>
 	<variable name="PUBLICATION_TYPE_BOOK_COUNT" class="java.lang.Double" calculation="Sum"/>
 	<variable name="PUBLICATION_TYPE_THESIS_COUNT" class="java.lang.Double" calculation="Sum"/>
-	<variable name="PUBLICATION_TYPE_ONLINE_COUNT" class="java.lang.Double" calculation="Sum"/>
-	<variable name="PUBLICATION_TYPE_WEB_COUNT" class="java.lang.Double" calculation="Sum"/>
+	<variable name="PUBLICATION_TYPE_JOURNAL_COUNT" class="java.lang.Double" calculation="Sum"/>
 	<variable name="PUBLICATION_TYPE_OTHER_COUNT" class="java.lang.Float" incrementType="Report" calculation="Count">
-		<variableExpression><![CDATA[new Float($V{PATRON_PUBLICATIONS_BIB_COUNT}.floatValue() - ($V{PUBLICATION_TYPE_ARTICLE_COUNT}.floatValue() + $V{PUBLICATION_TYPE_BOOK_COUNT}.floatValue() + $V{PUBLICATION_TYPE_THESIS_COUNT}.floatValue() + $V{PUBLICATION_TYPE_ONLINE_COUNT}.floatValue()))]]></variableExpression>
+		<variableExpression><![CDATA[new Float($V{PATRON_PUBLICATIONS_BIB_COUNT}.floatValue() - ($V{PUBLICATION_TYPE_ARTICLE_COUNT}.floatValue() + $V{PUBLICATION_TYPE_BOOK_COUNT}.floatValue() + $V{PUBLICATION_TYPE_THESIS_COUNT}.floatValue() + $V{PUBLICATION_TYPE_JOURNAL_COUNT}.floatValue() + $V{PUBLICATION_TYPE_PAPER_COUNT}.floatValue() + $V{PUBLICATION_TYPE_REVIEW_COUNT}.floatValue() + $V{PUBLICATION_TYPE_AV_COUNT}.floatValue() + $V{PUBLICATION_TYPE_WEB_COUNT}.floatValue()))]]></variableExpression>
 	</variable>
 	<variable name="PATRON_FORMS_COUNT" class="java.lang.Double" incrementType="Report" calculation="Sum"/>
 	<variable name="PATRON_GRANTS_COUNT" class="java.lang.Double" incrementType="Report" calculation="Sum"/>
 	<variable name="HAS_PUBLICATION_MAIN" class="java.lang.String"/>
+	<variable name="PUBLICATION_TYPE_WEB_COUNT" class="java.lang.Double" calculation="Sum"/>
+	<variable name="PUBLICATION_TYPE_REVIEW_COUNT" class="java.lang.Double" calculation="Sum"/>
+	<variable name="PUBLICATION_TYPE_PAPER_COUNT" class="java.lang.Double" calculation="Sum"/>
+	<variable name="PUBLICATION_TYPE_AV_COUNT" class="java.lang.Double" calculation="Sum"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="362" splitType="Stretch">
+		<band height="466" splitType="Stretch">
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
 				<reportElement key="textField-14" mode="Transparent" x="14" y="46" width="507" height="70" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box>
@@ -123,7 +126,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
 					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<text><![CDATA[Number of print articles:]]></text>
+				<text><![CDATA[Number of articles in a newspaper or popular magazine:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="#,##0 %" isBlankWhenNull="false">
 				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="420" y="156" width="50" height="18" forecolor="#000000"/>
@@ -139,19 +142,6 @@
 				<textFieldExpression class="java.lang.Float"><![CDATA[new Float($V{PUBLICATION_TYPE_ARTICLE_COUNT}.floatValue() / $V{PATRON_PUBLICATIONS_BIB_COUNT}.floatValue())]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement key="staticText-18" positionType="Float" x="210" y="190" width="146" height="34" forecolor="#000000" backcolor="#FFFFFF"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
-					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-				</textElement>
-				<text><![CDATA[Number of theses:]]></text>
-			</staticText>
-			<staticText>
 				<reportElement key="staticText-18" positionType="Float" x="210" y="224" width="146" height="34" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -162,20 +152,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
 					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<text><![CDATA[Number of books:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement key="staticText-18" positionType="Float" x="210" y="292" width="146" height="34" forecolor="#000000" backcolor="#FFFFFF"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
-					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-				</textElement>
-				<text><![CDATA[Web Articles:]]></text>
+				<text><![CDATA[Number of theses or dissertations:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement key="staticText-18" positionType="Float" x="210" y="258" width="146" height="34" forecolor="#000000" backcolor="#FFFFFF"/>
@@ -188,10 +165,36 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
 					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<text><![CDATA[Number of online journal articles:]]></text>
+				<text><![CDATA[Number of books:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-18" positionType="Float" x="210" y="429" width="146" height="34" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Other published material:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-18" positionType="Float" x="210" y="292" width="146" height="34" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Number of Websites:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="###0" isBlankWhenNull="false">
-				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="356" y="224" width="50" height="18" forecolor="#000000"/>
+				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="356" y="258" width="50" height="18" forecolor="#000000"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -204,7 +207,7 @@
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{PUBLICATION_TYPE_BOOK_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="#,##0 %" isBlankWhenNull="false">
-				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="420" y="224" width="50" height="18" forecolor="#000000"/>
+				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="420" y="258" width="50" height="18" forecolor="#000000"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -217,7 +220,7 @@
 				<textFieldExpression class="java.lang.Float"><![CDATA[new Float($V{PUBLICATION_TYPE_BOOK_COUNT}.floatValue() / $V{PATRON_PUBLICATIONS_BIB_COUNT}.floatValue())]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="###0" isBlankWhenNull="false">
-				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="356" y="190" width="50" height="18" forecolor="#000000"/>
+				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="356" y="224" width="50" height="18" forecolor="#000000"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -230,7 +233,7 @@
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{PUBLICATION_TYPE_THESIS_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="#,##0 %" isBlankWhenNull="false">
-				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="420" y="190" width="50" height="18" forecolor="#000000"/>
+				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="420" y="224" width="50" height="18" forecolor="#000000"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -241,32 +244,6 @@
 					<font fontName="Arial" size="10"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Float"><![CDATA[new Float($V{PUBLICATION_TYPE_THESIS_COUNT}.floatValue() / $V{PATRON_PUBLICATIONS_BIB_COUNT}.floatValue())]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="###0" isBlankWhenNull="false">
-				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="356" y="258" width="50" height="18" forecolor="#000000"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<font fontName="Arial" size="10"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$V{PUBLICATION_TYPE_ONLINE_COUNT}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="#,##0 %" isBlankWhenNull="false">
-				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="420" y="258" width="50" height="18" forecolor="#000000"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<font fontName="Arial" size="10"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Float"><![CDATA[new Float($V{PUBLICATION_TYPE_ONLINE_COUNT}.floatValue() / $V{PATRON_PUBLICATIONS_BIB_COUNT}.floatValue())]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="###0" isBlankWhenNull="false">
 				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="356" y="292" width="50" height="18" forecolor="#000000"/>
@@ -294,6 +271,32 @@
 				</textElement>
 				<textFieldExpression class="java.lang.Float"><![CDATA[new Float($V{PUBLICATION_TYPE_WEB_COUNT}.floatValue() / $V{PATRON_PUBLICATIONS_BIB_COUNT}.floatValue())]]></textFieldExpression>
 			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="###0" isBlankWhenNull="false">
+				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="356" y="429" width="50" height="18" forecolor="#000000"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$V{PUBLICATION_TYPE_OTHER_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="#,##0 %" isBlankWhenNull="false">
+				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="420" y="429" width="50" height="18" forecolor="#000000"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[new Float($V{PUBLICATION_TYPE_OTHER_COUNT}.floatValue() / $V{PATRON_PUBLICATIONS_BIB_COUNT}.floatValue())]]></textFieldExpression>
+			</textField>
 			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="#,##0 %" isBlankWhenNull="false">
 				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="420" y="326" width="50" height="18" forecolor="#000000"/>
 				<box>
@@ -305,7 +308,7 @@
 				<textElement>
 					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Float"><![CDATA[new Float($V{PUBLICATION_TYPE_OTHER_COUNT}.floatValue() / $V{PATRON_PUBLICATIONS_BIB_COUNT}.floatValue())]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Float"><![CDATA[new Float($V{PUBLICATION_TYPE_REVIEW_COUNT}.floatValue() / $V{PATRON_PUBLICATIONS_BIB_COUNT}.floatValue())]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement key="staticText-18" positionType="Float" x="210" y="326" width="146" height="34" forecolor="#000000" backcolor="#FFFFFF"/>
@@ -318,7 +321,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
 					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<text><![CDATA[Other published material:]]></text>
+				<text><![CDATA[Number of reviews:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="###0" isBlankWhenNull="false">
 				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="356" y="326" width="50" height="18" forecolor="#000000"/>
@@ -331,7 +334,124 @@
 				<textElement>
 					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Float"><![CDATA[$V{PUBLICATION_TYPE_OTHER_COUNT}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{PUBLICATION_TYPE_REVIEW_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="###0" isBlankWhenNull="false">
+				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="356" y="361" width="50" height="18" forecolor="#000000"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{PUBLICATION_TYPE_PAPER_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-18" positionType="Float" x="210" y="361" width="146" height="34" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Number of papers presented at a meeting or conference:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="#,##0 %" isBlankWhenNull="false">
+				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="420" y="361" width="50" height="18" forecolor="#000000"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[new Float($V{PUBLICATION_TYPE_PAPER_COUNT}.floatValue() / $V{PATRON_PUBLICATIONS_BIB_COUNT}.floatValue())]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="#,##0 %" isBlankWhenNull="false">
+				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="420" y="395" width="50" height="18" forecolor="#000000"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[new Float($V{PUBLICATION_TYPE_AV_COUNT}.floatValue() / $V{PATRON_PUBLICATIONS_BIB_COUNT}.floatValue())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-18" positionType="Float" x="210" y="395" width="146" height="34" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Number of audiovisual materials:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="###0" isBlankWhenNull="false">
+				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="356" y="395" width="50" height="18" forecolor="#000000"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{PUBLICATION_TYPE_AV_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-18" positionType="Float" x="210" y="190" width="146" height="34" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Number of journal articles:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="#,##0 %" isBlankWhenNull="false">
+				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="420" y="190" width="50" height="18" forecolor="#000000"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[new Float($V{PUBLICATION_TYPE_JOURNAL_COUNT}.floatValue() / $V{PATRON_PUBLICATIONS_BIB_COUNT}.floatValue())]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="###0" isBlankWhenNull="false">
+				<reportElement key="textField" positionType="Float" isPrintRepeatedValues="false" x="356" y="190" width="50" height="18" forecolor="#000000"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{PUBLICATION_TYPE_JOURNAL_COUNT}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -342,9 +462,9 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="15" splitType="Immediate">
+		<band height="11" splitType="Immediate">
 			<subreport isUsingCache="true" runToBottom="false">
-				<reportElement key="subreport-7" positionType="Float" mode="Transparent" x="14" y="4" width="499" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="subreport-7" positionType="Float" mode="Transparent" x="14" y="2" width="499" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<subreportParameter name="PATRON_NAME">
 					<subreportParameterExpression><![CDATA["" + $F{sortName}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -356,8 +476,12 @@
 				<returnValue subreportVariable="TYPE_ARTICLE_COUNT" toVariable="PUBLICATION_TYPE_ARTICLE_COUNT" calculation="Sum"/>
 				<returnValue subreportVariable="TYPE_BOOK_COUNT" toVariable="PUBLICATION_TYPE_BOOK_COUNT" calculation="Sum"/>
 				<returnValue subreportVariable="TYPE_THESIS_COUNT" toVariable="PUBLICATION_TYPE_THESIS_COUNT" calculation="Sum"/>
+				<returnValue subreportVariable="TYPE_JOURNAL_COUNT" toVariable="PUBLICATION_TYPE_JOURNAL_COUNT" calculation="Sum"/>
+				<returnValue subreportVariable="TYPE_PAPER_COUNT" toVariable="PUBLICATION_TYPE_PAPER_COUNT" calculation="Sum"/>
+				<returnValue subreportVariable="TYPE_AV_COUNT" toVariable="PUBLICATION_TYPE_AV_COUNT" calculation="Sum"/>
 				<returnValue subreportVariable="TYPE_WEB_COUNT" toVariable="PUBLICATION_TYPE_WEB_COUNT" calculation="Sum"/>
-				<returnValue subreportVariable="TYPE_ONLINE_COUNT" toVariable="PUBLICATION_TYPE_ONLINE_COUNT" calculation="Sum"/>
+				<returnValue subreportVariable="TYPE_REVIEW_COUNT" toVariable="PUBLICATION_TYPE_REVIEW_COUNT" calculation="Sum"/>
+				<returnValue subreportVariable="TYPE_OTHER_COUNT" toVariable="PUBLICATION_TYPE_OTHER_COUNT" calculation="Sum"/>
 				<subreportExpression class="java.lang.String"><![CDATA[$P{basePath} + "/sub_patronPublicationsBib.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
