@@ -20,7 +20,7 @@
 	<variable name="TEST_PREFERRED" class="java.lang.String">
 		<variableExpression><![CDATA[("" + $F{preferredAddress})]]></variableExpression>
 	</variable>
-	<variable name="TEST_USA" class="java.lang.Integer">
+	<variable name="TEST_USA" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA[$F{country}.equalsIgnoreCase("United States") & $F{preferredAddress}.equals( Boolean.TRUE )? Integer.valueOf(1) : Integer.valueOf(0)]]></variableExpression>
 	</variable>
 	<background>
