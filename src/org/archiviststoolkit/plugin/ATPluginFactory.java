@@ -449,6 +449,37 @@ public class ATPluginFactory {
     }
 
     /**
+     * Method to return any authentication plugins found
+     *
+     * @return The authentication plugin that was found
+     */
+    public ATPlugin getAuthenticationPlugin() {
+        ATPlugin foundPlugin = null;
+
+        try {
+            Iterator it = pluginManager.getRegistry().getPluginDescriptors().iterator();
+
+            while (it.hasNext()) {
+                PluginDescriptor pluginDescriptor = (PluginDescriptor) it.next();
+                String id = pluginDescriptor.getId();
+                ATPlugin plugin = (org.archiviststoolkit.plugin.ATPlugin) pluginManager.getPlugin(id);
+
+                String cat = plugin.getCategory();
+
+                // check to make sure that the plugin is of the right category
+                if (cat.indexOf(ATPlugin.AUTHENTICATION_CATEGORY) != -1) {
+                    foundPlugin = plugin;
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return foundPlugin;
+    }
+
+    /**
      * Method to return the editor type based on the domain object
      *
      * @param domainObject The domain object to find the editor type for

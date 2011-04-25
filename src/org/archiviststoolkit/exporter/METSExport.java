@@ -60,25 +60,25 @@ public class METSExport {
     private String metadataType;
     private InfiniteProgressPanel progressPanel;
     private int order = 1;
-	private boolean debug = false;
+    private boolean debug = false;
     private int pOrder = 0;
 
     public static Resources getResourceFromDigitalObject(DigitalObjects digitalObject) {
-    	Resources resource = null;
+        Resources resource = null;
         if (digitalObject.getDigitalInstance() != null && digitalObject.getDigitalInstance().getResource() == null && digitalObject.getDigitalInstance().getResourceComponent() != null)
-    		resource = MARCExport.getResourceFromResourceComponent(digitalObject.getDigitalInstance().getResourceComponent());
+            resource = MARCExport.getResourceFromResourceComponent(digitalObject.getDigitalInstance().getResourceComponent());
         else if (digitalObject.getDigitalInstance() != null && digitalObject.getDigitalInstance().getResource() != null) {
-    		resource = digitalObject.getDigitalInstance().getResource();
-    	}
-    	return resource;
+            resource = digitalObject.getDigitalInstance().getResource();
+        }
+        return resource;
     }
-    
+
     public void convertDBRecordToFile(DigitalObjects digitalObject, java.io.File outputFile, InfiniteProgressPanel progressPanel, boolean internalOnly, String metadataType) throws IOException, MetsException {
         this.metadataType = metadataType;
         this.progressPanel = progressPanel;
         ElementType etype = new ElementType();
         Mets mets = new Mets();
-        mets.setOBJID(digitalObject.getMetsIdentifier());   
+        mets.setOBJID(digitalObject.getMetsIdentifier());
         mets.setTYPE(digitalObject.getObjectType());
         mets.setLABEL(digitalObject.getTitle());
         mets.setPROFILE("Archivists' Toolkit Profile");
@@ -89,259 +89,261 @@ public class METSExport {
         agent.setTYPE(Type.ORGANIZATION);
 
         Name name = new Name();
-		//Resources resource = getResourceFromDigitalObject(digitalObject);
-		String rName = null;
-		String rUrl = null;
+        //Resources resource = getResourceFromDigitalObject(digitalObject);
+        String rName = null;
+        String rUrl = null;
 
         // get the repository name
         rName = digitalObject.getRepository().getRepositoryName();
         rUrl = digitalObject.getRepository().getUrl();
 
         /**if(resource!=null){
-			rName = resource.getRepositoryName();
+         rName = resource.getRepositoryName();
 
-		}*/
+         }*/
 
         if (StringHelper.isNotEmpty(rName))
             name.getContent().add(new PCData(rName));
-		//name.getContent().add (new PCData("Archivists' Toolkit"));
+        //name.getContent().add (new PCData("Archivists' Toolkit"));
         agent.getContent().add(name);
         Note note = new Note();
         note.getContent().add(new PCData("Produced by Archivists' Toolkit &#153;"));
         agent.getContent().add(note);
         note = new Note();
-		//String rUrl = digitalObject.getDigitalInstance().getResource().getRepository().getUrl();
+        //String rUrl = digitalObject.getDigitalInstance().getResource().getRepository().getUrl();
         if (StringHelper.isNotEmpty(rUrl)) {
-        	note.getContent().add(new PCData(rUrl));        
-        //note.getContent().add(new PCData("http://www.archiviststoolkit.org"));
-        agent.getContent().add(note);  
+            note.getContent().add(new PCData(rUrl));
+            //note.getContent().add(new PCData("http://www.archiviststoolkit.org"));
+            agent.getContent().add(note);
         }
-        metsHdr.getContent ().add (agent);
-        mets.getContent ().add (metsHdr);
+        metsHdr.getContent().add(agent);
+        mets.getContent().add(metsHdr);
 
-		Vector idsNotUsed = new Vector();
-        buildDmdSec(digitalObject,mets,internalOnly,idsNotUsed);
+        Vector idsNotUsed = new Vector();
+        buildDmdSec(digitalObject, mets, internalOnly, idsNotUsed);
 
-        
+
         FileSec fileSec = new FileSec();
         FileGrp fileGrp = null;
         edu.harvard.hul.ois.mets.File file = null;
         FLocat fLocat = null;
 
         HashMap useTypes = new HashMap();
-        StructMap lstructMap = new StructMap ();
-        lstructMap.setTYPE ("logical");        
-        Div ldiv = new Div ();
-        
-        StructMap pstructMap = new StructMap ();
-        pstructMap.setTYPE ("physical");        
-        Div pDiv = new Div ();        
+        StructMap lstructMap = new StructMap();
+        lstructMap.setTYPE("logical");
+        Div ldiv = new Div();
+
+        StructMap pstructMap = new StructMap();
+        pstructMap.setTYPE("physical");
+        Div pDiv = new Div();
         pDiv.setORDER(1);
         pDiv.setLABEL(digitalObject.getTitle());
         //pDiv.setTYPE(digitalObject.getObjectType());
         pDiv.setTYPE("item");
-        if(!idsNotUsed.contains(digitalObject.getDigitalObjectId()))
-            pDiv.setDMDID("dm"+digitalObject.getDigitalObjectId()+"");
+        if (!idsNotUsed.contains(digitalObject.getDigitalObjectId()))
+            pDiv.setDMDID("dm" + digitalObject.getDigitalObjectId() + "");
         pOrder = 0;
-        handleFileSec(digitalObject,useTypes,ldiv,pDiv,idsNotUsed,0);
-        
+        handleFileSec(digitalObject, useTypes, ldiv, pDiv, idsNotUsed, 0);
+
         lstructMap.getContent().add(ldiv);
         pstructMap.getContent().add(pDiv);
 
 
-		Set<String> keys = useTypes.keySet();
-        boolean in=false;
-        for(String key:keys){
-            in=true;
+        Set<String> keys = useTypes.keySet();
+        boolean in = false;
+        for (String key : keys) {
+            in = true;
             fileGrp = new FileGrp();
             fileGrp.setUSE(key);
-            Vector<FileVersions> fileVersions = (Vector)useTypes.get(key);
-            for(FileVersions fileVersion:fileVersions){
+            Vector<FileVersions> fileVersions = (Vector) useTypes.get(key);
+            for (FileVersions fileVersion : fileVersions) {
                 //in=true;
                 file = new edu.harvard.hul.ois.mets.File();
-                file.setID("FID"+fileVersion.getFileVersionId()+"");
-                file.setGROUPID(fileVersion.getDigitalObject().getDigitalObjectId()+"");
+                file.setID("FID" + fileVersion.getFileVersionId() + "");
+                file.setGROUPID(fileVersion.getDigitalObject().getDigitalObjectId() + "");
                 file.setUSE(fileVersion.getUseStatement());
                 fLocat = new FLocat();
-                fLocat.setXlinkHref (fileVersion.getUri());
-                fLocat.setLOCTYPE (Loctype.URL);
-                file.getContent ().add (fLocat);
-                fileGrp.getContent ().add (file);                
+                fLocat.setXlinkHref(fileVersion.getUri());
+                fLocat.setLOCTYPE(Loctype.URL);
+                file.getContent().add(fLocat);
+                fileGrp.getContent().add(file);
             }
-            fileSec.getContent ().add (fileGrp);               
+            fileSec.getContent().add(fileGrp);
         }
         //mets.getContent ().add (dmdSec);
-        if(in)
-            mets.getContent ().add (fileSec);
-        mets.getContent ().add (lstructMap);        
-        mets.getContent ().add (pstructMap);
+        if (in)
+            mets.getContent().add(fileSec);
+        mets.getContent().add(lstructMap);
+        mets.getContent().add(pstructMap);
 
 
-
-		try{
-			if (debug) {
-				System.out.println("here5");
-			}
-			mets.validate (new MetsValidator ());
-			if (debug) {
-				System.out.println("here6");
-			}
-			FileOutputStream out = new FileOutputStream (outputFile);System.out.println("here7");
-            mets.write(new MetsWriter (out));
-			if (debug) {
-				System.out.println("here8");
-			}
-			out.close ();
-			if (debug) {
-				System.out.println("here9");
-			}
-		}
+        try {
+            if (debug) {
+                System.out.println("here5");
+            }
+            mets.validate(new MetsValidator());
+            if (debug) {
+                System.out.println("here6");
+            }
+            FileOutputStream out = new FileOutputStream(outputFile);
+            System.out.println("here7");
+            mets.write(new MetsWriter(out));
+            if (debug) {
+                System.out.println("here8");
+            }
+            out.close();
+            if (debug) {
+                System.out.println("here9");
+            }
+        }
         catch (MetsException me) {
             me.printStackTrace();
-        	throw me;
-    
+            throw me;
+
         }
-        catch (IOException ioe){
+        catch (IOException ioe) {
             ioe.printStackTrace();
-        	throw ioe;
-            
+            throw ioe;
+
         }
     }
-    
-    private void buildDmdSec(DigitalObjects digitalObject, Mets mets, boolean internalOnly, Vector idsNotUsed)
-    {
+
+    private void buildDmdSec(DigitalObjects digitalObject, Mets mets, boolean internalOnly, Vector idsNotUsed) {
         DmdSec dmdSec = new DmdSec();
-        dmdSec.setID("dm"+digitalObject.getDigitalObjectId());
+        dmdSec.setID("dm" + digitalObject.getDigitalObjectId());
         MdWrap mdWrap = new MdWrap();
         mdWrap.setMIMETYPE("text/xml");
         XmlData xmlData = new XmlData();
         //xmlData.setSchema("dc","http://purl.org/dc/elements/1.1/");
-        
+
         DCExport dcExport = new DCExport();
         MODSExport modsExport = new MODSExport();
         String dmdXML = "";
-        if(metadataType.equals("dc")){
+        if (metadataType.equals("dc")) {
             mdWrap.setMDTYPE(Mdtype.DC);
-            dmdXML = dcExport.convertDBRecordToXML(digitalObject,internalOnly,false);
-        }
-        else if (metadataType.equals("mods")){
-            dmdXML = modsExport.convertResourceMODSXML(digitalObject,progressPanel,internalOnly,false);
+            dmdXML = dcExport.convertDBRecordToXML(digitalObject, internalOnly, false);
+        } else if (metadataType.equals("mods")) {
+            dmdXML = modsExport.convertResourceMODSXML(digitalObject, progressPanel, internalOnly, false);
             mdWrap.setMDTYPE(Mdtype.MODS);
             //mdWrap.setSchema("http://www.loc.gov/mods/v3","http://www.loc.gov/standards/mods/v3/mods-3-2.xsd");
         }
-            
-        if(dmdXML.length()>0){
+
+        if (dmdXML.length() > 0) {
             PreformedXML pxml = new PreformedXML(dmdXML);
             xmlData.getContent().add(pxml);
             mdWrap.getContent().add(xmlData);
-            dmdSec.getContent().add(mdWrap);    
-            mets.getContent ().add (dmdSec);
-        }
-        else{
+            dmdSec.getContent().add(mdWrap);
+            mets.getContent().add(dmdSec);
+        } else {
             idsNotUsed.add(digitalObject.getDigitalObjectId());
         }
-        
-        for(DigitalObjects digO:digitalObject.getDigitalObjectChildren())
-        {
-            buildDmdSec(digO,mets,internalOnly,idsNotUsed);
+
+        // place in array list so that children DO are returned to in the
+        // correct order by sorting
+        ArrayList<DigitalObjects> digitalObjects = new ArrayList<DigitalObjects>(digitalObject.getDigitalObjectChildren());
+        Collections.sort(digitalObjects);
+
+        for (DigitalObjects digO : digitalObjects) {
+            buildDmdSec(digO, mets, internalOnly, idsNotUsed);
         }
     }
-    
-    
+
 
     //private void handleStructMapL()
-    private void handleFileSec(DigitalObjects digitalObject, HashMap useTypes,Div lDiv,Div pDiv,Vector idsNotUsed, int order){
-        if(order==0){
+    private void handleFileSec(DigitalObjects digitalObject, HashMap useTypes, Div lDiv, Div pDiv, Vector idsNotUsed, int order) {
+        if (order == 0) {
             lDiv.setORDER(1);
-            if(!idsNotUsed.contains(digitalObject.getDigitalObjectId()))
-                lDiv.setDMDID("dm"+digitalObject.getDigitalObjectId());
-        }
-        else{
+            if (!idsNotUsed.contains(digitalObject.getDigitalObjectId()))
+                lDiv.setDMDID("dm" + digitalObject.getDigitalObjectId());
+        } else {
             lDiv.setORDER(++order);
-            if(!idsNotUsed.contains(digitalObject.getDigitalObjectId()))
-                lDiv.setDMDID("dm"+digitalObject.getDigitalObjectId());
+            if (!idsNotUsed.contains(digitalObject.getDigitalObjectId()))
+                lDiv.setDMDID("dm" + digitalObject.getDigitalObjectId());
         }
-        
+
         lDiv.setTYPE("item");
         lDiv.setLABEL(digitalObject.getTitle());
-        if(digitalObject.getTitle().length()==0)
+        if (digitalObject.getTitle().length() == 0)
             lDiv.setLABEL(digitalObject.getLabel());
-        
-        if(StringHelper.isNotEmpty(digitalObject.getObjectType()))
-        lDiv.setTYPE(digitalObject.getObjectType());
-        Fptr fptr,fptr2 = null;
+
+        if (StringHelper.isNotEmpty(digitalObject.getObjectType()))
+            lDiv.setTYPE(digitalObject.getObjectType());
+        Fptr fptr, fptr2 = null;
         Set<FileVersions> fileVersions = digitalObject.getFileVersions();
         Div pDiv2 = new Div();
-        if(fileVersions!=null&&fileVersions.size()>0){
+        if (fileVersions != null && fileVersions.size() > 0) {
             //pDiv2 = new Div();
-            pDiv.getContent ().add (pDiv2);
+            pDiv.getContent().add(pDiv2);
             //pDiv2.setORDER(digitalObject.getSequence());
             pDiv2.setORDER(++pOrder);
             pDiv2.setLABEL(digitalObject.getTitle());
-            if(!idsNotUsed.contains(digitalObject.getDigitalObjectId()))
-                pDiv2.setDMDID("dm"+digitalObject.getDigitalObjectId()+"");            
-            if(digitalObject.getTitle().length()==0)
+            if (!idsNotUsed.contains(digitalObject.getDigitalObjectId()))
+                pDiv2.setDMDID("dm" + digitalObject.getDigitalObjectId() + "");
+            if (digitalObject.getTitle().length() == 0)
                 pDiv2.setLABEL(digitalObject.getLabel());
             pDiv2.setTYPE("page");
 
         }
         //container for the fptrs
-        Div div3 = new Div();        
+        Div div3 = new Div();
         div3.setTYPE("page");
         div3.setORDER(1);
-        if(fileVersions.size()>0)
+        if (fileVersions.size() > 0)
             lDiv.getContent().add(div3);
-            
-        for(FileVersions fileVersion:fileVersions){
+
+        for (FileVersions fileVersion : fileVersions) {
             fptr = new Fptr();
-            fptr.setFILEID ("FID"+fileVersion.getFileVersionId()+"");
+            fptr.setFILEID("FID" + fileVersion.getFileVersionId() + "");
             //lDiv.getContent ().add (fptr);
             div3.getContent().add(fptr);
-            
+
             //Div div4 = new Div();
             fptr2 = new Fptr();
-            fptr2.setFILEID ("FID"+fileVersion.getFileVersionId()+"");
+            fptr2.setFILEID("FID" + fileVersion.getFileVersionId() + "");
             //div4.setTYPE("page");
             //div4.getContent().add(fptr2);
             //div4.setDMDID(digitalObject.getDigitalObjectId()+"");
             //div4.setORDER(fileVersion.getSequenceNumber());
             pDiv2.getContent().add(fptr2);
-            
+
             String use = fileVersion.getUseStatement();
-            Vector dos = (Vector)useTypes.get(use);
-            if(dos==null){
+            Vector dos = (Vector) useTypes.get(use);
+            if (dos == null) {
                 dos = new Vector();
                 dos.add(fileVersion);
-                useTypes.put(use,dos);
-            }
-            else{
+                useTypes.put(use, dos);
+            } else {
                 dos.add(fileVersion);
             }
         }
-        
+
         //if(fileVersions!=null&&fileVersions.size()>0)
-            //pDiv=pDiv2;
-        
-        Set<DigitalObjects> digitalObjects = digitalObject.getDigitalObjectChildren();
-        int objectOrder=0;
-        for(DigitalObjects digitalObj:digitalObjects){
-            
+        //pDiv=pDiv2;
+
+        // place in array list so that children DO are returned to in the
+        // correct order by sorting
+        ArrayList<DigitalObjects> digitalObjects = new ArrayList<DigitalObjects>(digitalObject.getDigitalObjectChildren());
+        Collections.sort(digitalObjects);
+
+        int objectOrder = 0;
+        for (DigitalObjects digitalObj : digitalObjects) {
+
             Div lDiv2 = new Div();
-            lDiv.getContent ().add (lDiv2);
-            handleFileSec(digitalObj,useTypes,lDiv2,pDiv,idsNotUsed,objectOrder);
+            lDiv.getContent().add(lDiv2);
+            handleFileSec(digitalObj, useTypes, lDiv2, pDiv, idsNotUsed, objectOrder);
             //pOrder++;
             objectOrder++;
         }
     }
 
-    public static void main(String args[]){
+    public static void main(String args[]) {
         //METSExport dcE = new METSExport();
         //System.out.println(dcE.tagRemover("<this> is a <tag> here"));
         //Object s = new String();
         //System.out.println(s.getClass());
         String val = "English; eng";
-        System.out.println("1:"+StringHelper.getFirstPartofLangString(val,";"));
-        System.out.println("2:"+StringHelper.getSecondPartofLangString(val,";"));
-        
+        System.out.println("1:" + StringHelper.getFirstPartofLangString(val, ";"));
+        System.out.println("2:" + StringHelper.getSecondPartofLangString(val, ";"));
+
     }
 }

@@ -35,6 +35,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 
+import org.archiviststoolkit.exceptions.ReportExecutionException;
 import org.archiviststoolkit.mydomain.*;
 import org.archiviststoolkit.importer.*;
 import org.archiviststoolkit.swing.*;
@@ -65,6 +66,9 @@ import org.rac.dialogs.PatronManagement;
 import org.rac.importer.ImportPatronData2;
 import org.rac.model.*;
 import org.rac.model.validators.*;
+import org.rac.reports.SubjectReferenceReport;
+import org.rac.reports.VisitsStatisticsReport;
+import org.rac.utils.PatronValidatorUtils;
 import say.swing.JFontChooser;
 
 
@@ -128,6 +132,16 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 	public static String URL_DOWNLOAD = "http://www.archiviststoolkit.org/atDistribution/install.shtml";
 	public static SimpleDateFormat applicationDateFormat = new SimpleDateFormat(Constants.DEFAULT_DATE_FORMAT);
 
+    // This specifies whether to enable the spell check function
+    // and highlighting. The default is to have it enable
+    public static boolean enableSpellCheck = true;
+    public static boolean enableSpellCheckHighlight = true;
+
+    // boolean indicating whether the editor for a record is opened
+    // this is needed to fix a bug which doesn't allow dates and
+    // extent information to be save correctly
+    public static boolean editorOpen = false;
+
 	private MyTimer timer;
 	private String startupLog;
 
@@ -141,6 +155,10 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 	private ATFileChooser filechooser;
 	private ImportHandler handler;
 	private WorkSurfaceContainer workSurfaceContainer;
+
+	//todo RAC patron additions
+	private Boolean sharePatronRecords;
+
 	/**
 	 * File Menu Actions.
 	 */
@@ -173,7 +191,9 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
     private ConcreteAction admin_CompileJasperReport = null;
     private ConcreteAction admin_ReloadReports = null;
 	//	private ConcreteAction admin_UserPreferences = null;
-	private ConcreteAction admin_DateFormatSetting = null;
+	//todo RAC patrons change date format to preferences since more is being done
+//	private ConcreteAction admin_DateFormatSetting = null;
+	private ConcreteAction admin_Preferences = null;
 
 	private ConcreteAction admin_EditUsers = null;
 	private ConcreteAction admin_EditRepositories = null;
@@ -185,6 +205,12 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 	private ConcreteAction admin_RDE = null;
 	private ConcreteAction admin_RDE_DO = null;
 	private ConcreteAction admin_Font = null;
+	private ConcreteAction admin_Spellcheck = null;
+	private ConcreteAction admin_SpellcheckHiglight = null;
+
+    // add the global checkbox menu item
+    private JCheckBoxMenuItem spellCheckMenuItem = null; // this needs to be global v
+    private JCheckBoxMenuItem spellCheckHighlightMenuItem = null; // this needs to be global v
 
 	/**
 	 * The tools menu action.
@@ -240,8 +266,11 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 	/**
 	 * RAC additions
 	 */
+	//todo RAC additions
 	private ConcreteAction patronAction = null;
 	private ConcreteAction services = null;
+	private ConcreteAction subjectReferenceReport = null;
+	private ConcreteAction patronVisitSummary = null;
 
 
 	private Hashtable<Class, DomainTableWorkSurface> worksurfaces = new Hashtable<Class, DomainTableWorkSurface>();
@@ -315,7 +344,7 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 
 		String title = resourceBundle.getString("archiviststoolkit.application.title") + " - " + ApplicationFrame.getInstance().getAtVersionNumber();
 		if (!resourceBundle.getString("archiviststoolkit.releaseType").equals("production")) {
-			title += " - WARNING: This is an pre-release version of the Archivists' Toolkit. Please use this version for testing purposes only.";
+			title += " - WARNING: This is an pre-release version of the AT Reference. Please use this version for testing purposes only.";
 		}
 		this.setTitle(title);
 		this.setIconImage(new ImageIcon(this.getClass().getResource("/org/archiviststoolkit/resources/images/launchIcon16x16.gif")).getImage());
@@ -493,8 +522,18 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
         admin_ReloadReports = new ConcreteAction("Reload Reports");
         admin_ReloadReports.addActionListener(this);
 
-		admin_DateFormatSetting = new ConcreteAction("Date Format Setting");
-		admin_DateFormatSetting.addActionListener(this);
+		//todo RAC patrons change date format to preferences since more is being done
+//		admin_DateFormatSetting = new ConcreteAction("Date Format Setting");
+//		admin_DateFormatSetting.addActionListener(this);
+		admin_Preferences = new ConcreteAction("Preferences");
+		admin_Preferences.addActionListener(this);
+
+		//todo RAC statistical reports
+		subjectReferenceReport = new ConcreteAction("Subject Reference Report");
+		subjectReferenceReport.addActionListener(this);
+
+		patronVisitSummary = new ConcreteAction("Patron Visit Summary");
+		patronVisitSummary.addActionListener(this);
 
 		admin_EditUsers = new ConcreteAction("Users");
 		admin_EditUsers.addActionListener(this);
@@ -525,6 +564,9 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 
         admin_Font = new ConcreteAction("Configure Font");
 		admin_Font.addActionListener(this);
+
+        admin_Spellcheck = new ConcreteAction("Enable");
+        admin_SpellcheckHiglight = new ConcreteAction("Highlight");
 
         assessmentAction = new ConcreteAction("Assessment Records");
 		assessmentAction.addActionListener(this);
@@ -667,7 +709,9 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 		//setupMenu.add(admin_EditLocations);
 		if (Users.doesCurrentUserHaveAccess(Users.ACCESS_CLASS_SUPERUSER)) {
 			setupMenu.add(admin_EditNotesEtc);
-			setupMenu.add(admin_DateFormatSetting);
+			//todo RAC patrons change date format to preferences since more is being done
+//			setupMenu.add(admin_DateFormatSetting);
+			setupMenu.add(admin_Preferences);
 		}
 		if (Users.doesCurrentUserHaveAccess(Users.ACCESS_CLASS_SUPERUSER)) {
 			setupMenu.add(admin_ConfigureApplication);
@@ -682,6 +726,22 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 		if (Users.doesCurrentUserHaveAccess(Users.ACCESS_CLASS_PROJECT_MANAGER)) {
 			menuBar.add(setupMenu);
 		}
+
+        // add the submenu to enable or disable the spell check function
+        JMenu spellCheckMenu = new JMenu("Spell Check");
+
+        spellCheckMenuItem = new JCheckBoxMenuItem(admin_Spellcheck);
+        spellCheckMenuItem.setSelected(enableSpellCheck);
+        admin_Spellcheck.addActionListener(this);
+        spellCheckMenu.add(spellCheckMenuItem);
+
+        spellCheckHighlightMenuItem = new JCheckBoxMenuItem(admin_SpellcheckHiglight);
+        spellCheckHighlightMenuItem.setSelected(enableSpellCheckHighlight);
+        spellCheckHighlightMenuItem.setEnabled(enableSpellCheck);
+        admin_SpellcheckHiglight.addActionListener(this);
+        spellCheckMenu.add(spellCheckHighlightMenuItem);
+        
+        setupMenu.add(spellCheckMenu);
 
 		JMenu reportMenu = new JMenu("Reports");
 		reportMenu.setBackground(MENU_BAR_BACKGROUND_COLOR);
@@ -707,9 +767,11 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
             toolMenu.add(this.assessmentAction);
             toolMenu.add(admin_EditLocations);
 
-			//RAC additions
+			//todo RAC additions
 			toolMenu.add(patronAction);
 			toolMenu.add(services);
+			toolMenu.add(subjectReferenceReport);
+			toolMenu.add(patronVisitSummary);
 
 //			RAC_nameImport = new ConcreteAction("RAC patron import");
 //			RAC_nameImport.addActionListener(this);
@@ -799,7 +861,9 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
         } else if (actionEvent.getSource() == this.admin_ReloadReports) {
             ReportFactory.getInstance().ParseReportDirectory(true);
 
-        } else if (actionEvent.getSource() == this.admin_DateFormatSetting) {
+			//todo RAC patrons change date format to preferences since more is being done
+//		} else if (actionEvent.getSource() == this.admin_DateFormatSetting) {
+		} else if (actionEvent.getSource() == this.admin_Preferences) {
 			try {
 				Constants.modifyConstantsRecord();
 			} catch (PersistenceException e) {
@@ -1050,6 +1114,20 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
                 SwingUtilities.updateComponentTreeUI(this);
             }
 
+        } else if (actionEvent.getSource() == this.admin_Spellcheck || actionEvent.getSource() == this.admin_SpellcheckHiglight) {
+            // get the user preferences and save the state check spell enable
+            UserPreferences userPref = UserPreferences.getInstance();
+            userPref.setEnableSpellCheck(spellCheckMenuItem.isSelected());
+            userPref.setEnableSpellCheckHighlight(spellCheckHighlightMenuItem.isSelected());
+            userPref.saveToPreferences();
+
+            // see whether to disable the highlighting check box
+            if(!spellCheckMenuItem.isSelected()) {
+                spellCheckHighlightMenuItem.setEnabled(false);
+            } else {
+                spellCheckHighlightMenuItem.setEnabled(true);
+            }
+
 		} else if (actionEvent.getSource() == this.import_Subject) {
 			ATFileChooser filechooser = new ATFileChooser();
 			filechooser.setSize(600, 400);
@@ -1092,7 +1170,7 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 
 			if (filechooser.showOpenDialog(this, "Import") == JFileChooser.APPROVE_OPTION) {
 				controller = new DomainImportController();
-				handler = new AccessionImportXmlHandler2((ImportOptionsAccessions) filechooser.getAccessory());
+				handler = new AccessionImportXmlHandler((ImportOptionsAccessions) filechooser.getAccessory());
 				Thread performer = new Thread(new Runnable() {
 					public void run() {
 						InfiniteProgressPanel monitor = ATProgressUtil.createModalProgressMonitor(ApplicationFrame.getInstance(), 1000, true);
@@ -1228,20 +1306,22 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 				new ErrorDialog(this, "Error creating editor for Assessments", e).showDialog();
 			}
 
+		//todo RAC patron additions
 		} else if (actionEvent.getSource() == this.patronAction) {
             try {
 				PatronManagement dialog = new PatronManagement(this);
 				dialog.setReadingRoomLogon(false);
-				ValidatorFactory validatorFactory = ValidatorFactory.getInstance();
-				//load the custom patron validator
-				validatorFactory.addValidator(Patrons.class, new PatronsValidator());
-				validatorFactory.addValidator(PatronFunding.class, new PatronFundingValidator());
-				validatorFactory.addValidator(PatronPhoneNumbers.class, new PatronPhoneNumbersValidator());
-				validatorFactory.addValidator(PatronVisits.class, new PatronVisitsValidator());
-				validatorFactory.addValidator(PatronPublications.class, new PatronPublicationsValidator());
-				validatorFactory.addValidator(PatronAddresses.class, new PatronAddressesValidator());
-				validatorFactory.addValidator(PatronForms.class, new PatronFormsValidator());
-				validatorFactory.addValidator(Services.class, new ServicesValidator());
+				PatronValidatorUtils.loadPatronValidators();
+//				ValidatorFactory validatorFactory = ValidatorFactory.getInstance();
+//				//load the custom patron validator
+//				validatorFactory.addValidator(Patrons.class, new PatronsValidator());
+//				validatorFactory.addValidator(PatronFunding.class, new PatronFundingValidator());
+//				validatorFactory.addValidator(PatronPhoneNumbers.class, new PatronPhoneNumbersValidator());
+//				validatorFactory.addValidator(PatronVisits.class, new PatronVisitsValidator());
+//				validatorFactory.addValidator(PatronPublications.class, new PatronPublicationsValidator());
+//				validatorFactory.addValidator(PatronAddresses.class, new PatronAddressesValidator());
+//				validatorFactory.addValidator(PatronForms.class, new PatronFormsValidator());
+//				validatorFactory.addValidator(Services.class, new ServicesValidator());
 				dialog.showDialog();
 			} catch (DomainEditorCreationException e) {
 				new ErrorDialog(this, "Error creating editor for Patrons", e).showDialog();
@@ -1256,6 +1336,24 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 				dialog.showDialog();
 			} catch (DomainEditorCreationException e) {
 				new ErrorDialog(this, "Error creating editor for Patrons", e).showDialog();
+			}
+
+		} else if (actionEvent.getSource() == this.subjectReferenceReport) {
+
+			SubjectReferenceReport report = new SubjectReferenceReport();
+			try {
+				report.runReport();
+			} catch (ReportExecutionException e) {
+				new ErrorDialog(this, "Error running subject report", e).showDialog();
+			}
+
+		} else if (actionEvent.getSource() == this.patronVisitSummary) {
+
+			VisitsStatisticsReport report = new VisitsStatisticsReport();
+			try {
+				report.runReport();
+			} catch (ReportExecutionException e) {
+				new ErrorDialog(this, "Error running visit report", e).showDialog();
 			}
 
 			//rac stuff
@@ -1427,7 +1525,7 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 
 	public static String gatherSystemInformation() {
 		String returnString = "";
-		returnString = "AT Version: " + ApplicationFrame.getInstance().getAtVersionNumber();
+		returnString = "AT Reference Version: " + ApplicationFrame.getInstance().getAtVersionNumber();
 		returnString += "\nJava Version: " + System.getProperty("java.version");
 		returnString += "\nOperating System: " + System.getProperty("os.name");
 		returnString += "\nOS Version: " + System.getProperty("os.version");
@@ -1673,4 +1771,18 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
     public void getToolPluginNames() {
         toolPluginNames = ATPluginFactory.getInstance().getPluginNamesByCategory(ATPlugin.TOOL_CATEGORY);
     }
+
+
+	//todo RAC patron additions
+	public Boolean isSharePatronRecords() {
+		if (sharePatronRecords != null) {
+			return sharePatronRecords;
+		} else {
+			return false;
+		}
+	}
+
+	public void setSharePatronRecords(Boolean sharePatronRecords) {
+		this.sharePatronRecords = sharePatronRecords;
+	}
 }

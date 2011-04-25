@@ -19,6 +19,7 @@ package org.archiviststoolkit.model;
 import java.util.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreeSelectionModel;
 import javax.swing.*;
 
@@ -654,7 +655,7 @@ public class Resources extends ResourcesCommon {
 		InstanceLocations containerList;
 //		List<String> additionalLines = Collections.synchronizedList(new ArrayList<String>());
         if (progressPanel != null) {
-//            additionalLines.add("Resource: " + this.getUnits());
+//            additionalLines.add("Resource: " + this.getTitle());
             progressPanel.setTextLine("Resource: " + this.getTitle(), 2);
         }
 

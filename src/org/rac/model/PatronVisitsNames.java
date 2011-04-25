@@ -62,6 +62,19 @@ public class PatronVisitsNames extends DomainObject implements Serializable, Com
 	/**
 	 * Full constructor;
 	 */
+	public PatronVisitsNames(Names name,
+								   PatronVisits patronVisit,
+								   String role,
+								   String form) {
+		this.setName(name);
+		this.setPatronVisits(patronVisit);
+		this.setRole(role);
+		this.setForm(form);
+	}
+
+	/**
+	 * Full constructor;
+	 */
 	public PatronVisitsNames(Names name, PatronVisits patronVisits) {
 		this.setName(name);
 		this.setPatronVisits(patronVisits);

@@ -147,7 +147,7 @@
            </void> 
            <void method="setProperty"> 
             <string>$rowSpecs</string> 
-            <string>default, linegap, default, linegap, top:default, linegap, default, linegap, default</string> 
+            <string>default, linegap, default, linegap, top:default, linegap, default, linegap, default, linegap, default</string> 
            </void> 
           </object> 
           <void method="setProperty"> 
@@ -1855,6 +1855,166 @@
             </void> 
            </object> 
           </void> 
+          <void method="add"> 
+           <object class="com.jformdesigner.model.FormContainer"> 
+            <string>javax.swing.JPanel</string> 
+            <object class="com.jformdesigner.model.FormLayoutManager"> 
+             <class>com.jgoodies.forms.layout.FormLayout</class> 
+             <void method="setProperty"> 
+              <string>$columnSpecs</string> 
+              <string>default, labelcompgap, left:default, labelcompgap, default</string> 
+             </void> 
+             <void method="setProperty"> 
+              <string>$rowSpecs</string> 
+              <string>default</string> 
+             </void> 
+            </object> 
+            <void method="setProperty"> 
+             <string>opaque</string> 
+             <boolean>false</boolean> 
+            </void> 
+            <void property="name"> 
+             <string>panel15</string> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JLabel</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>Repository</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object id="Font7" class="java.awt.Font"> 
+                <string>Trebuchet MS</string> 
+                <int>0</int> 
+                <int>13</int> 
+               </object> 
+              </void> 
+              <void property="name"> 
+               <string>label_repositoryName</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field}, Accessions.class, Accessions.PROPERTYNAME_REPOSITORY);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JTextField</string> 
+              <void method="setProperty"> 
+               <string>$size</string> 
+               <object class="java.awt.Dimension"> 
+                <int>125</int> 
+                <int>22</int> 
+               </object> 
+              </void> 
+              <void method="setProperty"> 
+               <string>editable</string> 
+               <boolean>false</boolean> 
+              </void> 
+              <void method="setProperty"> 
+               <string>focusable</string> 
+               <boolean>false</boolean> 
+              </void> 
+              <void method="setProperty"> 
+               <string>border</string> 
+               <object class="com.jformdesigner.model.FormObject" field="NULL_VALUE"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>opaque</string> 
+               <boolean>false</boolean> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font7"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>horizontalAlignment</string> 
+               <int>2</int> 
+              </void> 
+              <void property="name"> 
+               <string>repositoryName</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.variableModifiers</string> 
+                <int>1</int> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>hAlign</string> 
+               <object class="com.jgoodies.forms.layout.CellConstraints" field="FILL"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridX</string> 
+               <int>3</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JButton</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>Change Repository</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>font</string> 
+               <object idref="Font7"/> 
+              </void> 
+              <void method="setProperty"> 
+               <string>opaque</string> 
+               <boolean>false</boolean> 
+              </void> 
+              <void property="name"> 
+               <string>changeRepositoryButton</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.variableGetter</string> 
+                <boolean>true</boolean> 
+               </void> 
+              </void> 
+              <void method="addEvent"> 
+               <object class="com.jformdesigner.model.FormEvent"> 
+                <string>java.awt.event.ActionListener</string> 
+                <string>actionPerformed</string> 
+                <string>changeRepositoryButtonActionPerformed</string> 
+                <boolean>false</boolean> 
+               </object> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridX</string> 
+               <int>5</int> 
+              </void> 
+             </object> 
+            </void> 
+           </object> 
+           <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+            <class>com.jgoodies.forms.layout.CellConstraints</class> 
+            <void method="setProperty"> 
+             <string>gridY</string> 
+             <int>11</int> 
+            </void> 
+            <void method="setProperty"> 
+             <string>gridWidth</string> 
+             <int>3</int> 
+            </void> 
+           </object> 
+          </void> 
          </object> 
          <object class="com.jformdesigner.model.FormLayoutConstraints"> 
           <null/> 
@@ -2157,7 +2317,7 @@
             </void> 
             <void method="setProperty"> 
              <string>font</string> 
-             <object id="Font7" class="java.awt.Font"> 
+             <object id="Font8" class="java.awt.Font"> 
               <string>Trebuchet MS</string> 
               <int>0</int> 
               <int>13</int> 
@@ -2397,7 +2557,7 @@
             </void> 
             <void method="setProperty"> 
              <string>font</string> 
-             <object idref="Font7"/> 
+             <object idref="Font8"/> 
             </void> 
             <void property="name"> 
              <string>separator4</string> 
@@ -2855,7 +3015,7 @@
             </void> 
             <void method="setProperty"> 
              <string>font</string> 
-             <object idref="Font7"/> 
+             <object idref="Font8"/> 
             </void> 
             <void property="name"> 
              <string>separator2</string> 
@@ -3143,7 +3303,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object id="Font8" class="java.awt.Font"> 
+               <object id="Font9" class="java.awt.Font"> 
                 <string>Trebuchet MS</string> 
                 <int>0</int> 
                 <int>13</int> 
@@ -3175,7 +3335,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void method="setProperty"> 
                <string>columns</string> 
@@ -3216,7 +3376,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>label_acknowledgementDate3</string> 
@@ -3245,7 +3405,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void method="setProperty"> 
                <string>columns</string> 
@@ -3294,7 +3454,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>rights2</string> 
@@ -3339,7 +3499,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>rights3</string> 
@@ -3380,7 +3540,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>label_date1Begin2</string> 
@@ -3409,7 +3569,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void method="setProperty"> 
                <string>columns</string> 
@@ -3454,7 +3614,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>label_date1Begin3</string> 
@@ -3483,7 +3643,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void method="setProperty"> 
                <string>columns</string> 
@@ -3528,7 +3688,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>label_date1Begin4</string> 
@@ -3560,7 +3720,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void method="setProperty"> 
                <string>columns</string> 
@@ -3605,7 +3765,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>label_date1Begin5</string> 
@@ -3634,7 +3794,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void method="setProperty"> 
                <string>columns</string> 
@@ -3679,7 +3839,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>label_date1Begin6</string> 
@@ -3704,7 +3864,7 @@
               <string>javax.swing.JTextField</string> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>dateExpression2</string> 
@@ -3750,7 +3910,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>label_date1Begin7</string> 
@@ -3775,7 +3935,7 @@
               <string>javax.swing.JTextField</string> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>dateExpression3</string> 
@@ -3816,7 +3976,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>label_date1Begin8</string> 
@@ -3841,7 +4001,7 @@
               <string>javax.swing.JTextField</string> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>dateExpression4</string> 
@@ -3882,7 +4042,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>label_date1Begin9</string> 
@@ -3914,7 +4074,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void method="setProperty"> 
                <string>preferredSize</string> 
@@ -3943,7 +4103,7 @@
                 </void> 
                 <void method="setProperty"> 
                  <string>font</string> 
-                 <object idref="Font8"/> 
+                 <object idref="Font9"/> 
                 </void> 
                 <void method="setProperty"> 
                  <string>minimumSize</string> 
@@ -4023,7 +4183,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>label_date1Begin10</string> 
@@ -4051,7 +4211,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void method="setProperty"> 
                <string>preferredSize</string> 
@@ -4077,7 +4237,7 @@
                 </void> 
                 <void method="setProperty"> 
                  <string>font</string> 
-                 <object idref="Font8"/> 
+                 <object idref="Font9"/> 
                 </void> 
                 <void method="setProperty"> 
                  <string>minimumSize</string> 
@@ -4116,7 +4276,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>label_date1Begin11</string> 
@@ -4148,7 +4308,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void method="setProperty"> 
                <string>preferredSize</string> 
@@ -4174,7 +4334,7 @@
                 </void> 
                 <void method="setProperty"> 
                  <string>font</string> 
-                 <object idref="Font8"/> 
+                 <object idref="Font9"/> 
                 </void> 
                 <void method="setProperty"> 
                  <string>minimumSize</string> 
@@ -4213,7 +4373,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void property="name"> 
                <string>label_date1Begin12</string> 
@@ -4245,7 +4405,7 @@
               </void> 
               <void method="setProperty"> 
                <string>font</string> 
-               <object idref="Font8"/> 
+               <object idref="Font9"/> 
               </void> 
               <void method="setProperty"> 
                <string>preferredSize</string> 
@@ -4271,7 +4431,7 @@
                 </void> 
                 <void method="setProperty"> 
                  <string>font</string> 
-                 <object idref="Font8"/> 
+                 <object idref="Font9"/> 
                 </void> 
                 <void method="setProperty"> 
                  <string>minimumSize</string> 

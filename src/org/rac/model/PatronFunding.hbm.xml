@@ -21,7 +21,7 @@
 
 		<property name="fundingDate"
 				  column="fundingDate"
-				  type="date"/>
+				  type="string"/>
 
 		<property name="fundingType"
 				  column="fundingType"

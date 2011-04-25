@@ -659,6 +659,7 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
 		while (!done) {
 			if (createNewInstance) {
 				newPatron = new Patrons();
+				newPatron.setRepository(ApplicationFrame.getInstance().getCurrentUserRepository());
 			} else {
 				createNewInstance = true;
 			}

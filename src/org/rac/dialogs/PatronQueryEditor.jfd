@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_22" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_24" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -1148,42 +1148,20 @@
               </void> 
               <void method="add"> 
                <object class="com.jformdesigner.model.FormComponent"> 
-                <string>javax.swing.JComboBox</string> 
-                <void method="setProperty"> 
-                 <string>opaque</string> 
-                 <boolean>false</boolean> 
-                </void> 
+                <string>javax.swing.JTextField</string> 
                 <void property="name"> 
                  <string>researchPurpose</string> 
-                </void> 
-                <void method="auxiliary"> 
-                 <void method="setProperty"> 
-                  <string>JavaCodeGenerator.customCreateCode</string> 
-                  <string>ATBasicComponentFactory.createUnboundComboBox(LookupListUtils.getLookupListValues(PatronVisits.class, PatronVisits.PROPERTYNAME_RESEARCH_PURPOSE));</string> 
-                 </void> 
-                </void> 
-                <void method="addEvent"> 
-                 <object class="com.jformdesigner.model.FormEvent"> 
-                  <string>java.awt.event.ActionListener</string> 
-                  <string>actionPerformed</string> 
-                  <string>researchPurposeActionPerformed</string> 
-                  <boolean>false</boolean> 
-                 </object> 
                 </void> 
                </object> 
                <object class="com.jformdesigner.model.FormLayoutConstraints"> 
                 <class>com.jgoodies.forms.layout.CellConstraints</class> 
                 <void method="setProperty"> 
-                 <string>hAlign</string> 
-                 <object class="com.jgoodies.forms.layout.CellConstraints" field="LEFT"/> 
+                 <string>gridY</string> 
+                 <int>11</int> 
                 </void> 
                 <void method="setProperty"> 
                  <string>gridX</string> 
                  <int>5</int> 
-                </void> 
-                <void method="setProperty"> 
-                 <string>gridY</string> 
-                 <int>11</int> 
                 </void> 
                </object> 
               </void> 

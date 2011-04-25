@@ -37,7 +37,7 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 	public static final String PROPERTYNAME_VISIT_DATE = "visitDate";
 	public static final String PROPERTYNAME_CONTACT_ARCHIVIST = "contactArchivist";
 	public static final String PROPERTYNAME_TOPIC = "topic";
-	public static final String PROPERTYNAME_RESEARCH_PURPOSE = "researchPurpose";
+	public static final String PROPERTYNAME_RESEARCH_PURPOSES = "researchPurposes";
 	public static final String PROPERTYNAME_SUBJECTS = "subjects";
 	public static final String PROPERTYNAME_NAMES = "names";
 
@@ -56,13 +56,9 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 	private String contactArchivist = "";
 
 	@IncludeInApplicationConfiguration(3)
-	@StringLengthValidationRequried()
 	private String topic = "";
 
-	@IncludeInApplicationConfiguration(3)
-	@StringLengthValidationRequried(50)
-	private String researchPurpose = "";
-
+	private Set<PatronVisitsResearchPurposes> researchPurposes = new HashSet<PatronVisitsResearchPurposes>();
 	private Set<PatronVisitsSubjects> subjects = new HashSet<PatronVisitsSubjects>();
 	private Set<PatronVisitsNames> names = new HashSet<PatronVisitsNames>();
 
@@ -150,14 +146,6 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
         this.topic = topic;
     }
 
-	public String getResearchPurpose() {
-		return researchPurpose;
-	}
-
-	public void setResearchPurpose(String researchPurpose) {
-		this.researchPurpose = researchPurpose;
-	}
-
 	public Set<PatronVisitsSubjects> getSubjects() {
 		return subjects;
 	}
@@ -221,7 +209,7 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 
 	public boolean addName(PatronVisitsNames patronVisitsName) {
 		if (patronVisitsName == null)
-			throw new IllegalArgumentException("Can't add a null contact note.");
+			throw new IllegalArgumentException("Can't add a null name note.");
 		//make sure that the subject is not already linked
 		String nameToAdd = patronVisitsName.getSortName();
 		for (PatronVisitsNames link : getNames()) {
@@ -237,7 +225,7 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 		if (containsNameLink(name.getSortName())) {
 			throw new DuplicateLinkException(name.getSortName());
 		} else {
-			PatronVisitsNames link = new PatronVisitsNames(name, this);
+			PatronVisitsNames link = new PatronVisitsNames(name, this, role, form);
 			if (addName(link)) {
 				return (link);
 			} else {
@@ -294,6 +282,8 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 			this.removeSubject((PatronVisitsSubjects)domainObject);
 		} else if (domainObject instanceof PatronVisitsNames) {
 			this.removeName((PatronVisitsNames)domainObject);
+		} else if (domainObject instanceof PatronVisitsResearchPurposes) {
+			this.removeResearchPurposes((PatronVisitsResearchPurposes)domainObject);
 		} else {
 			super.removeRelatedObject(domainObject);			
 		}
@@ -305,6 +295,29 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 
 	public void setPatron(Patrons patron) {
 		this.patron = patron;
+	}
+
+	public Set<PatronVisitsResearchPurposes> getResearchPurposes() {
+		return researchPurposes;
+	}
+
+	public void setResearchPurposes(Set<PatronVisitsResearchPurposes> researchPurposes) {
+		this.researchPurposes = researchPurposes;
+	}
+
+	private void removeResearchPurposes(PatronVisitsResearchPurposes researchPurpose) {
+		if (researchPurpose == null)
+			throw new IllegalArgumentException("Can't remove a null research purpose.");
+
+		getResearchPurposes().remove(researchPurpose);
+	}
+
+	public void addResearchPurposes(String researchPurpose)  {
+
+		if (researchPurpose == null)
+			throw new IllegalArgumentException("Can't add a null research purpose.");
+
+		getResearchPurposes().add(new PatronVisitsResearchPurposes(this, researchPurpose));
 	}
 
 }

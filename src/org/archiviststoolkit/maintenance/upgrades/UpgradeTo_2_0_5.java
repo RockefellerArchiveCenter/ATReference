@@ -65,9 +65,6 @@ public class UpgradeTo_2_0_5 extends Upgrade {
 
 		try {
 			stmt = conn.createStatement();
-			sqlString = "UPDATE PatronVisits set researchPurpose =''";
-			stmt.execute(sqlString);
-			conn.commit();
 			sqlString = "UPDATE PatronVisits set contactArchivist =''";
 			stmt.execute(sqlString);
 			conn.commit();

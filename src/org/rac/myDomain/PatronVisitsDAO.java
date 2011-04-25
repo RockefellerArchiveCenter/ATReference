@@ -24,6 +24,7 @@ import org.archiviststoolkit.hibernate.SessionFactory;
 import org.archiviststoolkit.model.Names;
 import org.rac.model.PatronVisits;
 import org.rac.model.PatronVisitsNames;
+import org.rac.model.PatronVisitsResearchPurposes;
 import org.rac.model.PatronVisitsSubjects;
 import org.archiviststoolkit.model.Subjects;
 import org.archiviststoolkit.mydomain.DomainAccessObjectImpl;
@@ -31,6 +32,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.Collection;
+import java.util.Date;
 
 public class PatronVisitsDAO extends DomainAccessObjectImpl {
 
@@ -54,5 +56,22 @@ public class PatronVisitsDAO extends DomainAccessObjectImpl {
 				.createCriteria(PatronVisits.PROPERTYNAME_NAMES)
 					.add(Restrictions.eq(PatronVisitsNames.PROPERTYNAME_NAME, name)).list();
 
+	}
+
+	public Collection findByResearchPurpose(String researchPurpose) {
+
+		Session session = SessionFactory.getInstance().openSession();
+		return  session.createCriteria(PatronVisits.class)
+				.createCriteria(PatronVisits.PROPERTYNAME_RESEARCH_PURPOSES)
+					.add(Restrictions.eq(PatronVisitsResearchPurposes.PROPERTYNAME_RESEARCH_PURPOSE, researchPurpose)).list();
+
+	}
+
+	public Collection findByDateRange (Date startDate, Date endDate){
+
+		Session session = SessionFactory.getInstance().openSession();
+		return  session.createCriteria(PatronVisits.class)
+					.add(Restrictions.ge(PatronVisits.PROPERTYNAME_VISIT_DATE, startDate))
+					.add(Restrictions.le(PatronVisits.PROPERTYNAME_VISIT_DATE, endDate)).list();
 	}
 }

@@ -21,11 +21,14 @@ package org.archiviststoolkit;
 // Import Declarations
 //==============================================================================
 
+import com.inet.jortho.FileUserDictionary;
+import com.inet.jortho.SpellChecker;
 import org.archiviststoolkit.dialog.ErrorDialog;
 import org.archiviststoolkit.dialog.SplashScreen;
 import org.archiviststoolkit.hibernate.SessionFactory;
 import org.archiviststoolkit.model.*;
 import org.archiviststoolkit.mydomain.*;
+import org.archiviststoolkit.plugin.ATPlugin;
 import org.archiviststoolkit.structure.ATFieldInfo;
 import org.archiviststoolkit.structure.DefaultValues;
 import org.archiviststoolkit.util.*;
@@ -37,11 +40,14 @@ import org.archiviststoolkit.report.ReportFactory;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Level;
 import org.rac.dialogs.ReadingRoomLogonDialog;
+import org.rac.utils.PatronValidatorUtils;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.DefaultEditorKit;
+import java.io.File;
+import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.sql.*;
@@ -109,6 +115,13 @@ public final class Main {
 		//get user preferences
 		UserPreferences userPrefs = UserPreferences.getInstance();
 		userPrefs.populateFromPreferences();
+
+        // set the directory containing the dictionary files if
+        // spell check is enable
+        if(userPrefs.getEnableSpellCheck()) {
+            mainFrame.enableSpellCheck = loadSpellCheckerDictionary();
+            mainFrame.enableSpellCheckHighlight = userPrefs.getEnableSpellCheckHighlighting();
+        }
 
         Font userFont =  userPrefs.getFont();
 
@@ -193,6 +206,10 @@ public final class Main {
 			System.exit(1);
 		}
 
+        // load any plugins that are found here
+        fSplashScreen.setMessageText("Loading plugins");
+        org.archiviststoolkit.plugin.ATPluginFactory.getInstance().parsePluginDirectory();
+
 		fSplashScreen.setMessageText("User logon");
 		if (skipLogon) {
 			Users currentUser = new Users();
@@ -202,7 +219,7 @@ public final class Main {
 			ApplicationFrame.getInstance().setCurrentUser(currentUser);
 		} else {
 			try {
-				ApplicationFrame.getInstance().setCurrentUser(diaplayLoginAndRetrunUser(userPrefs));
+				ApplicationFrame.getInstance().setCurrentUser(displayLoginAndReturnUser(userPrefs));
 			} catch (UnsupportedDatabaseType unsupportedDatabaseType) {
 				new ErrorDialog("Error connecting to database", unsupportedDatabaseType).showDialog();
 			}
@@ -210,6 +227,24 @@ public final class Main {
 
 		logSession();
 //		showSplashScreen();
+
+		try {
+			//todo RAC patron additions. Change to load preferences as more is being done now.
+			//this also has to be moved up before loading lookup lists to avoid a null pointer exception
+//			Constants.loadDefaultDateFormat();
+			Constants.loadPreferences();
+		} catch (PersistenceException e) {
+			new ErrorDialog("", e).showDialog();
+			System.exit(1);
+		} catch (LookupException e) {
+			new ErrorDialog("", e).showDialog();
+			System.exit(1);
+		} catch (WrongNumberOfConstantsRecordsException e) {
+			new ErrorDialog("", e).showDialog();
+			System.exit(1);
+		}
+		
+
 		fSplashScreen.setMessageText("Loading Lookup Lists");
 //		logger.info("Loading Lookup Lists");
 		if (!LookupListUtils.loadLookupLists()) {
@@ -223,7 +258,7 @@ public final class Main {
 		}
 
 		try {
-			Constants.loadDefaultDateFormat();
+			Constants.loadPreferences();
 		} catch (PersistenceException e) {
 			new ErrorDialog("", e).showDialog();
 			System.exit(1);
@@ -267,12 +302,13 @@ public final class Main {
 		mainFrame.initializeMainFrame(fSplashScreen);
 		logger.log(Level.INFO, "\nApplication Startup times\n" + ApplicationFrame.getInstance().getStartupLog());
 
-		//this is for the reference module for reading rooms
+		//todo RAC this is for the reference module for reading rooms
 		if (ApplicationFrame.getInstance().getCurrentUser().getAccessClass() == Users.ACCESS_CLASS_REFERENCE_STAFF) {
 //			try {
 			EventQueue.invokeLater(new SplashScreenCloser());
 				 int status = JOptionPane.CANCEL_OPTION;
 				ReadingRoomLogonDialog logonDialog = new ReadingRoomLogonDialog(ApplicationFrame.getInstance());
+			PatronValidatorUtils.loadPatronValidators();
 				 do {
 					 logonDialog.setInitialFocus();
 					 status = logonDialog.showDialog();
@@ -338,10 +374,14 @@ public final class Main {
 		}
 	}
 
-	private static Users diaplayLoginAndRetrunUser(UserPreferences userPrefs) throws UnsupportedDatabaseType {
+	private static Users displayLoginAndReturnUser(UserPreferences userPrefs) throws UnsupportedDatabaseType {
 		LoginDialog login = new LoginDialog(fSplashScreen);
 		boolean tryAgain = true;
 		Users user;
+
+        // try loading any authentication plugin. this plugin would do authentication
+        // through LDPA for example
+        ATPlugin authPlugin = org.archiviststoolkit.plugin.ATPluginFactory.getInstance().getAuthenticationPlugin();
 
 		int returnStatus;
 		do {
@@ -351,6 +391,17 @@ public final class Main {
 				System.exit(1);
 			} else if (returnStatus == JOptionPane.OK_OPTION) {
 				user = Users.lookupUser(login.getUserName(), login.getPassword());
+
+                // if an authentication plugin is being used the attempt to login
+                // through it if a valid user was not already returned from the database
+                if(authPlugin != null && user == null) {
+                    String[] params = {login.getUserName(), login.getPasswordAsText()};
+
+                    if(authPlugin.doTask("authenticate", params)) {
+                        user = Users.lookupUser(login.getUserName());
+                    }
+                }
+
 				if (user != null) {
 					tryAgain = false;
 					return user;
@@ -444,13 +495,13 @@ public final class Main {
 //		if (updateToNewVersion) {
 //			//make sure they are a superuser
 //			JOptionPane.showMessageDialog(fSplashScreen, "You must be a superuser to do this.");
-//        Users user = diaplayLoginAndRetrunUser(userPrefs);
+//        Users user = displayLoginAndReturnUser(userPrefs);
 //			if (user.getAccessClass() == Users.ACCESS_CLASS_SUPERUSER) {
 //				if (!Constants.updateOrCreateVersionRecord(versionString)) {
 //					System.exit(1);
 //				}
 //			} else {
-//				JOptionPane.showMessageDialog(fSplashScreen, "User: " + user.getCategory() + " does not have superuser access.");
+//				JOptionPane.showMessageDialog(fSplashScreen, "User: " + user.getUserName() + " does not have superuser access.");
 //				System.exit(1);
 //			}
 //		}
@@ -540,5 +591,65 @@ public final class Main {
             }
         }, "Record Lock Updater Thread");
         performer.start();    
+    }
+
+    /**
+     * Static method to load the spell checker dictionaries
+     * The spell checker use the JOrtho library
+     * http://jortho.sourceforge.net/
+     *
+     * @return boolean indicating whether the dictionary was loaded correctly
+     */
+    private static boolean loadSpellCheckerDictionary() {
+        File ATDirectory = new File (".");
+        try {
+            // check to see if the dictionary base directory exists
+            File dictionaryBase = new File(ATDirectory, "conf/dictionary/");
+
+            if(dictionaryBase.exists()) {
+                // create the directory which holds the user entries for the dictionaries
+                File userDictionaryDirectory = getUserDictionaryDirectory();
+                if(userDictionaryDirectory != null) {
+                    FileUserDictionary userDictionary =
+                            new FileUserDictionary(userDictionaryDirectory.getAbsolutePath());
+
+                            SpellChecker.setUserDictionaryProvider(userDictionary);
+                }
+
+                URL dictionaryURL = new URL("file", null, dictionaryBase.getCanonicalPath() + "/");
+                SpellChecker.registerDictionaries(dictionaryURL, "en,de,es,fr,it", "");
+                SpellChecker.getOptions().setCaseSensitive(false);
+
+                return true;
+            } else {
+                return false;
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Method to create the directory to store user defined words for the
+     * dictionary if the directory doesn't exist. If it does then it just returns
+     * the directory
+     */
+    private static File getUserDictionaryDirectory() {
+        String directoryName = System.getProperty("user.home") + System.getProperty("file.separator") + "at_dictionary";
+
+        // see if to create the database directory
+        File directory = new File(directoryName);
+
+        try {
+            // attempt to make the directory where user dictionary files
+            if(!directory.exists()) {
+                directory.mkdir();
+            }
+
+            return directory;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

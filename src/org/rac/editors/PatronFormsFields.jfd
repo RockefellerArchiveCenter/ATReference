@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_20" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_24" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -20,6 +20,13 @@
         <string>fill:default:grow</string> 
        </void> 
       </object> 
+      <void method="setProperty"> 
+       <string>preferredSize</string> 
+       <object class="java.awt.Dimension"> 
+        <int>500</int> 
+        <int>175</int> 
+       </object> 
+      </void> 
       <void property="name"> 
        <string>this</string> 
       </void> 
@@ -40,6 +47,13 @@
         <void method="setProperty"> 
          <string>border</string> 
          <object class="com.jgoodies.forms.factories.Borders" field="DLU4_BORDER"/> 
+        </void> 
+        <void method="setProperty"> 
+         <string>preferredSize</string> 
+         <object class="java.awt.Dimension"> 
+          <int>323</int> 
+          <int>500</int> 
+         </object> 
         </void> 
         <void property="name"> 
          <string>panel1</string> 
@@ -345,7 +359,7 @@
       <void method="setProperty"> 
        <string>size</string> 
        <object class="java.awt.Dimension"> 
-        <int>400</int> 
+        <int>545</int> 
         <int>200</int> 
        </object> 
       </void> 

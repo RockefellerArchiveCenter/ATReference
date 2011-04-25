@@ -92,201 +92,201 @@ public class RapidResourceComponentDataEntry2 extends JDialog {
 
     private void initComponents() {
                            // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-		// Generated using JFormDesigner non-commercial license
-		dialogPane = new JPanel();
-		HeaderPanel = new JPanel();
-		panel2 = new JPanel();
-		mainHeaderLabel = new JLabel();
-		panel3 = new JPanel();
-		subHeaderLabel = new JLabel();
-		contentPanel = new JPanel();
-		temp = new JButton();
-		panel1 = new JPanel();
-		separator2 = new JSeparator();
-		buttonPanel = new JPanel();
-		cancelButton = new JButton();
-		okButton = new JButton();
-		okAndAnotherButton = new JButton();
-		cancelButtonLabel = new JLabel();
-		okButtonLabel = new JLabel();
-		okAndAnotherButtonLabel = new JLabel();
-		CellConstraints cc = new CellConstraints();
+						   // Generated using JFormDesigner non-commercial license
+						   dialogPane = new JPanel();
+						   HeaderPanel = new JPanel();
+						   panel2 = new JPanel();
+						   mainHeaderLabel = new JLabel();
+						   panel3 = new JPanel();
+						   subHeaderLabel = new JLabel();
+						   contentPanel = new JPanel();
+						   temp = new JButton();
+						   panel1 = new JPanel();
+						   separator2 = new JSeparator();
+						   buttonPanel = new JPanel();
+						   cancelButton = new JButton();
+						   okButton = new JButton();
+						   okAndAnotherButton = new JButton();
+						   cancelButtonLabel = new JLabel();
+						   okButtonLabel = new JLabel();
+						   okAndAnotherButtonLabel = new JLabel();
+						   CellConstraints cc = new CellConstraints();
 
-		//======== this ========
-		setBackground(new Color(200, 205, 232));
-		setModal(true);
-		Container contentPane = getContentPane();
-		contentPane.setLayout(new BorderLayout());
+						   //======== this ========
+						   setBackground(new Color(200, 205, 232));
+						   setModal(true);
+						   Container contentPane = getContentPane();
+						   contentPane.setLayout(new BorderLayout());
 
-		//======== dialogPane ========
-		{
-			dialogPane.setBorder(null);
-			dialogPane.setBackground(new Color(200, 205, 232));
-			dialogPane.setLayout(new FormLayout(
-				"default:grow",
-				"fill:default, fill:default:grow, fill:default"));
+						   //======== dialogPane ========
+						   {
+							   dialogPane.setBorder(null);
+							   dialogPane.setBackground(new Color(200, 205, 232));
+							   dialogPane.setLayout(new FormLayout(
+								   "default:grow",
+								   "fill:default, fill:default:grow, fill:default"));
 
-			//======== HeaderPanel ========
-			{
-				HeaderPanel.setBackground(new Color(80, 69, 57));
-				HeaderPanel.setOpaque(false);
-				HeaderPanel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-				HeaderPanel.setLayout(new FormLayout(
-					new ColumnSpec[] {
-						new ColumnSpec(Sizes.bounded(Sizes.MINIMUM, Sizes.dluX(100), Sizes.dluX(200))),
-						new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-					},
-					RowSpec.decodeSpecs("default")));
+							   //======== HeaderPanel ========
+							   {
+								   HeaderPanel.setBackground(new Color(80, 69, 57));
+								   HeaderPanel.setOpaque(false);
+								   HeaderPanel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+								   HeaderPanel.setLayout(new FormLayout(
+									   new ColumnSpec[] {
+										   new ColumnSpec(Sizes.bounded(Sizes.MINIMUM, Sizes.dluX(100), Sizes.dluX(200))),
+										   new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+									   },
+									   RowSpec.decodeSpecs("default")));
 
-				//======== panel2 ========
-				{
-					panel2.setBackground(new Color(73, 43, 104));
-					panel2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					panel2.setLayout(new FormLayout(
-						new ColumnSpec[] {
-							FormFactory.RELATED_GAP_COLSPEC,
-							new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-						},
-						new RowSpec[] {
-							FormFactory.RELATED_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.RELATED_GAP_ROWSPEC
-						}));
+								   //======== panel2 ========
+								   {
+									   panel2.setBackground(new Color(73, 43, 104));
+									   panel2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+									   panel2.setLayout(new FormLayout(
+										   new ColumnSpec[] {
+											   FormFactory.RELATED_GAP_COLSPEC,
+											   new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+										   },
+										   new RowSpec[] {
+											   FormFactory.RELATED_GAP_ROWSPEC,
+											   FormFactory.DEFAULT_ROWSPEC,
+											   FormFactory.RELATED_GAP_ROWSPEC
+										   }));
 
-					//---- mainHeaderLabel ----
-					mainHeaderLabel.setText("Resources");
-					mainHeaderLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
-					mainHeaderLabel.setForeground(Color.white);
-					panel2.add(mainHeaderLabel, cc.xy(2, 2));
-				}
-				HeaderPanel.add(panel2, cc.xy(1, 1));
+									   //---- mainHeaderLabel ----
+									   mainHeaderLabel.setText("Resources");
+									   mainHeaderLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
+									   mainHeaderLabel.setForeground(Color.white);
+									   panel2.add(mainHeaderLabel, cc.xy(2, 2));
+								   }
+								   HeaderPanel.add(panel2, cc.xy(1, 1));
 
-				//======== panel3 ========
-				{
-					panel3.setBackground(new Color(66, 60, 111));
-					panel3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					panel3.setLayout(new FormLayout(
-						new ColumnSpec[] {
-							FormFactory.RELATED_GAP_COLSPEC,
-							new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-						},
-						new RowSpec[] {
-							FormFactory.RELATED_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.RELATED_GAP_ROWSPEC
-						}));
+								   //======== panel3 ========
+								   {
+									   panel3.setBackground(new Color(66, 60, 111));
+									   panel3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+									   panel3.setLayout(new FormLayout(
+										   new ColumnSpec[] {
+											   FormFactory.RELATED_GAP_COLSPEC,
+											   new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+										   },
+										   new RowSpec[] {
+											   FormFactory.RELATED_GAP_ROWSPEC,
+											   FormFactory.DEFAULT_ROWSPEC,
+											   FormFactory.RELATED_GAP_ROWSPEC
+										   }));
 
-					//---- subHeaderLabel ----
-					subHeaderLabel.setText("Rapid Data Entry");
-					subHeaderLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
-					subHeaderLabel.setForeground(Color.white);
-					panel3.add(subHeaderLabel, cc.xy(2, 2));
-				}
-				HeaderPanel.add(panel3, cc.xy(2, 1));
-			}
-			dialogPane.add(HeaderPanel, cc.xy(1, 1));
+									   //---- subHeaderLabel ----
+									   subHeaderLabel.setText("Rapid Data Entry");
+									   subHeaderLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
+									   subHeaderLabel.setForeground(Color.white);
+									   panel3.add(subHeaderLabel, cc.xy(2, 2));
+								   }
+								   HeaderPanel.add(panel3, cc.xy(2, 1));
+							   }
+							   dialogPane.add(HeaderPanel, cc.xy(1, 1));
 
-			//======== contentPanel ========
-			{
-				contentPanel.setOpaque(false);
-				contentPanel.setBorder(Borders.DLU4_BORDER);
-				contentPanel.setMaximumSize(new Dimension(1000, 600));
-				contentPanel.setBackground(new Color(200, 205, 232));
-				contentPanel.setLayout(new FormLayout(
-					"center:default:grow",
-					"top:default:grow"));
+							   //======== contentPanel ========
+							   {
+								   contentPanel.setOpaque(false);
+								   contentPanel.setBorder(Borders.DLU4_BORDER);
+								   contentPanel.setMaximumSize(new Dimension(1000, 600));
+								   contentPanel.setBackground(new Color(200, 205, 232));
+								   contentPanel.setLayout(new FormLayout(
+									   "center:default:grow",
+									   "top:default:grow"));
 
-				//---- temp ----
-				temp.setText("text");
-				temp.setBackground(new Color(200, 205, 232));
-				contentPanel.add(temp, cc.xy(1, 1));
-			}
-			dialogPane.add(contentPanel, cc.xy(1, 2));
+								   //---- temp ----
+								   temp.setText("text");
+								   temp.setBackground(new Color(200, 205, 232));
+								   contentPanel.add(temp, cc.xy(1, 1));
+							   }
+							   dialogPane.add(contentPanel, cc.xy(1, 2));
 
-			//======== panel1 ========
-			{
-				panel1.setOpaque(false);
-				panel1.setBorder(Borders.DLU2_BORDER);
-				panel1.setLayout(new FormLayout(
-					"default:grow",
-					"default, default:grow"));
+							   //======== panel1 ========
+							   {
+								   panel1.setOpaque(false);
+								   panel1.setBorder(Borders.DLU2_BORDER);
+								   panel1.setLayout(new FormLayout(
+									   "default:grow",
+									   "default, default:grow"));
 
-				//---- separator2 ----
-				separator2.setBackground(new Color(220, 220, 232));
-				separator2.setForeground(new Color(147, 131, 86));
-				separator2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-				panel1.add(separator2, cc.xy(1, 1));
+								   //---- separator2 ----
+								   separator2.setBackground(new Color(220, 220, 232));
+								   separator2.setForeground(new Color(147, 131, 86));
+								   separator2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+								   panel1.add(separator2, cc.xy(1, 1));
 
-				//======== buttonPanel ========
-				{
-					buttonPanel.setBorder(null);
-					buttonPanel.setBackground(new Color(200, 205, 232));
-					buttonPanel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					buttonPanel.setLayout(new FormLayout(
-						new ColumnSpec[] {
-							FormFactory.DEFAULT_COLSPEC,
-							FormFactory.UNRELATED_GAP_COLSPEC,
-							FormFactory.DEFAULT_COLSPEC,
-							FormFactory.UNRELATED_GAP_COLSPEC,
-							FormFactory.DEFAULT_COLSPEC
-						},
-						RowSpec.decodeSpecs("default, default")));
+								   //======== buttonPanel ========
+								   {
+									   buttonPanel.setBorder(null);
+									   buttonPanel.setBackground(new Color(200, 205, 232));
+									   buttonPanel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+									   buttonPanel.setLayout(new FormLayout(
+										   new ColumnSpec[] {
+											   FormFactory.DEFAULT_COLSPEC,
+											   FormFactory.UNRELATED_GAP_COLSPEC,
+											   FormFactory.DEFAULT_COLSPEC,
+											   FormFactory.UNRELATED_GAP_COLSPEC,
+											   FormFactory.DEFAULT_COLSPEC
+										   },
+										   RowSpec.decodeSpecs("default, default")));
 
-					//---- cancelButton ----
-					cancelButton.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/cancel.jpg")));
-					cancelButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					cancelButton.setOpaque(false);
-					cancelButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							cancelButtonActionPerformed();
-						}
-					});
-					buttonPanel.add(cancelButton, cc.xy(1, 1));
+									   //---- cancelButton ----
+									   cancelButton.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/cancel.jpg")));
+									   cancelButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+									   cancelButton.setOpaque(false);
+									   cancelButton.addActionListener(new ActionListener() {
+										   public void actionPerformed(ActionEvent e) {
+											   cancelButtonActionPerformed();
+										   }
+									   });
+									   buttonPanel.add(cancelButton, cc.xy(1, 1));
 
-					//---- okButton ----
-					okButton.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/ok.jpg")));
-					okButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					okButton.setOpaque(false);
-					okButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							okButtonActionPerformed();
-						}
-					});
-					buttonPanel.add(okButton, cc.xy(3, 1));
+									   //---- okButton ----
+									   okButton.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/ok.jpg")));
+									   okButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+									   okButton.setOpaque(false);
+									   okButton.addActionListener(new ActionListener() {
+										   public void actionPerformed(ActionEvent e) {
+											   okButtonActionPerformed();
+										   }
+									   });
+									   buttonPanel.add(okButton, cc.xy(3, 1));
 
-					//---- okAndAnotherButton ----
-					okAndAnotherButton.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/okPlus1.jpg")));
-					okAndAnotherButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					okAndAnotherButton.setOpaque(false);
-					okAndAnotherButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							okAndAnotherButtonActionPerformed();
-						}
-					});
-					buttonPanel.add(okAndAnotherButton, cc.xy(5, 1));
+									   //---- okAndAnotherButton ----
+									   okAndAnotherButton.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/okPlus1.jpg")));
+									   okAndAnotherButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+									   okAndAnotherButton.setOpaque(false);
+									   okAndAnotherButton.addActionListener(new ActionListener() {
+										   public void actionPerformed(ActionEvent e) {
+											   okAndAnotherButtonActionPerformed();
+										   }
+									   });
+									   buttonPanel.add(okAndAnotherButton, cc.xy(5, 1));
 
-					//---- cancelButtonLabel ----
-					cancelButtonLabel.setText("Cancel");
-					cancelButtonLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					buttonPanel.add(cancelButtonLabel, cc.xywh(1, 2, 1, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
+									   //---- cancelButtonLabel ----
+									   cancelButtonLabel.setText("Cancel");
+									   cancelButtonLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+									   buttonPanel.add(cancelButtonLabel, cc.xywh(1, 2, 1, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
 
-					//---- okButtonLabel ----
-					okButtonLabel.setText("OK");
-					okButtonLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					buttonPanel.add(okButtonLabel, cc.xywh(3, 2, 1, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
+									   //---- okButtonLabel ----
+									   okButtonLabel.setText("OK");
+									   okButtonLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+									   buttonPanel.add(okButtonLabel, cc.xywh(3, 2, 1, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
 
-					//---- okAndAnotherButtonLabel ----
-					okAndAnotherButtonLabel.setText("+ 1");
-					okAndAnotherButtonLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					buttonPanel.add(okAndAnotherButtonLabel, cc.xywh(5, 2, 1, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
-				}
-				panel1.add(buttonPanel, cc.xywh(1, 2, 1, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
-			}
-			dialogPane.add(panel1, cc.xy(1, 3));
-		}
-		contentPane.add(dialogPane, BorderLayout.CENTER);
-		setSize(1000, 840);
-		setLocationRelativeTo(getOwner());
+									   //---- okAndAnotherButtonLabel ----
+									   okAndAnotherButtonLabel.setText("+ 1");
+									   okAndAnotherButtonLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+									   buttonPanel.add(okAndAnotherButtonLabel, cc.xywh(5, 2, 1, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
+								   }
+								   panel1.add(buttonPanel, cc.xywh(1, 2, 1, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
+							   }
+							   dialogPane.add(panel1, cc.xy(1, 3));
+						   }
+						   contentPane.add(dialogPane, BorderLayout.CENTER);
+						   setSize(1000, 840);
+						   setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 

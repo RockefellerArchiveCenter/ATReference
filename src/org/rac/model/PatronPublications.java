@@ -30,6 +30,7 @@ import org.archiviststoolkit.model.Subjects;
 import org.archiviststoolkit.mydomain.*;
 import org.archiviststoolkit.structure.*;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -40,6 +41,18 @@ public class PatronPublications extends DomainObject implements SubjectEnabledMo
 	public static final String PROPERTYNAME_PUBLICATION_TYPE = "publicationType";
 	public static final String PROPERTYNAME_PUBLISHER = "publisher";
 	public static final String PROPERTYNAME_COLLABORATORS = "collaborators";
+	public static final String PROPERTYNAME_PUBLICATION_AUTHOR = "publicationAuthor";
+	public static final String PROPERTYNAME_SERIAL_TITLE = "serialTitle";
+	public static final String PROPERTYNAME_LOCATION_OF_PUBLICATION = "locationOfPublication";
+	public static final String PROPERTYNAME_ISSUE_VOLUME = "issueVolume";
+	public static final String PROPERTYNAME_PAGE_NUMBERS = "pageNumbers";
+	public static final String PROPERTYNAME_URL = "url";
+	public static final String PROPERTYNAME_DATE_ACCESSED = "dateAccessed";
+	public static final String PROPERTYNAME_COPY_RECEIVED = "copyReceived";
+	public static final String PROPERTYNAME_OTHER = "other";
+
+	
+
 	public static final String PROPERTYNAME_SUBJECTS = "subjects";
 	public static final String PROPERTYNAME_NAMES = "names";
 
@@ -50,24 +63,72 @@ public class PatronPublications extends DomainObject implements SubjectEnabledMo
 	@IncludeInApplicationConfiguration (1)
 	@DefaultIncludeInSearchEditor
 	@ExcludeFromDefaultValues
+	@StringLengthValidationRequried
 	private String publicationDate;
 
 	@IncludeInApplicationConfiguration(3)
 	@DefaultIncludeInSearchEditor
+	@StringLengthValidationRequried
 	private String publicationType;
 
 	@IncludeInApplicationConfiguration(2)
 	@DefaultIncludeInSearchEditor
 	@ExcludeFromDefaultValues
+	@StringLengthValidationRequried
 	private String publicationTitle;
 
 	@IncludeInApplicationConfiguration
 	@ExcludeFromDefaultValues
+	@StringLengthValidationRequried
 	private String publisher = "";
 
 	@IncludeInApplicationConfiguration
 	@ExcludeFromDefaultValues
+	@StringLengthValidationRequried
 	private String collaborators = "";
+
+	@IncludeInApplicationConfiguration
+	@ExcludeFromDefaultValues
+	@StringLengthValidationRequried
+	private String publicationAuthor = "";
+
+	@IncludeInApplicationConfiguration
+	@ExcludeFromDefaultValues
+	@StringLengthValidationRequried
+	private String serialTitle = "";
+
+	@IncludeInApplicationConfiguration
+	@ExcludeFromDefaultValues
+	@StringLengthValidationRequried
+	private String locationOfPublication = "";
+
+	@IncludeInApplicationConfiguration
+	@ExcludeFromDefaultValues
+	@StringLengthValidationRequried
+	private String issueVolume = "";
+
+	@IncludeInApplicationConfiguration
+	@ExcludeFromDefaultValues
+	@StringLengthValidationRequried
+	private String pageNumbers = "";
+
+	@IncludeInApplicationConfiguration
+	@ExcludeFromDefaultValues
+	@StringLengthValidationRequried
+	private String url = "";
+
+	@IncludeInApplicationConfiguration
+	@ExcludeFromDefaultValues
+	private Date dateAccessed;
+
+	@IncludeInApplicationConfiguration
+	@ExcludeFromDefaultValues
+	private Boolean copyReceived;
+
+	@IncludeInApplicationConfiguration
+	@ExcludeFromDefaultValues
+	@StringLengthValidationRequried
+	private String other = "";
 
 	private Set<PatronPublicationsSubjects> subjects = new HashSet<PatronPublicationsSubjects>();
 	private Set<PatronPublicationsNames> names = new HashSet<PatronPublicationsNames>();
@@ -88,14 +149,6 @@ public class PatronPublications extends DomainObject implements SubjectEnabledMo
 	public PatronPublications(Patrons patron) {
 		this.patron = patron;
 		publicationTitle = "";
-	}
-
-	public PatronPublications(String publicationDate, String publicationTitle, String publisher, Patrons name) {
-		this.publicationDate = publicationDate;
-		this.publicationTitle = "";
-		this.publicationTitle = publicationTitle;
-		this.publisher = publisher;
-		this.patron = patron;
 	}
 
 	/**
@@ -320,5 +373,76 @@ public class PatronPublications extends DomainObject implements SubjectEnabledMo
 
 		getNames().remove(name);
 	}
-	
+
+	public String getPublicationAuthor() {
+		return publicationAuthor;
+	}
+
+	public void setPublicationAuthor(String publicationAuthor) {
+		this.publicationAuthor = publicationAuthor;
+	}
+
+	public String getSerialTitle() {
+		return serialTitle;
+	}
+
+	public void setSerialTitle(String serialTitle) {
+		this.serialTitle = serialTitle;
+	}
+
+	public String getLocationOfPublication() {
+		return locationOfPublication;
+	}
+
+	public void setLocationOfPublication(String locationOfPublication) {
+		this.locationOfPublication = locationOfPublication;
+	}
+
+	public String getIssueVolume() {
+		return issueVolume;
+	}
+
+	public void setIssueVolume(String issueVolume) {
+		this.issueVolume = issueVolume;
+	}
+
+	public String getPageNumbers() {
+		return pageNumbers;
+	}
+
+	public void setPageNumbers(String pageNumbers) {
+		this.pageNumbers = pageNumbers;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public Date getDateAccessed() {
+		return dateAccessed;
+	}
+
+	public void setDateAccessed(Date dateAccessed) {
+		this.dateAccessed = dateAccessed;
+	}
+
+	public Boolean getCopyReceived() {
+		return copyReceived;
+	}
+
+	public void setCopyReceived(Boolean copyReceived) {
+		this.copyReceived = copyReceived;
+	}
+
+	public String getOther() {
+		return other;
+	}
+
+	public void setOther(String other) {
+		this.other = other;
+	}
 }

@@ -34,7 +34,7 @@
          </void> 
          <void method="setProperty"> 
           <string>$rowSpecs</string> 
-          <string>default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default</string> 
+          <string>default, linegap, default, linegap, top:default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default</string> 
          </void> 
         </object> 
         <void method="setProperty"> 
@@ -193,20 +193,58 @@
          </object> 
         </void> 
         <void method="add"> 
-         <object class="com.jformdesigner.model.FormComponent"> 
-          <string>javax.swing.JTextField</string> 
-          <void method="setProperty"> 
-           <string>columns</string> 
-           <int>30</int> 
-          </void> 
+         <object class="com.jformdesigner.model.FormContainer"> 
+          <string>javax.swing.JScrollPane</string> 
+          <object class="com.jformdesigner.model.FormLayoutManager"> 
+           <class>javax.swing.JScrollPane</class> 
+          </object> 
           <void property="name"> 
-           <string>topic</string> 
+           <string>scrollPane1</string> 
           </void> 
-          <void method="auxiliary"> 
-           <void method="setProperty"> 
-            <string>JavaCodeGenerator.customCreateCode</string> 
-            <string>ATBasicComponentFactory.createTextField(detailsModel.getModel(PatronVisits.PROPERTYNAME_TOPIC));</string> 
-           </void> 
+          <void method="add"> 
+           <object class="com.jformdesigner.model.FormComponent"> 
+            <string>javax.swing.JTextArea</string> 
+            <void method="setProperty"> 
+             <string>rows</string> 
+             <int>4</int> 
+            </void> 
+            <void method="setProperty"> 
+             <string>lineWrap</string> 
+             <boolean>true</boolean> 
+            </void> 
+            <void method="setProperty"> 
+             <string>wrapStyleWord</string> 
+             <boolean>true</boolean> 
+            </void> 
+            <void method="setProperty"> 
+             <string>font</string> 
+             <object class="java.awt.Font"> 
+              <string>Trebuchet MS</string> 
+              <int>0</int> 
+              <int>13</int> 
+             </object> 
+            </void> 
+            <void method="setProperty"> 
+             <string>minimumSize</string> 
+             <object class="java.awt.Dimension"> 
+              <int>200</int> 
+              <int>16</int> 
+             </object> 
+            </void> 
+            <void property="name"> 
+             <string>patronNotes</string> 
+            </void> 
+            <void method="auxiliary"> 
+             <void method="setProperty"> 
+              <string>JavaCodeGenerator.variableModifiers</string> 
+              <int>1</int> 
+             </void> 
+             <void method="setProperty"> 
+              <string>JavaCodeGenerator.customCreateCode</string> 
+              <string>ATBasicComponentFactory.createTextArea(detailsModel.getModel(PatronVisits.PROPERTYNAME_TOPIC));</string> 
+             </void> 
+            </void> 
+           </object> 
           </void> 
          </object> 
          <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -222,48 +260,60 @@
          </object> 
         </void> 
         <void method="add"> 
-         <object class="com.jformdesigner.model.FormComponent"> 
-          <string>javax.swing.JLabel</string> 
+         <object class="com.jformdesigner.model.FormContainer"> 
+          <string>javax.swing.JScrollPane</string> 
+          <object class="com.jformdesigner.model.FormLayoutManager"> 
+           <class>javax.swing.JScrollPane</class> 
+          </object> 
           <void method="setProperty"> 
-           <string>text</string> 
-           <string>Research Purpose</string> 
+           <string>verticalScrollBarPolicy</string> 
+           <int>22</int> 
+          </void> 
+          <void method="setProperty"> 
+           <string>font</string> 
+           <object id="Font0" class="java.awt.Font"> 
+            <string>Trebuchet MS</string> 
+            <int>0</int> 
+            <int>13</int> 
+           </object> 
+          </void> 
+          <void method="setProperty"> 
+           <string>preferredSize</string> 
+           <object id="Dimension0" class="java.awt.Dimension"> 
+            <int>219</int> 
+            <int>100</int> 
+           </object> 
           </void> 
           <void property="name"> 
-           <string>label_topic2</string> 
+           <string>scrollPane5</string> 
           </void> 
-          <void method="auxiliary"> 
-           <void method="setProperty"> 
-            <string>JavaCodeGenerator.postInitCode</string> 
-            <string>ATFieldInfo.assignLabelInfo(${field}, PatronVisits.class, PatronVisits.PROPERTYNAME_RESEARCH_PURPOSE);</string> 
-           </void> 
-          </void> 
-         </object> 
-         <object class="com.jformdesigner.model.FormLayoutConstraints"> 
-          <class>com.jgoodies.forms.layout.CellConstraints</class> 
-          <void method="setProperty"> 
-           <string>gridY</string> 
-           <int>7</int> 
-          </void> 
-         </object> 
-        </void> 
-        <void method="add"> 
-         <object class="com.jformdesigner.model.FormComponent"> 
-          <string>javax.swing.JComboBox</string> 
-          <void property="name"> 
-           <string>researchPurpose</string> 
-          </void> 
-          <void method="auxiliary"> 
-           <void method="setProperty"> 
-            <string>JavaCodeGenerator.customCreateCode</string> 
-            <string>ATBasicComponentFactory.createComboBox(detailsModel, PatronVisits.PROPERTYNAME_RESEARCH_PURPOSE, PatronVisits.class);</string> 
-           </void> 
-          </void> 
-          <void method="addEvent"> 
-           <object class="com.jformdesigner.model.FormEvent"> 
-            <string>java.awt.event.ItemListener</string> 
-            <string>itemStateChanged</string> 
-            <string>researchPurposeStateChanged</string> 
-            <boolean>true</boolean> 
+          <void method="add"> 
+           <object class="com.jformdesigner.model.FormComponent"> 
+            <string>org.archiviststoolkit.mydomain.DomainSortableTable</string> 
+            <void method="setProperty"> 
+             <string>preferredScrollableViewportSize</string> 
+             <object id="Dimension1" class="java.awt.Dimension"> 
+              <int>200</int> 
+              <int>200</int> 
+             </object> 
+            </void> 
+            <void property="name"> 
+             <string>researchPurposeTable</string> 
+            </void> 
+            <void method="auxiliary"> 
+             <void method="setProperty"> 
+              <string>JavaCodeGenerator.customCreateCode</string> 
+              <string>new DomainSortableTable(PatronVisitsResearchPurposes.class);</string> 
+             </void> 
+            </void> 
+            <void method="addEvent"> 
+             <object class="com.jformdesigner.model.FormEvent"> 
+              <string>java.awt.event.MouseListener</string> 
+              <string>mouseClicked</string> 
+              <string>researchPurposeTableMouseClicked</string> 
+              <boolean>true</boolean> 
+             </object> 
+            </void> 
            </object> 
           </void> 
          </object> 
@@ -274,7 +324,163 @@
            <int>7</int> 
           </void> 
           <void method="setProperty"> 
-           <string>gridX</string> 
+           <string>gridWidth</string> 
+           <int>3</int> 
+          </void> 
+         </object> 
+        </void> 
+        <void method="add"> 
+         <object class="com.jformdesigner.model.FormContainer"> 
+          <string>javax.swing.JPanel</string> 
+          <object class="com.jformdesigner.model.FormLayoutManager"> 
+           <class>com.jgoodies.forms.layout.FormLayout</class> 
+           <void method="setProperty"> 
+            <string>$columnSpecs</string> 
+            <string>default, labelcompgap, default, labelcompgap, default</string> 
+           </void> 
+           <void method="setProperty"> 
+            <string>$rowSpecs</string> 
+            <string>default</string> 
+           </void> 
+          </object> 
+          <void method="setProperty"> 
+           <string>background</string> 
+           <object id="Color0" class="java.awt.Color"> 
+            <int>231</int> 
+            <int>188</int> 
+            <int>251</int> 
+            <int>255</int> 
+           </object> 
+          </void> 
+          <void method="setProperty"> 
+           <string>opaque</string> 
+           <boolean>false</boolean> 
+          </void> 
+          <void method="setProperty"> 
+           <string>font</string> 
+           <object idref="Font0"/> 
+          </void> 
+          <void property="name"> 
+           <string>panel12</string> 
+          </void> 
+          <void method="add"> 
+           <object class="com.jformdesigner.model.FormComponent"> 
+            <string>javax.swing.JButton</string> 
+            <void method="setProperty"> 
+             <string>text</string> 
+             <string>Add Reseach Purpose</string> 
+            </void> 
+            <void method="setProperty"> 
+             <string>opaque</string> 
+             <boolean>false</boolean> 
+            </void> 
+            <void method="setProperty"> 
+             <string>font</string> 
+             <object idref="Font0"/> 
+            </void> 
+            <void property="name"> 
+             <string>addResearchPurpose</string> 
+            </void> 
+            <void method="addEvent"> 
+             <object class="com.jformdesigner.model.FormEvent"> 
+              <string>java.awt.event.ActionListener</string> 
+              <string>actionPerformed</string> 
+              <string>addResearchPurposeActionPerformed</string> 
+              <boolean>false</boolean> 
+             </object> 
+            </void> 
+           </object> 
+           <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+            <class>com.jgoodies.forms.layout.CellConstraints</class> 
+           </object> 
+          </void> 
+          <void method="add"> 
+           <object class="com.jformdesigner.model.FormComponent"> 
+            <string>javax.swing.JButton</string> 
+            <void method="setProperty"> 
+             <string>text</string> 
+             <string>Edit Research Purpose</string> 
+            </void> 
+            <void method="setProperty"> 
+             <string>opaque</string> 
+             <boolean>false</boolean> 
+            </void> 
+            <void method="setProperty"> 
+             <string>font</string> 
+             <object id="Font1" class="java.awt.Font"> 
+              <string>Trebuchet MS</string> 
+              <int>0</int> 
+              <int>13</int> 
+             </object> 
+            </void> 
+            <void property="name"> 
+             <string>editResearchPurposeButton</string> 
+            </void> 
+            <void method="addEvent"> 
+             <object class="com.jformdesigner.model.FormEvent"> 
+              <string>java.awt.event.ActionListener</string> 
+              <string>actionPerformed</string> 
+              <string>editResearchPurposeButtonActionPerformed</string> 
+              <boolean>false</boolean> 
+             </object> 
+            </void> 
+           </object> 
+           <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+            <class>com.jgoodies.forms.layout.CellConstraints</class> 
+            <void method="setProperty"> 
+             <string>gridX</string> 
+             <int>3</int> 
+            </void> 
+           </object> 
+          </void> 
+          <void method="add"> 
+           <object class="com.jformdesigner.model.FormComponent"> 
+            <string>javax.swing.JButton</string> 
+            <void method="setProperty"> 
+             <string>text</string> 
+             <string>Remove Reseach Purpose</string> 
+            </void> 
+            <void method="setProperty"> 
+             <string>opaque</string> 
+             <boolean>false</boolean> 
+            </void> 
+            <void method="setProperty"> 
+             <string>font</string> 
+             <object idref="Font0"/> 
+            </void> 
+            <void property="name"> 
+             <string>removeResearchPurpose</string> 
+            </void> 
+            <void method="addEvent"> 
+             <object class="com.jformdesigner.model.FormEvent"> 
+              <string>java.awt.event.ActionListener</string> 
+              <string>actionPerformed</string> 
+              <string>removeResearchPurposeActionPerformed</string> 
+              <boolean>false</boolean> 
+             </object> 
+            </void> 
+           </object> 
+           <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+            <class>com.jgoodies.forms.layout.CellConstraints</class> 
+            <void method="setProperty"> 
+             <string>gridX</string> 
+             <int>5</int> 
+            </void> 
+           </object> 
+          </void> 
+         </object> 
+         <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+          <class>com.jgoodies.forms.layout.CellConstraints</class> 
+          <void method="setProperty"> 
+           <string>gridY</string> 
+           <int>9</int> 
+          </void> 
+          <void method="setProperty"> 
+           <string>hAlign</string> 
+           <object class="com.jgoodies.forms.layout.CellConstraints" field="CENTER"/> 
+          </void> 
+          <void method="setProperty"> 
+           <string>gridWidth</string> 
            <int>3</int> 
           </void> 
          </object> 
@@ -323,7 +529,7 @@
           <class>com.jgoodies.forms.layout.CellConstraints</class> 
           <void method="setProperty"> 
            <string>gridY</string> 
-           <int>9</int> 
+           <int>11</int> 
           </void> 
           <void method="setProperty"> 
            <string>gridWidth</string> 
@@ -340,11 +546,7 @@
           </void> 
           <void method="setProperty"> 
            <string>font</string> 
-           <object id="Font0" class="java.awt.Font"> 
-            <string>Trebuchet MS</string> 
-            <int>0</int> 
-            <int>13</int> 
-           </object> 
+           <object idref="Font0"/> 
           </void> 
           <void property="name"> 
            <string>SubjectsLabel</string> 
@@ -354,7 +556,7 @@
           <class>com.jgoodies.forms.layout.CellConstraints</class> 
           <void method="setProperty"> 
            <string>gridY</string> 
-           <int>11</int> 
+           <int>13</int> 
           </void> 
           <void method="setProperty"> 
            <string>gridWidth</string> 
@@ -378,10 +580,7 @@
           </void> 
           <void method="setProperty"> 
            <string>preferredSize</string> 
-           <object class="java.awt.Dimension"> 
-            <int>219</int> 
-            <int>100</int> 
-           </object> 
+           <object idref="Dimension0"/> 
           </void> 
           <void property="name"> 
            <string>scrollPane3</string> 
@@ -391,10 +590,7 @@
             <string>org.archiviststoolkit.mydomain.DomainSortableTable</string> 
             <void method="setProperty"> 
              <string>preferredScrollableViewportSize</string> 
-             <object id="Dimension0" class="java.awt.Dimension"> 
-              <int>200</int> 
-              <int>200</int> 
-             </object> 
+             <object idref="Dimension1"/> 
             </void> 
             <void property="name"> 
              <string>subjectsTable</string> 
@@ -412,7 +608,7 @@
           <class>com.jgoodies.forms.layout.CellConstraints</class> 
           <void method="setProperty"> 
            <string>gridY</string> 
-           <int>13</int> 
+           <int>15</int> 
           </void> 
           <void method="setProperty"> 
            <string>gridWidth</string> 
@@ -436,12 +632,7 @@
           </object> 
           <void method="setProperty"> 
            <string>background</string> 
-           <object id="Color0" class="java.awt.Color"> 
-            <int>231</int> 
-            <int>188</int> 
-            <int>251</int> 
-            <int>255</int> 
-           </object> 
+           <object idref="Color0"/> 
           </void> 
           <void method="setProperty"> 
            <string>opaque</string> 
@@ -525,7 +716,7 @@
           <class>com.jgoodies.forms.layout.CellConstraints</class> 
           <void method="setProperty"> 
            <string>gridY</string> 
-           <int>15</int> 
+           <int>17</int> 
           </void> 
           <void method="setProperty"> 
            <string>hAlign</string> 
@@ -566,7 +757,7 @@
             <string>org.archiviststoolkit.mydomain.DomainSortableTable</string> 
             <void method="setProperty"> 
              <string>preferredScrollableViewportSize</string> 
-             <object idref="Dimension0"/> 
+             <object idref="Dimension1"/> 
             </void> 
             <void property="name"> 
              <string>namesTable</string> 
@@ -592,7 +783,7 @@
           <class>com.jgoodies.forms.layout.CellConstraints</class> 
           <void method="setProperty"> 
            <string>gridY</string> 
-           <int>17</int> 
+           <int>19</int> 
           </void> 
           <void method="setProperty"> 
            <string>gridWidth</string> 
@@ -642,11 +833,7 @@
             </void> 
             <void method="setProperty"> 
              <string>font</string> 
-             <object class="java.awt.Font"> 
-              <string>Trebuchet MS</string> 
-              <int>0</int> 
-              <int>13</int> 
-             </object> 
+             <object idref="Font1"/> 
             </void> 
             <void property="name"> 
              <string>editNameRelationshipButton</string> 
@@ -739,7 +926,7 @@
           <class>com.jgoodies.forms.layout.CellConstraints</class> 
           <void method="setProperty"> 
            <string>gridY</string> 
-           <int>19</int> 
+           <int>21</int> 
           </void> 
           <void method="setProperty"> 
            <string>hAlign</string> 
@@ -777,7 +964,7 @@
       <void method="setProperty"> 
        <string>size</string> 
        <object class="java.awt.Dimension"> 
-        <int>400</int> 
+        <int>555</int> 
         <int>475</int> 
        </object> 
       </void> 

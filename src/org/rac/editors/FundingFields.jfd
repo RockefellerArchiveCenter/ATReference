@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_20" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_22" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -113,7 +113,7 @@
         </void> 
         <void method="add"> 
          <object class="com.jformdesigner.model.FormComponent"> 
-          <string>javax.swing.JFormattedTextField</string> 
+          <string>javax.swing.JTextField</string> 
           <void method="setProperty"> 
            <string>$size</string> 
            <object class="java.awt.Dimension"> 
@@ -129,17 +129,13 @@
             <int>13</int> 
            </object> 
           </void> 
-          <void method="setProperty"> 
-           <string>columns</string> 
-           <int>10</int> 
-          </void> 
           <void property="name"> 
            <string>fundingDate</string> 
           </void> 
           <void method="auxiliary"> 
            <void method="setProperty"> 
             <string>JavaCodeGenerator.customCreateCode</string> 
-            <string>ATBasicComponentFactory.createDateField(detailsModel.getModel(PatronFunding.PROPERTYNAME_FUNDING_DATE));</string> 
+            <string>ATBasicComponentFactory.createISODateField(detailsModel.getModel(PatronFunding.PROPERTYNAME_FUNDING_DATE));</string> 
            </void> 
            <void method="setProperty"> 
             <string>JavaCodeGenerator.variableModifiers</string> 

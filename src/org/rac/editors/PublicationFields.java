@@ -49,7 +49,7 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 	}
 
 	public Component getInitialFocusComponent() {
-		return title;
+		return publicationType;
 	}
 
 	private void fundingTypeItemStateChanged(ItemEvent e) {
@@ -145,6 +145,23 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 		label_collaborators = new JLabel();
 		scrollPane48 = new JScrollPane();
 		collaborators = ATBasicComponentFactory.createTextArea(detailsModel.getModel(PatronPublications.PROPERTYNAME_COLLABORATORS));
+		Label_title2 = new JLabel();
+		title2 = ATBasicComponentFactory.createTextField(detailsModel.getModel(PatronPublications.PROPERTYNAME_PUBLICATION_AUTHOR));
+		Label_title3 = new JLabel();
+		title3 = ATBasicComponentFactory.createTextField(detailsModel.getModel(PatronPublications.PROPERTYNAME_SERIAL_TITLE));
+		Label_title4 = new JLabel();
+		title4 = ATBasicComponentFactory.createTextField(detailsModel.getModel(PatronPublications.PROPERTYNAME_LOCATION_OF_PUBLICATION));
+		Label_title5 = new JLabel();
+		title5 = ATBasicComponentFactory.createTextField(detailsModel.getModel(PatronPublications.PROPERTYNAME_ISSUE_VOLUME));
+		Label_title6 = new JLabel();
+		title6 = ATBasicComponentFactory.createTextField(detailsModel.getModel(PatronPublications.PROPERTYNAME_PAGE_NUMBERS));
+		Label_title7 = new JLabel();
+		title7 = ATBasicComponentFactory.createTextField(detailsModel.getModel(PatronPublications.PROPERTYNAME_URL));
+		Label_title8 = new JLabel();
+		acknowledgementDate2 = ATBasicComponentFactory.createDateField(detailsModel.getModel( PatronPublications.PROPERTYNAME_DATE_ACCESSED));
+		rights3 = ATBasicComponentFactory.createCheckBox(detailsModel, PatronPublications.PROPERTYNAME_COPY_RECEIVED, PatronPublications.class);
+		Label_title10 = new JLabel();
+		title10 = ATBasicComponentFactory.createTextField(detailsModel.getModel(PatronPublications.PROPERTYNAME_OTHER));
 		separator5 = new JSeparator();
 		SubjectsLabel = new JLabel();
 		scrollPane3 = new JScrollPane();
@@ -184,6 +201,24 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 					FormFactory.DEFAULT_ROWSPEC,
 					FormFactory.LINE_GAP_ROWSPEC,
 					new RowSpec(RowSpec.TOP, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+					FormFactory.LINE_GAP_ROWSPEC,
+					FormFactory.DEFAULT_ROWSPEC,
+					FormFactory.LINE_GAP_ROWSPEC,
+					FormFactory.DEFAULT_ROWSPEC,
+					FormFactory.LINE_GAP_ROWSPEC,
+					FormFactory.DEFAULT_ROWSPEC,
+					FormFactory.LINE_GAP_ROWSPEC,
+					FormFactory.DEFAULT_ROWSPEC,
+					FormFactory.LINE_GAP_ROWSPEC,
+					FormFactory.DEFAULT_ROWSPEC,
+					FormFactory.LINE_GAP_ROWSPEC,
+					FormFactory.DEFAULT_ROWSPEC,
+					FormFactory.LINE_GAP_ROWSPEC,
+					FormFactory.DEFAULT_ROWSPEC,
+					FormFactory.LINE_GAP_ROWSPEC,
+					FormFactory.DEFAULT_ROWSPEC,
+					FormFactory.LINE_GAP_ROWSPEC,
+					FormFactory.DEFAULT_ROWSPEC,
 					FormFactory.LINE_GAP_ROWSPEC,
 					FormFactory.DEFAULT_ROWSPEC,
 					FormFactory.LINE_GAP_ROWSPEC,
@@ -259,17 +294,97 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 			}
 			contentPanel.add(scrollPane48, cc.xywh(3, 9, 1, 1, CellConstraints.DEFAULT, CellConstraints.FILL));
 
+			//---- Label_title2 ----
+			Label_title2.setText("Author");
+			ATFieldInfo.assignLabelInfo(Label_title2, PatronPublications.class, PatronPublications.PROPERTYNAME_PUBLICATION_AUTHOR);
+			contentPanel.add(Label_title2, cc.xy(1, 11));
+
+			//---- title2 ----
+			title2.setColumns(30);
+			contentPanel.add(title2, cc.xy(3, 11));
+
+			//---- Label_title3 ----
+			Label_title3.setText("Serial Title");
+			ATFieldInfo.assignLabelInfo(Label_title3, PatronPublications.class, PatronPublications.PROPERTYNAME_SERIAL_TITLE);
+			contentPanel.add(Label_title3, cc.xy(1, 13));
+
+			//---- title3 ----
+			title3.setColumns(30);
+			contentPanel.add(title3, cc.xy(3, 13));
+
+			//---- Label_title4 ----
+			Label_title4.setText("Location of Publication");
+			ATFieldInfo.assignLabelInfo(Label_title4, PatronPublications.class, PatronPublications.PROPERTYNAME_LOCATION_OF_PUBLICATION);
+			contentPanel.add(Label_title4, cc.xy(1, 15));
+
+			//---- title4 ----
+			title4.setColumns(30);
+			contentPanel.add(title4, cc.xy(3, 15));
+
+			//---- Label_title5 ----
+			Label_title5.setText("Issue/Volume");
+			ATFieldInfo.assignLabelInfo(Label_title5, PatronPublications.class, PatronPublications.PROPERTYNAME_ISSUE_VOLUME);
+			contentPanel.add(Label_title5, cc.xy(1, 17));
+
+			//---- title5 ----
+			title5.setColumns(30);
+			contentPanel.add(title5, cc.xy(3, 17));
+
+			//---- Label_title6 ----
+			Label_title6.setText("Page Numbers");
+			ATFieldInfo.assignLabelInfo(Label_title6, PatronPublications.class, PatronPublications.PROPERTYNAME_PAGE_NUMBERS);
+			contentPanel.add(Label_title6, cc.xy(1, 19));
+
+			//---- title6 ----
+			title6.setColumns(30);
+			contentPanel.add(title6, cc.xy(3, 19));
+
+			//---- Label_title7 ----
+			Label_title7.setText("URL");
+			ATFieldInfo.assignLabelInfo(Label_title7, PatronPublications.class, PatronPublications.PROPERTYNAME_URL);
+			contentPanel.add(Label_title7, cc.xy(1, 21));
+
+			//---- title7 ----
+			title7.setColumns(30);
+			contentPanel.add(title7, cc.xy(3, 21));
+
+			//---- Label_title8 ----
+			Label_title8.setText("Date Accessed");
+			ATFieldInfo.assignLabelInfo(Label_title8, PatronPublications.class, PatronPublications.PROPERTYNAME_DATE_ACCESSED);
+			contentPanel.add(Label_title8, cc.xy(1, 23));
+
+			//---- acknowledgementDate2 ----
+			acknowledgementDate2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+			acknowledgementDate2.setColumns(10);
+			contentPanel.add(acknowledgementDate2, cc.xy(3, 23));
+
+			//---- rights3 ----
+			rights3.setText("Copy Received");
+			rights3.setOpaque(false);
+			rights3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+			rights3.setText(ATFieldInfo.getLabel(PatronPublications.class, PatronPublications.PROPERTYNAME_COPY_RECEIVED));
+			contentPanel.add(rights3, cc.xywh(1, 25, 3, 1));
+
+			//---- Label_title10 ----
+			Label_title10.setText("Other");
+			ATFieldInfo.assignLabelInfo(Label_title10, PatronPublications.class, PatronPublications.PROPERTYNAME_OTHER);
+			contentPanel.add(Label_title10, cc.xy(1, 27));
+
+			//---- title10 ----
+			title10.setColumns(30);
+			contentPanel.add(title10, cc.xy(3, 27));
+
 			//---- separator5 ----
 			separator5.setBackground(new Color(220, 220, 232));
 			separator5.setForeground(new Color(147, 131, 86));
 			separator5.setMinimumSize(new Dimension(1, 10));
 			separator5.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-			contentPanel.add(separator5, cc.xywh(1, 11, 3, 1));
+			contentPanel.add(separator5, cc.xywh(1, 29, 3, 1));
 
 			//---- SubjectsLabel ----
 			SubjectsLabel.setText("Subjects");
 			SubjectsLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-			contentPanel.add(SubjectsLabel, cc.xywh(1, 13, 3, 1));
+			contentPanel.add(SubjectsLabel, cc.xywh(1, 31, 3, 1));
 
 			//======== scrollPane3 ========
 			{
@@ -281,7 +396,7 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 				subjectsTable.setPreferredScrollableViewportSize(new Dimension(200, 200));
 				scrollPane3.setViewportView(subjectsTable);
 			}
-			contentPanel.add(scrollPane3, cc.xywh(1, 15, 3, 1));
+			contentPanel.add(scrollPane3, cc.xywh(1, 33, 3, 1));
 
 			//======== panel10 ========
 			{
@@ -318,7 +433,7 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 				});
 				panel10.add(removeSubject, cc.xy(3, 1));
 			}
-			contentPanel.add(panel10, cc.xywh(1, 17, 3, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
+			contentPanel.add(panel10, cc.xywh(1, 35, 3, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
 
 			//======== scrollPane4 ========
 			{
@@ -336,7 +451,7 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 				});
 				scrollPane4.setViewportView(namesTable);
 			}
-			contentPanel.add(scrollPane4, cc.xywh(1, 19, 3, 1));
+			contentPanel.add(scrollPane4, cc.xywh(1, 37, 3, 1));
 
 			//======== panel11 ========
 			{
@@ -386,7 +501,7 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 				});
 				panel11.add(removeName, cc.xy(5, 1));
 			}
-			contentPanel.add(panel11, cc.xywh(1, 21, 3, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
+			contentPanel.add(panel11, cc.xywh(1, 39, 3, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
 		}
 		add(contentPanel, cc.xy(1, 1));
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -406,6 +521,23 @@ public class PublicationFields extends RAC_DomainEditorFields implements Subject
 	private JLabel label_collaborators;
 	private JScrollPane scrollPane48;
 	public JTextArea collaborators;
+	private JLabel Label_title2;
+	private JTextField title2;
+	private JLabel Label_title3;
+	private JTextField title3;
+	private JLabel Label_title4;
+	private JTextField title4;
+	private JLabel Label_title5;
+	private JTextField title5;
+	private JLabel Label_title6;
+	private JTextField title6;
+	private JLabel Label_title7;
+	private JTextField title7;
+	private JLabel Label_title8;
+	public JFormattedTextField acknowledgementDate2;
+	public JCheckBox rights3;
+	private JLabel Label_title10;
+	private JTextField title10;
 	private JSeparator separator5;
 	private JLabel SubjectsLabel;
 	private JScrollPane scrollPane3;

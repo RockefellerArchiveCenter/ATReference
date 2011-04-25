@@ -253,13 +253,37 @@ public class Users  extends DomainObject {
         }
     }
 
+    public static Users lookupUser(String userName) {
+        return lookupUser(userName, null, false);
+    }
+
     public static Users lookupUser(String userName, byte[] password) {
+        return lookupUser(userName, password, true);
+    }
+
+    /**
+     * Method to return a user object from the database.
+     * If use passPassword is true the the password is compared
+     * if false then it's not. Setting this to false is useful
+     * when a authentication plugin is used.
+     * 
+     * @param userName
+     * @param password
+     * @param usePassword
+     * @return
+     */
+    public static Users lookupUser(String userName, byte[] password, boolean usePassword) {
         Session session = SessionFactory.getInstance().openSession();
         Criteria crit;
         Collection collection;
+
         crit = session.createCriteria(Users.class);
         crit.add(Expression.eq("userName", userName));
-        crit.add(Expression.eq("password", password));
+
+        if(usePassword) {
+            crit.add(Expression.eq("password", password));
+        }
+
         collection = crit.list();
         if (collection.size() == 1) {
             return (Users) collection.iterator().next();
