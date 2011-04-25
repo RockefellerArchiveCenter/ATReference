@@ -6,7 +6,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="251"/>
+	<property name="ireport.y" value="241"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
@@ -72,7 +72,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="403" splitType="Stretch">
+		<band height="401" splitType="Stretch">
 			<staticText>
 				<reportElement key="staticText-5" mode="Transparent" x="305" y="118" width="146" height="18" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box>
