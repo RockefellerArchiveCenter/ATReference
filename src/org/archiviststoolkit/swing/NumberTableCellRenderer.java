@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -17,13 +17,10 @@
 
 package org.archiviststoolkit.swing;
 
-import com.jgoodies.binding.formatter.EmptyDateFormatter;
-import com.jgoodies.binding.formatter.EmptyNumberFormatter;
+import com.jgoodies.validation.formatter.EmptyNumberFormatter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.text.NumberFormat;
 

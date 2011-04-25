@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -40,6 +40,17 @@ public class UserPreferences {
 	public static final String FONT_FAMILY = "fontFamily";
 	public static final String FONT_STYLE = "fontStyle";
     public static final String FONT_SIZE = "fontSize";
+    public static final String SPELLCHECK_ENABLE = "spellCheckEnable";
+    public static final String SPELLCHECK_HIGHLIGHT_ENABLE = "spellCheckHighlightEnable";
+
+    private String databaseUrl = "";
+	private String databaseUserName = "";
+	private String databasePassword = "";
+	private String savePath = "";
+	private String databaseType = "";
+    private Font font = null;
+    private boolean enableSpellCheck = false;
+    private boolean enableSpellCheckHighlight = true;
 
 	private static UserPreferences singleton = null;
 
@@ -53,13 +64,6 @@ public class UserPreferences {
 
 		return singleton;
 	}
-
-	private String databaseUrl = "";
-	private String databaseUserName = "";
-	private String databasePassword = "";
-	private String savePath = "";
-	private String databaseType = "";
-    private Font font = null;
 
 	public String getDatabaseUrl() {
 		return databaseUrl;
@@ -81,6 +85,21 @@ public class UserPreferences {
         if(StringHelper.isNotEmpty(fontFamily.trim())) {
             font = new Font(fontFamily, fontStyle, fontSize);
         }
+
+        // set the spell check options
+        String spellCheck = userPrefs.get(SPELLCHECK_ENABLE, "");
+        if(spellCheck.equals("yes")) {
+            enableSpellCheck = true;
+        } else {
+            enableSpellCheck = false;
+        }
+
+        String spellCheckHighlight = userPrefs.get(SPELLCHECK_HIGHLIGHT_ENABLE, "");
+        if(spellCheckHighlight.equals("yes")) {
+            enableSpellCheckHighlight = true;
+        } else {
+            enableSpellCheckHighlight = false;
+        }
 	}
 
 	public void saveToPreferences() {
@@ -96,6 +115,19 @@ public class UserPreferences {
             userPrefs.put(FONT_FAMILY, font.getFamily());
             userPrefs.put(FONT_STYLE,"" + font.getStyle());
             userPrefs.put(FONT_SIZE,"" + font.getSize());
+        }
+
+        // save the enable spell check option
+        if(enableSpellCheck) {
+            userPrefs.put(SPELLCHECK_ENABLE, "yes");
+        } else {
+            userPrefs.put(SPELLCHECK_ENABLE, "no");
+        }
+
+        if(enableSpellCheckHighlight) {
+            userPrefs.put(SPELLCHECK_HIGHLIGHT_ENABLE, "yes");
+        } else {
+            userPrefs.put(SPELLCHECK_HIGHLIGHT_ENABLE, "no");
         }
 
 		try {
@@ -204,5 +236,43 @@ public class UserPreferences {
      */
     public void setFont(Font font) {
         this.font = font;
+    }
+
+    /**
+     * Method use to specify whether to use the experimental spell check
+     * function
+     *
+     * @param enableSpellCheck
+     */
+    public void setEnableSpellCheck(boolean enableSpellCheck) {
+        this.enableSpellCheck = enableSpellCheck;
+    }
+
+    /**
+     * Method to get the boolean which indicates if spel checker is being used
+     *
+     * @return The enable spell check variable
+     */
+    public boolean getEnableSpellCheck() {
+        return enableSpellCheck;
+    }
+
+    /**
+     * Method to enable spell check highlighting
+     *
+     * @param enableSpellCheckHighlight
+     */
+    public void setEnableSpellCheckHighlight(boolean enableSpellCheckHighlight) {
+        this.enableSpellCheckHighlight = enableSpellCheckHighlight;
+    }
+
+    /**
+     * Method to return boolean that states whether to enable spellcheck
+     * highlighting
+     *
+     * @return boolean to specify whether to enable highlighting
+     */
+    public boolean getEnableSpellCheckHighlighting() {
+        return enableSpellCheckHighlight;
     }
 }

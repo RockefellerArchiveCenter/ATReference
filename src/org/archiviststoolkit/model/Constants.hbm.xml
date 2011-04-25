@@ -30,5 +30,12 @@
                   not-null="true"
                   type="string"/>
 
+        <!-- RAC patron addition -->
+        <property name="sharePatronRecords"
+                  column="sharePatronRecords"
+                  not-null="true"
+                  type="boolean"/>
+
+
 	</class>
 </hibernate-mapping>

@@ -25,7 +25,7 @@ package org.archiviststoolkit.swing;
 //Import Declarations
 //==============================================================================
 
-import com.jgoodies.binding.formatter.EmptyDateFormatter;
+import com.jgoodies.validation.formatter.EmptyDateFormatter;
 
 import java.awt.Component;
 import java.awt.Color;

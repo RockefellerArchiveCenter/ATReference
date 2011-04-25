@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -23,6 +23,7 @@ import javax.swing.*;
 import com.jgoodies.forms.factories.*;
 import com.jgoodies.forms.layout.*;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Expression;
 import org.archiviststoolkit.hibernate.ATSearchCriterion;
 
@@ -90,7 +91,15 @@ public class QueryEditorBooleanPanel extends QueryEditorPanel {
 			criteria = Expression.eq(field, true);
 			humanReadableSearchString += "true";
 		} else {
-			criteria = Expression.eq(field, false);
+            // a lot of the fields are set null and user expects them to be
+            // false then consider false as null or or actually false
+			Disjunction disjunction = Expression.disjunction();
+            disjunction.add(Expression.eq(field, false));
+            disjunction.add(Expression.isNull(field));
+
+            criteria = disjunction;
+            //criteria = Expression.eq(field, false);
+            
 			humanReadableSearchString += "false";
 		}
 

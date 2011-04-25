@@ -41,23 +41,23 @@ public class UserPreferencesDialog extends JDialog {
     // use this to prevent any update events when the list connections is being loaded
     private boolean loadingConnections = true;
 
-	public UserPreferencesDialog() {
-		super();
+    public UserPreferencesDialog() {
+        super();
         initComponents();
         loadDatabaseConnectionInformation();
-	}
+    }
 
-	public UserPreferencesDialog(Frame owner) {
-		super(owner);
-		initComponents();
+    public UserPreferencesDialog(Frame owner) {
+        super(owner);
+        initComponents();
         loadDatabaseConnectionInformation();
-	}
+    }
 
-	public UserPreferencesDialog(Dialog owner) {
-		super(owner);
-		initComponents();
+    public UserPreferencesDialog(Dialog owner) {
+        super(owner);
+        initComponents();
         loadDatabaseConnectionInformation();
-	}
+    }
 
     private void storeConnectionUrlInformation() {
         String selectedUrl = (String) connectionUrl.getSelectedItem();
@@ -138,7 +138,7 @@ public class UserPreferencesDialog extends JDialog {
     /**
      * Method to hanlde actions from the database selector combo box
      */
-	private void databaseTypesActionPerformed() {
+    private void databaseTypesActionPerformed() {
         String database = databaseTypes.getSelectedItem().toString();
         String currentUrl = connectionUrl.getSelectedItem().toString();
 
@@ -176,311 +176,311 @@ public class UserPreferencesDialog extends JDialog {
         } else {
             return null;
         }
-	}
+    }
 
-	private void initComponents() {
-		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-		// Generated using JFormDesigner non-commercial license
-		dialogPane = new JPanel();
-		HeaderPanel = new JPanel();
-		panel2 = new JPanel();
-		mainHeaderLabel = new JLabel();
-		panel3 = new JPanel();
-		subHeaderLabel = new JLabel();
-		panel1 = new JPanel();
-		contentPanel = new JPanel();
-		label1 = new JLabel();
-		connectionUrl = new JComboBox();
-		label2 = new JLabel();
-		userName = new JTextField();
-		label3 = new JLabel();
-		password = new JPasswordField();
-		label4 = new JLabel();
-		databaseTypes = ATBasicComponentFactory.createUnboundComboBox(SessionFactory.getDatabaseTypesList(true));
-		buttonBar = new JPanel();
-		saveButton = new JButton();
-		okButton = new JButton();
-		cancelButton = new JButton();
-		CellConstraints cc = new CellConstraints();
+    private void initComponents() {
+        // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+        // Generated using JFormDesigner non-commercial license
+        dialogPane = new JPanel();
+        HeaderPanel = new JPanel();
+        panel2 = new JPanel();
+        mainHeaderLabel = new JLabel();
+        panel3 = new JPanel();
+        subHeaderLabel = new JLabel();
+        panel1 = new JPanel();
+        contentPanel = new JPanel();
+        label1 = new JLabel();
+        connectionUrl = new JComboBox();
+        label2 = new JLabel();
+        userName = new JTextField();
+        label3 = new JLabel();
+        password = new JPasswordField();
+        label4 = new JLabel();
+        databaseTypes = ATBasicComponentFactory.createUnboundComboBox(SessionFactory.getDatabaseTypesList(true));
+        buttonBar = new JPanel();
+        saveButton = new JButton();
+        okButton = new JButton();
+        cancelButton = new JButton();
+        CellConstraints cc = new CellConstraints();
 
-		//======== this ========
-		setModal(true);
-		Container contentPane = getContentPane();
-		contentPane.setLayout(new BorderLayout());
+        //======== this ========
+        setModal(true);
+        Container contentPane = getContentPane();
+        contentPane.setLayout(new BorderLayout());
 
-		//======== dialogPane ========
-		{
-			dialogPane.setBorder(null);
-			dialogPane.setBackground(new Color(200, 205, 232));
-			dialogPane.setPreferredSize(new Dimension(600, 238));
-			dialogPane.setMinimumSize(new Dimension(600, 238));
-			dialogPane.setLayout(new BorderLayout());
+        //======== dialogPane ========
+        {
+            dialogPane.setBorder(null);
+            dialogPane.setBackground(new Color(200, 205, 232));
+            dialogPane.setPreferredSize(new Dimension(600, 238));
+            dialogPane.setMinimumSize(new Dimension(600, 238));
+            dialogPane.setLayout(new BorderLayout());
 
-			//======== HeaderPanel ========
-			{
-				HeaderPanel.setBackground(new Color(80, 69, 57));
-				HeaderPanel.setOpaque(false);
-				HeaderPanel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-				HeaderPanel.setLayout(new FormLayout(
-					new ColumnSpec[] {
-						new ColumnSpec(Sizes.bounded(Sizes.MINIMUM, Sizes.dluX(100), Sizes.dluX(200))),
-						new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-					},
-					RowSpec.decodeSpecs("default")));
+            //======== HeaderPanel ========
+            {
+                HeaderPanel.setBackground(new Color(80, 69, 57));
+                HeaderPanel.setOpaque(false);
+                HeaderPanel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+                HeaderPanel.setLayout(new FormLayout(
+                    new ColumnSpec[] {
+                        new ColumnSpec(Sizes.bounded(Sizes.MINIMUM, Sizes.dluX(100), Sizes.dluX(200))),
+                        new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+                    },
+                    RowSpec.decodeSpecs("default")));
 
-				//======== panel2 ========
-				{
-					panel2.setBackground(new Color(80, 69, 57));
-					panel2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					panel2.setLayout(new FormLayout(
-						new ColumnSpec[] {
-							FormFactory.RELATED_GAP_COLSPEC,
-							new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-						},
-						new RowSpec[] {
-							FormFactory.RELATED_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.RELATED_GAP_ROWSPEC
-						}));
+                //======== panel2 ========
+                {
+                    panel2.setBackground(new Color(80, 69, 57));
+                    panel2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+                    panel2.setLayout(new FormLayout(
+                        new ColumnSpec[] {
+                            FormFactory.RELATED_GAP_COLSPEC,
+                            new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+                        },
+                        new RowSpec[] {
+                            FormFactory.RELATED_GAP_ROWSPEC,
+                            FormFactory.DEFAULT_ROWSPEC,
+                            FormFactory.RELATED_GAP_ROWSPEC
+                        }));
 
-					//---- mainHeaderLabel ----
-					mainHeaderLabel.setText("Administration");
-					mainHeaderLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
-					mainHeaderLabel.setForeground(Color.white);
-					panel2.add(mainHeaderLabel, cc.xy(2, 2));
-				}
-				HeaderPanel.add(panel2, cc.xy(1, 1));
+                    //---- mainHeaderLabel ----
+                    mainHeaderLabel.setText("Administration");
+                    mainHeaderLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
+                    mainHeaderLabel.setForeground(Color.white);
+                    panel2.add(mainHeaderLabel, cc.xy(2, 2));
+                }
+                HeaderPanel.add(panel2, cc.xy(1, 1));
 
-				//======== panel3 ========
-				{
-					panel3.setBackground(new Color(66, 60, 111));
-					panel3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					panel3.setLayout(new FormLayout(
-						new ColumnSpec[] {
-							FormFactory.RELATED_GAP_COLSPEC,
-							new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-						},
-						new RowSpec[] {
-							FormFactory.RELATED_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.RELATED_GAP_ROWSPEC
-						}));
+                //======== panel3 ========
+                {
+                    panel3.setBackground(new Color(66, 60, 111));
+                    panel3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+                    panel3.setLayout(new FormLayout(
+                        new ColumnSpec[] {
+                            FormFactory.RELATED_GAP_COLSPEC,
+                            new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+                        },
+                        new RowSpec[] {
+                            FormFactory.RELATED_GAP_ROWSPEC,
+                            FormFactory.DEFAULT_ROWSPEC,
+                            FormFactory.RELATED_GAP_ROWSPEC
+                        }));
 
-					//---- subHeaderLabel ----
-					subHeaderLabel.setText("Connection Settings");
-					subHeaderLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
-					subHeaderLabel.setForeground(Color.white);
-					panel3.add(subHeaderLabel, cc.xy(2, 2));
-				}
-				HeaderPanel.add(panel3, cc.xy(2, 1));
-			}
-			dialogPane.add(HeaderPanel, BorderLayout.NORTH);
+                    //---- subHeaderLabel ----
+                    subHeaderLabel.setText("Connection Settings");
+                    subHeaderLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
+                    subHeaderLabel.setForeground(Color.white);
+                    panel3.add(subHeaderLabel, cc.xy(2, 2));
+                }
+                HeaderPanel.add(panel3, cc.xy(2, 1));
+            }
+            dialogPane.add(HeaderPanel, BorderLayout.NORTH);
 
-			//======== panel1 ========
-			{
-				panel1.setOpaque(false);
-				panel1.setBorder(Borders.DIALOG_BORDER);
-				panel1.setLayout(new FormLayout(
-					ColumnSpec.decodeSpecs("max(default;400px):grow"),
-					new RowSpec[] {
-						FormFactory.DEFAULT_ROWSPEC,
-						FormFactory.LINE_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC
-					}));
+            //======== panel1 ========
+            {
+                panel1.setOpaque(false);
+                panel1.setBorder(Borders.DIALOG_BORDER);
+                panel1.setLayout(new FormLayout(
+                    ColumnSpec.decodeSpecs("max(default;400px):grow"),
+                    new RowSpec[] {
+                        FormFactory.DEFAULT_ROWSPEC,
+                        FormFactory.LINE_GAP_ROWSPEC,
+                        FormFactory.DEFAULT_ROWSPEC
+                    }));
 
-				//======== contentPanel ========
-				{
-					contentPanel.setBorder(new TitledBorder(null, "Database Properties", TitledBorder.LEADING, TitledBorder.TOP));
-					contentPanel.setOpaque(false);
-					contentPanel.setLayout(new FormLayout(
-						new ColumnSpec[] {
-							new ColumnSpec(ColumnSpec.FILL, Sizes.MINIMUM, 0.1),
-							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-							new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-						},
-						new RowSpec[] {
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC
-						}));
+                //======== contentPanel ========
+                {
+                    contentPanel.setBorder(new TitledBorder(null, "Database Properties", TitledBorder.LEADING, TitledBorder.TOP));
+                    contentPanel.setOpaque(false);
+                    contentPanel.setLayout(new FormLayout(
+                        new ColumnSpec[] {
+                            new ColumnSpec(ColumnSpec.FILL, Sizes.MINIMUM, 0.1),
+                            FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                            new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+                        },
+                        new RowSpec[] {
+                            FormFactory.DEFAULT_ROWSPEC,
+                            FormFactory.LINE_GAP_ROWSPEC,
+                            FormFactory.DEFAULT_ROWSPEC,
+                            FormFactory.LINE_GAP_ROWSPEC,
+                            FormFactory.DEFAULT_ROWSPEC,
+                            FormFactory.LINE_GAP_ROWSPEC,
+                            FormFactory.DEFAULT_ROWSPEC
+                        }));
 
-					//---- label1 ----
-					label1.setText("Connection URL");
-					contentPanel.add(label1, new CellConstraints(1, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    //---- label1 ----
+                    label1.setText("Connection URL");
+                    contentPanel.add(label1, new CellConstraints(1, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
 
-					//---- connectionUrl ----
-					connectionUrl.setEditable(true);
-					connectionUrl.addItemListener(new ItemListener() {
-						public void itemStateChanged(ItemEvent e) {
-							updateConnectionUrlInformation();
-						}
-					});
-					contentPanel.add(connectionUrl, new CellConstraints(3, 1, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    //---- connectionUrl ----
+                    connectionUrl.setEditable(true);
+                    connectionUrl.addItemListener(new ItemListener() {
+                        public void itemStateChanged(ItemEvent e) {
+                            updateConnectionUrlInformation();
+                        }
+                    });
+                    contentPanel.add(connectionUrl, new CellConstraints(3, 1, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
 
-					//---- label2 ----
-					label2.setText("Username");
-					contentPanel.add(label2, new CellConstraints(1, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
-					contentPanel.add(userName, new CellConstraints(3, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    //---- label2 ----
+                    label2.setText("Username");
+                    contentPanel.add(label2, new CellConstraints(1, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    contentPanel.add(userName, new CellConstraints(3, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
 
-					//---- label3 ----
-					label3.setText("Password");
-					contentPanel.add(label3, new CellConstraints(1, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
-					contentPanel.add(password, new CellConstraints(3, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    //---- label3 ----
+                    label3.setText("Password");
+                    contentPanel.add(label3, new CellConstraints(1, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    contentPanel.add(password, new CellConstraints(3, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
 
-					//---- label4 ----
-					label4.setText("Database Type");
-					contentPanel.add(label4, new CellConstraints(1, 7, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    //---- label4 ----
+                    label4.setText("Database Type");
+                    contentPanel.add(label4, new CellConstraints(1, 7, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
 
-					//---- databaseTypes ----
-					databaseTypes.setOpaque(false);
-					databaseTypes.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							databaseTypesActionPerformed();
-						}
-					});
-					contentPanel.add(databaseTypes, cc.xywh(3, 7, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
-				}
-				panel1.add(contentPanel, cc.xy(1, 1));
+                    //---- databaseTypes ----
+                    databaseTypes.setOpaque(false);
+                    databaseTypes.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            databaseTypesActionPerformed();
+                        }
+                    });
+                    contentPanel.add(databaseTypes, cc.xywh(3, 7, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+                }
+                panel1.add(contentPanel, cc.xy(1, 1));
 
-				//======== buttonBar ========
-				{
-					buttonBar.setBorder(Borders.BUTTON_BAR_GAP_BORDER);
-					buttonBar.setBackground(new Color(231, 188, 251));
-					buttonBar.setOpaque(false);
-					buttonBar.setLayout(new FormLayout(
-						new ColumnSpec[] {
-							FormFactory.GLUE_COLSPEC,
-							FormFactory.DEFAULT_COLSPEC,
-							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-							FormFactory.BUTTON_COLSPEC,
-							FormFactory.RELATED_GAP_COLSPEC,
-							FormFactory.BUTTON_COLSPEC
-						},
-						RowSpec.decodeSpecs("pref")));
+                //======== buttonBar ========
+                {
+                    buttonBar.setBorder(Borders.BUTTON_BAR_GAP_BORDER);
+                    buttonBar.setBackground(new Color(231, 188, 251));
+                    buttonBar.setOpaque(false);
+                    buttonBar.setLayout(new FormLayout(
+                        new ColumnSpec[] {
+                            FormFactory.GLUE_COLSPEC,
+                            FormFactory.DEFAULT_COLSPEC,
+                            FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                            FormFactory.BUTTON_COLSPEC,
+                            FormFactory.RELATED_GAP_COLSPEC,
+                            FormFactory.BUTTON_COLSPEC
+                        },
+                        RowSpec.decodeSpecs("pref")));
 
-					//---- saveButton ----
-					saveButton.setText("Save");
-					saveButton.setOpaque(false);
-					saveButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							storeConnectionUrlInformation();
-						}
-					});
-					buttonBar.add(saveButton, cc.xy(2, 1));
+                    //---- saveButton ----
+                    saveButton.setText("Save");
+                    saveButton.setOpaque(false);
+                    saveButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            storeConnectionUrlInformation();
+                        }
+                    });
+                    buttonBar.add(saveButton, cc.xy(2, 1));
 
-					//---- okButton ----
-					okButton.setText("OK");
-					okButton.setOpaque(false);
-					okButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							okButtonActionPerformed(e);
-						}
-					});
-					buttonBar.add(okButton, cc.xy(4, 1));
+                    //---- okButton ----
+                    okButton.setText("OK");
+                    okButton.setOpaque(false);
+                    okButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            okButtonActionPerformed(e);
+                        }
+                    });
+                    buttonBar.add(okButton, cc.xy(4, 1));
 
-					//---- cancelButton ----
-					cancelButton.setText("Cancel");
-					cancelButton.setOpaque(false);
-					cancelButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							cancelButtonActionPerformed(e);
-						}
-					});
-					buttonBar.add(cancelButton, cc.xy(6, 1));
-				}
-				panel1.add(buttonBar, cc.xy(1, 3));
-			}
-			dialogPane.add(panel1, BorderLayout.CENTER);
-		}
-		contentPane.add(dialogPane, BorderLayout.CENTER);
-		pack();
-		setLocationRelativeTo(getOwner());
-		// JFormDesigner - End of component initialization  //GEN-END:initComponents
-	}
+                    //---- cancelButton ----
+                    cancelButton.setText("Cancel");
+                    cancelButton.setOpaque(false);
+                    cancelButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            cancelButtonActionPerformed(e);
+                        }
+                    });
+                    buttonBar.add(cancelButton, cc.xy(6, 1));
+                }
+                panel1.add(buttonBar, cc.xy(1, 3));
+            }
+            dialogPane.add(panel1, BorderLayout.CENTER);
+        }
+        contentPane.add(dialogPane, BorderLayout.CENTER);
+        pack();
+        setLocationRelativeTo(getOwner());
+        // JFormDesigner - End of component initialization  //GEN-END:initComponents
+    }
 
-	private void okButtonActionPerformed(ActionEvent e) {
-		status = javax.swing.JOptionPane.OK_OPTION;
-		this.setVisible(false);
-	}
+    private void okButtonActionPerformed(ActionEvent e) {
+        status = javax.swing.JOptionPane.OK_OPTION;
+        this.setVisible(false);
+    }
 
-	private void cancelButtonActionPerformed(ActionEvent e) {
-		status = javax.swing.JOptionPane.CANCEL_OPTION;
-		this.setVisible(false);
-	}
+    private void cancelButtonActionPerformed(ActionEvent e) {
+        status = javax.swing.JOptionPane.CANCEL_OPTION;
+        this.setVisible(false);
+    }
 
-	public JComboBox getConnectionUrl() {
-		return connectionUrl;
-	}
+    public JComboBox getConnectionUrl() {
+        return connectionUrl;
+    }
 
-	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-	// Generated using JFormDesigner non-commercial license
-	private JPanel dialogPane;
-	private JPanel HeaderPanel;
-	private JPanel panel2;
-	private JLabel mainHeaderLabel;
-	private JPanel panel3;
-	private JLabel subHeaderLabel;
-	private JPanel panel1;
-	private JPanel contentPanel;
-	private JLabel label1;
-	private JComboBox connectionUrl;
-	private JLabel label2;
-	private JTextField userName;
-	private JLabel label3;
-	private JPasswordField password;
-	private JLabel label4;
-	private JComboBox databaseTypes;
-	private JPanel buttonBar;
-	private JButton saveButton;
-	private JButton okButton;
-	private JButton cancelButton;
-	// JFormDesigner - End of variables declaration  //GEN-END:variables
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+    // Generated using JFormDesigner non-commercial license
+    private JPanel dialogPane;
+    private JPanel HeaderPanel;
+    private JPanel panel2;
+    private JLabel mainHeaderLabel;
+    private JPanel panel3;
+    private JLabel subHeaderLabel;
+    private JPanel panel1;
+    private JPanel contentPanel;
+    private JLabel label1;
+    private JComboBox connectionUrl;
+    private JLabel label2;
+    private JTextField userName;
+    private JLabel label3;
+    private JPasswordField password;
+    private JLabel label4;
+    private JComboBox databaseTypes;
+    private JPanel buttonBar;
+    private JButton saveButton;
+    private JButton okButton;
+    private JButton cancelButton;
+    // JFormDesigner - End of variables declaration  //GEN-END:variables
 
-	/**
-	 * The status of the editor.
-	 */
-	protected int status = 0;
+    /**
+     * The status of the editor.
+     */
+    protected int status = 0;
 
-	/**
-	 * Displays the dialog box representing the editor.
-	 *
-	 * @return true if it displayed okay
-	 */
+    /**
+     * Displays the dialog box representing the editor.
+     *
+     * @return true if it displayed okay
+     */
 
-	public final int showDialog() {
+    public final int showDialog() {
 
-		this.pack();
+        this.pack();
 
-		setLocationRelativeTo(null);
-		this.setVisible(true);
+        setLocationRelativeTo(null);
+        this.setVisible(true);
 
-		return (status);
-	}
+        return (status);
+    }
 
-	public String getDatabaseUrl() {
+    public String getDatabaseUrl() {
         return (String) connectionUrl.getSelectedItem();
-	}
+    }
 
-	public String getUserName() {
-		return userName.getText();
-	}
+    public String getUserName() {
+        return userName.getText();
+    }
 
-	public char[] getPassword() {
-		return password.getPassword();
-	}
+    public char[] getPassword() {
+        return password.getPassword();
+    }
 
-	public String getDatabaseType() {
+    public String getDatabaseType() {
         return (String) databaseTypes.getSelectedItem();
-	}
+    }
 
-	public void populateFromUserPreferences(UserPreferences userPrefs) {
-		this.connectionUrl.setSelectedItem(userPrefs.getDatabaseUrl());
-		this.userName.setText(userPrefs.getDatabaseUserName());
-		this.password.setText(userPrefs.getDatabasePassword());
-		this.databaseTypes.setSelectedItem(userPrefs.getDatabaseType());
-	}
+    public void populateFromUserPreferences(UserPreferences userPrefs) {
+        this.connectionUrl.setSelectedItem(userPrefs.getDatabaseUrl());
+        this.userName.setText(userPrefs.getDatabaseUserName());
+        this.password.setText(userPrefs.getDatabasePassword());
+        this.databaseTypes.setSelectedItem(userPrefs.getDatabaseType());
+    }
 }

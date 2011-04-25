@@ -20,8 +20,9 @@
 
 package org.archiviststoolkit.swing;
 
-import com.jgoodies.binding.formatter.EmptyNumberFormatter;
-import com.jgoodies.binding.formatter.EmptyDateFormatter;
+import com.inet.jortho.SpellChecker;
+import com.jgoodies.validation.formatter.EmptyNumberFormatter;
+import com.jgoodies.validation.formatter.EmptyDateFormatter;
 import com.jgoodies.binding.PresentationModel;
 import com.jgoodies.binding.value.ValueModel;
 import com.jgoodies.binding.value.ComponentValueModel;
@@ -423,7 +424,20 @@ public class ATBasicComponentFactory extends BasicComponentFactory {
 	private static JTextArea fixTabBehavior(JTextArea textArea) {
 		textArea.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, null);
 		textArea.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, null);
-		return textArea;
+
+        // add support for spell checking here
+        // using Jortho spell checker library
+        if(ApplicationFrame.enableSpellCheck) {
+            try {
+                SpellChecker.register(textArea);
+                SpellChecker.enableAutoSpell(textArea, ApplicationFrame.enableSpellCheckHighlight);
+            } catch(Exception e) {
+                // just print the stack trace and do nothing
+                e.printStackTrace();
+            }
+        }
+
+        return textArea;
 	}
 
 	public static JTextField createTextField(ValueModel valueModel) {

@@ -38,13 +38,23 @@ import org.archiviststoolkit.swing.InfiniteProgressPanel;
 import org.rac.dialogs.PatronNameAuthorityLookup;
 import org.rac.model.PatronVisits;
 import org.rac.model.PatronVisitsNames;
+import org.rac.model.PatronVisitsResearchPurposes;
 import org.rac.model.PatronVisitsSubjects;
 
 public class PatronVisitFields extends RAC_DomainEditorFields implements SubjectEnabledEditorFields, NameEnabledEditor {
 
-	Boolean readOnly = false;
+	private Boolean readOnly = false;
+	private Boolean referenceNewPatron = false;
 
-	public PatronVisitFields() {
+	public PatronVisitFields(DomainEditor parent) {
+		setParentEditor(parent);
+		initComponents();
+		initAccess();
+	}
+
+	public PatronVisitFields(DomainEditor parent, Boolean referenceNewPatron) {
+		this.referenceNewPatron = referenceNewPatron;
+		setParentEditor(parent);
 		initComponents();
 		initAccess();
 	}
@@ -60,6 +70,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 		PatronVisits visitModel = (PatronVisits)model;
 		subjectsTable.updateCollection(visitModel.getSubjects());
 		namesTable.updateCollection(visitModel.getNames());
+		researchPurposeTable.updateCollection(visitModel.getResearchPurposes());
 	}
 
 	public Component getInitialFocusComponent() {
@@ -77,12 +88,6 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 			removeRelatedTableRow(subjectsTable, this.getModel());
 		} catch (ObjectNotRemovedException e) {
 			new ErrorDialog("Subject not removed", e).showDialog();
-		}
-	}
-
-	private void researchPurposeStateChanged(ItemEvent e) {
-		if (e.getStateChange() == ItemEvent.SELECTED) {
-			addOtherTermIfNecessary(researchPurpose, contentPanel, PatronVisits.class, PatronVisits.PROPERTYNAME_RESEARCH_PURPOSE);
 		}
 	}
 
@@ -143,6 +148,63 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 
 	}
 
+	private void addResearchPurposeActionPerformed() {
+		String researchPurpose = JOptionPane.showInputDialog(this.getParentEditor(), "Enter a Research Purpose");
+
+		if (researchPurpose != null && researchPurpose.length() > 0) {
+			PatronVisits visitModel = (PatronVisits)getModel();
+			visitModel.addResearchPurposes(researchPurpose);
+			researchPurposeTable.updateCollection(visitModel.getResearchPurposes());
+		}
+	}
+
+	private void removeResearchPurposeActionPerformed() {
+		try {
+			removeRelatedTableRow(researchPurposeTable, this.getModel());
+		} catch (ObjectNotRemovedException e) {
+			new ErrorDialog("Subject not removed", e).showDialog();
+		}
+	}
+
+	private void researchPurposeTableMouseClicked(MouseEvent e) {
+		if (readOnly) {
+			//do nothing as read only users can't change anything
+		} else {
+			if (e.getClickCount() == 2) {
+				try {
+					DomainEditor researchPurposeEditor = new DomainEditor(PatronVisitsNames.class, this.getParentEditor(), "Research Purpose", new PatronVisitResearchPurposeFields());
+					researchPurposeEditor.setCallingTable(researchPurposeTable);
+					researchPurposeEditor.setNavigationButtonListeners(researchPurposeEditor);
+					editRelatedRecord(researchPurposeTable, this.getClass(), true, researchPurposeEditor);
+				} catch (UnsupportedTableModelException e1) {
+					new ErrorDialog("Error creating editor", e1).showDialog();
+				}
+			}
+			researchPurposeTable.invalidate();
+			researchPurposeTable.validate();
+			researchPurposeTable.repaint();
+		}
+	}
+
+	private void editResearchPurposeButtonActionPerformed() {
+		try {
+			DomainEditor researchPurposeEditor = new DomainEditor(PatronVisitsResearchPurposes.class, this.getParentEditor(), "Research Purpose", new PatronVisitResearchPurposeFields());
+			researchPurposeEditor.setCallingTable(researchPurposeTable);
+			researchPurposeEditor.setNavigationButtonListeners(researchPurposeEditor);
+			int selectedRow = researchPurposeTable.getSelectedRow();
+			if (selectedRow == -1) {
+				JOptionPane.showMessageDialog(this, "You must select a research purpose to edit.", "warning", JOptionPane.WARNING_MESSAGE);
+			} else {
+				editRelatedRecord(researchPurposeTable, PatronVisitsNames.class, true, researchPurposeEditor);
+				researchPurposeTable.invalidate();
+				researchPurposeTable.validate();
+				researchPurposeTable.repaint();
+			}
+		} catch (UnsupportedTableModelException e) {
+			new ErrorDialog("Error creating editor", e).showDialog();
+		}
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		// Generated using JFormDesigner non-commercial license
@@ -152,9 +214,14 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 		label_subject = new JLabel();
 		address1 = ATBasicComponentFactory.createTextField(detailsModel.getModel(PatronVisits.PROPERTYNAME_CONTACT_ARCHIVIST));
 		label_topic = new JLabel();
-		topic = ATBasicComponentFactory.createTextField(detailsModel.getModel(PatronVisits.PROPERTYNAME_TOPIC));
-		label_topic2 = new JLabel();
-		researchPurpose = ATBasicComponentFactory.createComboBox(detailsModel, PatronVisits.PROPERTYNAME_RESEARCH_PURPOSE, PatronVisits.class);
+		scrollPane1 = new JScrollPane();
+		patronNotes = ATBasicComponentFactory.createTextArea(detailsModel.getModel(PatronVisits.PROPERTYNAME_TOPIC));
+		scrollPane5 = new JScrollPane();
+		researchPurposeTable = new DomainSortableTable(PatronVisitsResearchPurposes.class);
+		panel12 = new JPanel();
+		addResearchPurpose = new JButton();
+		editResearchPurposeButton = new JButton();
+		removeResearchPurpose = new JButton();
 		separator5 = new JSeparator();
 		SubjectsLabel = new JLabel();
 		scrollPane3 = new JScrollPane();
@@ -188,6 +255,8 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 					FormFactory.DEFAULT_ROWSPEC,
 					FormFactory.LINE_GAP_ROWSPEC,
 					FormFactory.DEFAULT_ROWSPEC,
+					FormFactory.LINE_GAP_ROWSPEC,
+					new RowSpec(RowSpec.TOP, Sizes.DEFAULT, FormSpec.NO_GROW),
 					FormFactory.LINE_GAP_ROWSPEC,
 					FormFactory.DEFAULT_ROWSPEC,
 					FormFactory.LINE_GAP_ROWSPEC,
@@ -230,34 +299,98 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 			ATFieldInfo.assignLabelInfo(label_topic, PatronVisits.class, PatronVisits.PROPERTYNAME_TOPIC);
 			contentPanel.add(label_topic, cc.xy(1, 5));
 
-			//---- topic ----
-			topic.setColumns(30);
-			contentPanel.add(topic, cc.xy(3, 5));
+			//======== scrollPane1 ========
+			{
 
-			//---- label_topic2 ----
-			label_topic2.setText("Research Purpose");
-			ATFieldInfo.assignLabelInfo(label_topic2, PatronVisits.class, PatronVisits.PROPERTYNAME_RESEARCH_PURPOSE);
-			contentPanel.add(label_topic2, cc.xy(1, 7));
+				//---- patronNotes ----
+				patronNotes.setRows(4);
+				patronNotes.setLineWrap(true);
+				patronNotes.setWrapStyleWord(true);
+				patronNotes.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+				patronNotes.setMinimumSize(new Dimension(200, 16));
+				scrollPane1.setViewportView(patronNotes);
+			}
+			contentPanel.add(scrollPane1, cc.xy(3, 5));
 
-			//---- researchPurpose ----
-			researchPurpose.addItemListener(new ItemListener() {
-				public void itemStateChanged(ItemEvent e) {
-					researchPurposeStateChanged(e);
-				}
-			});
-			contentPanel.add(researchPurpose, cc.xy(3, 7));
+			//======== scrollPane5 ========
+			{
+				scrollPane5.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+				scrollPane5.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+				scrollPane5.setPreferredSize(new Dimension(219, 100));
+
+				//---- researchPurposeTable ----
+				researchPurposeTable.setPreferredScrollableViewportSize(new Dimension(200, 200));
+				researchPurposeTable.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						researchPurposeTableMouseClicked(e);
+					}
+				});
+				scrollPane5.setViewportView(researchPurposeTable);
+			}
+			contentPanel.add(scrollPane5, cc.xywh(1, 7, 3, 1));
+
+			//======== panel12 ========
+			{
+				panel12.setBackground(new Color(231, 188, 251));
+				panel12.setOpaque(false);
+				panel12.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+				panel12.setLayout(new FormLayout(
+					new ColumnSpec[] {
+						FormFactory.DEFAULT_COLSPEC,
+						FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+						FormFactory.DEFAULT_COLSPEC,
+						FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+						FormFactory.DEFAULT_COLSPEC
+					},
+					RowSpec.decodeSpecs("default")));
+
+				//---- addResearchPurpose ----
+				addResearchPurpose.setText("Add Reseach Purpose");
+				addResearchPurpose.setOpaque(false);
+				addResearchPurpose.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+				addResearchPurpose.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						addResearchPurposeActionPerformed();
+					}
+				});
+				panel12.add(addResearchPurpose, cc.xy(1, 1));
+
+				//---- editResearchPurposeButton ----
+				editResearchPurposeButton.setText("Edit Research Purpose");
+				editResearchPurposeButton.setOpaque(false);
+				editResearchPurposeButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+				editResearchPurposeButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						editResearchPurposeButtonActionPerformed();
+					}
+				});
+				panel12.add(editResearchPurposeButton, cc.xy(3, 1));
+
+				//---- removeResearchPurpose ----
+				removeResearchPurpose.setText("Remove Reseach Purpose");
+				removeResearchPurpose.setOpaque(false);
+				removeResearchPurpose.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+				removeResearchPurpose.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						removeResearchPurposeActionPerformed();
+					}
+				});
+				panel12.add(removeResearchPurpose, cc.xy(5, 1));
+			}
+			contentPanel.add(panel12, cc.xywh(1, 9, 3, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
 
 			//---- separator5 ----
 			separator5.setBackground(new Color(220, 220, 232));
 			separator5.setForeground(new Color(147, 131, 86));
 			separator5.setMinimumSize(new Dimension(1, 10));
 			separator5.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-			contentPanel.add(separator5, cc.xywh(1, 9, 3, 1));
+			contentPanel.add(separator5, cc.xywh(1, 11, 3, 1));
 
 			//---- SubjectsLabel ----
 			SubjectsLabel.setText("Subjects");
 			SubjectsLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-			contentPanel.add(SubjectsLabel, cc.xywh(1, 11, 3, 1));
+			contentPanel.add(SubjectsLabel, cc.xywh(1, 13, 3, 1));
 
 			//======== scrollPane3 ========
 			{
@@ -269,7 +402,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 				subjectsTable.setPreferredScrollableViewportSize(new Dimension(200, 200));
 				scrollPane3.setViewportView(subjectsTable);
 			}
-			contentPanel.add(scrollPane3, cc.xywh(1, 13, 3, 1));
+			contentPanel.add(scrollPane3, cc.xywh(1, 15, 3, 1));
 
 			//======== panel10 ========
 			{
@@ -306,7 +439,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 				});
 				panel10.add(removeSubject, cc.xy(3, 1));
 			}
-			contentPanel.add(panel10, cc.xywh(1, 15, 3, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
+			contentPanel.add(panel10, cc.xywh(1, 17, 3, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
 
 			//======== scrollPane4 ========
 			{
@@ -324,7 +457,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 				});
 				scrollPane4.setViewportView(namesTable);
 			}
-			contentPanel.add(scrollPane4, cc.xywh(1, 17, 3, 1));
+			contentPanel.add(scrollPane4, cc.xywh(1, 19, 3, 1));
 
 			//======== panel11 ========
 			{
@@ -374,7 +507,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 				});
 				panel11.add(removeName, cc.xy(5, 1));
 			}
-			contentPanel.add(panel11, cc.xywh(1, 19, 3, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
+			contentPanel.add(panel11, cc.xywh(1, 21, 3, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
 		}
 		add(contentPanel, cc.xy(1, 1));
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -388,9 +521,14 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 	private JLabel label_subject;
 	private JTextField address1;
 	private JLabel label_topic;
-	private JTextField topic;
-	private JLabel label_topic2;
-	private JComboBox researchPurpose;
+	private JScrollPane scrollPane1;
+	public JTextArea patronNotes;
+	private JScrollPane scrollPane5;
+	private DomainSortableTable researchPurposeTable;
+	private JPanel panel12;
+	private JButton addResearchPurpose;
+	private JButton editResearchPurposeButton;
+	private JButton removeResearchPurpose;
 	private JSeparator separator5;
 	private JLabel SubjectsLabel;
 	private JScrollPane scrollPane3;
@@ -423,10 +561,14 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 
 	private void initAccess() {
 		//set form to read only for reference staff
-		if (!Users.doesCurrentUserHaveAccess(Users.ACCESS_CLASS_BEGINNING_DATA_ENTRY)) {
+		if (!Users.doesCurrentUserHaveAccess(Users.ACCESS_CLASS_BEGINNING_DATA_ENTRY) &&
+				!this.getParentEditor().getNewRecord() &&
+				!referenceNewPatron) {
 			readOnly = true;
 			setFormToReadOnly();
-			researchPurpose.setEnabled(false);
+			//research purpose
+			addResearchPurpose.setEnabled(false);
+			removeResearchPurpose.setEnabled(false);
 			//subject buttons
 			addSubject.setEnabled(false);
 			removeSubject.setEnabled(false);

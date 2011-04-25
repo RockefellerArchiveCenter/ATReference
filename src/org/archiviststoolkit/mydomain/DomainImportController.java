@@ -209,7 +209,7 @@ public class DomainImportController {
 					validationResult = validator.validate();
 					if (validationResult.hasErrors()) {
 						errors = getErrors() + 1;
-						this.addLineToImportLog("Invalid Record number " + totalRecords + "\n" + instance + "\n" + validationResult.getMessagesText());
+						this.addLineToImportLog("Invalid Record number " + totalRecords + "\n" + validationResult.getMessagesText());
 						recordValid = false;
 					}
 				}

@@ -105,7 +105,7 @@ public class DomainTableFormat implements AdvancedTableFormat {
 
 	public Object getColumnValue(Object o, int i) {
 		try {
-//			System.out.println("Class: " + clazz.getSimpleName() + " Object:" + o + " Method:" + getMethods.get(i));
+//			System.out.println("Object:" + o + " Method:" + getMethods.get(i));
 			//return getMethods.get(i).invoke(o);
       Object ro = getMethods.get(i).invoke(o); // get the object to return
       if(ro != null && ro instanceof String) {

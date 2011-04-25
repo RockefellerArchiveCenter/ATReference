@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -37,7 +37,7 @@ import java.util.*;
 import java.text.NumberFormat;
 import java.text.ParseException;
 
-import com.jgoodies.binding.formatter.EmptyNumberFormatter;
+import com.jgoodies.validation.formatter.EmptyNumberFormatter;
 
 public class Locations extends DomainObject {
 
@@ -522,7 +522,7 @@ public class Locations extends DomainObject {
 
 //		List<String> additionalLines = Collections.synchronizedList(new ArrayList<String>());
 //		if (progressPanel != null) {
-//			additionalLines.add("Resource: " + this.getUnits());
+//			additionalLines.add("Resource: " + this.getTitle());
 //			progressPanel.setAdditionalLines(additionalLines, 1);
 //		}
 

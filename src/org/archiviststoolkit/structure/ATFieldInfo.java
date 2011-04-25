@@ -408,6 +408,7 @@ public class ATFieldInfo implements Comparable {
 		ATFieldInfo.addTableInfoIfNecessary(PatronPhoneNumbers.class);
 		ATFieldInfo.addTableInfoIfNecessary(PatronVisitsSubjects.class);
 		ATFieldInfo.addTableInfoIfNecessary(PatronVisitsNames.class);
+		ATFieldInfo.addTableInfoIfNecessary(PatronVisitsResearchPurposes.class);
 		ATFieldInfo.addTableInfoIfNecessary(PatronPublicationsSubjects.class);
 		ATFieldInfo.addTableInfoIfNecessary(PatronPublicationsNames.class);
 		ATFieldInfo.addTableInfoIfNecessary(Services.class);

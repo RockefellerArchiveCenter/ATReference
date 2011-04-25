@@ -95,115 +95,115 @@ public class ImportExportLogDialog extends JDialog implements ClipboardOwner {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner non-commercial license
-        dialogPane = new JPanel();
-        contentPanel = new JPanel();
-        dialogTitle = new JLabel();
-        scrollPane1 = new JScrollPane();
-        logText = new PrintableJTextArea();
-        buttonBar = new JPanel();
-        copyButton = new JButton();
-        printButton = new JButton();
-        saveButton = new JButton();
-        okButton = new JButton();
-        CellConstraints cc = new CellConstraints();
+		// Generated using JFormDesigner non-commercial license
+		dialogPane = new JPanel();
+		contentPanel = new JPanel();
+		dialogTitle = new JLabel();
+		scrollPane1 = new JScrollPane();
+		logText = new PrintableJTextArea();
+		buttonBar = new JPanel();
+		copyButton = new JButton();
+		printButton = new JButton();
+		saveButton = new JButton();
+		okButton = new JButton();
+		CellConstraints cc = new CellConstraints();
 
-        //======== this ========
-        setModal(true);
-        Container contentPane = getContentPane();
-        contentPane.setLayout(new BorderLayout());
+		//======== this ========
+		setModal(true);
+		Container contentPane = getContentPane();
+		contentPane.setLayout(new BorderLayout());
 
-        //======== dialogPane ========
-        {
-            dialogPane.setBorder(Borders.DIALOG_BORDER);
-            dialogPane.setLayout(new BorderLayout());
+		//======== dialogPane ========
+		{
+			dialogPane.setBorder(Borders.DIALOG_BORDER);
+			dialogPane.setLayout(new BorderLayout());
 
-            //======== contentPanel ========
-            {
-                contentPanel.setLayout(new FormLayout(
-                    ColumnSpec.decodeSpecs("max(default;600px):grow"),
-                    new RowSpec[] {
-                        FormFactory.DEFAULT_ROWSPEC,
-                        FormFactory.LINE_GAP_ROWSPEC,
-                        new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-                    }));
+			//======== contentPanel ========
+			{
+				contentPanel.setLayout(new FormLayout(
+					ColumnSpec.decodeSpecs("max(default;600px):grow"),
+					new RowSpec[] {
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.LINE_GAP_ROWSPEC,
+						new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+					}));
 
-                //---- dialogTitle ----
-                dialogTitle.setText("Import Log");
-                contentPanel.add(dialogTitle, cc.xy(1, 1));
+				//---- dialogTitle ----
+				dialogTitle.setText("Import Log");
+				contentPanel.add(dialogTitle, cc.xy(1, 1));
 
-                //======== scrollPane1 ========
-                {
-                    scrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+				//======== scrollPane1 ========
+				{
+					scrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-                    //---- logText ----
-                    logText.setRows(20);
-                    logText.setLineWrap(true);
-                    scrollPane1.setViewportView(logText);
-                }
-                contentPanel.add(scrollPane1, cc.xy(1, 3));
-            }
-            dialogPane.add(contentPanel, BorderLayout.CENTER);
+					//---- logText ----
+					logText.setRows(20);
+					logText.setLineWrap(true);
+					scrollPane1.setViewportView(logText);
+				}
+				contentPanel.add(scrollPane1, cc.xy(1, 3));
+			}
+			dialogPane.add(contentPanel, BorderLayout.CENTER);
 
-            //======== buttonBar ========
-            {
-                buttonBar.setBorder(Borders.BUTTON_BAR_GAP_BORDER);
-                buttonBar.setLayout(new FormLayout(
-                    new ColumnSpec[] {
-                        FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                        FormFactory.DEFAULT_COLSPEC,
-                        FormFactory.GLUE_COLSPEC,
-                        FormFactory.DEFAULT_COLSPEC,
-                        FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                        FormFactory.DEFAULT_COLSPEC,
-                        FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                        FormFactory.DEFAULT_COLSPEC,
-                        FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                        FormFactory.BUTTON_COLSPEC
-                    },
-                    RowSpec.decodeSpecs("pref")));
+			//======== buttonBar ========
+			{
+				buttonBar.setBorder(Borders.BUTTON_BAR_GAP_BORDER);
+				buttonBar.setLayout(new FormLayout(
+					new ColumnSpec[] {
+						FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+						FormFactory.DEFAULT_COLSPEC,
+						FormFactory.GLUE_COLSPEC,
+						FormFactory.DEFAULT_COLSPEC,
+						FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+						FormFactory.DEFAULT_COLSPEC,
+						FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+						FormFactory.DEFAULT_COLSPEC,
+						FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+						FormFactory.BUTTON_COLSPEC
+					},
+					RowSpec.decodeSpecs("pref")));
 
-                //---- copyButton ----
-                copyButton.setText("Copy");
-                copyButton.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        copyButtonActionPerformed();
-                    }
-                });
-                buttonBar.add(copyButton, cc.xy(4, 1));
+				//---- copyButton ----
+				copyButton.setText("Copy");
+				copyButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						copyButtonActionPerformed();
+					}
+				});
+				buttonBar.add(copyButton, cc.xy(4, 1));
 
-                //---- printButton ----
-                printButton.setText("Print");
-                printButton.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        printActionPerformed(e);
-                    }
-                });
-                buttonBar.add(printButton, cc.xy(6, 1));
+				//---- printButton ----
+				printButton.setText("Print");
+				printButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						printActionPerformed(e);
+					}
+				});
+				buttonBar.add(printButton, cc.xy(6, 1));
 
-                //---- saveButton ----
-                saveButton.setText("Save");
-                saveButton.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        saveActionPerformed(e);
-                    }
-                });
-                buttonBar.add(saveButton, cc.xy(8, 1));
+				//---- saveButton ----
+				saveButton.setText("Save");
+				saveButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						saveActionPerformed(e);
+					}
+				});
+				buttonBar.add(saveButton, cc.xy(8, 1));
 
-                //---- okButton ----
-                okButton.setText("OK");
-                okButton.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        okButtonActionPerformed(e);
-                    }
-                });
-                buttonBar.add(okButton, cc.xy(10, 1));
-            }
-            dialogPane.add(buttonBar, BorderLayout.SOUTH);
-        }
-        contentPane.add(dialogPane, BorderLayout.CENTER);
-        pack();
-        setLocationRelativeTo(getOwner());
+				//---- okButton ----
+				okButton.setText("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						okButtonActionPerformed(e);
+					}
+				});
+				buttonBar.add(okButton, cc.xy(10, 1));
+			}
+			dialogPane.add(buttonBar, BorderLayout.SOUTH);
+		}
+		contentPane.add(dialogPane, BorderLayout.CENTER);
+		pack();
+		setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
@@ -212,17 +212,17 @@ public class ImportExportLogDialog extends JDialog implements ClipboardOwner {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner non-commercial license
-    private JPanel dialogPane;
-    private JPanel contentPanel;
-    private JLabel dialogTitle;
-    private JScrollPane scrollPane1;
-    private PrintableJTextArea logText;
-    private JPanel buttonBar;
-    private JButton copyButton;
-    private JButton printButton;
-    private JButton saveButton;
-    private JButton okButton;
+	// Generated using JFormDesigner non-commercial license
+	private JPanel dialogPane;
+	private JPanel contentPanel;
+	private JLabel dialogTitle;
+	private JScrollPane scrollPane1;
+	private PrintableJTextArea logText;
+	private JPanel buttonBar;
+	private JButton copyButton;
+	private JButton printButton;
+	private JButton saveButton;
+	private JButton okButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
     public final void showDialog() {

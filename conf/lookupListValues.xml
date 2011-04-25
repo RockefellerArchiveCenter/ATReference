@@ -6116,8 +6116,10 @@
     <list name="Address type" allowOtherOption="true" listType="1">
 
         <usage className="org.rac.model.PatronAddresses" field="addressType"/>
-
-        <value>billing</value>
+    	
+    	<value>billing/mailing</value>
+    	
+    	<value>billing</value>
 
         <value>mailing</value>
 
@@ -6127,9 +6129,11 @@
 
         <usage className="org.rac.model.PatronFunding" field="fundingType"/>
 
-        <value>Grant-in-Aid</value>
+    	<value>grant</value>
 
-        <value>Scholar-in-Residence</value>
+    	<value>internship</value>
+    	
+    	<value>scholarship</value>
 
     </list>
 
@@ -6153,27 +6157,21 @@
 
         <usage className="org.rac.model.PatronPublications" field="publicationType"/>
 
-        <value>book</value>
+    	<value>Book</value>
 
-        <value>article</value>
+    	<value>Journal article</value>
 
-        <value>thesis/dissertation</value>
+    	<value>Article in a newspaper or popular magazine</value>
 
-        <value>film</value>
-
-    </list>
-
-    <list name="Research Purpose" allowOtherOption="true" listType="1">
-
-        <usage className="org.rac.model.PatronVisits" field="researchPurpose"/>
-
-        <value>book</value>
-
-        <value>article</value>
-
-        <value>thesis/dissertation</value>
-
-        <value>film</value>
+    	<value>Book review</value>
+    	
+    	<value>Thesis or dissertation</value>
+    	
+    	<value>Paper presented at a meeting or conference</value>
+    	
+    	<value>Website</value>
+    	
+    	<value>Audiovisual material</value>
 
     </list>
 
@@ -6217,9 +6215,11 @@
 
         <usage className="org.rac.model.PatronForms" field="formType"/>
 
-        <value>Permissions From</value>
+    	<value>Rules Governing the Use of Manuscripts</value>
 
-        <value>Form without an interesting name</value>
+    	<value>Request for Copies</value>
+    	
+    	<value>Permission to Publish</value>
 
     </list>
         <!-- end RAC patron module addition -->

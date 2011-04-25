@@ -33,6 +33,8 @@ public class Constants extends DomainObject {
 	public static final String PROPERTYNAME_MINOR_VERSION = "minorVersion";
 	public static final String PROPERTYNAME_UPDATE = "updateVersion";
 	public static final String PROPERTYNAME_DEFAULT_DATE_FORMAT = "defaultDateFormat";
+	//todo RAC addition
+	public static final String PROPERTYNAME_SHARE_PATRON_RECORDS = "sharePatronRecords";
 
 	public static final String DEFAULT_DATE_FORMAT = "M/d/yyyy";
 
@@ -45,6 +47,8 @@ public class Constants extends DomainObject {
 	private Integer minorVersion = 0;
 	private Integer updateVersion = 0;
 	private String defaultDateFormat = DEFAULT_DATE_FORMAT;
+	//todo RAC addition
+	private Boolean sharePatronRecords = true;
 
 
 	/**
@@ -217,13 +221,17 @@ public class Constants extends DomainObject {
 		return returnVector;
 	}
 
-	public static void loadDefaultDateFormat() throws PersistenceException, LookupException, WrongNumberOfConstantsRecordsException {
+	//todo RAC patron additions - change to load preferences since there is more being done now
+//	public static void loadDefaultDateFormat() throws PersistenceException, LookupException, WrongNumberOfConstantsRecordsException {
+	public static void loadPreferences() throws PersistenceException, LookupException, WrongNumberOfConstantsRecordsException {
 		DomainAccessObject access = DomainAccessObjectFactory.getInstance().getDomainAccessObject(Constants.class);
 		Collection constants = access.findAll(LockMode.READ);
 		if (constants.size() == 1) {
 			Constants constantRecord = (Constants) constants.iterator().next();
 			ApplicationFrame.applicationDateFormat = new SimpleDateFormat(constantRecord.getDefaultDateFormat());
 			ApplicationFrame.applicationDateFormat.setLenient(false);
+			//todo RAC patron additions
+			ApplicationFrame.getInstance().setSharePatronRecords(constantRecord.getSharePatronRecords());
 		} else {
 			throw new WrongNumberOfConstantsRecordsException(constants.size() + " records");
 		}
@@ -238,9 +246,18 @@ public class Constants extends DomainObject {
 			Constants constantRecord = (Constants) constants.iterator().next();
 			constantsDialog.setModel(constantRecord, null);
 			String oldDateFormat = constantRecord.getDefaultDateFormat();
-			if (constantsDialog.showDialog() == JOptionPane.OK_OPTION && !constantRecord.getDefaultDateFormat().equals(oldDateFormat)) {
-				access.update(constantRecord);
-				JOptionPane.showMessageDialog(ApplicationFrame.getInstance(), "You must restart the application for the new format to take effect");
+			Boolean oldSharePatronRecords = constantRecord.getSharePatronRecords();
+			//todo RAC patron additions - this has to be reworked as there are now more things to change
+//			if (constantsDialog.showDialog() == JOptionPane.OK_OPTION && !constantRecord.getDefaultDateFormat().equals(oldDateFormat)) {
+//				access.update(constantRecord);
+//				JOptionPane.showMessageDialog(ApplicationFrame.getInstance(), "You must restart the application for the new format to take effect");
+//			}
+			if (constantsDialog.showDialog() == JOptionPane.OK_OPTION) {
+				if (!constantRecord.getDefaultDateFormat().equals(oldDateFormat) ||
+						!constantRecord.getSharePatronRecords().equals(oldSharePatronRecords)) {
+					access.update(constantRecord);
+					JOptionPane.showMessageDialog(ApplicationFrame.getInstance(), "You must restart the application for the new preferences to take effect");
+				}
 			}
 		} else {
 			throw new WrongNumberOfConstantsRecordsException(constants.size() + " records");
@@ -257,5 +274,13 @@ public class Constants extends DomainObject {
 
 	public void setDefaultDateFormat(String defaultDateFormat) {
 		this.defaultDateFormat = defaultDateFormat;
+	}
+
+	public Boolean getSharePatronRecords() {
+		return sharePatronRecords;
+	}
+
+	public void setSharePatronRecords(Boolean sharePatronRecords) {
+		this.sharePatronRecords = sharePatronRecords;
 	}
 }

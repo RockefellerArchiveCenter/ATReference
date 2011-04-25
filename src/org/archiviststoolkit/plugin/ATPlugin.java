@@ -56,6 +56,9 @@ public interface ATPlugin {
     // plugin will be used with the command line interface of the AT. This functionality will require additional code
     final String CLI_CATEGORY = "cli";
 
+    // plugin will be used for user authentication using an external authentication system
+    final String AUTHENTICATION_CATEGORY  = "authentication";
+
     /*
     The list of editor types. They can be combined to specify a plugin that
     supports viewing and editing multiple type of records. For example, a
@@ -202,6 +205,17 @@ public interface ATPlugin {
      * @param task The task for the plugin to do
      */
     public void doTask(String task);
+
+    /**
+     * Method to do a specific task which takes a list of parameters
+     * in a string array and returns a boolean indicating the
+     * status of the task
+     *
+     * @param task The task to do
+     * @param taskParams The parameters
+     * @return boolean indicating the status of the task
+     */
+    public boolean doTask(String task, String[] taskParams);
 
     /**
      * Method to get the list of specific task the plugin can perform.

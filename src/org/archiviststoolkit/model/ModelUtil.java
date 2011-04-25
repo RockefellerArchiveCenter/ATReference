@@ -4,30 +4,20 @@ import com.jgoodies.binding.value.ValueModel;
 import com.jgoodies.binding.adapter.Bindings;
 import com.jgoodies.binding.adapter.ComboBoxAdapter;
 import com.jgoodies.binding.beans.BeanAdapter;
-import com.jgoodies.binding.beans.PropertyAdapter;
-import com.jgoodies.binding.formatter.EmptyNumberFormatter;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
-import javax.swing.text.NumberFormatter;
-import java.beans.BeanInfo;
-import java.beans.PropertyDescriptor;
-import java.beans.Introspector;
-import java.beans.IntrospectionException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
-import java.text.NumberFormat;
 
 import org.archiviststoolkit.mydomain.DomainObject;
-import org.archiviststoolkit.mydomain.DomainBasicObject;
 import org.archiviststoolkit.structure.ATFieldInfo;
 import org.archiviststoolkit.util.LookupListUtils;
 
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)

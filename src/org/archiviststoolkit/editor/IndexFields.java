@@ -105,256 +105,256 @@ public class IndexFields extends ArchDescriptionStructuredDataFields {
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-		// Generated using JFormDesigner non-commercial license
-		panel3 = new JPanel();
-		internalOnly = ATBasicComponentFactory.createCheckBox(detailsModel, ArchDescriptionStructuredData.PROPERTYNAME_ARCH_DESCRIPTION_NOTE_INTERNAL_ONLY, Index.class);
-		panel4 = new JPanel();
-		label4 = new JLabel();
-		persistentId2 = ATBasicComponentFactory.createTextField(detailsModel.getModel(ArchDescriptionRepeatingData.PROPERTYNAME_PERSISTENT_ID));
-		label_title = new JLabel();
-		title = ATBasicComponentFactory.createTextField(detailsModel.getModel(Index.PROPERTYNAME_TITLE));
-		label_description = new JLabel();
-		scrollPane1 = new JScrollPane();
-		note = ATBasicComponentFactory.createTextArea(detailsModel.getModel(Index.PROPERTYNAME_NOTE), false);
-		tagApplicatorPanel = new JPanel();
-		insertInlineTag = ATBasicComponentFactory.createUnboundComboBox(InLineTagsUtils.getInLineTagList());
-		label_ingestProblems = new JLabel();
-		scrollPane2 = new JScrollPane();
-		ingestProblems = ATBasicComponentFactory.createTextArea(detailsModel.getModel(Index.PROPERTYNAME_EAD_INGEST_PROBLEMS));
-		scrollPane7 = new JScrollPane();
-		itemsTable = new DomainSortedTable(IndexItems.class);
-		panel1 = new JPanel();
-		panel30 = new JPanel();
-		addItemButton = new JButton();
-		removeItemButton = new JButton();
-		CellConstraints cc = new CellConstraints();
+        // Generated using JFormDesigner non-commercial license
+        panel3 = new JPanel();
+        internalOnly = ATBasicComponentFactory.createCheckBox(detailsModel, ArchDescriptionStructuredData.PROPERTYNAME_ARCH_DESCRIPTION_NOTE_INTERNAL_ONLY, Index.class);
+        panel4 = new JPanel();
+        label4 = new JLabel();
+        persistentId2 = ATBasicComponentFactory.createTextField(detailsModel.getModel(ArchDescriptionRepeatingData.PROPERTYNAME_PERSISTENT_ID));
+        label_title = new JLabel();
+        title = ATBasicComponentFactory.createTextField(detailsModel.getModel(Index.PROPERTYNAME_TITLE));
+        label_description = new JLabel();
+        scrollPane1 = new JScrollPane();
+        note = ATBasicComponentFactory.createTextArea(detailsModel.getModel(Index.PROPERTYNAME_NOTE), false);
+        tagApplicatorPanel = new JPanel();
+        insertInlineTag = ATBasicComponentFactory.createUnboundComboBox(InLineTagsUtils.getInLineTagList());
+        label_ingestProblems = new JLabel();
+        scrollPane2 = new JScrollPane();
+        ingestProblems = ATBasicComponentFactory.createTextArea(detailsModel.getModel(Index.PROPERTYNAME_EAD_INGEST_PROBLEMS));
+        scrollPane7 = new JScrollPane();
+        itemsTable = new DomainSortedTable(IndexItems.class);
+        panel1 = new JPanel();
+        panel30 = new JPanel();
+        addItemButton = new JButton();
+        removeItemButton = new JButton();
+        CellConstraints cc = new CellConstraints();
 
-		//======== this ========
-		setBorder(Borders.DLU4_BORDER);
-		setOpaque(false);
-		setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-		setPreferredSize(new Dimension(800, 500));
-		setLayout(new FormLayout(
-			new ColumnSpec[] {
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-				new ColumnSpec("max(default;400px):grow")
-			},
-			new RowSpec[] {
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.LINE_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.LINE_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.LINE_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.LINE_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.LINE_GAP_ROWSPEC,
-				new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
-				FormFactory.LINE_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC
-			}));
+        //======== this ========
+        setBorder(Borders.DLU4_BORDER);
+        setOpaque(false);
+        setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+        setPreferredSize(new Dimension(800, 500));
+        setLayout(new FormLayout(
+            new ColumnSpec[] {
+                FormFactory.DEFAULT_COLSPEC,
+                FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                new ColumnSpec("max(default;400px):grow")
+            },
+            new RowSpec[] {
+                FormFactory.DEFAULT_ROWSPEC,
+                FormFactory.LINE_GAP_ROWSPEC,
+                FormFactory.DEFAULT_ROWSPEC,
+                FormFactory.LINE_GAP_ROWSPEC,
+                FormFactory.DEFAULT_ROWSPEC,
+                FormFactory.LINE_GAP_ROWSPEC,
+                FormFactory.DEFAULT_ROWSPEC,
+                FormFactory.LINE_GAP_ROWSPEC,
+                FormFactory.DEFAULT_ROWSPEC,
+                FormFactory.LINE_GAP_ROWSPEC,
+                new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+                FormFactory.LINE_GAP_ROWSPEC,
+                FormFactory.DEFAULT_ROWSPEC
+            }));
 
-		//======== panel3 ========
-		{
-			panel3.setLayout(new FormLayout(
-				new ColumnSpec[] {
-					FormFactory.DEFAULT_COLSPEC,
-					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-					FormFactory.DEFAULT_COLSPEC,
-					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-					new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-				},
-				RowSpec.decodeSpecs("default")));
+        //======== panel3 ========
+        {
+            panel3.setLayout(new FormLayout(
+                new ColumnSpec[] {
+                    FormFactory.DEFAULT_COLSPEC,
+                    FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                    FormFactory.DEFAULT_COLSPEC,
+                    FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                    new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+                },
+                RowSpec.decodeSpecs("default")));
 
-			//---- internalOnly ----
-			internalOnly.setBackground(new Color(231, 188, 251));
-			internalOnly.setText("Internal Only");
-			internalOnly.setOpaque(false);
-			internalOnly.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-			panel3.add(internalOnly, cc.xy(1, 1));
+            //---- internalOnly ----
+            internalOnly.setBackground(new Color(231, 188, 251));
+            internalOnly.setText("Internal Only");
+            internalOnly.setOpaque(false);
+            internalOnly.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+            panel3.add(internalOnly, cc.xy(1, 1));
 
-			//======== panel4 ========
-			{
-				panel4.setLayout(new FormLayout(
-					new ColumnSpec[] {
-						FormFactory.DEFAULT_COLSPEC,
-						FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-						FormFactory.DEFAULT_COLSPEC
-					},
-					RowSpec.decodeSpecs("default")));
+            //======== panel4 ========
+            {
+                panel4.setLayout(new FormLayout(
+                    new ColumnSpec[] {
+                        FormFactory.DEFAULT_COLSPEC,
+                        FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                        FormFactory.DEFAULT_COLSPEC
+                    },
+                    RowSpec.decodeSpecs("default")));
 
-				//---- label4 ----
-				label4.setText("Persistent ID");
-				label4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-				panel4.add(label4, cc.xy(1, 1));
+                //---- label4 ----
+                label4.setText("Persistent ID");
+                label4.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+                panel4.add(label4, cc.xy(1, 1));
 
-				//---- persistentId2 ----
-				persistentId2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-				persistentId2.setColumns(3);
-				persistentId2.setBorder(null);
-				persistentId2.setEditable(false);
-				persistentId2.setOpaque(false);
-				panel4.add(persistentId2, cc.xywh(3, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
-			}
-			panel3.add(panel4, cc.xywh(5, 1, 1, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT));
-		}
-		add(panel3, cc.xywh(1, 1, 3, 1));
+                //---- persistentId2 ----
+                persistentId2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+                persistentId2.setColumns(3);
+                persistentId2.setBorder(null);
+                persistentId2.setEditable(false);
+                persistentId2.setOpaque(false);
+                panel4.add(persistentId2, cc.xywh(3, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
+            }
+            panel3.add(panel4, cc.xywh(5, 1, 1, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT));
+        }
+        add(panel3, cc.xywh(1, 1, 3, 1));
 
-		//---- label_title ----
-		label_title.setText("Title");
-		label_title.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-		ATFieldInfo.assignLabelInfo(label_title, Index.class, Index.PROPERTYNAME_TITLE);
-		add(label_title, cc.xy(1, 3));
-		add(title, cc.xy(3, 3));
+        //---- label_title ----
+        label_title.setText("Title");
+        label_title.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+        ATFieldInfo.assignLabelInfo(label_title, Index.class, Index.PROPERTYNAME_TITLE);
+        add(label_title, cc.xy(1, 3));
+        add(title, cc.xy(3, 3));
 
-		//---- label_description ----
-		label_description.setText("Note");
-		label_description.setVerticalAlignment(SwingConstants.TOP);
-		label_description.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-		ATFieldInfo.assignLabelInfo(label_description, Index.class, Index.PROPERTYNAME_NOTE);
-		add(label_description, cc.xywh(1, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.TOP));
+        //---- label_description ----
+        label_description.setText("Note");
+        label_description.setVerticalAlignment(SwingConstants.TOP);
+        label_description.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+        ATFieldInfo.assignLabelInfo(label_description, Index.class, Index.PROPERTYNAME_NOTE);
+        add(label_description, cc.xywh(1, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.TOP));
 
-		//======== scrollPane1 ========
-		{
-			scrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			scrollPane1.setMaximumSize(new Dimension(32767, 100));
-			scrollPane1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+        //======== scrollPane1 ========
+        {
+            scrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane1.setMaximumSize(new Dimension(32767, 100));
+            scrollPane1.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 
-			//---- note ----
-			note.setRows(4);
-			note.setLineWrap(true);
-			note.setTabSize(20);
-			note.setWrapStyleWord(true);
-			scrollPane1.setViewportView(note);
-		}
-		add(scrollPane1, cc.xy(3, 5));
+            //---- note ----
+            note.setRows(4);
+            note.setLineWrap(true);
+            note.setTabSize(20);
+            note.setWrapStyleWord(true);
+            scrollPane1.setViewportView(note);
+        }
+        add(scrollPane1, cc.xy(3, 5));
 
-		//======== tagApplicatorPanel ========
-		{
-			tagApplicatorPanel.setOpaque(false);
-			tagApplicatorPanel.setLayout(new FormLayout(
-				new ColumnSpec[] {
-					FormFactory.DEFAULT_COLSPEC,
-					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-					FormFactory.DEFAULT_COLSPEC,
-					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-					FormFactory.DEFAULT_COLSPEC
-				},
-				RowSpec.decodeSpecs("default")));
+        //======== tagApplicatorPanel ========
+        {
+            tagApplicatorPanel.setOpaque(false);
+            tagApplicatorPanel.setLayout(new FormLayout(
+                new ColumnSpec[] {
+                    FormFactory.DEFAULT_COLSPEC,
+                    FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                    FormFactory.DEFAULT_COLSPEC,
+                    FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                    FormFactory.DEFAULT_COLSPEC
+                },
+                RowSpec.decodeSpecs("default")));
 
-			//---- insertInlineTag ----
-			insertInlineTag.setOpaque(false);
-			insertInlineTag.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-			insertInlineTag.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					insertInlineTagActionPerformed();
-				}
-			});
-			tagApplicatorPanel.add(insertInlineTag, cc.xy(1, 1));
-		}
-		add(tagApplicatorPanel, cc.xy(3, 7));
+            //---- insertInlineTag ----
+            insertInlineTag.setOpaque(false);
+            insertInlineTag.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+            insertInlineTag.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    insertInlineTagActionPerformed();
+                }
+            });
+            tagApplicatorPanel.add(insertInlineTag, cc.xy(1, 1));
+        }
+        add(tagApplicatorPanel, cc.xy(3, 7));
 
-		//---- label_ingestProblems ----
-		label_ingestProblems.setText("Ingest Problems");
-		label_ingestProblems.setVerticalAlignment(SwingConstants.TOP);
-		label_ingestProblems.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-		ATFieldInfo.assignLabelInfo(label_ingestProblems, Index.class, Index.PROPERTYNAME_EAD_INGEST_PROBLEMS);
-		add(label_ingestProblems, cc.xywh(1, 9, 1, 1, CellConstraints.DEFAULT, CellConstraints.TOP));
+        //---- label_ingestProblems ----
+        label_ingestProblems.setText("Ingest Problems");
+        label_ingestProblems.setVerticalAlignment(SwingConstants.TOP);
+        label_ingestProblems.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+        ATFieldInfo.assignLabelInfo(label_ingestProblems, Index.class, Index.PROPERTYNAME_EAD_INGEST_PROBLEMS);
+        add(label_ingestProblems, cc.xywh(1, 9, 1, 1, CellConstraints.DEFAULT, CellConstraints.TOP));
 
-		//======== scrollPane2 ========
-		{
-			scrollPane2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			scrollPane2.setMaximumSize(new Dimension(32767, 100));
-			scrollPane2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+        //======== scrollPane2 ========
+        {
+            scrollPane2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane2.setMaximumSize(new Dimension(32767, 100));
+            scrollPane2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 
-			//---- ingestProblems ----
-			ingestProblems.setRows(4);
-			ingestProblems.setLineWrap(true);
-			ingestProblems.setTabSize(20);
-			ingestProblems.setWrapStyleWord(true);
-			scrollPane2.setViewportView(ingestProblems);
-		}
-		add(scrollPane2, cc.xy(3, 9));
+            //---- ingestProblems ----
+            ingestProblems.setRows(4);
+            ingestProblems.setLineWrap(true);
+            ingestProblems.setTabSize(20);
+            ingestProblems.setWrapStyleWord(true);
+            scrollPane2.setViewportView(ingestProblems);
+        }
+        add(scrollPane2, cc.xy(3, 9));
 
-		//======== scrollPane7 ========
-		{
-			scrollPane7.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			scrollPane7.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+        //======== scrollPane7 ========
+        {
+            scrollPane7.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane7.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 
-			//---- itemsTable ----
-			itemsTable.setFocusable(false);
-			itemsTable.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mousePressed(MouseEvent e) {
-					itemsTableMousePressed(e);
-				}
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					itemsTableMouseReleased(e);
-				}
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					itemsTableMouseClicked(e);
-				}
-			});
-			scrollPane7.setViewportView(itemsTable);
-		}
-		add(scrollPane7, cc.xywh(1, 11, 3, 1));
+            //---- itemsTable ----
+            itemsTable.setFocusable(false);
+            itemsTable.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    itemsTableMouseClicked(e);
+                }
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    itemsTableMousePressed(e);
+                }
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    itemsTableMouseReleased(e);
+                }
+            });
+            scrollPane7.setViewportView(itemsTable);
+        }
+        add(scrollPane7, cc.xywh(1, 11, 3, 1));
 
-		//======== panel1 ========
-		{
-			panel1.setLayout(new FormLayout(
-				new ColumnSpec[] {
-					new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
-					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-					new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
-					FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-					new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-				},
-				RowSpec.decodeSpecs("default")));
-			((FormLayout)panel1.getLayout()).setColumnGroups(new int[][] {{1, 3, 5}});
+        //======== panel1 ========
+        {
+            panel1.setLayout(new FormLayout(
+                new ColumnSpec[] {
+                    new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+                    FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                    new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+                    FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                    new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+                },
+                RowSpec.decodeSpecs("default")));
+            ((FormLayout)panel1.getLayout()).setColumnGroups(new int[][] {{1, 3, 5}});
 
-			//======== panel30 ========
-			{
-				panel30.setBackground(new Color(231, 188, 251));
-				panel30.setOpaque(false);
-				panel30.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-				panel30.setLayout(new FormLayout(
-					new ColumnSpec[] {
-						FormFactory.DEFAULT_COLSPEC,
-						FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-						FormFactory.DEFAULT_COLSPEC
-					},
-					RowSpec.decodeSpecs("default")));
+            //======== panel30 ========
+            {
+                panel30.setBackground(new Color(231, 188, 251));
+                panel30.setOpaque(false);
+                panel30.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+                panel30.setLayout(new FormLayout(
+                    new ColumnSpec[] {
+                        FormFactory.DEFAULT_COLSPEC,
+                        FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                        FormFactory.DEFAULT_COLSPEC
+                    },
+                    RowSpec.decodeSpecs("default")));
 
-				//---- addItemButton ----
-				addItemButton.setText("Add Item");
-				addItemButton.setOpaque(false);
-				addItemButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-				addItemButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						addItemButtonActionPerformed(e);
-					}
-				});
-				panel30.add(addItemButton, cc.xy(1, 1));
+                //---- addItemButton ----
+                addItemButton.setText("Add Item");
+                addItemButton.setOpaque(false);
+                addItemButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+                addItemButton.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        addItemButtonActionPerformed(e);
+                    }
+                });
+                panel30.add(addItemButton, cc.xy(1, 1));
 
-				//---- removeItemButton ----
-				removeItemButton.setBackground(new Color(231, 188, 251));
-				removeItemButton.setText("Remove Item");
-				removeItemButton.setOpaque(false);
-				removeItemButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-				removeItemButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						removeItemButtonActionPerformed(e);
-					}
-				});
-				panel30.add(removeItemButton, cc.xy(3, 1));
-			}
-			panel1.add(panel30, cc.xy(3, 1));
-		}
-		add(panel1, cc.xywh(1, 13, 3, 1));
+                //---- removeItemButton ----
+                removeItemButton.setBackground(new Color(231, 188, 251));
+                removeItemButton.setText("Remove Item");
+                removeItemButton.setOpaque(false);
+                removeItemButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+                removeItemButton.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        removeItemButtonActionPerformed(e);
+                    }
+                });
+                panel30.add(removeItemButton, cc.xy(3, 1));
+            }
+            panel1.add(panel30, cc.xy(3, 1));
+        }
+        add(panel1, cc.xywh(1, 13, 3, 1));
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
@@ -363,28 +363,28 @@ public class IndexFields extends ArchDescriptionStructuredDataFields {
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-	// Generated using JFormDesigner non-commercial license
-	private JPanel panel3;
-	public JCheckBox internalOnly;
-	private JPanel panel4;
-	private JLabel label4;
-	public JTextField persistentId2;
-	private JLabel label_title;
-	public JTextField title;
-	private JLabel label_description;
-	private JScrollPane scrollPane1;
-	public JTextArea note;
-	private JPanel tagApplicatorPanel;
-	public JComboBox insertInlineTag;
-	private JLabel label_ingestProblems;
-	private JScrollPane scrollPane2;
-	public JTextArea ingestProblems;
-	private JScrollPane scrollPane7;
-	private DomainSortedTable itemsTable;
-	private JPanel panel1;
-	private JPanel panel30;
-	private JButton addItemButton;
-	private JButton removeItemButton;
+    // Generated using JFormDesigner non-commercial license
+    private JPanel panel3;
+    public JCheckBox internalOnly;
+    private JPanel panel4;
+    private JLabel label4;
+    public JTextField persistentId2;
+    private JLabel label_title;
+    public JTextField title;
+    private JLabel label_description;
+    private JScrollPane scrollPane1;
+    public JTextArea note;
+    private JPanel tagApplicatorPanel;
+    public JComboBox insertInlineTag;
+    private JLabel label_ingestProblems;
+    private JScrollPane scrollPane2;
+    public JTextArea ingestProblems;
+    private JScrollPane scrollPane7;
+    private DomainSortedTable itemsTable;
+    private JPanel panel1;
+    private JPanel panel30;
+    private JButton addItemButton;
+    private JButton removeItemButton;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 
 	public void setModel(DomainObject model, InfiniteProgressPanel progressPanel) {

@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.  
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.  
  * All rights reserved. 
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL) 
@@ -29,7 +29,7 @@ import org.archiviststoolkit.mydomain.DomainObject;
 import java.text.NumberFormat;
 import java.text.ParseException;
 
-import com.jgoodies.binding.formatter.EmptyNumberFormatter;
+import com.jgoodies.validation.formatter.EmptyNumberFormatter;
 
 public class ArchDescriptionPhysicalDescriptions extends DomainObject {
 

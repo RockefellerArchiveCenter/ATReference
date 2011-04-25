@@ -181,6 +181,10 @@
             <one-to-many class="PatronVisits"/>
         </set>
 
+        <property name="displayLastVisit"
+                  column="displayLastVisit"
+                  type="date"/>
+
         <set name="patronFunding"
              cascade="all-delete-orphan"
              inverse="true"
@@ -225,8 +229,22 @@
             <one-to-many class="PatronForms"/>
         </set>
 
+        <many-to-one name="repository"
+                     class="org.archiviststoolkit.model.Repositories"
+                     column="repositoryId"
+                     not-null="true"
+                     access="field"
+                     lazy="proxy"
+                     fetch="join"
+                     outer-join="true"/>
+
+        <filter name="repository" condition=":repositoryId = repositoryId"/>
+
 
     </class>
+    <filter-def name="repository">
+        <filter-param name="repositoryId" type="java.lang.Long"/>
+    </filter-def>
 
 
 </hibernate-mapping>

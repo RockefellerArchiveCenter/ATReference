@@ -52,4 +52,22 @@ public class UpgradeTo_2_0_13 extends Upgrade {
 		return Constants.compareVersions("2.0.13", DatabaseConnectionUtils.getDatabaseVersionInfo(conn)) == Constants.VERSION_GREATER;
 	}
 
+	@Override
+	protected boolean runPostDBInitializationSQLCode(Connection conn) {
+		String sqlString = "";
+		Statement stmt;
+
+		try {
+			stmt = conn.createStatement();
+			sqlString = "UPDATE Constants set sharePatronRecords = false";
+			stmt.execute(sqlString);
+			conn.commit();
+		} catch (SQLException e) {
+			setErrorString(e.getMessage());
+			return false;
+		}
+
+		return true;
+	}
+
 }

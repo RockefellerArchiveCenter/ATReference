@@ -26,6 +26,7 @@ import com.jgoodies.forms.layout.*;
 import com.jgoodies.binding.PresentationModel;
 import com.jgoodies.binding.value.ValueHolder;
 import org.archiviststoolkit.model.Constants;
+import org.archiviststoolkit.structure.ATFieldInfo;
 import org.archiviststoolkit.swing.ATBasicComponentFactory;
 import org.archiviststoolkit.mydomain.DomainEditorFields;
 
@@ -41,6 +42,7 @@ public class ConstantsFields extends DomainEditorFields {
 		// Generated using JFormDesigner non-commercial license
 		label1 = new JLabel();
 		dateFormat = ATBasicComponentFactory.createComboBox(detailsModel, Constants.PROPERTYNAME_DEFAULT_DATE_FORMAT, Constants.getDateFormatsList());
+		rights3 = ATBasicComponentFactory.createCheckBox(detailsModel, Constants.PROPERTYNAME_SHARE_PATRON_RECORDS, Constants.class);
 		CellConstraints cc = new CellConstraints();
 
 		//======== this ========
@@ -53,7 +55,11 @@ public class ConstantsFields extends DomainEditorFields {
 				FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
 				FormFactory.DEFAULT_COLSPEC
 			},
-			RowSpec.decodeSpecs("fill:default")));
+			new RowSpec[] {
+				new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.NO_GROW),
+				FormFactory.LINE_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC
+			}));
 
 		//---- label1 ----
 		label1.setText("System date format");
@@ -63,6 +69,12 @@ public class ConstantsFields extends DomainEditorFields {
 		dateFormat.setOpaque(false);
 		dateFormat.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		add(dateFormat, cc.xy(3, 1));
+
+		//---- rights3 ----
+		rights3.setText("Share Patron Records");
+		rights3.setOpaque(false);
+		rights3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		add(rights3, cc.xywh(1, 3, 3, 1));
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
@@ -70,6 +82,7 @@ public class ConstantsFields extends DomainEditorFields {
 	// Generated using JFormDesigner non-commercial license
 	private JLabel label1;
 	public JComboBox dateFormat;
+	public JCheckBox rights3;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 
 	public Component getInitialFocusComponent() {

@@ -23,12 +23,16 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Vector;
 import javax.swing.*;
 import javax.swing.event.*;
 
 import com.jgoodies.forms.factories.*;
 import com.jgoodies.forms.layout.*;
 import org.archiviststoolkit.ApplicationFrame;
+import org.archiviststoolkit.model.Accessions;
+import org.archiviststoolkit.model.Repositories;
+import org.archiviststoolkit.model.Users;
 import org.archiviststoolkit.mydomain.*;
 import org.archiviststoolkit.mydomain.DomainObject;
 import org.archiviststoolkit.mydomain.DomainEditorFields;
@@ -51,6 +55,7 @@ public class PatronFields extends RAC_DomainEditorFields {
     public PatronFields() {
         super();
         initComponents();
+		initAccess();
         initPlugins();
     }
 
@@ -117,7 +122,15 @@ public class PatronFields extends RAC_DomainEditorFields {
 	private void visitsTableMouseClicked(MouseEvent e) {
 			if (e.getClickCount() == 2) {
 				try {
-					DomainEditor domainEditor = new DomainEditor(PatronVisits.class, this.getParentEditor(), "Patron Visits", new PatronVisitFields());
+					//todo this is very clumsy. The fields need to know their parent for controlling access
+					//todo so you have to do things one step at a time.
+					//create the domain editor
+					DomainEditor domainEditor = new DomainEditor(PatronVisits.class, this.getParentEditor(), "Patron Visits");
+					//create the fields with the editor as parent
+					PatronVisitFields patronVisitsFields = new PatronVisitFields(domainEditor);
+					//associate the fields with the editor
+					domainEditor.setContentPanel(patronVisitsFields);
+					domainEditor.editorFields = patronVisitsFields;
 					domainEditor.setCallingTable(visitsTable);
 					domainEditor.setNavigationButtonListeners(domainEditor);
 					editRelatedRecord(visitsTable, PatronVisits.class, true, domainEditor);
@@ -129,9 +142,19 @@ public class PatronFields extends RAC_DomainEditorFields {
 
 	private void addVisitActionPerformed() {
 		try {
-			DomainEditor patronVisitsDialog = new DomainEditor(PatronVisits.class, this.getParentEditor(), "Visits", new PatronVisitFields());
-			patronVisitsDialog.setNavigationButtonListeners((ActionListener)this.getParentEditor());
-			addRelatedRecord(patronVisitsDialog, PatronVisits.class, visitsTable);
+			//todo this is very clumsy. The fields need to know their parent for controlling access
+			//todo so you have to do things one step at a time.
+			//create the domain editor
+			DomainEditor domainEditor = new DomainEditor(PatronVisits.class, this.getParentEditor(), "Patron Visits");
+			domainEditor.setNewRecord(true);
+			//create the fields with the editor as parent
+			PatronVisitFields patronVisitsFields = new PatronVisitFields(domainEditor);
+			//associate the fields with the editor
+			domainEditor.setContentPanel(patronVisitsFields);
+			domainEditor.editorFields = patronVisitsFields;
+
+			domainEditor.setNavigationButtonListeners((ActionListener)this.getParentEditor());
+			addRelatedRecord(domainEditor, PatronVisits.class, visitsTable);
 		} catch (AddRelatedObjectException e) {
 			new ErrorDialog("Error adding address", e).showDialog();
 		} catch (DuplicateLinkException e) {
@@ -272,7 +295,7 @@ public class PatronFields extends RAC_DomainEditorFields {
 					visitToDuplicate.getContactArchivist(),
 					visitToDuplicate.getTopic(),
 					visitToDuplicate.getPatron());
-			newVisit.setResearchPurpose(visitToDuplicate.getResearchPurpose());
+			newVisit.setResearchPurposes(visitToDuplicate.getResearchPurposes());
 			//duplicate subjects
 			try {
 				for (PatronVisitsSubjects patronVisitsSubject: visitToDuplicate.getSubjects()) {
@@ -395,6 +418,31 @@ public class PatronFields extends RAC_DomainEditorFields {
 
 	}
 
+	private void changeRepositoryButtonActionPerformed() {
+		Vector repositories = Repositories.getRepositoryList();
+		Repositories currentRepostory = ((Patrons) this.getModel()).getRepository();
+		Patrons model = (Patrons) this.getModel();
+        SelectFromList dialog = new SelectFromList(this.getParentEditor(), "Select a repository", repositories.toArray());
+        dialog.setSelectedValue(currentRepostory);
+        if (dialog.showDialog() == JOptionPane.OK_OPTION) {
+            model.setRepository((Repositories)dialog.getSelectedValue());
+            setRepositoryText(model);
+        }
+	}
+
+	public JButton getChangeRepositoryButton() {
+		return changeRepositoryButton;
+	}
+
+	private void setRepositoryText(Patrons model) {
+		if (model.getRepository() == null) {
+			this.repositoryName.setText("");
+		} else {
+			this.repositoryName.setText(model.getRepository().getShortName());
+		}
+	}
+
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		// Generated using JFormDesigner non-commercial license
@@ -450,6 +498,10 @@ public class PatronFields extends RAC_DomainEditorFields {
 		addPhoneNumber = new JButton();
 		removePhoneNumber = new JButton();
 		setPreferedPhoneNumber = new JButton();
+		panel15 = new JPanel();
+		label_repositoryName = new JLabel();
+		repositoryName = new JTextField();
+		changeRepositoryButton = new JButton();
 		panel11 = new JPanel();
 		label_subjectScopeNote4 = new JLabel();
 		scrollPane9 = new JScrollPane();
@@ -562,6 +614,8 @@ public class PatronFields extends RAC_DomainEditorFields {
 						FormFactory.DEFAULT_ROWSPEC,
 						FormFactory.LINE_GAP_ROWSPEC,
 						new RowSpec(RowSpec.TOP, Sizes.DEFAULT, FormSpec.NO_GROW),
+						FormFactory.LINE_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
 						FormFactory.LINE_GAP_ROWSPEC,
 						FormFactory.DEFAULT_ROWSPEC,
 						FormFactory.LINE_GAP_ROWSPEC,
@@ -1025,6 +1079,47 @@ public class PatronFields extends RAC_DomainEditorFields {
 					panel4.add(panel13, cc.xywh(3, 5, 1, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
 				}
 				mainPatronFieldsPanel.add(panel4, cc.xywh(1, 9, 3, 1));
+
+				//======== panel15 ========
+				{
+					panel15.setOpaque(false);
+					panel15.setLayout(new FormLayout(
+						new ColumnSpec[] {
+							FormFactory.DEFAULT_COLSPEC,
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							new ColumnSpec(ColumnSpec.LEFT, Sizes.DEFAULT, FormSpec.NO_GROW),
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							FormFactory.DEFAULT_COLSPEC
+						},
+						RowSpec.decodeSpecs("default")));
+
+					//---- label_repositoryName ----
+					label_repositoryName.setText("Repository");
+					label_repositoryName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					ATFieldInfo.assignLabelInfo(label_repositoryName, Accessions.class, Accessions.PROPERTYNAME_REPOSITORY);
+					panel15.add(label_repositoryName, cc.xy(1, 1));
+
+					//---- repositoryName ----
+					repositoryName.setEditable(false);
+					repositoryName.setFocusable(false);
+					repositoryName.setBorder(null);
+					repositoryName.setOpaque(false);
+					repositoryName.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					repositoryName.setHorizontalAlignment(SwingConstants.LEFT);
+					panel15.add(repositoryName, cc.xywh(3, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT));
+
+					//---- changeRepositoryButton ----
+					changeRepositoryButton.setText("Change Repository");
+					changeRepositoryButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					changeRepositoryButton.setOpaque(false);
+					changeRepositoryButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							changeRepositoryButtonActionPerformed();
+						}
+					});
+					panel15.add(changeRepositoryButton, cc.xy(5, 1));
+				}
+				mainPatronFieldsPanel.add(panel15, cc.xywh(1, 11, 3, 1));
 			}
 			tabbedPane.addTab("Patron Information", mainPatronFieldsPanel);
 
@@ -1738,6 +1833,10 @@ public class PatronFields extends RAC_DomainEditorFields {
 	private JButton addPhoneNumber;
 	private JButton removePhoneNumber;
 	private JButton setPreferedPhoneNumber;
+	private JPanel panel15;
+	private JLabel label_repositoryName;
+	public JTextField repositoryName;
+	private JButton changeRepositoryButton;
 	private JPanel panel11;
 	private JLabel label_subjectScopeNote4;
 	private JScrollPane scrollPane9;
@@ -1833,15 +1932,13 @@ public class PatronFields extends RAC_DomainEditorFields {
 		phoneNumbersTable.updateCollection(patronModel.getPatronPhoneNumbers());
 		patronFormsTable.updateCollection(patronModel.getPatronForms());
 
+		setRepositoryText(patronModel);
+
         setPluginModel(); // update any plugins with this new domain object
     }
 
     public Component getInitialFocusComponent() {
-        if (currentPrimaryNamePanel instanceof DomainEditorFields) {
-            return namePersonalPrefix;
-        } else {
-            return null;
-        }
+        return namePersonalPrefix;
     }
 
     protected void setDisplayToFirstTab() {
@@ -1862,6 +1959,16 @@ public class PatronFields extends RAC_DomainEditorFields {
 		
 		readingRoomLogon = true;
 	}
+
+	protected void initAccess() {
+		if (!Users.doesCurrentUserHaveAccess(Users.ACCESS_CLASS_SUPERUSER)) {
+			if (getChangeRepositoryButton() != null) {
+				getChangeRepositoryButton().setVisible(false);
+			}
+		}
+
+	}
+
 
     /**
      * Method that initializes any embedded plugins that would add an editor

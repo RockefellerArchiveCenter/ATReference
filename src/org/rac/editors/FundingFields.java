@@ -44,7 +44,7 @@ public class FundingFields extends DomainEditorFields {
 		Label_FundingType = new JLabel();
 		fundingType = ATBasicComponentFactory.createComboBox(detailsModel, PatronFunding.PROPERTYNAME_FUNDING_TYPE, PatronFunding.class,40);
 		label_addressTypeOther = new JLabel();
-		fundingDate = ATBasicComponentFactory.createDateField(detailsModel.getModel(PatronFunding.PROPERTYNAME_FUNDING_DATE));
+		fundingDate = ATBasicComponentFactory.createISODateField(detailsModel.getModel(PatronFunding.PROPERTYNAME_FUNDING_DATE));
 		topic = new JLabel();
 		address1 = ATBasicComponentFactory.createTextField(detailsModel.getModel(PatronFunding.PROPERTYNAME_TOPIC));
 		label_address2 = new JLabel();
@@ -89,7 +89,6 @@ public class FundingFields extends DomainEditorFields {
 
 			//---- fundingDate ----
 			fundingDate.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-			fundingDate.setColumns(10);
 			panel1.add(fundingDate, cc.xy(3, 3));
 
 			//---- topic ----
@@ -132,7 +131,7 @@ public class FundingFields extends DomainEditorFields {
 	private JLabel Label_FundingType;
 	private JComboBox fundingType;
 	private JLabel label_addressTypeOther;
-	public JFormattedTextField fundingDate;
+	public JTextField fundingDate;
 	private JLabel topic;
 	private JTextField address1;
 	private JLabel label_address2;

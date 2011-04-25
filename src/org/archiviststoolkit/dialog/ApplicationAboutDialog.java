@@ -80,7 +80,7 @@ public class ApplicationAboutDialog extends JFrame {
 					}));
 
 				//---- label1 ----
-				label1.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/ATLogo.jpg")));
+				label1.setIcon(new ImageIcon(getClass().getResource("/org/rac/resources/images/ATR-Logo-full-text.jpg")));
 				contentPanel.add(label1, cc.xy(1, 1));
 
 				//---- viewLicesnseAgreement ----

@@ -91,6 +91,10 @@ public class PatronVisitsSubjects extends DomainObject implements Serializable, 
 		return subject.getSubjectSource();
 	}
 
+	public String getSubjectTermType() {
+		return subject.getSubjectTermType();
+	}
+
 	public PatronVisits getPatronVisits() {
 		return patronVisits;
 	}

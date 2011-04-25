@@ -40,7 +40,8 @@ public class PatronFunding extends DomainObject {
 	@IncludeInApplicationConfiguration (1)
 	@DefaultIncludeInSearchEditor
 	@ExcludeFromDefaultValues
-	private Date fundingDate;
+	@StringLengthValidationRequried(10)
+	private String fundingDate ="";
 
 	@IncludeInApplicationConfiguration(2)
 	@DefaultIncludeInSearchEditor
@@ -63,7 +64,7 @@ public class PatronFunding extends DomainObject {
 		fundingType = "";
 	}
 
-	public PatronFunding(Date fundingDate) {
+	public PatronFunding(String fundingDate) {
 		this.fundingDate = fundingDate;
 		fundingType = "";
 	}
@@ -73,7 +74,7 @@ public class PatronFunding extends DomainObject {
 		fundingType = "";
 	}
 
-	public PatronFunding(Date fundingDate, String fundingType, String awardDetails, Patrons patron) {
+	public PatronFunding(String fundingDate, String fundingType, String awardDetails, Patrons patron) {
 		this.fundingDate = fundingDate;
 		this.fundingType = "";
 		this.fundingType = fundingType;
@@ -103,11 +104,11 @@ public class PatronFunding extends DomainObject {
 		this.patronFundingId = patronFundingId;
 	}
 
-	public Date getFundingDate() {
+	public String getFundingDate() {
 		return this.fundingDate;
 	}
 
-	public void setFundingDate(Date fundingDate) {
+	public void setFundingDate(String fundingDate) {
 //		Object oldValue = getFundingDate();
 		this.fundingDate = fundingDate;
 //		firePropertyChange(PROPERTYNAME_SUBJECT_TERM, oldValue, fundingDate);
