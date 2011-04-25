@@ -25,6 +25,7 @@ import org.archiviststoolkit.mydomain.Auditable;
 import org.archiviststoolkit.model.*;
 import org.hibernate.*;
 import org.hibernate.type.Type;
+import org.rac.model.Patrons;
 
 import java.sql.Timestamp;
 import java.io.Serializable;
@@ -113,6 +114,18 @@ public class AuditInterceptor extends EmptyInterceptor implements Interceptor, S
 				((Resources)archDescription).setDisplayCreator(archDescription.getCreator());
 				((Resources)archDescription).setDisplaySource(archDescription.getSource());
 			}
+			return true;
+
+			//todo RAC patrons last visit field
+		} else if (object instanceof Patrons){
+			Patrons patron = (Patrons)object;
+			for ( int i=0; i < propertyNames.length; i++ ) {
+				if ( Patrons.PROPERTYNAME_DISPLAY_LAST_VISIT.equals( propertyNames[i] ) ) {
+					state[i] = patron.getDateOfLastVisit();
+				}
+			}
+
+//			patron.setDisplayLastVisit(patron.getDateOfLastVisit());
 			return true;
 		} else {
 			return false;

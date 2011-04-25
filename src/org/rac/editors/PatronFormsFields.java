@@ -28,10 +28,19 @@ import org.archiviststoolkit.swing.ATBasicComponentFactory;
 import org.rac.model.PatronForms;
 
 public class PatronFormsFields extends RAC_DomainEditorFields {
+
+	Boolean referenceNewPatron = false;
+
 	public PatronFormsFields() {
 		initComponents();
-		initAccess();
+//		initAccess();
 	}
+
+//	public PatronFormsFields(Boolean referenceNewPatron) {
+//		this.referenceNewPatron = referenceNewPatron;
+//		initComponents();
+//		initAccess();
+//	}
 
 	@Override
 	public Component getInitialFocusComponent() {
@@ -53,6 +62,7 @@ public class PatronFormsFields extends RAC_DomainEditorFields {
 		CellConstraints cc = new CellConstraints();
 
 		//======== this ========
+		setPreferredSize(new Dimension(500, 175));
 		setLayout(new FormLayout(
 			"default:grow",
 			"fill:default:grow"));
@@ -60,6 +70,7 @@ public class PatronFormsFields extends RAC_DomainEditorFields {
 		//======== panel1 ========
 		{
 			panel1.setBorder(Borders.DLU4_BORDER);
+			panel1.setPreferredSize(new Dimension(323, 500));
 			panel1.setLayout(new FormLayout(
 				new ColumnSpec[] {
 					FormFactory.DEFAULT_COLSPEC,
@@ -137,12 +148,13 @@ public class PatronFormsFields extends RAC_DomainEditorFields {
 	public JTextArea description;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 
-	private void initAccess() {
-		//set form to read only for reference staff
-		if (!Users.doesCurrentUserHaveAccess(Users.ACCESS_CLASS_BEGINNING_DATA_ENTRY)) {
-			setFormToReadOnly();
-			formType.setEnabled(false);
-		}
-	}
+//	private void initAccess() {
+//		//set form to read only for reference staff
+//		if (!Users.doesCurrentUserHaveAccess(Users.ACCESS_CLASS_BEGINNING_DATA_ENTRY) &&
+//				!referenceNewPatron) {
+//			setFormToReadOnly();
+//			formType.setEnabled(false);
+//		}
+//	}
 
 }

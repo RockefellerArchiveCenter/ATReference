@@ -101,7 +101,9 @@ public class StandardEditor extends JDialog implements ActionListener {
 	public static final String MODULE_SUB_HEADER_RDE_PANEL = "Rapid Data Entry Screen Panel";
 	public static final String MODULE_SUB_HEADER_LOOKUP_LIST_ITEMS = "Lookup List Items";
 	public static final String MODULE_SUB_HEADER_NOTES_ETC = "Notes etc.";
-	public static final String MODULE_SUB_HEADER_CONSTANTS = "Date Format Setting";
+	//todo RAC patrons change date format to preferences since more is being done
+//	public static final String MODULE_SUB_HEADER_CONSTANTS = "Date Format Setting";
+	public static final String MODULE_SUB_HEADER_CONSTANTS = "Preferences";
 
     private boolean showConfirmDialog = true; // specifies wheather to keep showing the confirm close dialog
     protected int choice; // this is set by the return value of the confirm close dialog

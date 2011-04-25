@@ -23,12 +23,12 @@ public class PatronUtils {
         String md5hash = null;
 
         // must append numbers so that empty spaces are accounted for and should lead to creation of unique hash
-        textBuffer.append(patrons.getSortName()).append(1);
-        textBuffer.append(patrons.getPrimaryName()).append(7);
-        textBuffer.append(patrons.getRestOfName()).append(8);
-        textBuffer.append(patrons.getPrefix()).append(9);
-        textBuffer.append(patrons.getSuffix()).append(10);
-        textBuffer.append(patrons.getTitle()).append(13);
+        textBuffer.append(patrons.getSortName().toLowerCase()).append(1);
+        textBuffer.append(patrons.getPrimaryName().toLowerCase()).append(7);
+        textBuffer.append(patrons.getRestOfName().toLowerCase()).append(8);
+        textBuffer.append(patrons.getPrefix().toLowerCase()).append(9);
+        textBuffer.append(patrons.getSuffix().toLowerCase()).append(10);
+        textBuffer.append(patrons.getTitle().toLowerCase()).append(13);
 
         String text = textBuffer.toString();
         md5hash = StringHelper.MD5(text);

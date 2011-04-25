@@ -371,15 +371,15 @@ public class ImportPatronData2 extends ImportHandler {
 	}
 
 	private void addNamesVisits(PatronVisits patronVisits, List<org.rac.structure.patronImportSchema.PatronVisitsNames> nameList) throws IllegalAccessException, InvocationTargetException, DuplicateLinkException, UnknownLookupListException, PersistenceException, NoSuchAlgorithmException, UnsupportedEncodingException {
-		NamesDAO namesDao = new NamesDAO();
-		PatronVisitsNames patronVisitsName;
-
-		for (org.rac.structure.patronImportSchema.PatronVisitsNames thisNameLink : nameList) {
-			patronVisitsName = new PatronVisitsNames(lookupName(namesDao, thisNameLink.getName()), patronVisits);
-			ImportUtils.nullSafeSet(patronVisitsName, PatronVisitsNames.PROPERTYNAME_FORM, thisNameLink.getNameLinkForm());
-			ImportUtils.nullSafeSet(patronVisitsName, PatronVisitsNames.PROPERTYNAME_ROLE, thisNameLink.getNameLinkRole());
-			patronVisits.addName(patronVisitsName);
-		}
+//		NamesDAO namesDao = new NamesDAO();
+//		PatronVisitsNames patronVisitsName;
+//
+//		for (org.rac.structure.patronImportSchema.PatronVisitsNames thisNameLink : nameList) {
+//			patronVisitsName = new PatronVisitsNames(lookupName(namesDao, thisNameLink.getName()), patronVisits);
+//			ImportUtils.nullSafeSet(patronVisitsName, PatronVisitsNames.PROPERTYNAME_FORM, thisNameLink.getNameLinkForm());
+//			ImportUtils.nullSafeSet(patronVisitsName, PatronVisitsNames.PROPERTYNAME_ROLE, thisNameLink.getNameLinkRole());
+//			patronVisits.addName(patronVisitsName);
+//		}
 
 	}
 

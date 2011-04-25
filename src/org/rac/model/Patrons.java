@@ -24,6 +24,7 @@ package org.rac.model;
 import org.archiviststoolkit.exceptions.AddRelatedObjectException;
 import org.archiviststoolkit.exceptions.DuplicateLinkException;
 import org.archiviststoolkit.exceptions.ObjectNotRemovedException;
+import org.archiviststoolkit.model.Repositories;
 import org.archiviststoolkit.mydomain.*;
 import org.archiviststoolkit.structure.DefaultIncludeInSearchEditor;
 import org.archiviststoolkit.structure.ExcludeFromDefaultValues;
@@ -39,9 +40,6 @@ import java.util.*;
 
 public class Patrons extends DomainObject {
 
-	//todo remove this comment. It is a test of git
-
-
 	public static final String PROPERTYNAME_PATRON_TYPE = "patronType";
 
 	public static final String PROPERTYNAME_PRIMARY_NAME = "primaryName";
@@ -52,6 +50,7 @@ public class Patrons extends DomainObject {
 	public static final String PROPERTYNAME_INSTITUTIONAL_AFFILIATION = "institutionalAffiliation";
 	public static final String PROPERTYNAME_TITLE = "title";
 	public static final String PROPERTYNAME_DEPARTMENT = "department";
+	public static final String PROPERTYNAME_DISPLAY_LAST_VISIT = "displayLastVisit";
 
 	public static final String PROPERTYNAME_SORT_NAME = "sortName";
 	public static final String PROPERTYNAME_CREATE_SORT_NAME_AUTOMATICALLY = "createSortNameAutomatically";
@@ -229,6 +228,15 @@ public class Patrons extends DomainObject {
 	@IncludeInApplicationConfiguration
 	private String userDefinedText4 ="";
 
+	@IncludeInApplicationConfiguration
+	@DefaultIncludeInSearchEditor
+	@ExcludeFromDefaultValues
+	private Repositories repository;
+
+
+	@IncludeInApplicationConfiguration
+	@ExcludeFromDefaultValues
+	private Date displayLastVisit;
 	/**
 	 * md5 hash used to index the bean in the database
 	 */
@@ -581,6 +589,18 @@ public class Patrons extends DomainObject {
 		getPatronVisits().remove(patronVisits);
 	}
 
+	public Date getDateOfLastVisit () {
+		Date returnDate = null;
+		for (PatronVisits visit: getPatronVisits()) {
+			if (returnDate == null) {
+				returnDate = visit.getVisitDate();
+			} else if (visit.getVisitDate().after(returnDate)) {
+				returnDate = visit.getVisitDate();
+			}
+		}
+		return returnDate;
+	}
+
 	//patron publications
 	public Set<PatronPublications> getPatronPublications() {
 		return patronPublications;
@@ -754,5 +774,21 @@ public class Patrons extends DomainObject {
 
 	public void setEmail2(String email2) {
 		this.email2 = email2;
+	}
+
+	public Repositories getRepository() {
+		return repository;
+	}
+
+	public void setRepository(Repositories repository) {
+		this.repository = repository;
+	}
+
+	public Date getDisplayLastVisit() {
+		return displayLastVisit;
+	}
+
+	public void setDisplayLastVisit(Date displayLastVisit) {
+		this.displayLastVisit = displayLastVisit;
 	}
 }

@@ -166,316 +166,316 @@ public class LocationAssignmentAccessions extends JDialog {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-		// Generated using JFormDesigner non-commercial license
-		dialogPane = new JPanel();
-		HeaderPanel = new JPanel();
-		mainHeaderPanel = new JPanel();
-		mainHeaderLabel = new JLabel();
-		panel3 = new JPanel();
-		subHeaderLabel = new JLabel();
-		contentPane = new JPanel();
-		label1 = new JLabel();
-		filterField = new JTextField();
-		scrollPane1 = new JScrollPane();
-		locationLookupTable = new DomainSortableTable(Locations.class, filterField);
-		linkingPanel = new JPanel();
-		label3 = new JLabel();
-		label4 = new JLabel();
-		noteContainerLabel = new JTextField();
-		note = new JTextField();
-		buttonBar = new JPanel();
-		linkLocationButton = new JButton();
-		createLocationButton = new JButton();
-		doneButton = new JButton();
-		selectPanel = new JPanel();
-		buttonBar2 = new JPanel();
-		selectButton = new JButton();
-		cancelButton = new JButton();
-		CellConstraints cc = new CellConstraints();
+        // Generated using JFormDesigner non-commercial license
+        dialogPane = new JPanel();
+        HeaderPanel = new JPanel();
+        mainHeaderPanel = new JPanel();
+        mainHeaderLabel = new JLabel();
+        panel3 = new JPanel();
+        subHeaderLabel = new JLabel();
+        contentPane = new JPanel();
+        label1 = new JLabel();
+        filterField = new JTextField();
+        scrollPane1 = new JScrollPane();
+        locationLookupTable = new DomainSortableTable(Locations.class, filterField);
+        linkingPanel = new JPanel();
+        label3 = new JLabel();
+        label4 = new JLabel();
+        noteContainerLabel = new JTextField();
+        note = new JTextField();
+        buttonBar = new JPanel();
+        linkLocationButton = new JButton();
+        createLocationButton = new JButton();
+        doneButton = new JButton();
+        selectPanel = new JPanel();
+        buttonBar2 = new JPanel();
+        selectButton = new JButton();
+        cancelButton = new JButton();
+        CellConstraints cc = new CellConstraints();
 
-		//======== this ========
-		setModal(true);
-		Container contentPane2 = getContentPane();
-		contentPane2.setLayout(new BorderLayout());
+        //======== this ========
+        setModal(true);
+        Container contentPane2 = getContentPane();
+        contentPane2.setLayout(new BorderLayout());
 
-		//======== dialogPane ========
-		{
-			dialogPane.setBorder(null);
-			dialogPane.setBackground(new Color(200, 205, 232));
-			dialogPane.setLayout(new BorderLayout());
+        //======== dialogPane ========
+        {
+            dialogPane.setBorder(null);
+            dialogPane.setBackground(new Color(200, 205, 232));
+            dialogPane.setLayout(new BorderLayout());
 
-			//======== HeaderPanel ========
-			{
-				HeaderPanel.setBackground(new Color(80, 69, 57));
-				HeaderPanel.setOpaque(false);
-				HeaderPanel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-				HeaderPanel.setLayout(new FormLayout(
-					new ColumnSpec[] {
-						new ColumnSpec(Sizes.bounded(Sizes.MINIMUM, Sizes.dluX(100), Sizes.dluX(200))),
-						new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-					},
-					RowSpec.decodeSpecs("default")));
+            //======== HeaderPanel ========
+            {
+                HeaderPanel.setBackground(new Color(80, 69, 57));
+                HeaderPanel.setOpaque(false);
+                HeaderPanel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+                HeaderPanel.setLayout(new FormLayout(
+                        new ColumnSpec[]{
+                                new ColumnSpec(Sizes.bounded(Sizes.MINIMUM, Sizes.dluX(100), Sizes.dluX(200))),
+                                new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+                        },
+                        RowSpec.decodeSpecs("default")));
 
-				//======== mainHeaderPanel ========
-				{
-					mainHeaderPanel.setBackground(new Color(80, 69, 57));
-					mainHeaderPanel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					mainHeaderPanel.setLayout(new FormLayout(
-						new ColumnSpec[] {
-							FormFactory.RELATED_GAP_COLSPEC,
-							new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-						},
-						new RowSpec[] {
-							FormFactory.RELATED_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.RELATED_GAP_ROWSPEC
-						}));
+                //======== mainHeaderPanel ========
+                {
+                    mainHeaderPanel.setBackground(new Color(80, 69, 57));
+                    mainHeaderPanel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+                    mainHeaderPanel.setLayout(new FormLayout(
+                            new ColumnSpec[]{
+                                    FormFactory.RELATED_GAP_COLSPEC,
+                                    new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+                            },
+                            new RowSpec[]{
+                                    FormFactory.RELATED_GAP_ROWSPEC,
+                                    FormFactory.DEFAULT_ROWSPEC,
+                                    FormFactory.RELATED_GAP_ROWSPEC
+                            }));
 
-					//---- mainHeaderLabel ----
-					mainHeaderLabel.setText("Main Header");
-					mainHeaderLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
-					mainHeaderLabel.setForeground(Color.white);
-					mainHeaderPanel.add(mainHeaderLabel, cc.xy(2, 2));
-				}
-				HeaderPanel.add(mainHeaderPanel, cc.xy(1, 1));
+                    //---- mainHeaderLabel ----
+                    mainHeaderLabel.setText("Main Header");
+                    mainHeaderLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
+                    mainHeaderLabel.setForeground(Color.white);
+                    mainHeaderPanel.add(mainHeaderLabel, cc.xy(2, 2));
+                }
+                HeaderPanel.add(mainHeaderPanel, cc.xy(1, 1));
 
-				//======== panel3 ========
-				{
-					panel3.setBackground(new Color(66, 60, 111));
-					panel3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-					panel3.setLayout(new FormLayout(
-						new ColumnSpec[] {
-							FormFactory.RELATED_GAP_COLSPEC,
-							new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-						},
-						new RowSpec[] {
-							FormFactory.RELATED_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.RELATED_GAP_ROWSPEC
-						}));
+                //======== panel3 ========
+                {
+                    panel3.setBackground(new Color(66, 60, 111));
+                    panel3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+                    panel3.setLayout(new FormLayout(
+                            new ColumnSpec[]{
+                                    FormFactory.RELATED_GAP_COLSPEC,
+                                    new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+                            },
+                            new RowSpec[]{
+                                    FormFactory.RELATED_GAP_ROWSPEC,
+                                    FormFactory.DEFAULT_ROWSPEC,
+                                    FormFactory.RELATED_GAP_ROWSPEC
+                            }));
 
-					//---- subHeaderLabel ----
-					subHeaderLabel.setText("Location Lookup");
-					subHeaderLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
-					subHeaderLabel.setForeground(Color.white);
-					panel3.add(subHeaderLabel, cc.xy(2, 2));
-				}
-				HeaderPanel.add(panel3, cc.xy(2, 1));
-			}
-			dialogPane.add(HeaderPanel, BorderLayout.NORTH);
+                    //---- subHeaderLabel ----
+                    subHeaderLabel.setText("Location Lookup");
+                    subHeaderLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
+                    subHeaderLabel.setForeground(Color.white);
+                    panel3.add(subHeaderLabel, cc.xy(2, 2));
+                }
+                HeaderPanel.add(panel3, cc.xy(2, 1));
+            }
+            dialogPane.add(HeaderPanel, BorderLayout.NORTH);
 
-			//======== contentPane ========
-			{
-				contentPane.setBackground(new Color(231, 188, 251));
-				contentPane.setOpaque(false);
-				contentPane.setLayout(new FormLayout(
-					new ColumnSpec[] {
-						FormFactory.UNRELATED_GAP_COLSPEC,
-						FormFactory.DEFAULT_COLSPEC,
-						FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-						new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
-						FormFactory.UNRELATED_GAP_COLSPEC
-					},
-					new RowSpec[] {
-						FormFactory.UNRELATED_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC,
-						FormFactory.LINE_GAP_ROWSPEC,
-						new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
-						FormFactory.LINE_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC,
-						FormFactory.LINE_GAP_ROWSPEC,
-						FormFactory.DEFAULT_ROWSPEC,
-						FormFactory.UNRELATED_GAP_ROWSPEC
-					}));
+            //======== contentPane ========
+            {
+                contentPane.setBackground(new Color(231, 188, 251));
+                contentPane.setOpaque(false);
+                contentPane.setLayout(new FormLayout(
+                        new ColumnSpec[]{
+                                FormFactory.UNRELATED_GAP_COLSPEC,
+                                FormFactory.DEFAULT_COLSPEC,
+                                FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                                new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+                                FormFactory.UNRELATED_GAP_COLSPEC
+                        },
+                        new RowSpec[]{
+                                FormFactory.UNRELATED_GAP_ROWSPEC,
+                                FormFactory.DEFAULT_ROWSPEC,
+                                FormFactory.LINE_GAP_ROWSPEC,
+                                new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+                                FormFactory.LINE_GAP_ROWSPEC,
+                                FormFactory.DEFAULT_ROWSPEC,
+                                FormFactory.LINE_GAP_ROWSPEC,
+                                FormFactory.DEFAULT_ROWSPEC,
+                                FormFactory.UNRELATED_GAP_ROWSPEC
+                        }));
 
-				//---- label1 ----
-				label1.setText("Filter:");
-				contentPane.add(label1, cc.xy(2, 2));
-				contentPane.add(filterField, cc.xy(4, 2));
+                //---- label1 ----
+                label1.setText("Filter:");
+                contentPane.add(label1, cc.xy(2, 2));
+                contentPane.add(filterField, cc.xy(4, 2));
 
-				//======== scrollPane1 ========
-				{
-					scrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+                //======== scrollPane1 ========
+                {
+                    scrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-					//---- locationLookupTable ----
-					locationLookupTable.setPreferredScrollableViewportSize(new Dimension(450, 300));
-					locationLookupTable.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							subjectLookupTableMouseClicked(e);
-						}
-					});
-					locationLookupTable.addKeyListener(new KeyAdapter() {
-						@Override
-						public void keyTyped(KeyEvent e) {
-							locationLookupTableKeyTyped(e);
-						}
-					});
-					scrollPane1.setViewportView(locationLookupTable);
-				}
-				contentPane.add(scrollPane1, cc.xywh(2, 4, 3, 1));
+                    //---- locationLookupTable ----
+                    locationLookupTable.setPreferredScrollableViewportSize(new Dimension(450, 300));
+                    locationLookupTable.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            subjectLookupTableMouseClicked(e);
+                        }
+                    });
+                    locationLookupTable.addKeyListener(new KeyAdapter() {
+                        @Override
+                        public void keyTyped(KeyEvent e) {
+                            locationLookupTableKeyTyped(e);
+                        }
+                    });
+                    scrollPane1.setViewportView(locationLookupTable);
+                }
+                contentPane.add(scrollPane1, cc.xywh(2, 4, 3, 1));
 
-				//======== linkingPanel ========
-				{
-					linkingPanel.setOpaque(false);
-					linkingPanel.setLayout(new FormLayout(
-						ColumnSpec.decodeSpecs("default:grow"),
-						new RowSpec[] {
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.UNRELATED_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC,
-							FormFactory.LINE_GAP_ROWSPEC,
-							FormFactory.DEFAULT_ROWSPEC
-						}));
+                //======== linkingPanel ========
+                {
+                    linkingPanel.setOpaque(false);
+                    linkingPanel.setLayout(new FormLayout(
+                            ColumnSpec.decodeSpecs("default:grow"),
+                            new RowSpec[]{
+                                    FormFactory.DEFAULT_ROWSPEC,
+                                    FormFactory.LINE_GAP_ROWSPEC,
+                                    FormFactory.DEFAULT_ROWSPEC,
+                                    FormFactory.UNRELATED_GAP_ROWSPEC,
+                                    FormFactory.DEFAULT_ROWSPEC,
+                                    FormFactory.LINE_GAP_ROWSPEC,
+                                    FormFactory.DEFAULT_ROWSPEC,
+                                    FormFactory.LINE_GAP_ROWSPEC,
+                                    FormFactory.DEFAULT_ROWSPEC
+                            }));
 
-					//---- label3 ----
-					label3.setText("Double click on a Location to add it to the record.");
-					linkingPanel.add(label3, cc.xy(1, 1));
+                    //---- label3 ----
+                    label3.setText("Double click on a Location to add it to the record.");
+                    linkingPanel.add(label3, cc.xy(1, 1));
 
-					//---- label4 ----
-					label4.setText("Or hit enter if a Location is highlighted.");
-					linkingPanel.add(label4, cc.xy(1, 3));
+                    //---- label4 ----
+                    label4.setText("Or hit enter if a Location is highlighted.");
+                    linkingPanel.add(label4, cc.xy(1, 3));
 
-					//---- noteContainerLabel ----
-					noteContainerLabel.setText("Note/Container information");
-					noteContainerLabel.setOpaque(false);
-					noteContainerLabel.setBorder(null);
-					linkingPanel.add(noteContainerLabel, cc.xy(1, 5));
-					linkingPanel.add(note, cc.xy(1, 7));
+                    //---- noteContainerLabel ----
+                    noteContainerLabel.setText("Note/Container information");
+                    noteContainerLabel.setOpaque(false);
+                    noteContainerLabel.setBorder(null);
+                    linkingPanel.add(noteContainerLabel, cc.xy(1, 5));
+                    linkingPanel.add(note, cc.xy(1, 7));
 
-					//======== buttonBar ========
-					{
-						buttonBar.setBorder(Borders.BUTTON_BAR_GAP_BORDER);
-						buttonBar.setBackground(new Color(231, 188, 251));
-						buttonBar.setOpaque(false);
-						buttonBar.setLayout(new FormLayout(
-							new ColumnSpec[] {
-								FormFactory.DEFAULT_COLSPEC,
-								FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-								FormFactory.BUTTON_COLSPEC,
-								FormFactory.RELATED_GAP_COLSPEC,
-								FormFactory.BUTTON_COLSPEC
-							},
-							RowSpec.decodeSpecs("pref")));
+                    //======== buttonBar ========
+                    {
+                        buttonBar.setBorder(Borders.BUTTON_BAR_GAP_BORDER);
+                        buttonBar.setBackground(new Color(231, 188, 251));
+                        buttonBar.setOpaque(false);
+                        buttonBar.setLayout(new FormLayout(
+                                new ColumnSpec[]{
+                                        FormFactory.DEFAULT_COLSPEC,
+                                        FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                                        FormFactory.BUTTON_COLSPEC,
+                                        FormFactory.RELATED_GAP_COLSPEC,
+                                        FormFactory.BUTTON_COLSPEC
+                                },
+                                RowSpec.decodeSpecs("pref")));
 
-						//---- linkLocationButton ----
-						linkLocationButton.setText("Link");
-						linkLocationButton.setOpaque(false);
-						linkLocationButton.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								linkLocationButtonActionPerformed();
-							}
-						});
-						buttonBar.add(linkLocationButton, cc.xy(1, 1));
+                        //---- linkLocationButton ----
+                        linkLocationButton.setText("Link");
+                        linkLocationButton.setOpaque(false);
+                        linkLocationButton.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                linkLocationButtonActionPerformed();
+                            }
+                        });
+                        buttonBar.add(linkLocationButton, cc.xy(1, 1));
 
-						//---- createLocationButton ----
-						createLocationButton.setText("Create Location");
-						createLocationButton.setBackground(new Color(231, 188, 251));
-						createLocationButton.setOpaque(false);
-						createLocationButton.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								createLocationButtonActionPerformed(e);
-							}
-						});
-						buttonBar.add(createLocationButton, cc.xy(3, 1));
+                        //---- createLocationButton ----
+                        createLocationButton.setText("Create Location");
+                        createLocationButton.setBackground(new Color(231, 188, 251));
+                        createLocationButton.setOpaque(false);
+                        createLocationButton.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                createLocationButtonActionPerformed(e);
+                            }
+                        });
+                        buttonBar.add(createLocationButton, cc.xy(3, 1));
 
-						//---- doneButton ----
-						doneButton.setText("Close Window");
-						doneButton.setBackground(new Color(231, 188, 251));
-						doneButton.setOpaque(false);
-						doneButton.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								doneButtonActionPerformed(e);
-							}
-						});
-						buttonBar.add(doneButton, cc.xy(5, 1));
-					}
-					linkingPanel.add(buttonBar, cc.xywh(1, 9, 1, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT));
-				}
-				contentPane.add(linkingPanel, cc.xywh(2, 6, 3, 1));
+                        //---- doneButton ----
+                        doneButton.setText("Close Window");
+                        doneButton.setBackground(new Color(231, 188, 251));
+                        doneButton.setOpaque(false);
+                        doneButton.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                doneButtonActionPerformed(e);
+                            }
+                        });
+                        buttonBar.add(doneButton, cc.xy(5, 1));
+                    }
+                    linkingPanel.add(buttonBar, cc.xywh(1, 9, 1, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT));
+                }
+                contentPane.add(linkingPanel, cc.xywh(2, 6, 3, 1));
 
-				//======== selectPanel ========
-				{
-					selectPanel.setOpaque(false);
-					selectPanel.setLayout(new FormLayout(
-						"default:grow",
-						"default"));
+                //======== selectPanel ========
+                {
+                    selectPanel.setOpaque(false);
+                    selectPanel.setLayout(new FormLayout(
+                            "default:grow",
+                            "default"));
 
-					//======== buttonBar2 ========
-					{
-						buttonBar2.setBorder(Borders.BUTTON_BAR_GAP_BORDER);
-						buttonBar2.setBackground(new Color(231, 188, 251));
-						buttonBar2.setOpaque(false);
-						buttonBar2.setLayout(new FormLayout(
-							new ColumnSpec[] {
-								FormFactory.BUTTON_COLSPEC,
-								FormFactory.RELATED_GAP_COLSPEC,
-								FormFactory.BUTTON_COLSPEC
-							},
-							RowSpec.decodeSpecs("pref")));
+                    //======== buttonBar2 ========
+                    {
+                        buttonBar2.setBorder(Borders.BUTTON_BAR_GAP_BORDER);
+                        buttonBar2.setBackground(new Color(231, 188, 251));
+                        buttonBar2.setOpaque(false);
+                        buttonBar2.setLayout(new FormLayout(
+                                new ColumnSpec[]{
+                                        FormFactory.BUTTON_COLSPEC,
+                                        FormFactory.RELATED_GAP_COLSPEC,
+                                        FormFactory.BUTTON_COLSPEC
+                                },
+                                RowSpec.decodeSpecs("pref")));
 
-						//---- selectButton ----
-						selectButton.setText("Select");
-						selectButton.setOpaque(false);
-						selectButton.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								selectButtonActionPerformed();
-							}
-						});
-						buttonBar2.add(selectButton, cc.xy(1, 1));
+                        //---- selectButton ----
+                        selectButton.setText("Select");
+                        selectButton.setOpaque(false);
+                        selectButton.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                selectButtonActionPerformed();
+                            }
+                        });
+                        buttonBar2.add(selectButton, cc.xy(1, 1));
 
-						//---- cancelButton ----
-						cancelButton.setText("Cancel");
-						cancelButton.setOpaque(false);
-						cancelButton.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								doneButtonActionPerformed(e);
-							}
-						});
-						buttonBar2.add(cancelButton, cc.xy(3, 1));
-					}
-					selectPanel.add(buttonBar2, cc.xywh(1, 1, 1, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT));
-				}
-				contentPane.add(selectPanel, cc.xywh(2, 8, 3, 1));
-			}
-			dialogPane.add(contentPane, BorderLayout.CENTER);
-		}
-		contentPane2.add(dialogPane, BorderLayout.CENTER);
-		pack();
-		setLocationRelativeTo(getOwner());
+                        //---- cancelButton ----
+                        cancelButton.setText("Cancel");
+                        cancelButton.setOpaque(false);
+                        cancelButton.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                doneButtonActionPerformed(e);
+                            }
+                        });
+                        buttonBar2.add(cancelButton, cc.xy(3, 1));
+                    }
+                    selectPanel.add(buttonBar2, cc.xywh(1, 1, 1, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT));
+                }
+                contentPane.add(selectPanel, cc.xywh(2, 8, 3, 1));
+            }
+            dialogPane.add(contentPane, BorderLayout.CENTER);
+        }
+        contentPane2.add(dialogPane, BorderLayout.CENTER);
+        pack();
+        setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-	// Generated using JFormDesigner non-commercial license
-	private JPanel dialogPane;
-	private JPanel HeaderPanel;
-	private JPanel mainHeaderPanel;
-	private JLabel mainHeaderLabel;
-	private JPanel panel3;
-	private JLabel subHeaderLabel;
-	private JPanel contentPane;
-	private JLabel label1;
-	private JTextField filterField;
-	private JScrollPane scrollPane1;
-	private DomainSortableTable locationLookupTable;
-	private JPanel linkingPanel;
-	private JLabel label3;
-	private JLabel label4;
-	private JTextField noteContainerLabel;
-	private JTextField note;
-	private JPanel buttonBar;
-	private JButton linkLocationButton;
-	private JButton createLocationButton;
-	private JButton doneButton;
-	private JPanel selectPanel;
-	private JPanel buttonBar2;
-	private JButton selectButton;
-	private JButton cancelButton;
+    // Generated using JFormDesigner non-commercial license
+    private JPanel dialogPane;
+    private JPanel HeaderPanel;
+    private JPanel mainHeaderPanel;
+    private JLabel mainHeaderLabel;
+    private JPanel panel3;
+    private JLabel subHeaderLabel;
+    private JPanel contentPane;
+    private JLabel label1;
+    private JTextField filterField;
+    private JScrollPane scrollPane1;
+    private DomainSortableTable locationLookupTable;
+    private JPanel linkingPanel;
+    private JLabel label3;
+    private JLabel label4;
+    private JTextField noteContainerLabel;
+    private JTextField note;
+    private JPanel buttonBar;
+    private JButton linkLocationButton;
+    private JButton createLocationButton;
+    private JButton doneButton;
+    private JPanel selectPanel;
+    private JPanel buttonBar2;
+    private JButton selectButton;
+    private JButton cancelButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
     /**

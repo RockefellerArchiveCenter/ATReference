@@ -94,6 +94,7 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 		String localHumanReadableSearchString;
 		Set subjectCollection = new HashSet();
 		Set nameCollection = new HashSet();
+		Set researchPurposeCollection = new HashSet();
 
 		if (selectedSubject != null) {
 			//time to search through 2 tiers of records
@@ -105,13 +106,13 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			patrons = new HashSet();
 			PatronVisitsDAO visitLookup = new PatronVisitsDAO();
 			ArrayList patronVisits = new ArrayList(visitLookup.findBySubject(selectedSubject));
-			subjectCollection = findPatronsBySubject(returnCollection, patrons, patronVisits);
+			findPatronsBySubject(subjectCollection, patrons, patronVisits);
 
 			//now search for subjects associated with publications
 			patrons = new HashSet();
 			PatronPublicationsDAO publicationsLookup = new PatronPublicationsDAO();
 			ArrayList patronPublications = new ArrayList(publicationsLookup.findBySubject(selectedSubject));
-			subjectCollection = findPatronsBySubject(returnCollection, patrons, patronPublications);
+			findPatronsBySubject(subjectCollection, patrons, patronPublications);
 
 
 			if (returnCollection.size() == 0) {
@@ -132,13 +133,13 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			patrons = new HashSet();
 			PatronVisitsDAO visitLookup = new PatronVisitsDAO();
 			ArrayList patronVisits = new ArrayList(visitLookup.findByName(selectedName));
-			nameCollection = findPatronsByName(returnCollection, patrons, patronVisits);
+			findPatronsByName(nameCollection, patrons, patronVisits);
 
 			//now search for names associated with publications
 			patrons = new HashSet();
 			PatronPublicationsDAO publicationsLookup = new PatronPublicationsDAO();
 			ArrayList patronPublications = new ArrayList(publicationsLookup.findByName(selectedName));
-			nameCollection = findPatronsByName(returnCollection, patrons, patronPublications);
+			findPatronsByName(nameCollection, patrons, patronPublications);
 
 
 			if (returnCollection.size() == 0) {
@@ -149,12 +150,36 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 
 		}
 
+		String researchPurpose = patronQueryEditor.getResearchPurpose();
+		if (researchPurpose.length() > 0) {
+			//time to search through 2 tiers of records
+			//there is probably a hibernate way to do this but here we do it the brute force way.
+			localHumanReadableSearchString = StringHelper.concat(" <font color='red'>and</font> ", getHumanReadableSearchString(), " Research Purpose contains " + researchPurpose);
+			setHumanReadableSearchString(localHumanReadableSearchString);
+
+			//now search for research purposes associated with visits
+			patrons = new HashSet();
+			PatronVisitsDAO visitLookup = new PatronVisitsDAO();
+			ArrayList patronVisits = new ArrayList(visitLookup.findByResearchPurpose(researchPurpose));
+			Patrons patronToAdd = null;
+			for (Object o: patronVisits) {
+				patronToAdd = ((PatronVisits)o).getPatron();
+				researchPurposeCollection.add(patronToAdd);
+			}
+
+			if (returnCollection.size() == 0) {
+				returnCollection = researchPurposeCollection;
+			} else {
+				returnCollection.retainAll(researchPurposeCollection);
+			}
+
+		}
 
 		progressPanel.close();
 		return returnCollection;
 	}
 
-	private Set findPatronsBySubject(Set subjectCollection, Collection patrons, ArrayList linkedToSubjects) {
+	private void findPatronsBySubject(Set subjectCollection, Collection patrons, ArrayList linkedToSubjects) {
 		PatronVisits patronVisit;
 		linkedToSubjects.toArray();
 		Patrons patronToAdd = null;
@@ -167,11 +192,9 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			patrons.add(patronToAdd);
 		}
 		subjectCollection.addAll(patrons);
-
-		return subjectCollection;
 	}
 
-	private Set findPatronsByName(Set nameCollection, Collection patrons, ArrayList linkedToNames) {
+	private void findPatronsByName(Set nameCollection, Collection patrons, ArrayList linkedToNames) {
 		linkedToNames.toArray();
 		Patrons patronToAdd = null;
 		for (Object o : linkedToNames) {
@@ -183,10 +206,7 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			patrons.add(patronToAdd);
 		}
 		nameCollection.addAll(patrons);
-
-		return nameCollection;
 	}
-
 
 	/**
 	 * Method to search by query editory using long session

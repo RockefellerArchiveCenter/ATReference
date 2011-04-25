@@ -24,7 +24,7 @@
 
 		<property name="notes"
 				  column="notes"
-				  type="string"/>
+				  type="text"/>
 
         <property name="dateCompleted"
                   column="dateCompleted"

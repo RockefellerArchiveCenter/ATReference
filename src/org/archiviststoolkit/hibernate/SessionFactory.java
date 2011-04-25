@@ -43,6 +43,7 @@ import org.archiviststoolkit.dialog.ErrorDialog;
 import org.archiviststoolkit.util.StringHelper;
 import org.archiviststoolkit.model.*;
 import org.archiviststoolkit.ApplicationFrame;
+import org.rac.model.Patrons;
 
 /**
  * This is a facade for hibernate session factory configuration
@@ -219,12 +220,22 @@ public final class SessionFactory {
                         clazz == Accessions.class ||
                         clazz == Users.class ||
                         clazz == Repositories.class ||
-                        clazz == Locations.class ||
+						clazz == Locations.class ||
                         clazz == DigitalObjects.class) {
                     newSession.enableFilter("repository").setParameter("repositoryId",
                             ApplicationFrame.getInstance().getCurrentUserRepositoryId());
                 }
             }
+
+			//todo RAC additions - allow filtering by patron repository
+			if (alwaysApplyFilters || (ApplicationFrame.getInstance().getCurrentUser() != null &&
+					!Users.doesCurrentUserHaveAccess(Users.ACCESS_CLASS_SUPERUSER)) &&
+					!ApplicationFrame.getInstance().isSharePatronRecords()) {
+				if (clazz == Patrons.class) {
+					newSession.enableFilter("repository").setParameter("repositoryId",
+							ApplicationFrame.getInstance().getCurrentUserRepositoryId());
+				}
+			}
 
         }
         return (newSession);

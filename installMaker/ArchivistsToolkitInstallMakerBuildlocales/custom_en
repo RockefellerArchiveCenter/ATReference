@@ -17,9 +17,9 @@
 #     that cannot be represented by ASCII characters should be written using escaped unicode.
 #     - see the utility 'native2ascii' distributed with your JDK
 #
-# Product Name: Archivists' Toolkit Plus 2.x Beta
+# Product Name: AT Reference 2.x Beta
 # Project File: /Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/installMaker/ArchivistsToolkitInstallMaker.iap_xml
-# Generated:    Sat Oct 09 20:59:27 EDT 2010
+# Generated:    Mon Apr 18 16:44:24 EDT 2011
 
 
 # Billboard.004f70d5932d.imageName=ucsd_boat.jpg
@@ -139,14 +139,14 @@ Installer.fecea3778b60.splashScreenGUIInstructions=
 # Installer.fecea3778b60.splashScreenGUITitle=
 Installer.fecea3778b60.splashScreenGUITitle=
 
-# InstallerInfoData.fecea3878b61.installerName=installArchivistsToolkitPlus2.xBeta
-InstallerInfoData.fecea3878b61.installerName=installArchivistsToolkitPlus2.xBeta
+# InstallerInfoData.fecea3878b61.installerName=installATReference2.xBeta
+InstallerInfoData.fecea3878b61.installerName=installATReference2.xBeta
 
-# InstallerInfoData.fecea3878b61.installerTitle=Archivists' Toolkit Plus 2.x Beta
-InstallerInfoData.fecea3878b61.installerTitle=Archivists' Toolkit Plus 2.x Beta
+# InstallerInfoData.fecea3878b61.installerTitle=AT Reference 2.x Beta
+InstallerInfoData.fecea3878b61.installerTitle=AT Reference 2.x Beta
 
-# InstallerInfoData.fecea3878b61.productName=Archivists' Toolkit Plus 2.x Beta
-InstallerInfoData.fecea3878b61.productName=Archivists' Toolkit Plus 2.x Beta
+# InstallerInfoData.fecea3878b61.productName=AT Reference 2.x Beta
+InstallerInfoData.fecea3878b61.productName=AT Reference 2.x Beta
 
 # InstallFinishAction.fecea4118b6d.installErrorMessage=The installation of $PRODUCT_NAME$ is finished, but some errors occurred during the install.  Please see the installation log for details.
 InstallFinishAction.fecea4118b6d.installErrorMessage=The installation of $PRODUCT_NAME$ is finished, but some errors occurred during the install.  Please see the installation log for details.
@@ -241,8 +241,8 @@ LicenseAgrAction.fed40a778ba0.title=License Agreement
 # MakeExecutable.77cb50c38b25.destinationName=MaintenanceWizard
 MakeExecutable.77cb50c38b25.destinationName=MaintenanceWizard
 
-# MakeExecutable.feceb64e8b71.destinationName=Archivists' Toolkit Plus 2.x Beta
-MakeExecutable.feceb64e8b71.destinationName=Archivists' Toolkit Plus 2.x Beta
+# MakeExecutable.feceb64e8b71.destinationName=AT Reference 2.x Beta
+MakeExecutable.feceb64e8b71.destinationName=AT Reference 2.x Beta
 
 # ShortcutLocAction.fecea4098b6d.macPrompt=Where would you like to create aliases?
 ShortcutLocAction.fecea4098b6d.macPrompt=Where would you like to create aliases?

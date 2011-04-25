@@ -97,7 +97,7 @@ public class SplashScreen extends JFrame {
 				}));
 
 			//---- label1 ----
-			label1.setIcon(new ImageIcon(getClass().getResource("/org/archiviststoolkit/resources/images/ATLogo.jpg")));
+			label1.setIcon(new ImageIcon(getClass().getResource("/org/rac/resources/images/ATR-Logo-full-text.jpg")));
 			label1.setBorder(null);
 			panel1.add(label1, cc.xy(1, 1));
 

@@ -999,8 +999,11 @@ public class MARCExport {
         else
             controlFieldString.append("      ");
 
+        boolean aggregateResource = true; // specify if resource record is aggregated or not
+
         if (resource.getLevel().equalsIgnoreCase("item")) {
             controlFieldString.append("s");
+            aggregateResource = false;
         } else
             controlFieldString.append("i");
 
@@ -1009,7 +1012,7 @@ public class MARCExport {
         else
             controlFieldString.append("    ");
 
-        if (resource.getDateEnd() != null)
+        if (resource.getDateEnd() != null && (aggregateResource || !resource.getDateEnd().equals(resource.getDateBegin())))
             controlFieldString.append(resource.getDateEnd());
         else
             controlFieldString.append("    ");
@@ -1106,9 +1109,11 @@ public class MARCExport {
         else
             controlFieldString.append("      ");
 
-            
+        boolean aggregateResource = true; // specify if resource record is aggregated or not
+
         if (dig.getDigitalInstance() != null && dig.getDigitalInstance().getResource()!=null && dig.getDigitalInstance().getResource().getLevel().equalsIgnoreCase("item")) {
             controlFieldString.append("s");
+            aggregateResource = false;
         } else
             controlFieldString.append("i");
 
@@ -1117,7 +1122,7 @@ public class MARCExport {
         else
             controlFieldString.append("    ");
 
-        if (dig.getDateEnd() != null)
+        if (dig.getDateEnd() != null && (aggregateResource || !dig.getDateEnd().equals(dig.getDateBegin())))
             controlFieldString.append(dig.getDateEnd());
         else
             controlFieldString.append("    ");

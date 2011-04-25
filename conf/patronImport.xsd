@@ -73,7 +73,6 @@
     <xs:complexType name="patronVisits">
         <xs:sequence>
             <xs:element name="contactArchivist" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="researchPurpose" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="topic" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="visitDate" type="xs:date" minOccurs="1" maxOccurs="1"/>
             <xs:element name="patronVisitsSubjects" type="patronVisitsSubjects" minOccurs="0" maxOccurs="unbounded"/>
@@ -162,7 +161,7 @@
             <xs:element name="topic" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="awardDetails" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="fundingType" type="xs:string" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="fundingDate" type="xs:date" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="fundingDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
     

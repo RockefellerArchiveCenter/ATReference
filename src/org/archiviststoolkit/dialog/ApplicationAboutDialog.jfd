@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.5.0_06" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_24" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -49,7 +49,7 @@
              <string>icon</string> 
              <object class="com.jformdesigner.model.SwingIcon"> 
               <int>0</int> 
-              <string>/org/archiviststoolkit/resources/images/ATLogo.jpg</string> 
+              <string>/org/rac/resources/images/ATR-Logo-full-text.jpg</string> 
              </object> 
             </void> 
             <void property="name"> 

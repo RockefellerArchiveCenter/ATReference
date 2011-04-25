@@ -35,6 +35,42 @@
                   column="publicationType"
                   type="string"/>
 
+        <property name="publicationAuthor"
+                  column="publicationAuthor"
+                  type="string"/>
+
+        <property name="serialTitle"
+                  column="serialTitle"
+                  type="string"/>
+
+        <property name="locationOfPublication"
+                  column="locationOfPublication"
+                  type="string"/>
+
+        <property name="issueVolume"
+                  column="issueVolume"
+                  type="string"/>
+
+        <property name="pageNumbers"
+                  column="pageNumbers"
+                  type="string"/>
+
+        <property name="url"
+                  column="url"
+                  type="string"/>
+
+        <property name="dateAccessed"
+                  column="dateAccessed"
+                  type="date"/>
+
+        <property name="copyReceived"
+                  column="copyReceived"
+                  type="boolean"/>
+
+        <property name="other"
+                  column="other"
+                  type="string"/>
+
         <property name="collaborators"
                   column="collaborators"
                   type="text"/>

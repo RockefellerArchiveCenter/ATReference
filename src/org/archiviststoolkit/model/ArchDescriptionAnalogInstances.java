@@ -50,6 +50,10 @@ public class ArchDescriptionAnalogInstances extends ArchDescriptionInstances imp
     public static final String PROPERTYNAME_USER_DEFINED_STRING1 = "userDefinedString1";
     public static final String PROPERTYNAME_USER_DEFINED_STRING2 = "userDefinedString2";
 
+    // Variable to match an alpha-numeric indicator which could be converted
+    // into a number i.e. 1d, 1.03D, or 1.0f etc ...
+    private static final String ALPHA_NUMERIC_REGEXP = "\\d+\\.*\\d*\\D+";
+
     @StringLengthValidationRequried
     @IncludeInApplicationConfiguration
     private String container1Indicator = "";
@@ -354,7 +358,7 @@ public class ArchDescriptionAnalogInstances extends ArchDescriptionInstances imp
         try {
             // check to see if it is not a number with D on the end, which is a valid
             // double value, but the user may actually want a D at the end of a number
-            if(indicator.matches("\\d+\\.*\\d+[dD]")) {
+            if(indicator.matches(ALPHA_NUMERIC_REGEXP)) {
                 this.container1AlphaNumericIndicator = indicator;
                 this.container1NumericIndicator = null;
             } else {
@@ -402,7 +406,7 @@ public class ArchDescriptionAnalogInstances extends ArchDescriptionInstances imp
         try {
             // check to see if it is not a number with D on the end, which is a valid
             // double value, but the user may actually want a D at the end of a number
-            if(indicator.matches("\\d+\\.*\\d+[dD]")) {
+            if(indicator.matches(ALPHA_NUMERIC_REGEXP)) {
                 this.container2AlphaNumericIndicator = indicator;
                 this.container2NumericIndicator = null;
             } else {
@@ -450,7 +454,7 @@ public class ArchDescriptionAnalogInstances extends ArchDescriptionInstances imp
         try {
             // check to see if it is not a number with D on the end, which is a valid
             // double value, but the user may actually want a D at the end of a number
-            if(indicator.matches("\\d+\\.*\\d+[dD]")) {
+            if(indicator.matches(ALPHA_NUMERIC_REGEXP)) {
                 this.container3AlphaNumericIndicator = indicator;
                 this.container3NumericIndicator = null;
             } else {

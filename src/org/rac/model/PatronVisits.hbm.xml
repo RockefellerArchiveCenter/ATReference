@@ -29,12 +29,7 @@
 
         <property name="topic"
                   column="topic"
-                  type="string"/>
-
-        <property name="researchPurpose"
-                  column="researchPurpose"
-                  not-null="true"
-                  type="string"/>
+                  type="text"/>
 
         <!--<set name="subjects" table="PatronVisitsSubjects">-->
             <!--<many-to-many column="subjectId"-->
@@ -65,6 +60,17 @@
                 <column name="patronVisitId" not-null="true"/>
             </key>
             <one-to-many class="org.rac.model.PatronVisitsNames"/>
+        </set>
+
+        <set name="researchPurposes"
+             cascade="all-delete-orphan"
+             inverse="true"
+             lazy="true"
+             access="field">
+            <key>
+                <column name="patronVisitId" not-null="true"/>
+            </key>
+            <one-to-many class="org.rac.model.PatronVisitsResearchPurposes"/>
         </set>
 
 	</class>

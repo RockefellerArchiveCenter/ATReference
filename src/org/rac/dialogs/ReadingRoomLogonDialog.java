@@ -25,11 +25,13 @@ import javax.swing.*;
 import javax.swing.border.*;
 import com.jgoodies.forms.factories.*;
 import com.jgoodies.forms.layout.*;
+import org.archiviststoolkit.ApplicationFrame;
 import org.archiviststoolkit.dialog.ErrorDialog;
 import org.archiviststoolkit.model.Names;
 import org.archiviststoolkit.mydomain.*;
 import org.archiviststoolkit.structure.ATFieldInfo;
 import org.rac.editors.PatronFields;
+import org.rac.editors.PatronInitalDataEntryFields;
 import org.rac.model.Patrons;
 import org.rac.myDomain.PatronsDAO;
 
@@ -256,12 +258,17 @@ public class ReadingRoomLogonDialog extends JDialog {
 	public void searchAndDisplayRecord() throws LookupException, PersistenceException, UnsupportedTableModelException {
 		Patrons patrons = patronDAO.queryByFirstLastName(getFirstName(), getLastName());
 		DomainEditor dialog;
+		Boolean newRecord;
 		if (patrons != null ||getCreateNewRecord()) {
-			dialog = new DomainEditor(Patrons.class, this, "Patrons", new PatronFields());
 			if (getCreateNewRecord()) {
 				patrons = new Patrons();
+				patrons.setRepository(ApplicationFrame.getInstance().getCurrentUserRepository());
+				dialog = new DomainEditor(Patrons.class, this, "Patrons", new PatronInitalDataEntryFields());
+				newRecord = true;
 			} else {
 				patrons = (Patrons) patronDAO.findByPrimaryKeyLongSession(patrons.getIdentifier());
+				dialog = new DomainEditor(Patrons.class, this, "Patrons", new PatronFields());
+				newRecord = false;
 			}
 			dialog.setModel(patrons, null);
 			dialog.disableNavigationButtons();
@@ -273,15 +280,23 @@ public class ReadingRoomLogonDialog extends JDialog {
 			DomainSortableTable dummyTable = new DomainSortableTable(Patrons.class);
 			dialog.setCallingTable(dummyTable);
 
-			((PatronFields)dialog.editorFields).updateUIForClass0();
+			if (!newRecord) {
+				((PatronFields)dialog.editorFields).updateUIForClass0();
+			}
 			int status = dialog.showDialog();
 			if (status == JOptionPane.OK_OPTION) {
-				patronDAO.updateLongSession(patrons);
+				if (newRecord) {
+					patronDAO.updateLongSession(patrons);
+				} else {
+					patronDAO.updateLongSession(patrons);
+				}
 			} else {
-				try {
-					patronDAO.closeLongSessionRollback();
-				} catch (SQLException e1) {
-					new ErrorDialog(dialog, "Error canceling record.", e1).showDialog();
+				if (!newRecord) {
+					try {
+						patronDAO.closeLongSessionRollback();
+					} catch (SQLException e1) {
+						new ErrorDialog(dialog, "Error canceling record.", e1).showDialog();
+					}
 				}
 			}
 		} else {
@@ -289,6 +304,7 @@ public class ReadingRoomLogonDialog extends JDialog {
 		}
 
 	}
+
 
 	public Boolean getCreateNewRecord() {
 		return createNewRecord;

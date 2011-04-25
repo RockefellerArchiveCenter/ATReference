@@ -388,7 +388,7 @@ Low</Examples>
 	<ClassName>Accessions</ClassName>
 	<PropertyName>repository</PropertyName>
 	<Element_Label>Repository</Element_Label>
-	<Definition>The name of the repository having custody of the accession. The values in this list may be modified by adding or deleting repository records. </Definition>
+	<Definition>The name of the repository which has administrative responsibility of the records. The values in this list may be modified by adding or deleting repository records. </Definition>
 </RECORD>
 <RECORD>
 	<ClassName>Accessions</ClassName>
@@ -3392,7 +3392,7 @@ Snowman
     <RECORD>
         <ClassName>Patrons</ClassName>
         <PropertyName>email1</PropertyName>
-        <Element_Label>Email1</Element_Label>
+        <Element_Label>Email(s)</Element_Label>
         <Definition>Electronic mail address by which the patron can be reached. </Definition>
         <Examples>tgarner@ufl.edu</Examples>
     </RECORD>

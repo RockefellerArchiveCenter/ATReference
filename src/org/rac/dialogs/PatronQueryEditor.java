@@ -139,6 +139,10 @@ public class PatronQueryEditor extends QueryEditor {
 		return selectedName;
 	}
 
+	public String getResearchPurpose() {
+		return researchPurpose.getText();
+	}
+
 	private void visitDateEndFocusGained() {
 		endDateFocusGained(visitDateEnd, visitDateStart);
 		if (visitDateEnd.getValue() == null) {
@@ -156,14 +160,11 @@ public class PatronQueryEditor extends QueryEditor {
 		}
 	}
 
-	private void researchPurposeActionPerformed() {
-		selectedResearchPurpose = (String) researchPurpose.getSelectedItem();
-	}
-
 	private void queryButton2ActionPerformed(ActionEvent e) {
 		if (selectedResearchPurpose.length() == 0
 				&& contactArchivist.getText().length() == 0
 				&& visitTopic.getText().length() == 0
+				&& researchPurpose.getText().length() == 0
 				&& !areVisitDatesFilledOut()
 
 				&& addressCountry.getText().length() == 0
@@ -271,7 +272,7 @@ public class PatronQueryEditor extends QueryEditor {
 		label10 = new JLabel();
 		contactArchivist = new JTextField();
 		label7 = new JLabel();
-		researchPurpose = ATBasicComponentFactory.createUnboundComboBox(LookupListUtils.getLookupListValues(PatronVisits.class, PatronVisits.PROPERTYNAME_RESEARCH_PURPOSE));
+		researchPurpose = new JTextField();
 		label15 = new JLabel();
 		visitTopic = new JTextField();
 		label11 = new JLabel();
@@ -677,15 +678,7 @@ public class PatronQueryEditor extends QueryEditor {
 						//---- label7 ----
 						label7.setText("Research Purpose");
 						panel2.add(label7, cc.xy(3, 11));
-
-						//---- researchPurpose ----
-						researchPurpose.setOpaque(false);
-						researchPurpose.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								researchPurposeActionPerformed();
-							}
-						});
-						panel2.add(researchPurpose, cc.xywh(5, 11, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+						panel2.add(researchPurpose, cc.xy(5, 11));
 
 						//---- label15 ----
 						label15.setText("Visit Topic");
@@ -888,7 +881,7 @@ public class PatronQueryEditor extends QueryEditor {
 	private JLabel label10;
 	private JTextField contactArchivist;
 	private JLabel label7;
-	private JComboBox researchPurpose;
+	private JTextField researchPurpose;
 	private JLabel label15;
 	private JTextField visitTopic;
 	private JLabel label11;
@@ -1092,10 +1085,10 @@ public class PatronQueryEditor extends QueryEditor {
 					"Visit Topic"));
 		}
 
-		if (selectedResearchPurpose.length() > 0) {
-			criterionList.add(new CriteriaRelationshipPairs(Restrictions.eq(PatronVisits.PROPERTYNAME_RESEARCH_PURPOSE, selectedResearchPurpose),
-					Patrons.PROPERTYNAME_PATRON_VISITS, PatronVisits.PROPERTYNAME_RESEARCH_PURPOSE + " equals " + selectedResearchPurpose));
-		}
+//		if (selectedResearchPurpose.length() > 0) {
+//			criterionList.add(new CriteriaRelationshipPairs(Restrictions.eq(PatronVisits.PROPERTYNAME_RESEARCH_PURPOSE, selectedResearchPurpose),
+//					Patrons.PROPERTYNAME_PATRON_VISITS, PatronVisits.PROPERTYNAME_RESEARCH_PURPOSE + " equals " + selectedResearchPurpose));
+//		}
 
 // Patron addresses
 		if (addressRegion != null && addressRegion.getText().length() > 0) {
