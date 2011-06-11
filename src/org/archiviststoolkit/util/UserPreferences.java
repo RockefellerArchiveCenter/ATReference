@@ -51,6 +51,7 @@ public class UserPreferences {
     private Font font = null;
     private boolean enableSpellCheck = false;
     private boolean enableSpellCheckHighlight = true;
+    private boolean spellCheckSet = true;
 
 	private static UserPreferences singleton = null;
 
@@ -90,8 +91,10 @@ public class UserPreferences {
         String spellCheck = userPrefs.get(SPELLCHECK_ENABLE, "");
         if(spellCheck.equals("yes")) {
             enableSpellCheck = true;
-        } else {
+        } else if(spellCheck.equals("no")) {
             enableSpellCheck = false;
+        } else { // set variable used if spell check has not been set
+            spellCheckSet = false;
         }
 
         String spellCheckHighlight = userPrefs.get(SPELLCHECK_HIGHLIGHT_ENABLE, "");
@@ -274,5 +277,16 @@ public class UserPreferences {
      */
     public boolean getEnableSpellCheckHighlighting() {
         return enableSpellCheckHighlight;
+    }
+
+    /**
+     * Method to return if spell check was set or not. This is needed
+     * to provide a way to detect if the user turned of spell check
+     * all together
+     *
+     * @return true if its set, false otherwise
+     */
+    public boolean getSpellCheckSet() {
+        return spellCheckSet;
     }
 }
