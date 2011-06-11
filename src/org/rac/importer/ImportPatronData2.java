@@ -155,6 +155,8 @@ public class ImportPatronData2 extends ImportHandler {
 
 					populateDomainObject(patron, patronDescriptors, importedPatronRecord, controller, recordNumber, patron);
 					patron.createSortName();
+					//set the repository
+					patron.setRepository(ApplicationFrame.getInstance().getCurrentUserRepository());
 
 					//deal with addresses
 					PatronAddresses newAddress;
@@ -219,6 +221,11 @@ public class ImportPatronData2 extends ImportHandler {
 
 						//add name as subject links
 						addNamesVisits(newPatronVisit, patronVisit.getPatronVisitsNames());
+
+						//research purposes
+						for (String researchPurpose: patronVisit.getResearchPurpose()) {
+							newPatronVisit.addResearchPurposes(researchPurpose);
+						}
 
 					}
 

@@ -102,13 +102,13 @@ public class DatabaseConnectionUtils {
                     updateVersion);
             if (calledFrom.equals(DatabaseConnectionUtils.CHECK_VERSION_FROM_MAIN)) {
                 if (compareVersion == Constants.VERSION_LESS) {
-                    VersionMismatch dialog = new VersionMismatch("AT Reference version " + versionString
+                    VersionMismatch dialog = new VersionMismatch("ATReference version " + versionString
                             + " will not work with this database. This database is using version "
                             + majorVersion + "." + minorVersion + "." + updateVersion + ".", Constants.VERSION_LESS);
                     dialog.showDialog();
                     return false;
                 } else if (compareVersion == Constants.VERSION_GREATER) {
-                    VersionMismatch dialog = new VersionMismatch("AT Reference version " + versionString
+                    VersionMismatch dialog = new VersionMismatch("ATReference version " + versionString
                             + " will not work with this database. This database is using version "
                             + majorVersion + "." + minorVersion + "." + updateVersion + ".", Constants.VERSION_GREATER);
                     dialog.showDialog();
@@ -116,17 +116,17 @@ public class DatabaseConnectionUtils {
                 }
             } else if (calledFrom.equals(DatabaseConnectionUtils.CHECK_VERSION_FROM_UPGRADE)) {
                 if (compareVersion == Constants.VERSION_LESS) {
-                    errorString = "AT Reference version " + versionString + " will not work with this database. This database is using version "
+                    errorString = "ATReference version " + versionString + " will not work with this database. This database is using version "
                             + majorVersion + "." + minorVersion + "." + updateVersion + ".";
                     return false;
                 } else if (compareVersion == Constants.VERSION_EQUAL) {
-                    errorString = "Both client and database are AT reference version " + versionString
+                    errorString = "Both client and database are ATReference version " + versionString
                             + ". No upgrade is necessary.";
                     return false;
                 }
             } else if (calledFrom.equals(DatabaseConnectionUtils.CHECK_VERSION_FROM_UTILITIES)) {
                 if (compareVersion != Constants.VERSION_EQUAL) {
-                    errorString = "AT Reference version " + versionString
+                    errorString = "ATReference version " + versionString
                             + " will not work with this database. This database is using version "
                             + majorVersion + "." + minorVersion + "." + updateVersion + ".";
                     return false;

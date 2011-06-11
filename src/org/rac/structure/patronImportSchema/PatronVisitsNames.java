@@ -15,18 +15,18 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for patronPhoneNumbers complex type.
+ * <p>Java class for patronVisitsNames complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="patronPhoneNumbers">
+ * &lt;complexType name="patronVisitsNames">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="phoneNumber" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="phoneNumberType" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="preferredPhoneNumber" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="nameLinkRole" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="nameLinkForm" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="name" type="{}nameComplexType"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,88 +36,88 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "patronPhoneNumbers", propOrder = {
-    "phoneNumber",
-    "phoneNumberType",
-    "preferredPhoneNumber"
+@XmlType(name = "patronVisitsNames", propOrder = {
+    "nameLinkRole",
+    "nameLinkForm",
+    "name"
 })
-public class PatronPhoneNumbers {
+public class PatronVisitsNames {
 
+    protected String nameLinkRole;
+    protected String nameLinkForm;
     @XmlElement(required = true)
-    protected String phoneNumber;
-    protected String phoneNumberType;
-    protected Boolean preferredPhoneNumber;
+    protected NameComplexType name;
 
     /**
-     * Gets the value of the phoneNumber property.
+     * Gets the value of the nameLinkRole property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getNameLinkRole() {
+        return nameLinkRole;
     }
 
     /**
-     * Sets the value of the phoneNumber property.
+     * Sets the value of the nameLinkRole property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setPhoneNumber(String value) {
-        this.phoneNumber = value;
+    public void setNameLinkRole(String value) {
+        this.nameLinkRole = value;
     }
 
     /**
-     * Gets the value of the phoneNumberType property.
+     * Gets the value of the nameLinkForm property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getPhoneNumberType() {
-        return phoneNumberType;
+    public String getNameLinkForm() {
+        return nameLinkForm;
     }
 
     /**
-     * Sets the value of the phoneNumberType property.
+     * Sets the value of the nameLinkForm property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setPhoneNumberType(String value) {
-        this.phoneNumberType = value;
+    public void setNameLinkForm(String value) {
+        this.nameLinkForm = value;
     }
 
     /**
-     * Gets the value of the preferredPhoneNumber property.
+     * Gets the value of the name property.
      * 
      * @return
      *     possible object is
-     *     {@link Boolean }
+     *     {@link NameComplexType }
      *     
      */
-    public Boolean isPreferredPhoneNumber() {
-        return preferredPhoneNumber;
+    public NameComplexType getName() {
+        return name;
     }
 
     /**
-     * Sets the value of the preferredPhoneNumber property.
+     * Sets the value of the name property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Boolean }
+     *     {@link NameComplexType }
      *     
      */
-    public void setPreferredPhoneNumber(Boolean value) {
-        this.preferredPhoneNumber = value;
+    public void setName(NameComplexType value) {
+        this.name = value;
     }
 
 }

@@ -161,8 +161,8 @@ public final class Main {
 		}
 
 		if (!resourceBundle.getString("archiviststoolkit.releaseType").equals("production")) {
-			JOptionPane.showMessageDialog(fSplashScreen, "WARNING: This is an unreleased version of the Archivists' Toolkit.\n" +
-					"Please use this version for testing purposes only. \nThe Archivists' Toolkit is not responsible for any " +
+			JOptionPane.showMessageDialog(fSplashScreen, "WARNING: This is an unreleased version of the ATReference.\n" +
+					"Please use this version for testing purposes only. \nThe ATReference is not responsible for any " +
 					"data loss resulting from the use of an unreleased software version. \nThanks and happy testing!", "Pre-release software", JOptionPane.WARNING_MESSAGE);
 		}
 

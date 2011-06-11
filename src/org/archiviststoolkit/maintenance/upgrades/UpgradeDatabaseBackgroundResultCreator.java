@@ -198,6 +198,7 @@ public class UpgradeDatabaseBackgroundResultCreator extends DeferredWizardResult
 		allUpgrades.add(new UpgradeTo_2_0_6());
 		allUpgrades.add(new UpgradeTo_2_0_10());
 		allUpgrades.add(new UpgradeTo_2_0_13());
+		allUpgrades.add(new UpgradeTo_2_0_14());
 
         ArrayList<Upgrade> returnSteps = new ArrayList<Upgrade>();
         for(Upgrade step: allUpgrades) {

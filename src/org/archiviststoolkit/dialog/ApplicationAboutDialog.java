@@ -31,7 +31,7 @@ public class ApplicationAboutDialog extends JFrame {
 	
 	public ApplicationAboutDialog() {
 		initComponents();
-		setIconImage(new ImageIcon(this.getClass().getResource("/org/archiviststoolkit/resources/images/launchIcon16x16.gif")).getImage());
+		setIconImage(new ImageIcon(this.getClass().getResource("/org/rac/resources/images/ATR-Logo-16X16.gif")).getImage());
 	}
 
 	private void viewLicesnseAgreementMouseClicked(MouseEvent e) {

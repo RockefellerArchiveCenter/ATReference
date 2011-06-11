@@ -1951,8 +1951,8 @@ public class PatronFields extends RAC_DomainEditorFields {
 		duplicateVisit.setEnabled(false);
 		removeVisit.setEnabled(false);
 		//forms
-		addForm.setEnabled(false);
-		removeForm.setEnabled(false);
+//		addForm.setEnabled(false);
+//		removeForm.setEnabled(false);
 		//publications
 		addPublication.setEnabled(false);
 		removePublication.setEnabled(false);

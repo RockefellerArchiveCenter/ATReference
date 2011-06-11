@@ -344,10 +344,10 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 
 		String title = resourceBundle.getString("archiviststoolkit.application.title") + " - " + ApplicationFrame.getInstance().getAtVersionNumber();
 		if (!resourceBundle.getString("archiviststoolkit.releaseType").equals("production")) {
-			title += " - WARNING: This is an pre-release version of the AT Reference. Please use this version for testing purposes only.";
+			title += " - WARNING: This is an pre-release version of the ATReference. Please use this version for testing purposes only.";
 		}
 		this.setTitle(title);
-		this.setIconImage(new ImageIcon(this.getClass().getResource("/org/archiviststoolkit/resources/images/launchIcon16x16.gif")).getImage());
+		this.setIconImage(new ImageIcon(this.getClass().getResource("/org/rac/resources/images/ATR-Logo-16X16.gif")).getImage());
 
 		workSurfaceContainer = new WorkSurfaceContainer();
 
@@ -1525,7 +1525,7 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 
 	public static String gatherSystemInformation() {
 		String returnString = "";
-		returnString = "AT Reference Version: " + ApplicationFrame.getInstance().getAtVersionNumber();
+		returnString = "ATReference Version: " + ApplicationFrame.getInstance().getAtVersionNumber();
 		returnString += "\nJava Version: " + System.getProperty("java.version");
 		returnString += "\nOperating System: " + System.getProperty("os.name");
 		returnString += "\nOS Version: " + System.getProperty("os.version");

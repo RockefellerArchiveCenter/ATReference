@@ -37,7 +37,7 @@ public class SplashScreen extends JFrame {
 //				getString("archiviststoolkit.releasenumber"));
 		version.setText("version " + ApplicationFrame.getInstance().getAtVersionNumber());
 		setMessageText(initialMessageText);
-		setIconImage(new ImageIcon(this.getClass().getResource("/org/archiviststoolkit/resources/images/launchIcon16x16.gif")).getImage());
+		setIconImage(new ImageIcon(this.getClass().getResource("/org/rac/resources/images/ATR-Logo-16X16.gif")).getImage());
 	}
 
 	private void viewLicesnseAgreementMouseClicked(MouseEvent e) {

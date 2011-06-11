@@ -17,9 +17,9 @@
 #     that cannot be represented by ASCII characters should be written using escaped unicode.
 #     - see the utility 'native2ascii' distributed with your JDK
 #
-# Product Name: AT Reference 2.x Beta
+# Product Name: ATReference 2.5
 # Project File: /Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/installMaker/ArchivistsToolkitInstallMaker.iap_xml
-# Generated:    Mon Apr 18 16:44:24 EDT 2011
+# Generated:    Mon May 02 21:52:41 EDT 2011
 
 
 # Billboard.004f70d5932d.imageName=ucsd_boat.jpg
@@ -55,8 +55,8 @@ Billboard.00565b03932d.imagePath=/Users/leemandell/archivistsToolkit/atProject/i
 # CreateShortcut.feceb6568b76.args=
 CreateShortcut.feceb6568b76.args=
 
-# CreateShortcut.feceb6568b76.destinationName=Archivists' Toolkit Plus 2.x Beta
-CreateShortcut.feceb6568b76.destinationName=Archivists' Toolkit Plus 2.x Beta
+# CreateShortcut.feceb6568b76.destinationName=ATReference 2.5
+CreateShortcut.feceb6568b76.destinationName=ATReference 2.5
 
 # CreateShortcut.feceb6568b76.workingDir=
 CreateShortcut.feceb6568b76.workingDir=
@@ -127,11 +127,11 @@ Installer.fecea3778b60.splashScreenConsoleTitle=Choose Locale...
 # Installer.fecea3778b60.splashScreenGUIConfirm=OK
 Installer.fecea3778b60.splashScreenGUIConfirm=OK
 
-# Installer.fecea3778b60.splashScreenGUIImageName=ATLogo.jpg
-Installer.fecea3778b60.splashScreenGUIImageName=ATLogo.jpg
+# Installer.fecea3778b60.splashScreenGUIImageName=ATR-Logo-full-text.jpg
+Installer.fecea3778b60.splashScreenGUIImageName=ATR-Logo-full-text.jpg
 
-# Installer.fecea3778b60.splashScreenGUIImagePath=/Users/leemandell/archivistsToolkit/atProject/src/org/archiviststoolkit/resources/images/
-Installer.fecea3778b60.splashScreenGUIImagePath=/Users/leemandell/archivistsToolkit/atProject/src/org/archiviststoolkit/resources/images/
+# Installer.fecea3778b60.splashScreenGUIImagePath=/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/src/org/rac/resources/images/
+Installer.fecea3778b60.splashScreenGUIImagePath=/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/src/org/rac/resources/images/
 
 # Installer.fecea3778b60.splashScreenGUIInstructions=
 Installer.fecea3778b60.splashScreenGUIInstructions=
@@ -139,14 +139,14 @@ Installer.fecea3778b60.splashScreenGUIInstructions=
 # Installer.fecea3778b60.splashScreenGUITitle=
 Installer.fecea3778b60.splashScreenGUITitle=
 
-# InstallerInfoData.fecea3878b61.installerName=installATReference2.xBeta
-InstallerInfoData.fecea3878b61.installerName=installATReference2.xBeta
+# InstallerInfoData.fecea3878b61.installerName=installATReference2.5
+InstallerInfoData.fecea3878b61.installerName=installATReference2.5
 
-# InstallerInfoData.fecea3878b61.installerTitle=AT Reference 2.x Beta
-InstallerInfoData.fecea3878b61.installerTitle=AT Reference 2.x Beta
+# InstallerInfoData.fecea3878b61.installerTitle=ATReference 2.5
+InstallerInfoData.fecea3878b61.installerTitle=ATReference 2.5
 
-# InstallerInfoData.fecea3878b61.productName=AT Reference 2.x Beta
-InstallerInfoData.fecea3878b61.productName=AT Reference 2.x Beta
+# InstallerInfoData.fecea3878b61.productName=ATReference 2.5
+InstallerInfoData.fecea3878b61.productName=ATReference 2.5
 
 # InstallFinishAction.fecea4118b6d.installErrorMessage=The installation of $PRODUCT_NAME$ is finished, but some errors occurred during the install.  Please see the installation log for details.
 InstallFinishAction.fecea4118b6d.installErrorMessage=The installation of $PRODUCT_NAME$ is finished, but some errors occurred during the install.  Please see the installation log for details.
@@ -229,8 +229,8 @@ IntroAction.fecea4028b6d.stepTitle=Introduction
 # LicenseAgrAction.fed40a778ba0.resourceName=ecl-license.txt
 LicenseAgrAction.fed40a778ba0.resourceName=ecl-license.txt
 
-# LicenseAgrAction.fed40a778ba0.resourcePath=/Users/leemandell/archivistsToolkit/atProject/installMaker/
-LicenseAgrAction.fed40a778ba0.resourcePath=/Users/leemandell/archivistsToolkit/atProject/installMaker/
+# LicenseAgrAction.fed40a778ba0.resourcePath=/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/installMaker/
+LicenseAgrAction.fed40a778ba0.resourcePath=/Users/leemandell/Consulting/Rockefeller/Archivists-Toolkit-Plus/installMaker/
 
 # LicenseAgrAction.fed40a778ba0.stepPrompt=Installation and Use of $PRODUCT_NAME$ Requires Acceptance of the Following Agreement. Please scroll to the bottom to read the entire agreement.
 LicenseAgrAction.fed40a778ba0.stepPrompt=Installation and Use of $PRODUCT_NAME$ Requires Acceptance of the Following Agreement. Please scroll to the bottom to read the entire agreement.
@@ -241,8 +241,8 @@ LicenseAgrAction.fed40a778ba0.title=License Agreement
 # MakeExecutable.77cb50c38b25.destinationName=MaintenanceWizard
 MakeExecutable.77cb50c38b25.destinationName=MaintenanceWizard
 
-# MakeExecutable.feceb64e8b71.destinationName=AT Reference 2.x Beta
-MakeExecutable.feceb64e8b71.destinationName=AT Reference 2.x Beta
+# MakeExecutable.feceb64e8b71.destinationName=ATReference 2.5
+MakeExecutable.feceb64e8b71.destinationName=ATReference 2.5
 
 # ShortcutLocAction.fecea4098b6d.macPrompt=Where would you like to create aliases?
 ShortcutLocAction.fecea4098b6d.macPrompt=Where would you like to create aliases?
