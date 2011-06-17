@@ -36,4 +36,8 @@
     <command>
         <![CDATA[CREATE INDEX repositories_lang_idx ON Repositories (descriptiveLanguage);]]>
     </command>
+<<<<<<< HEAD
 </commands>
+=======
+</commands>
+>>>>>>> 52725ab... Adding conf file for using the internal database
