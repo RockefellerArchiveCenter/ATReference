@@ -671,7 +671,7 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
 			savedNewRecord = dialog.getSavedNewRecord();
 			try {
 				if (returnStatus == javax.swing.JOptionPane.OK_OPTION) {
-					DomainAccessObject access = DomainAccessObjectFactory.getInstance().getDomainAccessObject(clazz);
+					access = DomainAccessObjectFactory.getInstance().getDomainAccessObject(clazz);
 
 					access.getLongSession(); // make sure we have a long session
 					if (savedNewRecord) {
@@ -683,7 +683,7 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
 					updateRowCount();
  					done = true;
 				} else if (returnStatus == StandardEditor.OK_AND_ANOTHER_OPTION) {
-					DomainAccessObject access = DomainAccessObjectFactory.getInstance().getDomainAccessObject(clazz);
+					access = DomainAccessObjectFactory.getInstance().getDomainAccessObject(clazz);
 
 					access.getLongSession(); // make sure we have a long session
 					if (savedNewRecord) {
@@ -707,11 +707,29 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
 				JOptionPane.showMessageDialog(this, "Can't save, Duplicate record:" + newPatron);
 				((DomainObject) newPatron).removeIdAndAuditInfo();
 				createNewInstance = false;
+
+                // need to get close session here to prevent bug 99
+                // when pressing the save button
+                try {
+                    access.closeLongSessionRollback();
+                } catch (SQLException e2) {
+                    new ErrorDialog("Error resetting session",
+							StringHelper.getStackTrace(persistenceException)).showDialog();
+                }
 			} catch (PersistenceException persistenceException) {
 				if (persistenceException.getCause() instanceof ConstraintViolationException) {
 					JOptionPane.showMessageDialog(this,  "Can't save, Duplicate record:" + newPatron);
 					((DomainObject) newPatron).removeIdAndAuditInfo();
 					createNewInstance = false;
+
+                    // need to close the session here to prevent bug 99
+                    // when pressing the save button
+                    try {
+                        access.closeLongSessionRollback();
+                    } catch (SQLException e2) {
+                        new ErrorDialog("Error resetting session",
+                                StringHelper.getStackTrace(persistenceException)).showDialog();
+                    }
 				} else {
 					done = true;
 					new ErrorDialog("Error saving new record.",
