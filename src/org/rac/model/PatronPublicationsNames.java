@@ -72,6 +72,11 @@ public class PatronPublicationsNames extends DomainObject implements Serializabl
 		this.setForm(form);
 	}
 
+	public PatronPublicationsNames(Names name, PatronPublications patronPublication) {
+		this.setName(name);
+		this.setPatronPublication(patronPublication);
+	}
+
 	// ********************** Accessor Methods ********************** //
 
 	public Long getPatronPublicationsNamesId() {

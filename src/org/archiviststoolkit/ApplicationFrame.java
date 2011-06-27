@@ -63,7 +63,6 @@ import org.ananas.mac.menu.ApplicationItem;
 import org.rac.dialogs.ServicesManagement;
 import org.rac.importer.ImportPatronData;
 import org.rac.dialogs.PatronManagement;
-import org.rac.importer.ImportPatronData2;
 import org.rac.model.*;
 import org.rac.model.validators.*;
 import org.rac.reports.SubjectReferenceReport;
@@ -1357,55 +1356,55 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 			}
 
 			//rac stuff
-		} else if (actionEvent.getSource() == this.RAC_nameImport) {
-
-
-			filechooser = new ATFileChooser(new SimpleFileFilter(".xml"));
-
-			if (filechooser.showOpenDialog(this, "Import") == JFileChooser.APPROVE_OPTION) {
-				controller = new DomainImportController();
-				handler = new ImportPatronData2();
-				Thread performer = new Thread(new Runnable() {
-					public void run() {
-						InfiniteProgressPanel monitor = ATProgressUtil.createModalProgressMonitor(ApplicationFrame.getInstance(), 1000, true);
-						monitor.start("Importing patrons...");
-						try {
-							//load the custom patron validator
-							ValidatorFactory validatorFactory = ValidatorFactory.getInstance();
-							validatorFactory.addValidator(Patrons.class, new PatronsImportValidator());
-							validatorFactory.addValidator(PatronFunding.class, new PatronFundingValidator());
-							validatorFactory.addValidator(PatronPhoneNumbers.class, new PatronPhoneNumbersValidator());
-							validatorFactory.addValidator(PatronVisits.class, new PatronVisitsValidator());
-							validatorFactory.addValidator(PatronPublications.class, new PatronPublicationsValidator());
-							validatorFactory.addValidator(PatronAddresses.class, new PatronAddressesValidator());
-							validatorFactory.addValidator(Services.class, new ServicesValidator());
-//							File importFile = filechooser.getSelectedFile();
-							handler.importFile(filechooser.getSelectedFile(), controller, monitor);
-							//restore the regular names validator
-							validatorFactory.addValidator(Patrons.class, new PatronsValidator());
-						} catch (ImportException e) {
-							monitor.close();
-							new ErrorDialog(ApplicationFrame.getInstance(), "Import Problem", e).showDialog();
-						} finally {
-							monitor.close();
-						}
-
-						monitor = ATProgressUtil.createModalProgressMonitor(ApplicationFrame.getInstance(), 1000);
-						monitor.start("Loading lookup lists...");
-						try {
-							LookupListUtils.loadLookupLists();
-							monitor.setTextLine("Loading editors", 1);
-							DomainEditorFactory.getInstance().updateDomainEditors();
-						} finally {
-							monitor.close();
-						}
-					}
-				}, "ImportAccessionsXML");
-				performer.start();
-			}
-
-
-
+//		} else if (actionEvent.getSource() == this.RAC_nameImport) {
+//
+//
+//			filechooser = new ATFileChooser(new SimpleFileFilter(".xml"));
+//
+//			if (filechooser.showOpenDialog(this, "Import") == JFileChooser.APPROVE_OPTION) {
+//				controller = new DomainImportController();
+//				handler = new ImportPatronData2();
+//				Thread performer = new Thread(new Runnable() {
+//					public void run() {
+//						InfiniteProgressPanel monitor = ATProgressUtil.createModalProgressMonitor(ApplicationFrame.getInstance(), 1000, true);
+//						monitor.start("Importing patrons...");
+//						try {
+//							//load the custom patron validator
+//							ValidatorFactory validatorFactory = ValidatorFactory.getInstance();
+//							validatorFactory.addValidator(Patrons.class, new PatronsImportValidator());
+//							validatorFactory.addValidator(PatronFunding.class, new PatronFundingValidator());
+//							validatorFactory.addValidator(PatronPhoneNumbers.class, new PatronPhoneNumbersValidator());
+//							validatorFactory.addValidator(PatronVisits.class, new PatronVisitsValidator());
+//							validatorFactory.addValidator(PatronPublications.class, new PatronPublicationsValidator());
+//							validatorFactory.addValidator(PatronAddresses.class, new PatronAddressesValidator());
+//							validatorFactory.addValidator(Services.class, new ServicesValidator());
+////							File importFile = filechooser.getSelectedFile();
+//							handler.importFile(filechooser.getSelectedFile(), controller, monitor);
+//							//restore the regular names validator
+//							validatorFactory.addValidator(Patrons.class, new PatronsValidator());
+//						} catch (ImportException e) {
+//							monitor.close();
+//							new ErrorDialog(ApplicationFrame.getInstance(), "Import Problem", e).showDialog();
+//						} finally {
+//							monitor.close();
+//						}
+//
+//						monitor = ATProgressUtil.createModalProgressMonitor(ApplicationFrame.getInstance(), 1000);
+//						monitor.start("Loading lookup lists...");
+//						try {
+//							LookupListUtils.loadLookupLists();
+//							monitor.setTextLine("Loading editors", 1);
+//							DomainEditorFactory.getInstance().updateDomainEditors();
+//						} finally {
+//							monitor.close();
+//						}
+//					}
+//				}, "ImportAccessionsXML");
+//				performer.start();
+//			}
+//
+//
+//
 
 
 			final File file = ImportUtils.chooseFile(null);

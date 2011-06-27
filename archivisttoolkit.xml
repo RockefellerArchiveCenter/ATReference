@@ -254,14 +254,32 @@
 		</copy>
 	</target>
 
-	<target name="buildInstallerQA" depends="create-jar">
-		<buildinstaller
-				IAlocation="/Applications/Macrovision/InstallAnywhere2009"
-				IAProjectFile="${module.archivisttoolkit.basedir}/installMaker/ArchivistsToolkitInstallMaker.iap_xml"
-				BuildMacOSX="true"
-				BuildWindowsWithoutVM="true"
-				BuildOutputLocation="dist"/>
-	</target>
+    <target name="buildInstallerQA" depends="create-jar">
+        <buildinstaller
+                IAlocation="/Applications/Macrovision/InstallAnywhere2009"
+                IAProjectFile="${module.archivisttoolkit.basedir}/installMaker/ArchivistsToolkitInstallMaker.iap_xml"
+                BuildMacOSX="true"
+                BuildWindowsWithoutVM="true"
+                BuildOutputLocation="dist"/>
+    </target>
+
+    <target name="buildInstallerATReference_2.5" depends="create-jar">
+        <buildinstaller
+                IAlocation="/Applications/Macrovision/InstallAnywhere2009"
+                IAProjectFile="${module.archivisttoolkit.basedir}/installMaker/ATReference_2.5/ATReference_2.5.iap_xml"
+                BuildMacOSX="true"
+                BuildWindowsWithoutVM="true"
+                BuildOutputLocation="dist"/>
+    </target>
+
+    <target name="buildInstallerATReference_2.5_prerelease" depends="create-jar">
+        <buildinstaller
+                IAlocation="/Applications/Macrovision/InstallAnywhere2009"
+                IAProjectFile="${module.archivisttoolkit.basedir}/installMaker/ATReference_2.5.x_prerelease/ATReference_2.5.x_prereleaseBuild.iap_xml"
+                BuildMacOSX="true"
+                BuildWindowsWithoutVM="true"
+                BuildOutputLocation="dist"/>
+    </target>
 
 	<target name="buildInstallerFull" depends="create-jar">
 		<buildinstaller

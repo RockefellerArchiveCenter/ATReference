@@ -73,9 +73,9 @@
     <xs:complexType name="patronVisits">
         <xs:sequence>
             <xs:element name="contactArchivist" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="researchPurpose" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="topic" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="visitDate" type="xs:date" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="researchPurpose" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="patronVisitsSubjects" type="patronVisitsSubjects" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="patronVisitsNames" type="patronVisitsNames" minOccurs="0" maxOccurs="unbounded"></xs:element>
         </xs:sequence>
@@ -170,9 +170,18 @@
         <xs:sequence>
             <xs:element name="publicationDate" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="publicationTitle" type="xs:string" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="publicationType" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="publicationType" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="publisher" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="collaborators" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="publicationAuthor" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="serialTitle" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="locationOfPublication" type="xs:string" minOccurs="0" maxOccurs="0"/>
+            <xs:element name="issueVolume" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="pageNumbers" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="url" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="dateAccessed" type="xs:date" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="copyReceived" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="other" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="patronPublicationsSubjects" type="patronPublicationsSubjects" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="patronPublicationsNames" type="patronPublicationsNames" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
