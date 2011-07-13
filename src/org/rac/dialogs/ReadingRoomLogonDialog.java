@@ -304,7 +304,7 @@ public class ReadingRoomLogonDialog extends JDialog {
 			int status = dialog.showDialog();
 			if (status == JOptionPane.OK_OPTION) {
 				if (newRecord) {
-					patronDAO.updateLongSession(patrons);
+					patronDAO.update(patrons);
 				} else {
 					patronDAO.updateLongSession(patrons);
 				}
