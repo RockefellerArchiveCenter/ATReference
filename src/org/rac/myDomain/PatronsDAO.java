@@ -86,8 +86,15 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			}
 		}
 
+        // get the query editor
+        PatronQueryEditor patronQueryEditor = (PatronQueryEditor) editor;
+        
+        // deal with funding date range search
+        if(patronQueryEditor.areFundingDatesFilledOut()) {
+
+        }
+
 		//deal with subject and names search
-		PatronQueryEditor patronQueryEditor = (PatronQueryEditor) editor;
 		Subjects selectedSubject = patronQueryEditor.getSelectedSubject();
 		Names selectedName = patronQueryEditor.getSelectedName();
 		Collection patrons = null;
@@ -209,9 +216,9 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 	}
 
 	/**
-	 * Method to search by query editory using long session
+	 * Method to search by query editor using long session
 	 *
-	 * @param editor		The quesry editor
+	 * @param editor		The query editor
 	 * @param progressPanel The progress panel
 	 * @return The result that were found or an empty string
 	 */
