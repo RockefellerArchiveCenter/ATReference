@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.  
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.  
  * All rights reserved. 
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL) 
@@ -243,11 +243,29 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 		return criteria;
 	}
 
+    /**
+     * Method to look up a patron record by the first, last name, and suffix.
+     * If suffix is empty, then just search by the first and last name.
+     *
+     * @param firstName
+     * @param lastName
+     * @param suffix
+     * @return  patron record that is found
+     */
+    public Patrons queryByFirstLastNameSuffix(String firstName, String lastName, String suffix) {
+        Session session = SessionFactory.getInstance().openSession(getPersistentClass());
+
+        return (Patrons) session.createCriteria(this.getPersistentClass())
+				.add(Restrictions.eq(Patrons.PROPERTYNAME_REST_OF_NAME, firstName))
+				.add(Restrictions.eq(Patrons.PROPERTYNAME_PRIMARY_NAME, lastName))
+                .add(Restrictions.eq(Patrons.PROPERTYNAME_SUFFIX, suffix)).uniqueResult();
+	}
+
 	public Patrons queryByFirstLastName(String firstName, String lastName) {
 		Session session = SessionFactory.getInstance().openSession(getPersistentClass());
-		return (Patrons) session.createCriteria(this.getPersistentClass())
+
+        return (Patrons) session.createCriteria(this.getPersistentClass())
 				.add(Restrictions.eq(Patrons.PROPERTYNAME_REST_OF_NAME, firstName))
 				.add(Restrictions.eq(Patrons.PROPERTYNAME_PRIMARY_NAME, lastName)).uniqueResult();
-
 	}
 }

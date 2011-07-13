@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_22" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_23" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -74,7 +74,7 @@
              </void> 
              <void method="setProperty"> 
               <string>$rowSpecs</string> 
-              <string>default, linegap, default</string> 
+              <string>default, linegap, default, linegap, default</string> 
              </void> 
             </object> 
             <void method="setProperty"> 
@@ -227,6 +227,78 @@
               <void method="setProperty"> 
                <string>insets</string> 
                <object idref="Insets0"/> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JLabel</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
+               <string>Suffix</string> 
+              </void> 
+              <void property="name"> 
+               <string>label3</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.postInitCode</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field}, Names.class, Names.PROPERTYNAME_PERSONAL_SUFFIX);</string> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridX</string> 
+               <int>1</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>5</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>insets</string> 
+               <object class="java.awt.Insets"> 
+                <int>0</int> 
+                <int>5</int> 
+                <int>0</int> 
+                <int>0</int> 
+               </object> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JTextField</string> 
+              <void property="name"> 
+               <string>suffix</string> 
+              </void> 
+              <void method="auxiliary"> 
+               <void method="setProperty"> 
+                <string>JavaCodeGenerator.variableGetter</string> 
+                <boolean>true</boolean> 
+               </void> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridX</string> 
+               <int>3</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>5</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>insets</string> 
+               <object class="java.awt.Insets"> 
+                <int>0</int> 
+                <int>5</int> 
+                <int>0</int> 
+                <int>0</int> 
+               </object> 
               </void> 
              </object> 
             </void> 

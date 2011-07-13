@@ -39,6 +39,7 @@ import org.archiviststoolkit.exceptions.UnsupportedDatabaseType;
 import org.archiviststoolkit.report.ReportFactory;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Level;
+import org.hibernate.NonUniqueResultException;
 import org.rac.dialogs.ReadingRoomLogonDialog;
 import org.rac.utils.PatronValidatorUtils;
 
@@ -303,47 +304,37 @@ public final class Main {
 		logger.log(Level.INFO, "\nApplication Startup times\n" + ApplicationFrame.getInstance().getStartupLog());
 
 		//todo RAC this is for the reference module for reading rooms
-		if (ApplicationFrame.getInstance().getCurrentUser().getAccessClass() == Users.ACCESS_CLASS_REFERENCE_STAFF) {
-//			try {
-			EventQueue.invokeLater(new SplashScreenCloser());
-				 int status = JOptionPane.CANCEL_OPTION;
-				ReadingRoomLogonDialog logonDialog = new ReadingRoomLogonDialog(ApplicationFrame.getInstance());
-			PatronValidatorUtils.loadPatronValidators();
-				 do {
-					 logonDialog.setInitialFocus();
-					 status = logonDialog.showDialog();
-					 if (status == JOptionPane.OK_OPTION) {
-						 try {
-							 logonDialog.searchAndDisplayRecord();
-						 } catch (LookupException e) {
-							 new ErrorDialog("Error displaying patron record", e).showDialog();
-						 } catch (PersistenceException e) {
-							 new ErrorDialog("Error saving record", e).showDialog();
-						 } catch (UnsupportedTableModelException e) {
-							 new ErrorDialog("Error creating dummy calling table", e).showDialog();
-						 }
-					 }
-					 logonDialog.clearData();
-				 } while (status == JOptionPane.OK_OPTION);
-			System.exit(0);
-			     
-//				 PatronManagement dialog = new PatronManagement();
-//				 dialog.setDialogTitle("Patron Records");
-//				dialog.setReadingRoomLogon(true);
-//				 ValidatorFactory validatorFactory = ValidatorFactory.getInstance();
-//				 //load the custom patron validator
-//				 validatorFactory.addValidator(Names.class, new PatronsValidator());
-//				 dialog.showDialog();
-//				 //restore the regular names validator
-//				 validatorFactory.addValidator(Names.class, new NamesValidator());
-//			 } catch (DomainEditorCreationException e) {
-//				 new ErrorDialog("Error creating editor for Patrons", e).showDialog();
-//			 }
-		} else {
-			mainFrame.setVisible(true);
-		}
-//		  }
-//		}.start();
+        if (ApplicationFrame.getInstance().getCurrentUser().getAccessClass() == Users.ACCESS_CLASS_REFERENCE_STAFF) {
+            EventQueue.invokeLater(new SplashScreenCloser());
+            int status = JOptionPane.CANCEL_OPTION;
+            ReadingRoomLogonDialog logonDialog = new ReadingRoomLogonDialog(ApplicationFrame.getInstance());
+            PatronValidatorUtils.loadPatronValidators();
+            do {
+                logonDialog.setInitialFocus();
+                status = logonDialog.showDialog();
+                if (status == JOptionPane.OK_OPTION) {
+                    try {
+                        logonDialog.searchAndDisplayRecord();
+                    } catch (LookupException e) {
+                        new ErrorDialog("Error displaying patron record", e).showDialog();
+                    } catch (PersistenceException e) {
+                        new ErrorDialog("Error saving record", e).showDialog();
+                    } catch (UnsupportedTableModelException e) {
+                        new ErrorDialog("Error creating dummy calling table", e).showDialog();
+                    } catch (NonUniqueResultException e) {
+                        JOptionPane.showMessageDialog(logonDialog,
+                                "Duplicate Name Error\nPlease see staff personnel");
+                    }
+                }
+
+                logonDialog.clearData();
+
+            } while (status == JOptionPane.OK_OPTION);
+
+            System.exit(0);
+        } else {
+            mainFrame.setVisible(true);
+        }
 
 		EventQueue.invokeLater(new SplashScreenCloser());
 
