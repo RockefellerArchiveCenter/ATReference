@@ -159,7 +159,7 @@ public class ATDateUtils {
     }
 
     /**
-     * Method to format an inputed date to the iso format of either
+     * Method to format an input date to the iso format of either
      * yyyy, yyyy-mm, or yyyy-mm-dd
      * @param date The input date to format
      * @return The formated iso date
@@ -198,7 +198,7 @@ public class ATDateUtils {
      * @return The year paded with zero or an empty string if not a valid year
      */
     public static String padYear(String year) {
-        // fisrt check to see if it is a year that needs to be padded
+        // first check to see if it is a year that needs to be padded
         if(year.matches("\\d{4}")) {
             return year;
         } else if(year.matches("\\d{3}")) {
@@ -279,5 +279,21 @@ public class ATDateUtils {
         } catch(ParseException pe) {
             return null;
         }
+    }
+
+    /**
+     * Method to test if a date is within a certain range.
+     * It works even if testDate was exactly equal to one of the 
+     * end cases.
+     *
+     * @param dateRange
+     * @param testDate
+     * @return
+     */
+    public static boolean isWithinRange(Date[] dateRange, Date testDate) {
+        Date startDate = dateRange[0];
+        Date endDate = dateRange[1];
+
+        return !(testDate.before(startDate) || testDate.after(endDate));
     }
 }

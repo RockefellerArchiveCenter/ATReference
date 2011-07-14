@@ -1038,10 +1038,9 @@ public class PatronQueryEditor extends QueryEditor {
 		CriteriaRelationshipPairs pair;
 		String humanReadableSearchString;
 
-// Patron Funding
+        // Patron Funding
 		if (areFundingDatesFilledOut()) {
-			pair = new CriteriaRelationshipPairs(Restrictions.ge(PatronFunding.PROPERTYNAME_FUNDING_DATE, fundingStartDate), Patrons.PROPERTYNAME_PATRON_FUNDING);
-			pair.addCriteria(Restrictions.le(PatronFunding.PROPERTYNAME_FUNDING_DATE, fundingEndDate));
+			pair = new CriteriaRelationshipPairs(Restrictions.isNotNull(PatronFunding.PROPERTYNAME_FUNDING_DATE), Patrons.PROPERTYNAME_PATRON_FUNDING);
 			pair.setHumanReadableSearchString(PatronFunding.PROPERTYNAME_FUNDING_DATE + " is between " + fundingDateStart.getText() + " and " + fundingDateEnd.getText());
 			criterionList.add(pair);
 		}
@@ -1149,5 +1148,19 @@ public class PatronQueryEditor extends QueryEditor {
 		fundingEndDate = (Date)fundingDateEnd.getValue();
 		return areDatesFilledOut(fundingStartDate, fundingEndDate);
 	}
+
+    /**
+     * Method to return the funding dates in a Date array
+     * 
+     * @return
+     */
+    public Date[] getFundingDates() {
+        Date[] fundingDates = new Date[2];
+
+        fundingDates[0] = (Date)fundingDateStart.getValue();
+		fundingDates[1] = (Date)fundingDateEnd.getValue();
+
+        return fundingDates;
+    }
 
 }

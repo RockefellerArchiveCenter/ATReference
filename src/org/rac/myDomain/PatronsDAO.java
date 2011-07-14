@@ -25,6 +25,8 @@ import org.archiviststoolkit.dialog.QueryEditor;
 import org.archiviststoolkit.hibernate.ATSearchCriterion;
 import org.archiviststoolkit.hibernate.SessionFactory;
 import org.archiviststoolkit.model.Names;
+import org.archiviststoolkit.util.ATDateUtils;
+import org.rac.model.PatronFunding;
 import org.rac.model.PatronPublications;
 import org.rac.model.PatronVisits;
 import org.archiviststoolkit.model.Subjects;
@@ -38,6 +40,9 @@ import org.hibernate.criterion.Restrictions;
 import org.rac.dialogs.PatronQueryEditor;
 import org.rac.model.Patrons;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class PatronsDAO extends DomainAccessObjectImpl {
@@ -57,8 +62,6 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 		Criteria criteria;
 		Set returnCollection = new HashSet();
 		Set subsequentCollections = null;
-		HashMap<DomainObject, String> contextMap = new HashMap<DomainObject, String>();
-		boolean includeComponents = false;
 
 		//this is a loop of set intersections. In the first pass create a set
 		//in all subsequent passes create a new set and perform an intersection on the
@@ -74,10 +77,8 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			} else {
 				subsequentCollections = new HashSet(criteria.list());
 			}
-			if (includeComponents) {
-				addContextInfo(contextMap, criteria.list(), criteriaPair.getContext());
-			}
-			SessionFactory.getInstance().closeSession(session);
+
+            SessionFactory.getInstance().closeSession(session);
 
 			if (firstPass) {
 				firstPass = false;
@@ -86,20 +87,13 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			}
 		}
 
-        // get the query editor
+        // deal with subject and names and funding date range search
         PatronQueryEditor patronQueryEditor = (PatronQueryEditor) editor;
-        
-        // deal with funding date range search
-        if(patronQueryEditor.areFundingDatesFilledOut()) {
-
-        }
-
-		//deal with subject and names search
-		Subjects selectedSubject = patronQueryEditor.getSelectedSubject();
+        Subjects selectedSubject = patronQueryEditor.getSelectedSubject();
 		Names selectedName = patronQueryEditor.getSelectedName();
-		Collection patrons = null;
 		String localHumanReadableSearchString;
-		Set subjectCollection = new HashSet();
+		Collection patrons = null;
+        Set subjectCollection = new HashSet();
 		Set nameCollection = new HashSet();
 		Set researchPurposeCollection = new HashSet();
 
@@ -182,12 +176,24 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 
 		}
 
+        // Deal with funding date range search. Since the funding date is stored
+        // has an iso date string, we need to do the actually do the
+        // date range search on all patron records that where returned, removing
+        // those that didn't match the date range.
+        Set fundingDateCollection = new HashSet();
+
+        if(patronQueryEditor.areFundingDatesFilledOut()) {
+            Date[] fundingDates = patronQueryEditor.getFundingDates();
+            findPatronsByFundingDates(fundingDateCollection, returnCollection, fundingDates);
+            returnCollection = fundingDateCollection;
+        }
+
 		progressPanel.close();
-		return returnCollection;
+
+        return returnCollection;
 	}
 
 	private void findPatronsBySubject(Set subjectCollection, Collection patrons, ArrayList linkedToSubjects) {
-		PatronVisits patronVisit;
 		linkedToSubjects.toArray();
 		Patrons patronToAdd = null;
 		for (Object o : linkedToSubjects) {
@@ -213,6 +219,49 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			patrons.add(patronToAdd);
 		}
 		nameCollection.addAll(patrons);
+	}
+
+    /**
+     * Method to find patrons by funding date range search
+     * 
+     * @param fundingDatesCollection
+     * @param returnCollection
+     * @param fundingDates
+     */
+    private void findPatronsByFundingDates(Set fundingDatesCollection, Set returnCollection, Date[] fundingDates) {
+		getLongSession(); // get the long session so we can get funding dates
+
+        Patrons patronToAdd = null;
+
+        DateFormat isodf = new SimpleDateFormat("yyyy-MM-dd");
+
+        for (Object o : returnCollection) {
+			Patrons patron = (Patrons)o;
+
+            try {
+                patronToAdd = (Patrons)findByPrimaryKeyLongSession(patron.getIdentifier());
+                Set<PatronFunding> patronFundings = patronToAdd.getPatronFunding();
+                for(PatronFunding patronFunding: patronFundings) {
+                    // convert the dateString which should be in the
+                    // iso format yyyy-MM-dd to a date object
+                    String dateString = patronFunding.getFundingDate();
+                    Date fundDate = isodf.parse(dateString);
+
+                    if(ATDateUtils.isWithinRange(fundingDates, fundDate)) {
+                        fundingDatesCollection.add(patron);
+                        // break out of inner loop since one of the
+                        // funding dates matched
+                        break;
+                    }
+
+                    System.out.println("Date is " + dateString);
+                }
+            } catch(LookupException e ) {
+                e.printStackTrace();
+            } catch(ParseException e) {
+                e.printStackTrace();
+            }
+		}
 	}
 
 	/**

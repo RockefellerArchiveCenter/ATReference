@@ -69,7 +69,7 @@ public class ConnectionInformation extends WizardPage {
         String databaseType = (String) databaseTypes.getSelectedItem();
         if (wizardType.equals(ChooseOperation.VALUE_INITIALIZE)) {
             try {
-                // reset the seesion factory and set the database type
+                // reset the session factory and set the database type
                 SessionFactory.resetFactory();
                 SessionFactory.setDatabaseType(databaseType);
 
@@ -78,7 +78,7 @@ public class ConnectionInformation extends WizardPage {
                 String username = getUserName().getText();
                 String password = getPassword().getText();
 
-                // check to make sure that an empty database is being initilized
+                // check to make sure that an empty database is being initialized
                 return DatabaseConnectionUtils.isDatabaseEmpty(databaseType, databaseUrl, username, password);
             } catch (UnsupportedDatabaseType unsupportedDatabaseType) {
                 new ErrorDialog("", unsupportedDatabaseType).showDialog();
