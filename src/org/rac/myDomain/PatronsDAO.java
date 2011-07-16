@@ -22,23 +22,21 @@ package org.rac.myDomain;
 
 import org.archiviststoolkit.dialog.ErrorDialog;
 import org.archiviststoolkit.dialog.QueryEditor;
+import org.archiviststoolkit.exceptions.DuplicateLinkException;
+import org.archiviststoolkit.exceptions.MergeException;
 import org.archiviststoolkit.hibernate.ATSearchCriterion;
 import org.archiviststoolkit.hibernate.SessionFactory;
 import org.archiviststoolkit.model.Names;
 import org.archiviststoolkit.util.ATDateUtils;
-import org.rac.model.PatronFunding;
-import org.rac.model.PatronPublications;
-import org.rac.model.PatronVisits;
+import org.hibernate.*;
+import org.rac.model.*;
 import org.archiviststoolkit.model.Subjects;
 import org.archiviststoolkit.mydomain.*;
 import org.archiviststoolkit.swing.InfiniteProgressPanel;
 import org.archiviststoolkit.util.StringHelper;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Restrictions;
 import org.rac.dialogs.PatronQueryEditor;
-import org.rac.model.Patrons;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -344,5 +342,167 @@ public class PatronsDAO extends DomainAccessObjectImpl {
         return (Patrons) session.createCriteria(this.getPersistentClass())
 				.add(Restrictions.eq(Patrons.PROPERTYNAME_REST_OF_NAME, firstName))
 				.add(Restrictions.eq(Patrons.PROPERTYNAME_PRIMARY_NAME, lastName)).uniqueResult();
+	}
+
+    /**
+     * Method to perform merging of patron records. Essentially, it will ont copy the linked records
+     * into the patron record being merged to.
+     *
+     * @param mergeFrom
+     * @param mergeTo
+     * @param progressPanel
+     * @return
+     * @throws MergeException
+     */
+    public int merge(Collection<DomainObject> mergeFrom, DomainObject mergeTo, InfiniteProgressPanel progressPanel) throws MergeException {
+		Session session = SessionFactory.getInstance().openSession();
+		Transaction tx = session.beginTransaction();
+
+        Patrons patronMergeTo = (Patrons)mergeTo;
+		session.lock(patronMergeTo, LockMode.NONE);
+
+		Patrons patron;
+		String message;
+
+        int totalCount = 0;
+		int patronsToMerge = mergeFrom.size() - 1;
+		int patronMerged = 1;
+
+		for (DomainObject domainObject: mergeFrom) {
+			try {
+				patron = (Patrons)domainObject;
+				if (!patron.equals(patronMergeTo)) {
+					session.lock(patron, LockMode.NONE);
+
+                    progressPanel.setTextLine("Merging (record " + patronMerged++ + " of " + patronsToMerge + ")...", 1);
+					progressPanel.setTextLine(patron + " -> " + patronMergeTo, 2);
+
+                    int count = 0;
+					int numberOfLinks = 0;
+
+                    // Transfer the patron addresses
+                    count = 1;
+                    numberOfLinks = patron.getPatronAddresses().size();
+					for (PatronAddresses address: patron.getPatronAddresses()) {
+						try {
+							message = "relationship " + count++ + " of " + numberOfLinks;
+							System.out.println(message);
+							progressPanel.setTextLine(message, 3);
+                            address.setPatron(patronMergeTo);
+                            address.setPreferredAddress(false);
+							patronMergeTo.addPatonsAddresses(address);
+							totalCount++;
+						} catch (IllegalArgumentException e) {
+							//do nothing
+						}
+					}
+
+                    // Transfer the patron visits
+                    count = 1;
+                    numberOfLinks = patron.getPatronVisits().size();
+					for (PatronVisits visit: patron.getPatronVisits()) {
+						try {
+							message = "relationship " + count++ + " of " + numberOfLinks;
+							System.out.println(message);
+							progressPanel.setTextLine(message, 3);
+                            visit.setPatron(patronMergeTo);
+							patronMergeTo.addPatronVisit(visit);
+							totalCount++;
+						} catch (IllegalArgumentException e) {
+							//do nothing
+						}
+					}
+
+                    // Transfer the patron publications
+                    count = 1;
+                    numberOfLinks = patron.getPatronPublications().size();
+					for (PatronPublications publication: patron.getPatronPublications()) {
+						try {
+							message = "relationship " + count++ + " of " + numberOfLinks;
+							System.out.println(message);
+							progressPanel.setTextLine(message, 3);
+                            publication.setPatron(patronMergeTo);
+							patronMergeTo.addPatronPublication(publication);
+							totalCount++;
+						} catch (IllegalArgumentException e) {
+							//do nothing
+						}
+					}
+
+                    // Transfer the patron funding
+                    count = 1;
+                    numberOfLinks = patron.getPatronFunding().size();
+					for (PatronFunding funding: patron.getPatronFunding()) {
+						try {
+							message = "relationship " + count++ + " of " + numberOfLinks;
+							System.out.println(message);
+							progressPanel.setTextLine(message, 3);
+                            funding.setPatron(patronMergeTo);
+							patronMergeTo.addPatronFunding(funding);
+							totalCount++;
+						} catch (IllegalArgumentException e) {
+							//do nothing
+						}
+					}
+
+                    // Transfer the patron phone number
+                    count = 1;
+                    numberOfLinks = patron.getPatronPhoneNumbers().size();
+					for (PatronPhoneNumbers phone: patron.getPatronPhoneNumbers()) {
+						try {
+							message = "relationship " + count++ + " of " + numberOfLinks;
+							System.out.println(message);
+							progressPanel.setTextLine(message, 3);
+                            phone.setPatron(patronMergeTo);
+                            phone.setPreferredPhoneNumber(false);
+							patronMergeTo.addPatronPhoneNumbers(phone);
+							totalCount++;
+						} catch (IllegalArgumentException e) {
+							//do nothing
+						}
+					}
+
+                    // Transfer the patron forms
+                    count = 1;
+                    numberOfLinks = patron.getPatronForms().size();
+					for (PatronForms form: patron.getPatronForms()) {
+						try {
+							message = "relationship " + count++ + " of " + numberOfLinks;
+							System.out.println(message);
+							progressPanel.setTextLine(message, 3);
+                            form.setPatron(patronMergeTo);
+							patronMergeTo.addPatronForms(form);
+							totalCount++;
+						} catch (IllegalArgumentException e) {
+							//do nothing
+						}
+					}
+
+                    /**
+                                  * TODO 7/15/2011 Add support for merging services here
+                                 **/
+
+                    // Set all link records to null, so we don't get a hibernate
+                    // exception complaining about object will be re-created by
+                    // cascade
+                    patron.setPatronAddresses(null);
+                    patron.setPatronVisits(null);
+                    patron.setPatronPublications(null);
+                    patron.setPatronFunding(null);
+                    patron.setPatronPhoneNumbers(null);
+                    patron.setPatronForms(null);
+
+                    // now delete this patron record
+                    session.delete(patron);
+				}
+			} catch (HibernateException e) {
+				throw new MergeException("Error merging patrons", e);
+			}
+		}
+
+        session.update(patronMergeTo);
+		tx.commit();
+		session.close();
+		return totalCount;
 	}
 }
