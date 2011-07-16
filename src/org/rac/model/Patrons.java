@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -61,6 +61,7 @@ public class Patrons extends DomainObject {
 	public static final String PROPERTYNAME_EMAIL1 = "email1";
 	public static final String PROPERTYNAME_EMAIL2 = "email2";
 
+    public static final String PROPERTYNAME_INACTIVE = "inactive";
 
 	public static final String PROPERTYNAME_PATRON_VISITS = "patronVisits";
 	public static final String PROPERTYNAME_PATRON_FUNDING = "patronFunding";
@@ -150,8 +151,6 @@ public class Patrons extends DomainObject {
 	@ExcludeFromDefaultValues
 	private Boolean createSortNameAutomatically = true;
 
-
-
 	@IncludeInApplicationConfiguration(3)
 	@ExcludeFromDefaultValues
 	@StringLengthValidationRequried
@@ -174,6 +173,10 @@ public class Patrons extends DomainObject {
 
 	@IncludeInApplicationConfiguration
 	private String email2 = "";
+
+    @IncludeInApplicationConfiguration
+	@ExcludeFromDefaultValues
+	private Boolean inactive;
 
 	@IncludeInApplicationConfiguration
 	private String howDidYouHearAboutUs = "";
@@ -272,8 +275,6 @@ public class Patrons extends DomainObject {
 	public void setPatronId(Long patronId) {
 		this.patronId = patronId;
 	}
-
-
 
 
 	/**
@@ -776,7 +777,15 @@ public class Patrons extends DomainObject {
 		this.email2 = email2;
 	}
 
-	public Repositories getRepository() {
+    public Boolean getInactive() {
+        return inactive;
+    }
+
+    public void setInactive(Boolean inactive) {
+        this.inactive = inactive;
+    }
+
+    public Repositories getRepository() {
 		return repository;
 	}
 

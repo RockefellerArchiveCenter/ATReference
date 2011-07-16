@@ -1,5 +1,5 @@
 /*
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -114,6 +114,7 @@ public class PatronQueryEditor extends QueryEditor {
 
 		} else {
 			status = javax.swing.JOptionPane.OK_OPTION;
+            setAlternateQuery(false);
 			this.setVisible(false);
 		}
 	}
@@ -250,7 +251,7 @@ public class PatronQueryEditor extends QueryEditor {
         fieldSelector2 = new JComboBox();
         placeHolder2 = new QueryEditorTextPanel();
         buttonBar2 = new JPanel();
-        noneActiveCheckBox1 = new JCheckBox();
+        inactiveCheckBox1 = new JCheckBox();
         cancelButton2 = new JButton();
         queryButton = new JButton();
         classSpecificPanel = new JPanel();
@@ -299,7 +300,7 @@ public class PatronQueryEditor extends QueryEditor {
         label22 = new JLabel();
         addressRegion = new JTextField();
         buttonBar = new JPanel();
-        noneActiveCheckBox2 = new JCheckBox();
+        inactiveCheckBox2 = new JCheckBox();
         cancelButton = new JButton();
         queryButton2 = new JButton();
         CellConstraints cc = new CellConstraints();
@@ -470,9 +471,11 @@ public class PatronQueryEditor extends QueryEditor {
                                 },
                                 RowSpec.decodeSpecs("pref")));
 
-                            //---- noneActiveCheckBox1 ----
-                            noneActiveCheckBox1.setText("Include Non-Active Patrons");
-                            buttonBar2.add(noneActiveCheckBox1, cc.xy(2, 1));
+                            //---- inactiveCheckBox1 ----
+                            inactiveCheckBox1.setText("Include Inactive Patrons");
+                            inactiveCheckBox1.setOpaque(false);
+                            inactiveCheckBox1.setSelected(true);
+                            buttonBar2.add(inactiveCheckBox1, cc.xy(2, 1));
 
                             //---- cancelButton2 ----
                             cancelButton2.setText("Cancel");
@@ -818,9 +821,11 @@ public class PatronQueryEditor extends QueryEditor {
                             },
                             RowSpec.decodeSpecs("pref")));
 
-                        //---- noneActiveCheckBox2 ----
-                        noneActiveCheckBox2.setText("Include Non-Active Patrons");
-                        buttonBar.add(noneActiveCheckBox2, cc.xy(2, 1));
+                        //---- inactiveCheckBox2 ----
+                        inactiveCheckBox2.setText("Include Inactive Patrons");
+                        inactiveCheckBox2.setOpaque(false);
+                        inactiveCheckBox2.setSelected(true);
+                        buttonBar.add(inactiveCheckBox2, cc.xy(2, 1));
 
                         //---- cancelButton ----
                         cancelButton.setText("Cancel");
@@ -873,7 +878,7 @@ public class PatronQueryEditor extends QueryEditor {
     private JComboBox fieldSelector2;
     private QueryEditorTextPanel placeHolder2;
     private JPanel buttonBar2;
-    private JCheckBox noneActiveCheckBox1;
+    private JCheckBox inactiveCheckBox1;
     private JButton cancelButton2;
     private JButton queryButton;
     private JPanel classSpecificPanel;
@@ -922,7 +927,7 @@ public class PatronQueryEditor extends QueryEditor {
     private JLabel label22;
     private JTextField addressRegion;
     private JPanel buttonBar;
-    private JCheckBox noneActiveCheckBox2;
+    private JCheckBox inactiveCheckBox2;
     private JButton cancelButton;
     private JButton queryButton2;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
@@ -1058,7 +1063,7 @@ public class PatronQueryEditor extends QueryEditor {
 		}
 
 
-// Patron Publications
+        // Patron Publications
 		if (publicationDate != null && publicationDate.getText().length() > 0) {
 			criterionList.add(new CriteriaRelationshipPairs(Restrictions.like(PatronPublications.PROPERTYNAME_PUBLICATION_DATE, publicationDate.getText(), MatchMode.ANYWHERE),
 					Patrons.PROPERTYNAME_PATRON_PUBLICATIONS,
@@ -1078,7 +1083,7 @@ public class PatronQueryEditor extends QueryEditor {
 					"Publication Title"));
 		}
 
-// Patron Visits
+        // Patron Visits
 		if (areVisitDatesFilledOut()) {
 			pair = new CriteriaRelationshipPairs(Restrictions.ge(PatronVisits.PROPERTYNAME_VISIT_DATE, visitStartDate), Patrons.PROPERTYNAME_PATRON_VISITS);
 			pair.addCriteria(Restrictions.le(PatronVisits.PROPERTYNAME_VISIT_DATE, visitEndDate));
@@ -1163,4 +1168,18 @@ public class PatronQueryEditor extends QueryEditor {
         return fundingDates;
     }
 
+    /**
+     * Method to specify if to search inactive records along with active
+     *
+     * @return
+     */
+    public boolean searchInActivePatrons() {
+        // based on the selected tab return whether to search inactive patron records
+
+        if(tabbedPane1.getSelectedIndex() == 0) {
+            return inactiveCheckBox1.isSelected();
+        } else {
+            return inactiveCheckBox2.isSelected();
+        }
+    }
 }

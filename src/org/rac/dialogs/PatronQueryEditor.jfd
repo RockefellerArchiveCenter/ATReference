@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_24" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_23" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -507,10 +507,18 @@
                   <string>javax.swing.JCheckBox</string> 
                   <void method="setProperty"> 
                    <string>text</string> 
-                   <string>Include Non-Active Patrons</string> 
+                   <string>Include Inactive Patrons</string> 
+                  </void> 
+                  <void method="setProperty"> 
+                   <string>opaque</string> 
+                   <boolean>false</boolean> 
+                  </void> 
+                  <void method="setProperty"> 
+                   <string>selected</string> 
+                   <boolean>true</boolean> 
                   </void> 
                   <void property="name"> 
-                   <string>noneActiveCheckBox1</string> 
+                   <string>inactiveCheckBox1</string> 
                   </void> 
                  </object> 
                  <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -1859,10 +1867,24 @@
                 <string>javax.swing.JCheckBox</string> 
                 <void method="setProperty"> 
                  <string>text</string> 
-                 <string>Include Non-Active Patrons</string> 
+                 <string>Include Inactive Patrons</string> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>opaque</string> 
+                 <boolean>false</boolean> 
+                </void> 
+                <void method="setProperty"> 
+                 <string>selected</string> 
+                 <boolean>true</boolean> 
                 </void> 
                 <void property="name"> 
                  <string>noneActiveCheckBox2</string> 
+                </void> 
+                <void method="auxiliary"> 
+                 <void method="setProperty"> 
+                  <string>JavaCodeGenerator.variableName</string> 
+                  <string>inactiveCheckBox2</string> 
+                 </void> 
                 </void> 
                </object> 
                <object class="com.jformdesigner.model.FormLayoutConstraints"> 

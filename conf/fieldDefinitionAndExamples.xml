@@ -3397,14 +3397,22 @@ Snowman
         <Examples>tgarner@ufl.edu</Examples>
     </RECORD>
     
-        <RECORD>
+    <RECORD>
         <ClassName>Patrons</ClassName>
         <PropertyName>email2</PropertyName>
         <Element_Label>Email2</Element_Label>
         <Definition>Electronic mail address by which the patron can be reached. </Definition>
         <Examples>tgarner@ufl.edu</Examples>
     </RECORD>
-    
+
+    <RECORD>
+        <ClassName>Patrons</ClassName>
+        <PropertyName>inactive</PropertyName>
+        <Element_Label>Inactive</Element_Label>
+        <Definition>Specifies whether the Patron is no longer active with the repository. </Definition>
+        <Examples>N/A</Examples>
+    </RECORD>
+
     <RECORD>
         <ClassName>Patrons</ClassName>
         <PropertyName>howDidYouHearAboutUs</PropertyName>

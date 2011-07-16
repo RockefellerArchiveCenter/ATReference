@@ -91,6 +91,10 @@
                   not-null="true"
                   type="string"/>
 
+        <property name="inactive"
+                  column="inactive"
+                  type="boolean"/>
+
         <!-- a suite of user defined fields -->
 
         <property name="userDefinedDate1"

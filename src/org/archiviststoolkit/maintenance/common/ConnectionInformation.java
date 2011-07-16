@@ -163,9 +163,11 @@ public class ConnectionInformation extends WizardPage {
     // Method to setup connection information for internal database
     // This should not be changed
     private void databaseTypesActionPerformed() {
+        String currentURL = connectionUrl.getText();
         String database = databaseTypes.getSelectedItem().toString();
 
-        if (database.equals(SessionFactory.DATABASE_TYPE_INTERNAL)) {
+        if (database.equals(SessionFactory.DATABASE_TYPE_INTERNAL)
+                && !currentURL.contains("jdbc:hsqldb")) {
             String internalDBUrl = getInternalDatabaseUrl();
 
             if (internalDBUrl != null) {
@@ -223,20 +225,20 @@ public class ConnectionInformation extends WizardPage {
 
         //======== this ========
         setLayout(new FormLayout(
-                new ColumnSpec[]{
-                        FormFactory.DEFAULT_COLSPEC,
-                        FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                        new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-                },
-                new RowSpec[]{
-                        FormFactory.DEFAULT_ROWSPEC,
-                        FormFactory.LINE_GAP_ROWSPEC,
-                        FormFactory.DEFAULT_ROWSPEC,
-                        FormFactory.LINE_GAP_ROWSPEC,
-                        FormFactory.DEFAULT_ROWSPEC,
-                        FormFactory.LINE_GAP_ROWSPEC,
-                        FormFactory.DEFAULT_ROWSPEC
-                }));
+            new ColumnSpec[] {
+                FormFactory.DEFAULT_COLSPEC,
+                FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+            },
+            new RowSpec[] {
+                FormFactory.DEFAULT_ROWSPEC,
+                FormFactory.LINE_GAP_ROWSPEC,
+                FormFactory.DEFAULT_ROWSPEC,
+                FormFactory.LINE_GAP_ROWSPEC,
+                FormFactory.DEFAULT_ROWSPEC,
+                FormFactory.LINE_GAP_ROWSPEC,
+                FormFactory.DEFAULT_ROWSPEC
+            }));
 
         //---- label4 ----
         label4.setText("Connection URL");
@@ -244,7 +246,7 @@ public class ConnectionInformation extends WizardPage {
 
         //---- connectionUrl ----
         connectionUrl.setName("connectionURL");
-        add(connectionUrl, new CellConstraints(3, 1, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets(0, 5, 0, 0)));
+        add(connectionUrl, new CellConstraints(3, 1, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
 
         //---- label5 ----
         label5.setText("Username");
@@ -252,7 +254,7 @@ public class ConnectionInformation extends WizardPage {
 
         //---- userName ----
         userName.setName("connectionUsername");
-        add(userName, new CellConstraints(3, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets(0, 5, 0, 0)));
+        add(userName, new CellConstraints(3, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
 
         //---- label6 ----
         label6.setText("Password");
@@ -260,7 +262,7 @@ public class ConnectionInformation extends WizardPage {
 
         //---- password ----
         password.setName("connectionPassword");
-        add(password, new CellConstraints(3, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets(0, 5, 0, 0)));
+        add(password, new CellConstraints(3, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
 
         //---- label7 ----
         label7.setText("Database Type");

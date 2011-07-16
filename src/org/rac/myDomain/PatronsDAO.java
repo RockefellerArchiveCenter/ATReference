@@ -56,9 +56,15 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 		super(Patrons.class);
 	}
 
-
-	public Collection findByQueryEditorAlt(QueryEditor editor, InfiniteProgressPanel progressPanel) {
-		Session session;
+    /**
+     * Method to search by link records
+     *
+     * @param patronQueryEditor
+     * @param progressPanel
+     * @return
+     */
+	public Collection findByQueryEditorAlt(PatronQueryEditor patronQueryEditor, InfiniteProgressPanel progressPanel) {
+        Session session;
 		Criteria criteria;
 		Set returnCollection = new HashSet();
 		Set subsequentCollections = null;
@@ -68,9 +74,17 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 		//two sets. Java does this with the set.retainAll() method.
 		boolean firstPass = true;
 		subsequentCollections = new HashSet();
-		for (QueryEditor.CriteriaRelationshipPairs criteriaPair : editor.getAltFormCriteria()) {
+		for (QueryEditor.CriteriaRelationshipPairs criteriaPair : patronQueryEditor.getAltFormCriteria()) {
 			session = SessionFactory.getInstance().openSession(getPersistentClass());
-			criteria = processCriteria(session, editor.getClazz(), criteriaPair);
+			criteria = processCriteria(session, patronQueryEditor.getClazz(), criteriaPair);
+
+            // Determine whether to search patron records which are inactive or
+            // just the active ones
+            if(!patronQueryEditor.searchInActivePatrons()) {
+                criteria.add(Restrictions.or(
+                Restrictions.eq(Patrons.PROPERTYNAME_INACTIVE, false),
+                Restrictions.isNull(Patrons.PROPERTYNAME_INACTIVE)));
+            }
 
 			if (firstPass) {
 				returnCollection = new HashSet(criteria.list());
@@ -88,7 +102,6 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 		}
 
         // deal with subject and names and funding date range search
-        PatronQueryEditor patronQueryEditor = (PatronQueryEditor) editor;
         Subjects selectedSubject = patronQueryEditor.getSelectedSubject();
 		Names selectedName = patronQueryEditor.getSelectedName();
 		String localHumanReadableSearchString;
@@ -121,7 +134,6 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			} else {
 				returnCollection.retainAll(subjectCollection);
 			}
-
 		}
 
 		if (selectedName != null) {
@@ -273,7 +285,7 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 	 */
 	public final Collection findByQueryEditorLongSession(PatronQueryEditor editor, InfiniteProgressPanel progressPanel) {
 
-		Criteria criteria = processQueryEditorCriteria(getLongSession(), Names.class, editor);
+		Criteria criteria = processQueryEditorCriteria(getLongSession(), Patrons.class, editor);
 		return criteria.list();
 	}
 
@@ -282,6 +294,15 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 		Criteria criteria = session.createCriteria(clazz);
 		ATSearchCriterion comparison1 = editor.getCriterion1();
 		ATSearchCriterion comparison2 = editor.getCriterion2();
+
+        // Determine whether to search patron records which are inactive or just the
+        // active ones
+        if(!editor.searchInActivePatrons()) {
+            criteria.add(Restrictions.or(
+                    Restrictions.eq(Patrons.PROPERTYNAME_INACTIVE, false),
+                    Restrictions.isNull(Patrons.PROPERTYNAME_INACTIVE)));
+        }
+
 		if (comparison2.getCiterion() == null) {
 			criteria.add(comparison1.getCiterion());
 			humanReadableSearchString = comparison1.getSearchString();

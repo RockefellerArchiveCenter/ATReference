@@ -274,12 +274,9 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
 	}
 
     /**
-     * Performes searching on patron records
+     * Performs searching on patron records
      */
     private void searchActionPerformed() {
-//		findAll();
-//		humanReadableSearchString = "list all";
-
         if (searchDialog.showDialog() == JOptionPane.OK_OPTION) {
 			final PatronsDAO access = new PatronsDAO();
             Thread performer = new Thread(new Runnable() {
@@ -287,13 +284,17 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
                     InfiniteProgressPanel monitor = ATProgressUtil.createModalProgressMonitor(ApplicationFrame.getInstance(), 0);
                     monitor.start("Performing search...");
                     try {
-                        Collection results = access.findByQueryEditor(searchDialog, monitor);
-						humanReadableSearchString = access.getHumanReadableSearchString();
+                        Collection results;
+
+                        if(searchDialog.getAlternateQuery()) { // perform linked record search
+                            results = access.findByQueryEditorAlt(searchDialog, monitor);
+                        } else {
+                            results = access.findByQueryEditorLongSession(searchDialog, monitor);
+                        }
+
+                        humanReadableSearchString = access.getHumanReadableSearchString();
 						patronTable.updateCollection(results);
-                         monitor.close();
-//                    } catch (LookupException e) {
-//                        monitor.close();
-//                        new ErrorDialog(ApplicationFrame.getInstance(), "Error searching.", e).showDialog();
+                        monitor.close();
                     } finally {
                         monitor.close();
                     }
