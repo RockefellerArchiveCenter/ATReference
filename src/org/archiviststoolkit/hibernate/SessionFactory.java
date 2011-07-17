@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -316,7 +316,8 @@ public final class SessionFactory {
         SessionFactory.databaseType = databaseType;
         if (databaseType.equals(DATABASE_TYPE_MYSQL)) {
 			setDriverClass("com.mysql.jdbc.Driver");
-			setHibernateDialect("org.hibernate.dialect.MySQLInnoDBDialect");
+			//setHibernateDialect("org.hibernate.dialect.MySQLInnoDBDialect");
+            setHibernateDialect("org.hibernate.dialect.MySQL5InnoDBDialect");
 		} else if (databaseType.equals(DATABASE_TYPE_MICROSOFT_SQL_SERVER)) {
 			setDriverClass("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			setHibernateDialect("org.hibernate.dialect.SQLServerDialect");
