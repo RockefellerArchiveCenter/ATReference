@@ -277,7 +277,7 @@ public class ReadingRoomLogonDialog extends JDialog {
 		Patrons patrons = patronDAO.queryByFirstLastNameSuffix(getFirstName(), getLastName(), getSuffix());
 		DomainEditor dialog;
 		Boolean newRecord;
-		if (patrons != null ||getCreateNewRecord()) {
+		if (patrons != null || getCreateNewRecord()) {
 			if (getCreateNewRecord()) {
 				patrons = new Patrons();
 				patrons.setRepository(ApplicationFrame.getInstance().getCurrentUserRepository());
@@ -304,7 +304,8 @@ public class ReadingRoomLogonDialog extends JDialog {
 			int status = dialog.showDialog();
 			if (status == JOptionPane.OK_OPTION) {
 				if (newRecord) {
-					patronDAO.update(patrons);
+                    patronDAO.getLongSession(); // make sure long session is opened
+					patronDAO.updateLongSession(patrons, false);
 				} else {
 					patronDAO.updateLongSession(patrons);
 				}

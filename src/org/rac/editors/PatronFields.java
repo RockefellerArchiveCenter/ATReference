@@ -1977,6 +1977,11 @@ public class PatronFields extends RAC_DomainEditorFields {
 			}
 		}
 
+        // see whether to hide the inactive checkbox. It should only be used for level
+        // 2 and above users
+        if (!Users.doesCurrentUserHaveAccess(Users.ACCESS_CLASS_ADVANCED_DATA_ENTRY)) {
+            inactiveCheckBox.setVisible(false);
+		}
 	}
 
 
@@ -1984,7 +1989,7 @@ public class PatronFields extends RAC_DomainEditorFields {
      * Method that initializes any embedded plugins that would add an editor
      */
     private void initPlugins() {
-        plugins = ATPluginFactory.getInstance().getEmbeddedNameEditorPlugins();
+        plugins = ATPluginFactory.getInstance().getEmbeddedPatronEditorPlugins();
         if(plugins != null) {
             for(ATPlugin plugin : plugins) {
                 plugin.setEditorField(this);

@@ -344,6 +344,16 @@ public class ATPluginFactory {
     }
 
     /**
+     * Method to get a list of embedded plugins that will be added as a tab
+     * to the current patron editor
+     *
+     * @return an ArrayList containing any plugins found
+     */
+    public ArrayList<ATPlugin> getEmbeddedPatronEditorPlugins() {
+        return getEmbeddedEditorPlugins(ATPlugin.PATRON_EDITOR, ATPlugin.EMBEDDED_EDITOR_CATEGORY);
+    }
+
+    /**
      * Method to get a list of embedded plugins that will be added as entries
      * in the rapid data entry drop down menu
      *
