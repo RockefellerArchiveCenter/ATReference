@@ -331,8 +331,8 @@ public class PatronsDAO extends DomainAccessObjectImpl {
         Session session = SessionFactory.getInstance().openSession(getPersistentClass());
 
         return (Patrons) session.createCriteria(this.getPersistentClass())
-				.add(Restrictions.eq(Patrons.PROPERTYNAME_REST_OF_NAME, firstName))
-				.add(Restrictions.eq(Patrons.PROPERTYNAME_PRIMARY_NAME, lastName))
+				.add(Restrictions.eq(Patrons.PROPERTYNAME_REST_OF_NAME, lastName))
+				.add(Restrictions.eq(Patrons.PROPERTYNAME_PRIMARY_NAME, firstName))
                 .add(Restrictions.eq(Patrons.PROPERTYNAME_SUFFIX, suffix)).uniqueResult();
 	}
 
