@@ -308,8 +308,13 @@ public class ResourceTreeViewer extends DomainEditorFields implements MouseListe
                             done = true;
                             try {
                                 addChildActionPerformed(dialog.getComponentRecord(), false, e);
-								//set the record to dirty
-								ApplicationFrame.getInstance().setRecordDirty();
+
+								//set the record to dirty if not auto save
+                                if(dialog.autoSaveRecord()) {
+                                    saveRecord(e);
+                                } else {
+								    ApplicationFrame.getInstance().setRecordDirty();
+                                }
                             } catch (RDEPopulateException e1) {
                                 new ErrorDialog("Error populating component data", e1).showDialog();
                                 done = true;
@@ -317,8 +322,13 @@ public class ResourceTreeViewer extends DomainEditorFields implements MouseListe
                         } else if (returnStatus == StandardEditor.OK_AND_ANOTHER_OPTION) {
                             try {
                                 addChildActionPerformed(dialog.getComponentRecord(), false, e);
-								//set the record to dirty
-								ApplicationFrame.getInstance().setRecordDirty();
+
+                                //set the record to dirty if not auto save
+								if(dialog.autoSaveRecord()) {
+                                    saveRecord(e);
+                                } else {
+                                    ApplicationFrame.getInstance().setRecordDirty();
+                                }
                             } catch (RDEPopulateException e1) {
                                 new ErrorDialog("Error populating component data", e1).showDialog();
                                 done = true;
@@ -332,6 +342,16 @@ public class ResourceTreeViewer extends DomainEditorFields implements MouseListe
             rapidDataentryScreens.setSelectedIndex(0);
         }
 	}
+
+    /**
+     * Method to save the record just has if the save button is pressed.
+     * It's used when using the RDE screen 
+     *
+     * @param e
+     */
+    private void saveRecord(ActionEvent e) {
+        getParentEditor().saveRecord(e);
+    }
 
 	private void exportContainerLabelsActionPerformed(ActionEvent e) {
 		if (commitChangesToCurrentResourceComponent(e)) {

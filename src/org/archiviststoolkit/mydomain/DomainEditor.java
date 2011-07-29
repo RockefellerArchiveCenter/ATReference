@@ -499,78 +499,7 @@ public class DomainEditor extends StandardEditor {
 			this.setVisible(false);
 
         } else if (ae.getSource() == getSaveButton()) {
-            if (readOnly || this.getModel().validateAndDisplayDialog(ae)) {
-                if (this.getClass() == ResourceEditor.class) {
-                    if (((ResourceEditor) this).commitChangesToCurrentResourceComponent(ae)) {
-                        if (buffered) {
-                            editorFields.acceptEdit();
-                        }
-                    }
-                } else {
-                    if (buffered) {
-                        editorFields.acceptEdit();
-                    }
-                }
-
-                DomainAccessObject dao = null;
-                try {
-                    dao = DomainAccessObjectFactory.getInstance().getDomainAccessObject(this.clazz);
-                    dao.getLongSession();
-                    if (newRecord) { // check to see if new record and if it is then creat it then save it
-                        dao.updateLongSession(this.getModel(), false);
-                        // set new record to false so that we don't call this again
-                        newRecord = false;
-                        savedNewRecord = true;
-
-                        // add a record lock for this new object
-                        if(workSurface != null) {
-                            workSurface.addRecordLock(this.getModel());
-                        }
-                    } else if (savedNewRecord) {
-                        dao.updateLongSession(this.getModel(), false);
-                    } else {
-                        dao.updateLongSession(this.getModel(), false);
-
-                        if (callingGlazedTable != null) {
-                            // calling this method here cause an error on save (ART-1531)
-                            //callingGlazedTable.setDomainObject(selectedRow, this.getModel());
-                        } else {
-                            callingTableModel.fireTableDataChanged();
-                        }
-                    }
-
-                    // do any class specfic updates to the UI here
-                    if (this.getClass() == ResourceEditor.class) {
-                        ((ResourceEditor) this).doSaveSpecificUpdates();
-                    } else if(this.getClass() == DigitalObjectEditor.class) {
-                        ((DigitalObjectEditor) this).doSaveSpecificUpdates();
-                    }
-
-                    // set the record dirty flag to false so that the dialog box does not come up asking for it to be saved
-                    ApplicationFrame.getInstance().setRecordClean();
-
-                    // set the choice to the already saved option so that we can save properly
-                    choice = ALREADY_SAVED;
-                } catch (PersistenceException e) {
-					if (e.getCause() instanceof ConstraintViolationException) {
-						String message = "Can't save, duplicate record " + this.getModel();
-						JOptionPane.showMessageDialog(this, message);
-					} else {
-                    	new ErrorDialog("Error saving record", e).showDialog();
-					}
-                    // need to get a new session here to prevent the occurance of ART-1674
-                    try {
-                        dao.closeLongSessionRollback();
-                        dao.getLongSession();
-                    } catch (SQLException e2) {
-                        new ErrorDialog("Error closing session", e).showDialog();
-                    }
-
-                    // set the choice to JOptionPane yes option so that we can save properly
-                    choice = JOptionPane.NO_OPTION;
-				}
-            }
-
+            saveRecord(ae);
 		} else if (ae.getSource() == getNextButton() ||
 				ae.getSource() == getPreviousButton() ||
 				ae.getSource() == getFirstButton() ||
@@ -744,5 +673,86 @@ public class DomainEditor extends StandardEditor {
 	public void setBuffered(Boolean buffered) {
 		this.buffered = buffered;
 	}
+
+    /**
+     * Method to save the record.
+     *
+     * @param event The event object which resulted in calling this method
+     */
+    public void saveRecord(EventObject event) {
+        if (readOnly || this.getModel().validateAndDisplayDialog(event)) {
+            if (this.getClass() == ResourceEditor.class) {
+                if (((ResourceEditor) this).commitChangesToCurrentResourceComponent(event)) {
+                    if (buffered) {
+                        editorFields.acceptEdit();
+                    }
+                }
+            } else {
+                if (buffered) {
+                    editorFields.acceptEdit();
+                }
+            }
+
+            DomainAccessObject dao = null;
+            try {
+                dao = DomainAccessObjectFactory.getInstance().getDomainAccessObject(this.clazz);
+                dao.getLongSession();
+                if (newRecord) { // check to see if new record and if it is then creat it then save it
+                    dao.updateLongSession(this.getModel(), false);
+                    // set new record to false so that we don't call this again
+                    newRecord = false;
+                    savedNewRecord = true;
+
+                    // add a record lock for this new object
+                    if (workSurface != null) {
+                        workSurface.addRecordLock(this.getModel());
+                    }
+                } else if (savedNewRecord) {
+                    dao.updateLongSession(this.getModel(), false);
+                } else {
+                    dao.updateLongSession(this.getModel(), false);
+
+                    if (callingGlazedTable != null) {
+                        // calling this method here cause an error on save (ART-1531)
+                        //callingGlazedTable.setDomainObject(selectedRow, this.getModel());
+                    } else {
+                        callingTableModel.fireTableDataChanged();
+                    }
+                }
+
+                // do any class specfic updates to the UI here
+                if (this.getClass() == ResourceEditor.class) {
+                    ((ResourceEditor) this).doSaveSpecificUpdates();
+                } else if (this.getClass() == DigitalObjectEditor.class) {
+                    ((DigitalObjectEditor) this).doSaveSpecificUpdates();
+                }
+
+                // set the record dirty flag to false so that the dialog box does not come up asking for it to be saved
+                ApplicationFrame.getInstance().setRecordClean();
+
+                // set the choice to the already saved option so that we can save properly
+                choice = ALREADY_SAVED;
+            } catch (PersistenceException e) {
+                if (e.getCause() instanceof ConstraintViolationException) {
+                    String message = "Can't save, duplicate record " + this.getModel();
+                    JOptionPane.showMessageDialog(this, message);
+                } else {
+                    new ErrorDialog("Error saving record", e).showDialog();
+                }
+                // need to get a new session here to prevent the occurance of ART-1674
+                try {
+                    dao.closeLongSessionRollback();
+                    dao.getLongSession();
+                } catch (SQLException e2) {
+                    new ErrorDialog("Error closing session", e).showDialog();
+                }
+
+                // set the choice to JOptionPane yes option so that we can save properly
+                choice = JOptionPane.NO_OPTION;
+            }
+        }
+
+
+    }
 }
 
