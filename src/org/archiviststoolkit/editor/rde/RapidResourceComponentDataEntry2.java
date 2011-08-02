@@ -238,6 +238,7 @@ public class RapidResourceComponentDataEntry2 extends JDialog {
                                        //---- autoSaveCheckBox ----
                                        autoSaveCheckBox.setText("Auto Save");
                                        autoSaveCheckBox.setSelected(true);
+                                       autoSaveCheckBox.setOpaque(false);
                                        buttonPanel.add(autoSaveCheckBox, cc.xy(1, 1));
 
                                        //---- cancelButton ----
