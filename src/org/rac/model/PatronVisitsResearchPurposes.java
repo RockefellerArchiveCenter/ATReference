@@ -51,6 +51,10 @@ public class PatronVisitsResearchPurposes extends DomainObject implements Serial
 
 	}
 
+	public PatronVisitsResearchPurposes(PatronVisits patronVisits) {
+		this.patronVisits = patronVisits;
+	}
+
 	public String toString() {
 		return getResearchPurpose();
 	}

@@ -91,6 +91,10 @@ public class PatronPublicationsSubjects extends DomainObject implements Serializ
 		return subject.getSubjectSource();
 	}
 
+	public String getSubjectTermType() {
+		return subject.getSubjectTermType();
+	}
+
 	public PatronPublications getPatronPublications() {
 		return patronPublications;
 	}

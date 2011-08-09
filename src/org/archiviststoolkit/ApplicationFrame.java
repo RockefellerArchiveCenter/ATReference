@@ -216,13 +216,6 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 	 */
 	private ConcreteAction assessmentAction = null;
 
-
-	/**
-	 * The tools menu action rac stuff.
-	 */
-	private ConcreteAction RAC_nameImport = null;
-
-
 	/**
 	 * The help menu action.
 	 */
@@ -771,10 +764,6 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 			toolMenu.add(services);
 			toolMenu.add(subjectReferenceReport);
 			toolMenu.add(patronVisitSummary);
-
-//			RAC_nameImport = new ConcreteAction("RAC patron import");
-//			RAC_nameImport.addActionListener(this);
-//			toolMenu.add(RAC_nameImport);
 
             if(toolPluginNames != null) { // if any tool plugins were found add them
                 addPluginMenuItems(toolMenu, toolPluginNames);
@@ -1407,26 +1396,26 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 //
 
 
-			final File file = ImportUtils.chooseFile(null);
-			if (file != null) {
-				Thread performer = new Thread(new Runnable() {
-					public void run() {
-						InfiniteProgressPanel monitor = ATProgressUtil.createModalProgressMonitor(ApplicationFrame.getInstance(), 1000);
-						monitor.start("Import patron data...");
-						try {
-							if (file != null) {
-								ImportPatronData importer = new ImportPatronData();
-								importer.doImport(file, monitor);
-								UserPreferences.getInstance().saveToPreferences();
-							}
-
-						} finally {
-							monitor.close();
-						}
-					}
-				}, "RAC patron import");
-				performer.start();
-			}
+//			final File file = ImportUtils.chooseFile(null);
+//			if (file != null) {
+//				Thread performer = new Thread(new Runnable() {
+//					public void run() {
+//						InfiniteProgressPanel monitor = ATProgressUtil.createModalProgressMonitor(ApplicationFrame.getInstance(), 1000);
+//						monitor.start("Import patron data...");
+//						try {
+//							if (file != null) {
+//								ImportPatronData importer = new ImportPatronData();
+//								importer.doImport(file, monitor);
+//								UserPreferences.getInstance().saveToPreferences();
+//							}
+//
+//						} finally {
+//							monitor.close();
+//						}
+//					}
+//				}, "RAC patron import");
+//				performer.start();
+//			}
 
 		} else { // must be a plugin action so get the plugin and display it. In the future it maynot have to be display, but we will handel that when we get to it
             ConcreteAction pluginAction = (ConcreteAction)actionEvent.getSource();
