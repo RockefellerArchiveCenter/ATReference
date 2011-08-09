@@ -28,6 +28,8 @@ import org.archiviststoolkit.dialog.NameAuthorityLookup;
 import org.archiviststoolkit.dialog.SubjectTermLookup;
 import org.archiviststoolkit.editor.NameEnabledEditor;
 import org.archiviststoolkit.editor.SubjectEnabledEditorFields;
+import org.archiviststoolkit.exceptions.AddRelatedObjectException;
+import org.archiviststoolkit.exceptions.DuplicateLinkException;
 import org.archiviststoolkit.exceptions.ObjectNotRemovedException;
 import org.archiviststoolkit.exceptions.UnsupportedDomainObjectModelException;
 import org.archiviststoolkit.model.*;
@@ -149,13 +151,24 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 	}
 
 	private void addResearchPurposeActionPerformed() {
-		String researchPurpose = JOptionPane.showInputDialog(this.getParentEditor(), "Enter a Research Purpose");
-
-		if (researchPurpose != null && researchPurpose.length() > 0) {
-			PatronVisits visitModel = (PatronVisits)getModel();
-			visitModel.addResearchPurposes(researchPurpose);
-			researchPurposeTable.updateCollection(visitModel.getResearchPurposes());
+		try {
+			DomainEditor domainEditor = new DomainEditor(PatronVisitsResearchPurposes.class, this.getParentEditor(), "Research Purpose", new PatronVisitResearchPurposeFields());
+			domainEditor.setNavigationButtonListeners((ActionListener)this.getParentEditor());
+			addRelatedRecord(domainEditor, PatronVisitsResearchPurposes.class, researchPurposeTable);
+		} catch (AddRelatedObjectException e) {
+			new ErrorDialog("Error adding address", e).showDialog();
+		} catch (DuplicateLinkException e) {
+			new ErrorDialog("Error adding address", e).showDialog();
 		}
+//
+//
+//		String researchPurpose = JOptionPane.showInputDialog(this.getParentEditor(), "Enter a Research Purpose");
+//
+//		if (researchPurpose != null && researchPurpose.length() > 0) {
+//			PatronVisits visitModel = (PatronVisits)getModel();
+//			visitModel.addResearchPurposes(researchPurpose);
+//			researchPurposeTable.updateCollection(visitModel.getResearchPurposes());
+//		}
 	}
 
 	private void removeResearchPurposeActionPerformed() {
@@ -195,7 +208,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 			if (selectedRow == -1) {
 				JOptionPane.showMessageDialog(this, "You must select a research purpose to edit.", "warning", JOptionPane.WARNING_MESSAGE);
 			} else {
-				editRelatedRecord(researchPurposeTable, PatronVisitsNames.class, true, researchPurposeEditor);
+				editRelatedRecord(researchPurposeTable, PatronVisitsResearchPurposes.class, true, researchPurposeEditor);
 				researchPurposeTable.invalidate();
 				researchPurposeTable.validate();
 				researchPurposeTable.repaint();

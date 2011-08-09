@@ -37,6 +37,7 @@ public class PatronValidatorUtils {
 		validatorFactory.addValidator(PatronAddresses.class, new PatronAddressesValidator());
 		validatorFactory.addValidator(PatronForms.class, new PatronFormsValidator());
 		validatorFactory.addValidator(Services.class, new ServicesValidator());
+		validatorFactory.addValidator(PatronVisitsResearchPurposes.class, new PatronVisitsResearchPurposesValidator());
 		
 	}
 }

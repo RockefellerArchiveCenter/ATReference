@@ -20,6 +20,7 @@ package org.rac.dialogs;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.util.*;
 import java.sql.SQLException;
 import javax.swing.*;
@@ -28,6 +29,8 @@ import ca.odell.glazedlists.event.ListEvent;
 import ca.odell.glazedlists.event.ListEventListener;
 import com.jgoodies.forms.factories.*;
 import com.jgoodies.forms.layout.*;
+import org.archiviststoolkit.dialog.ATFileChooser;
+import org.archiviststoolkit.importer.ImportExportLogDialog;
 import org.archiviststoolkit.model.*;
 import org.archiviststoolkit.mydomain.*;
 import org.archiviststoolkit.swing.*;
@@ -38,9 +41,12 @@ import org.archiviststoolkit.Main;
 import org.archiviststoolkit.ApplicationFrame;
 import org.archiviststoolkit.dialog.GeneralAdminDialog;
 import org.archiviststoolkit.dialog.ErrorDialog;
+import org.archiviststoolkit.util.FileUtils;
+import org.archiviststoolkit.util.MyTimer;
 import org.archiviststoolkit.util.StringHelper;
 import org.hibernate.exception.ConstraintViolationException;
 import org.apache.log4j.Logger;
+import org.rac.exporter.ExportPatronData;
 import org.rac.model.Patrons;
 import org.rac.editors.PatronFields;
 import ca.odell.glazedlists.SortedList;
@@ -408,263 +414,310 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
         return this;
     }
 
+	private void exportButtonActionPerformed(ActionEvent e) {
+		final int[] selectedIndexes = getContentTable().getSelectedRows();
+		if (selectedIndexes.length < 1) {
+			JOptionPane.showMessageDialog(ApplicationFrame.getInstance(), "You must select at least 1 record to export");
+		} else {
+			ATFileChooser atFileChooser = new ATFileChooser(new SimpleFileFilter("xml"));
+			atFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+			if (atFileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+				ExportPatronData exporter = new ExportPatronData(atFileChooser.getSelectedFile());
+				ArrayList<DomainObject> recordsToExport = new ArrayList<DomainObject>();
+				for (int loop = 0; loop < selectedIndexes.length; loop++) {
+					// check to see if this record is not locked before deleting it
+					DomainObject domainObject = getContentTable().getFilteredList().get(selectedIndexes[loop]);
+					recordsToExport.add(domainObject);
+				}
+
+				InfiniteProgressPanel monitor = ATProgressUtil.createModalProgressMonitor(ApplicationFrame.getInstance(), 1000, false);
+				monitor.start("Exporting...");
+				StringBuffer message = new StringBuffer();
+				ApplicationFrame.getInstance().getTimer().reset();
+
+				exporter.export(recordsToExport, monitor);
+
+				String timer = MyTimer.toString(ApplicationFrame.getInstance().getTimer().elapsedTimeMillis());
+				message.append("Summary"+"\n");
+				message.append("-------"+"\n");
+				message.append("Total records exported:\t" + recordsToExport.size() + "\n\n");
+				message.append("Total export time:\t" + timer + "\n\n");
+				message.append("Output file:\t"+atFileChooser.getSelectedFile().getAbsolutePath()+"\n\n");
+				ImportExportLogDialog dialog = new ImportExportLogDialog(message.toString(), ImportExportLogDialog.DIALOG_TYPE_EXPORT);
+				monitor.close();
+				dialog.showDialog();
+			}
+		}
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner non-commercial license
-        dialogPane = new JPanel();
-        HeaderPanel = new JPanel();
-        panel2 = new JPanel();
-        mainHeaderLabel = new JLabel();
-        panel3 = new JPanel();
-        subHeaderLabel = new JLabel();
-        contentPanel = new JPanel();
-        panel1 = new JPanel();
-        label2 = new JLabel();
-        filterField = new JTextField();
-        resultSizeDisplay = new JLabel();
-        scrollPane1 = new JScrollPane();
-        patronTable = new DomainSortableTable(Patrons.class, filterField);
-        buttonBar = new JPanel();
-        search = new JButton();
-        listAll = new JButton();
-        reportsButton = new JButton();
-        addPatronButton = new JButton();
-        removePatronButton = new JButton();
-        mergeButton = new JButton();
-        doneButton = new JButton();
-        CellConstraints cc = new CellConstraints();
+		// Generated using JFormDesigner non-commercial license
+		dialogPane = new JPanel();
+		HeaderPanel = new JPanel();
+		panel2 = new JPanel();
+		mainHeaderLabel = new JLabel();
+		panel3 = new JPanel();
+		subHeaderLabel = new JLabel();
+		contentPanel = new JPanel();
+		panel1 = new JPanel();
+		label2 = new JLabel();
+		filterField = new JTextField();
+		resultSizeDisplay = new JLabel();
+		scrollPane1 = new JScrollPane();
+		patronTable = new DomainSortableTable(Patrons.class, filterField);
+		buttonBar = new JPanel();
+		search = new JButton();
+		listAll = new JButton();
+		reportsButton = new JButton();
+		addPatronButton = new JButton();
+		removePatronButton = new JButton();
+		mergeButton = new JButton();
+		exportButton = new JButton();
+		doneButton = new JButton();
+		CellConstraints cc = new CellConstraints();
 
-        //======== this ========
-        setModal(true);
-        Container contentPane = getContentPane();
-        contentPane.setLayout(new BorderLayout());
+		//======== this ========
+		setModal(true);
+		Container contentPane = getContentPane();
+		contentPane.setLayout(new BorderLayout());
 
-        //======== dialogPane ========
-        {
-            dialogPane.setBorder(null);
-            dialogPane.setBackground(new Color(200, 205, 232));
-            dialogPane.setLayout(new BorderLayout());
+		//======== dialogPane ========
+		{
+			dialogPane.setBorder(null);
+			dialogPane.setBackground(new Color(200, 205, 232));
+			dialogPane.setLayout(new BorderLayout());
 
-            //======== HeaderPanel ========
-            {
-                HeaderPanel.setBackground(new Color(80, 69, 57));
-                HeaderPanel.setOpaque(false);
-                HeaderPanel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-                HeaderPanel.setLayout(new FormLayout(
-                    new ColumnSpec[] {
-                        new ColumnSpec(Sizes.bounded(Sizes.MINIMUM, Sizes.dluX(100), Sizes.dluX(200))),
-                        new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-                    },
-                    RowSpec.decodeSpecs("default")));
+			//======== HeaderPanel ========
+			{
+				HeaderPanel.setBackground(new Color(80, 69, 57));
+				HeaderPanel.setOpaque(false);
+				HeaderPanel.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+				HeaderPanel.setLayout(new FormLayout(
+					new ColumnSpec[] {
+						new ColumnSpec(Sizes.bounded(Sizes.MINIMUM, Sizes.dluX(100), Sizes.dluX(200))),
+						new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+					},
+					RowSpec.decodeSpecs("default")));
 
-                //======== panel2 ========
-                {
-                    panel2.setBackground(new Color(80, 69, 57));
-                    panel2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-                    panel2.setLayout(new FormLayout(
-                        new ColumnSpec[] {
-                            FormFactory.RELATED_GAP_COLSPEC,
-                            new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-                        },
-                        new RowSpec[] {
-                            FormFactory.RELATED_GAP_ROWSPEC,
-                            FormFactory.DEFAULT_ROWSPEC,
-                            FormFactory.RELATED_GAP_ROWSPEC
-                        }));
+				//======== panel2 ========
+				{
+					panel2.setBackground(new Color(80, 69, 57));
+					panel2.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					panel2.setLayout(new FormLayout(
+						new ColumnSpec[] {
+							FormFactory.RELATED_GAP_COLSPEC,
+							new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+						},
+						new RowSpec[] {
+							FormFactory.RELATED_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.RELATED_GAP_ROWSPEC
+						}));
 
-                    //---- mainHeaderLabel ----
-                    mainHeaderLabel.setText("Administration");
-                    mainHeaderLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
-                    mainHeaderLabel.setForeground(Color.white);
-                    panel2.add(mainHeaderLabel, cc.xy(2, 2));
-                }
-                HeaderPanel.add(panel2, cc.xy(1, 1));
+					//---- mainHeaderLabel ----
+					mainHeaderLabel.setText("Administration");
+					mainHeaderLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
+					mainHeaderLabel.setForeground(Color.white);
+					panel2.add(mainHeaderLabel, cc.xy(2, 2));
+				}
+				HeaderPanel.add(panel2, cc.xy(1, 1));
 
-                //======== panel3 ========
-                {
-                    panel3.setBackground(new Color(66, 60, 111));
-                    panel3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-                    panel3.setLayout(new FormLayout(
-                        new ColumnSpec[] {
-                            FormFactory.RELATED_GAP_COLSPEC,
-                            new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-                        },
-                        new RowSpec[] {
-                            FormFactory.RELATED_GAP_ROWSPEC,
-                            FormFactory.DEFAULT_ROWSPEC,
-                            FormFactory.RELATED_GAP_ROWSPEC
-                        }));
+				//======== panel3 ========
+				{
+					panel3.setBackground(new Color(66, 60, 111));
+					panel3.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+					panel3.setLayout(new FormLayout(
+						new ColumnSpec[] {
+							FormFactory.RELATED_GAP_COLSPEC,
+							new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+						},
+						new RowSpec[] {
+							FormFactory.RELATED_GAP_ROWSPEC,
+							FormFactory.DEFAULT_ROWSPEC,
+							FormFactory.RELATED_GAP_ROWSPEC
+						}));
 
-                    //---- subHeaderLabel ----
-                    subHeaderLabel.setText("Patrons");
-                    subHeaderLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
-                    subHeaderLabel.setForeground(Color.white);
-                    panel3.add(subHeaderLabel, cc.xy(2, 2));
-                }
-                HeaderPanel.add(panel3, cc.xy(2, 1));
-            }
-            dialogPane.add(HeaderPanel, BorderLayout.NORTH);
+					//---- subHeaderLabel ----
+					subHeaderLabel.setText("Patrons");
+					subHeaderLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
+					subHeaderLabel.setForeground(Color.white);
+					panel3.add(subHeaderLabel, cc.xy(2, 2));
+				}
+				HeaderPanel.add(panel3, cc.xy(2, 1));
+			}
+			dialogPane.add(HeaderPanel, BorderLayout.NORTH);
 
-            //======== contentPanel ========
-            {
-                contentPanel.setOpaque(false);
-                contentPanel.setLayout(new FormLayout(
-                    new ColumnSpec[] {
-                        FormFactory.RELATED_GAP_COLSPEC,
-                        new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
-                        FormFactory.RELATED_GAP_COLSPEC
-                    },
-                    new RowSpec[] {
-                        FormFactory.UNRELATED_GAP_ROWSPEC,
-                        FormFactory.DEFAULT_ROWSPEC,
-                        FormFactory.LINE_GAP_ROWSPEC,
-                        FormFactory.DEFAULT_ROWSPEC,
-                        FormFactory.LINE_GAP_ROWSPEC,
-                        new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
-                        FormFactory.LINE_GAP_ROWSPEC,
-                        FormFactory.DEFAULT_ROWSPEC,
-                        FormFactory.UNRELATED_GAP_ROWSPEC
-                    }));
+			//======== contentPanel ========
+			{
+				contentPanel.setOpaque(false);
+				contentPanel.setLayout(new FormLayout(
+					new ColumnSpec[] {
+						FormFactory.RELATED_GAP_COLSPEC,
+						new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+						FormFactory.RELATED_GAP_COLSPEC
+					},
+					new RowSpec[] {
+						FormFactory.UNRELATED_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.LINE_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.LINE_GAP_ROWSPEC,
+						new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+						FormFactory.LINE_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC,
+						FormFactory.UNRELATED_GAP_ROWSPEC
+					}));
 
-                //======== panel1 ========
-                {
-                    panel1.setOpaque(false);
-                    panel1.setLayout(new FormLayout(
-                        new ColumnSpec[] {
-                            FormFactory.DEFAULT_COLSPEC,
-                            FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                            new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-                        },
-                        RowSpec.decodeSpecs("default")));
+				//======== panel1 ========
+				{
+					panel1.setOpaque(false);
+					panel1.setLayout(new FormLayout(
+						new ColumnSpec[] {
+							FormFactory.DEFAULT_COLSPEC,
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+						},
+						RowSpec.decodeSpecs("default")));
 
-                    //---- label2 ----
-                    label2.setText("Filter:");
-                    panel1.add(label2, cc.xy(1, 1));
-                    panel1.add(filterField, cc.xy(3, 1));
-                }
-                contentPanel.add(panel1, cc.xy(2, 2));
+					//---- label2 ----
+					label2.setText("Filter:");
+					panel1.add(label2, cc.xy(1, 1));
+					panel1.add(filterField, cc.xy(3, 1));
+				}
+				contentPanel.add(panel1, cc.xy(2, 2));
 
-                //---- resultSizeDisplay ----
-                resultSizeDisplay.setText("resultSetDisplay");
-                resultSizeDisplay.setBackground(new Color(238, 238, 238));
-                contentPanel.add(resultSizeDisplay, cc.xy(2, 4));
+				//---- resultSizeDisplay ----
+				resultSizeDisplay.setText("resultSetDisplay");
+				resultSizeDisplay.setBackground(new Color(238, 238, 238));
+				contentPanel.add(resultSizeDisplay, cc.xy(2, 4));
 
-                //======== scrollPane1 ========
-                {
+				//======== scrollPane1 ========
+				{
 
-                    //---- patronTable ----
-                    patronTable.setPreferredScrollableViewportSize(new Dimension(800, 400));
-                    patronTable.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            contentTableMouseClicked(e);
-                        }
-                    });
-                    scrollPane1.setViewportView(patronTable);
-                }
-                contentPanel.add(scrollPane1, cc.xy(2, 6));
+					//---- patronTable ----
+					patronTable.setPreferredScrollableViewportSize(new Dimension(800, 400));
+					patronTable.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							contentTableMouseClicked(e);
+						}
+					});
+					scrollPane1.setViewportView(patronTable);
+				}
+				contentPanel.add(scrollPane1, cc.xy(2, 6));
 
-                //======== buttonBar ========
-                {
-                    buttonBar.setBorder(Borders.BUTTON_BAR_GAP_BORDER);
-                    buttonBar.setOpaque(false);
-                    buttonBar.setLayout(new FormLayout(
-                        new ColumnSpec[] {
-                            FormFactory.DEFAULT_COLSPEC,
-                            FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                            FormFactory.DEFAULT_COLSPEC,
-                            FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                            FormFactory.DEFAULT_COLSPEC,
-                            FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                            FormFactory.DEFAULT_COLSPEC,
-                            FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                            FormFactory.DEFAULT_COLSPEC,
-                            FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                            FormFactory.DEFAULT_COLSPEC,
-                            FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                            FormFactory.DEFAULT_COLSPEC,
-                            FormFactory.GLUE_COLSPEC,
-                            FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                            FormFactory.BUTTON_COLSPEC
-                        },
-                        RowSpec.decodeSpecs("pref")));
+				//======== buttonBar ========
+				{
+					buttonBar.setBorder(Borders.BUTTON_BAR_GAP_BORDER);
+					buttonBar.setOpaque(false);
+					buttonBar.setLayout(new FormLayout(
+						new ColumnSpec[] {
+							FormFactory.DEFAULT_COLSPEC,
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							FormFactory.DEFAULT_COLSPEC,
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							FormFactory.DEFAULT_COLSPEC,
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							FormFactory.DEFAULT_COLSPEC,
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							FormFactory.DEFAULT_COLSPEC,
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							FormFactory.DEFAULT_COLSPEC,
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							FormFactory.DEFAULT_COLSPEC,
+							FormFactory.GLUE_COLSPEC,
+							FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+							FormFactory.BUTTON_COLSPEC
+						},
+						RowSpec.decodeSpecs("pref")));
 
-                    //---- search ----
-                    search.setText("Search");
-                    search.setOpaque(false);
-                    search.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            searchActionPerformed();
-                        }
-                    });
-                    buttonBar.add(search, cc.xy(1, 1));
+					//---- search ----
+					search.setText("Search");
+					search.setOpaque(false);
+					search.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							searchActionPerformed();
+						}
+					});
+					buttonBar.add(search, cc.xy(1, 1));
 
-                    //---- listAll ----
-                    listAll.setText("List All");
-                    listAll.setOpaque(false);
-                    listAll.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            listAllActionPerformed();
-                        }
-                    });
-                    buttonBar.add(listAll, cc.xy(3, 1));
+					//---- listAll ----
+					listAll.setText("List All");
+					listAll.setOpaque(false);
+					listAll.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							listAllActionPerformed();
+						}
+					});
+					buttonBar.add(listAll, cc.xy(3, 1));
 
-                    //---- reportsButton ----
-                    reportsButton.setText("Reports");
-                    reportsButton.setOpaque(false);
-                    reportsButton.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            reportButtonActionPerformed(e);
-                        }
-                    });
-                    buttonBar.add(reportsButton, cc.xy(5, 1));
+					//---- reportsButton ----
+					reportsButton.setText("Reports");
+					reportsButton.setOpaque(false);
+					reportsButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							reportButtonActionPerformed(e);
+						}
+					});
+					buttonBar.add(reportsButton, cc.xy(5, 1));
 
-                    //---- addPatronButton ----
-                    addPatronButton.setText("Add Patron");
-                    addPatronButton.setOpaque(false);
-                    addPatronButton.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            addPatronButtonActionPerformed(e);
-                        }
-                    });
-                    buttonBar.add(addPatronButton, cc.xy(7, 1));
+					//---- addPatronButton ----
+					addPatronButton.setText("Add Patron");
+					addPatronButton.setOpaque(false);
+					addPatronButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							addPatronButtonActionPerformed(e);
+						}
+					});
+					buttonBar.add(addPatronButton, cc.xy(7, 1));
 
-                    //---- removePatronButton ----
-                    removePatronButton.setText("Remove Patron");
-                    removePatronButton.setOpaque(false);
-                    removePatronButton.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            removePatronButtonActionPerformed();
-                        }
-                    });
-                    buttonBar.add(removePatronButton, cc.xy(9, 1));
+					//---- removePatronButton ----
+					removePatronButton.setText("Remove Patron");
+					removePatronButton.setOpaque(false);
+					removePatronButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							removePatronButtonActionPerformed();
+						}
+					});
+					buttonBar.add(removePatronButton, cc.xy(9, 1));
 
-                    //---- mergeButton ----
-                    mergeButton.setText("Merge");
-                    mergeButton.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            mergeButtonActionPerformed();
-                        }
-                    });
-                    buttonBar.add(mergeButton, cc.xy(11, 1));
+					//---- mergeButton ----
+					mergeButton.setText("Merge");
+					mergeButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							mergeButtonActionPerformed();
+						}
+					});
+					buttonBar.add(mergeButton, cc.xy(11, 1));
 
-                    //---- doneButton ----
-                    doneButton.setText("Done");
-                    doneButton.setOpaque(false);
-                    doneButton.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            doneButtonActionPerformed(e);
-                        }
-                    });
-                    buttonBar.add(doneButton, cc.xy(16, 1));
-                }
-                contentPanel.add(buttonBar, cc.xy(2, 8));
-            }
-            dialogPane.add(contentPanel, BorderLayout.CENTER);
-        }
-        contentPane.add(dialogPane, BorderLayout.CENTER);
-        pack();
-        setLocationRelativeTo(getOwner());
+					//---- exportButton ----
+					exportButton.setText("Export");
+					exportButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							exportButtonActionPerformed(e);
+						}
+					});
+					buttonBar.add(exportButton, cc.xy(13, 1));
+
+					//---- doneButton ----
+					doneButton.setText("Done");
+					doneButton.setOpaque(false);
+					doneButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							doneButtonActionPerformed(e);
+						}
+					});
+					buttonBar.add(doneButton, cc.xy(16, 1));
+				}
+				contentPanel.add(buttonBar, cc.xy(2, 8));
+			}
+			dialogPane.add(contentPanel, BorderLayout.CENTER);
+		}
+		contentPane.add(dialogPane, BorderLayout.CENTER);
+		pack();
+		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
@@ -843,28 +896,29 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner non-commercial license
-    private JPanel dialogPane;
-    private JPanel HeaderPanel;
-    private JPanel panel2;
-    private JLabel mainHeaderLabel;
-    private JPanel panel3;
-    private JLabel subHeaderLabel;
-    private JPanel contentPanel;
-    private JPanel panel1;
-    private JLabel label2;
-    private JTextField filterField;
-    private JLabel resultSizeDisplay;
-    private JScrollPane scrollPane1;
-    private DomainSortableTable patronTable;
-    private JPanel buttonBar;
-    private JButton search;
-    private JButton listAll;
-    private JButton reportsButton;
-    private JButton addPatronButton;
-    private JButton removePatronButton;
-    private JButton mergeButton;
-    private JButton doneButton;
+	// Generated using JFormDesigner non-commercial license
+	private JPanel dialogPane;
+	private JPanel HeaderPanel;
+	private JPanel panel2;
+	private JLabel mainHeaderLabel;
+	private JPanel panel3;
+	private JLabel subHeaderLabel;
+	private JPanel contentPanel;
+	private JPanel panel1;
+	private JLabel label2;
+	private JTextField filterField;
+	private JLabel resultSizeDisplay;
+	private JScrollPane scrollPane1;
+	private DomainSortableTable patronTable;
+	private JPanel buttonBar;
+	private JButton search;
+	private JButton listAll;
+	private JButton reportsButton;
+	private JButton addPatronButton;
+	private JButton removePatronButton;
+	private JButton mergeButton;
+	private JButton exportButton;
+	private JButton doneButton;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 
 	FilterList<DomainObject> textFilteredIssues;

@@ -6153,25 +6153,25 @@
 
     </list>
 
-    <list name="Publication type" allowOtherOption="true" listType="1">
+    <list name="Publication type" allowOtherOption="true" listType="3">
 
         <usage className="org.rac.model.PatronPublications" field="publicationType"/>
 
-    	<value>Book</value>
+    	<value editable="false">Book</value>
 
-    	<value>Journal article</value>
+    	<value editable="false">Journal article</value>
 
-    	<value>Article in a newspaper or popular magazine</value>
+    	<value editable="false">Article in a newspaper or popular magazine</value>
 
-    	<value>Book review</value>
+    	<value editable="false">Book review</value>
     	
-    	<value>Thesis or dissertation</value>
+    	<value editable="false">Thesis or dissertation</value>
     	
-    	<value>Paper presented at a meeting or conference</value>
+    	<value editable="false">Paper presented at a meeting or conference</value>
     	
-    	<value>Website</value>
+    	<value editable="false">Website</value>
     	
-    	<value>Audiovisual material</value>
+    	<value editable="false">Audiovisual material</value>
 
     </list>
 
