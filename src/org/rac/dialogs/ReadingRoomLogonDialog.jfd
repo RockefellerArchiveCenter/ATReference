@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_23" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_24" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -108,7 +108,7 @@
               <void method="auxiliary"> 
                <void method="setProperty"> 
                 <string>JavaCodeGenerator.postInitCode</string> 
-                <string>ATFieldInfo.assignLabelInfo(${field}, Names.class, Names.PROPERTYNAME_PERSONAL_REST_OF_NAME);</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field}, Names.class, Names.PROPERTYNAME_PERSONAL_PRIMARY_NAME);</string> 
                </void> 
               </void> 
              </object> 
@@ -180,7 +180,7 @@
               <void method="auxiliary"> 
                <void method="setProperty"> 
                 <string>JavaCodeGenerator.postInitCode</string> 
-                <string>ATFieldInfo.assignLabelInfo(${field}, Names.class, Names.PROPERTYNAME_PERSONAL_PRIMARY_NAME);</string> 
+                <string>ATFieldInfo.assignLabelInfo(${field}, Names.class, Names.PROPERTYNAME_PERSONAL_REST_OF_NAME);</string> 
                </void> 
               </void> 
              </object> 
@@ -490,7 +490,7 @@
        <string>size</string> 
        <object class="java.awt.Dimension"> 
         <int>485</int> 
-        <int>185</int> 
+        <int>210</int> 
        </object> 
       </void> 
      </object> 

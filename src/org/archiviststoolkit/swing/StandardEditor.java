@@ -112,6 +112,8 @@ public class StandardEditor extends JDialog implements ActionListener {
     private boolean editorDone = false; // this is used for waiting on a thread
     protected Boolean readOnly = false; // ue this to set the read only status
 
+    protected boolean absoluteCentered = false; // set this to true if window should be moved to top and center
+
     public static void setMainHeaderColorAndTextByClass(Class clazz, JPanel mainHeaderPanel, JLabel mainHeaderLabel) {
 		if (clazz == Accessions.class) {
 			mainHeaderPanel.setBackground(StandardEditor.MODULE_HEADER_COLOR_ACCESSIONS);
@@ -678,6 +680,7 @@ public class StandardEditor extends JDialog implements ActionListener {
         }
 
         setLocationRelativeTo(null);
+
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         if (callingTable != null && !newRecord) {
             setNavigationButtons();
@@ -691,6 +694,11 @@ public class StandardEditor extends JDialog implements ActionListener {
             showThread = new Thread(new Runnable() {
 				public void run() {
 					pack();
+
+                    if(isAbsoluteCentered()) {
+                        setLocationAbsoluteCentered();
+                    }
+                    
                     setVisible(true);
                     setEditorDone(true);
                 }
@@ -708,12 +716,31 @@ public class StandardEditor extends JDialog implements ActionListener {
         else {
             this.pack();
 			//todo RAC added so windows open on top their parent
-			this.setLocationRelativeTo(this.getParent());
+			if(isAbsoluteCentered()) {
+                setLocationAbsoluteCentered();
+            } else {
+                this.setLocationRelativeTo(this.getParent());
+            }
+
             this.setVisible(true);
         }
 
         return (status);
 	}
+
+    // Method to set this component absolute centered on the screen
+    private void setLocationAbsoluteCentered() {
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+
+        int w = getSize().width;
+        int h = getSize().height;
+
+        int x = (dim.width - w)/2;
+        int y = (dim.height - h)/2;
+
+        // Move the window
+        setLocation(x, y);
+    }
 
     //Method to set done true
     private void setEditorDone(boolean done) {
@@ -1014,5 +1041,13 @@ public class StandardEditor extends JDialog implements ActionListener {
         } else {
             saveButton.setEnabled(true);
         }
+    }
+
+    public boolean isAbsoluteCentered() {
+        return absoluteCentered;
+    }
+
+    public void setAbsoluteCentered(boolean absoluteCentered) {
+        this.absoluteCentered = absoluteCentered;
     }
 }

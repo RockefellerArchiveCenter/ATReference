@@ -151,13 +151,13 @@ public class ReadingRoomLogonDialog extends JDialog {
 
                     //---- label1 ----
                     label1.setText("First Name");
-                    ATFieldInfo.assignLabelInfo(label1, Names.class, Names.PROPERTYNAME_PERSONAL_REST_OF_NAME);
+                    ATFieldInfo.assignLabelInfo(label1, Names.class, Names.PROPERTYNAME_PERSONAL_PRIMARY_NAME);
                     contentPanel.add(label1, new CellConstraints(1, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
                     contentPanel.add(firstName, new CellConstraints(3, 1, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
 
                     //---- label2 ----
                     label2.setText("Last Name");
-                    ATFieldInfo.assignLabelInfo(label2, Names.class, Names.PROPERTYNAME_PERSONAL_PRIMARY_NAME);
+                    ATFieldInfo.assignLabelInfo(label2, Names.class, Names.PROPERTYNAME_PERSONAL_REST_OF_NAME);
                     contentPanel.add(label2, new CellConstraints(1, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
                     contentPanel.add(lastName, new CellConstraints(3, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
 
@@ -277,7 +277,7 @@ public class ReadingRoomLogonDialog extends JDialog {
 		Patrons patrons = patronDAO.queryByFirstLastNameSuffix(getFirstName(), getLastName(), getSuffix());
 		DomainEditor dialog;
 		Boolean newRecord;
-		if (patrons != null ||getCreateNewRecord()) {
+		if (patrons != null || getCreateNewRecord()) {
 			if (getCreateNewRecord()) {
 				patrons = new Patrons();
 				patrons.setRepository(ApplicationFrame.getInstance().getCurrentUserRepository());
@@ -288,7 +288,11 @@ public class ReadingRoomLogonDialog extends JDialog {
 				dialog = new DomainEditor(Patrons.class, this, "Patrons", new PatronFields());
 				newRecord = false;
 			}
-			dialog.setModel(patrons, null);
+
+            // center the dialog on screen
+            dialog.setAbsoluteCentered(true);
+
+            dialog.setModel(patrons, null);
 			dialog.disableNavigationButtons();
 			dialog.setButtonListeners();
 			dialog.setIncludeSaveButton(true);
@@ -301,10 +305,13 @@ public class ReadingRoomLogonDialog extends JDialog {
 			if (!newRecord) {
 				((PatronFields)dialog.editorFields).updateUIForClass0();
 			}
-			int status = dialog.showDialog();
-			if (status == JOptionPane.OK_OPTION) {
+
+            int status = dialog.showDialog();
+
+            if (status == JOptionPane.OK_OPTION) {
 				if (newRecord) {
-					patronDAO.update(patrons);
+                    patronDAO.getLongSession(); // make sure long session is opened
+					patronDAO.updateLongSession(patrons, false);
 				} else {
 					patronDAO.updateLongSession(patrons);
 				}

@@ -95,6 +95,9 @@ public interface ATPlugin {
     //plugin that loads in the RDE drop down menu
     final String RAPID_DATA_ENTRY_EDITOR = "rde";
 
+    //plugin that loads in the patrons editor
+    final String PATRON_EDITOR = "patron";
+
     // plugin that can edit or view all the main AT records.
     final String ALL_EDITOR = "all";
 

@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -160,7 +160,23 @@ public class ErrorDialog extends JDialog {
 	}
 
 	private void setDisplay(String errorMessage, String errorText, int errorDialogType) {
-		if (errorDialogType == DIALOG_TYPE_ERROR) {
+		// first check to see if the error text is not a JDBC connection exception
+        // if it is then only alert user of this and don't allow user to submit
+        // error report
+        if(errorText.contains("JDBCConnectionException")) {
+            String message = "Database Connection Lost ...\n\n" +
+                    "Please RESTART the program, and contact your System Administrator\n" +
+                    "if this problem continues.";
+
+            cardPanel.remove(contentPanel);
+
+            ((CardLayout) cardPanel.getLayout()).show(cardPanel, "error");
+
+            this.label4.setText("Connection Error");
+            this.errorMessage.setText(message);
+
+            submitBugReport.setVisible(false);
+        } else if (errorDialogType == DIALOG_TYPE_ERROR) {
 			((CardLayout) cardPanel.getLayout()).show(cardPanel, "error");
 			this.errorMessage.setText(errorMessage + "\n" + errorText);
 			submitBugReport.setVisible(false);
@@ -168,6 +184,8 @@ public class ErrorDialog extends JDialog {
 			this.errorMessageBozo.setText(errorMessage);
 			this.errorText.setText(errorText);
 		}
+
+        pack();
 	}
 
 	public ErrorDialog(Frame owner) {
