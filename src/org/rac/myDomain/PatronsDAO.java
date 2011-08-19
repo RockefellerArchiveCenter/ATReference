@@ -327,21 +327,14 @@ public class PatronsDAO extends DomainAccessObjectImpl {
      * @param suffix
      * @return  patron record that is found
      */
-    public Patrons queryByFirstLastNameSuffix(String firstName, String lastName, String suffix) {
+    public Patrons queryNameByFirstLastPrefixAndSuffix(String firstName, String lastName, String prefix, String suffix) {
         Session session = SessionFactory.getInstance().openSession(getPersistentClass());
 
         return (Patrons) session.createCriteria(this.getPersistentClass())
 				.add(Restrictions.eq(Patrons.PROPERTYNAME_REST_OF_NAME, lastName))
 				.add(Restrictions.eq(Patrons.PROPERTYNAME_PRIMARY_NAME, firstName))
+                .add(Restrictions.eq(Patrons.PROPERTYNAME_PREFIX, prefix))
                 .add(Restrictions.eq(Patrons.PROPERTYNAME_SUFFIX, suffix)).uniqueResult();
-	}
-
-	public Patrons queryByFirstLastName(String firstName, String lastName) {
-		Session session = SessionFactory.getInstance().openSession(getPersistentClass());
-
-        return (Patrons) session.createCriteria(this.getPersistentClass())
-				.add(Restrictions.eq(Patrons.PROPERTYNAME_REST_OF_NAME, firstName))
-				.add(Restrictions.eq(Patrons.PROPERTYNAME_PRIMARY_NAME, lastName)).uniqueResult();
 	}
 
     /**
