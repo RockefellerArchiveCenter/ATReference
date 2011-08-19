@@ -6,7 +6,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="241"/>
+	<property name="ireport.y" value="263"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
@@ -24,6 +24,7 @@
 	<field name="patronFunding" class="java.util.Set"/>
 	<field name="patronVisits" class="java.util.Set"/>
 	<field name="howDidYouHearAboutUs" class="java.lang.String"/>
+	<field name="inactive" class="java.lang.Boolean"/>
 	<variable name="patronAddressesDataSource" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource">
 		<variableExpression><![CDATA[new JRBeanCollectionDataSource(new ArrayList($F{patronAddresses}))]]></variableExpression>
 	</variable>
@@ -68,11 +69,15 @@
 	<variable name="PATRON_TYPE_COUNT_NON" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA[$F{patronType}.equalsIgnoreCase("non-academic") ? Integer.valueOf(1) : Integer.valueOf(0)]]></variableExpression>
 	</variable>
+	<variable name="PATRON_ACTIVE_COUNT" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[("" + $F{inactive}).equalsIgnoreCase("TRUE") ? Integer.valueOf(0) : Integer.valueOf(1)]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="404" splitType="Stretch">
+		<band height="414" splitType="Stretch">
 			<staticText>
 				<reportElement key="staticText-5" mode="Transparent" x="305" y="118" width="146" height="18" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box>
@@ -515,6 +520,45 @@
 				</textElement>
 				<textFieldExpression class="java.lang.Float"><![CDATA[new Float($V{TEST_USA_COUNT}.floatValue() / $V{REPORT_COUNT}.floatValue())]]></textFieldExpression>
 			</textField>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField-21" mode="Transparent" x="161" y="370" width="50" height="18" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PATRON_ACTIVE_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-5" mode="Transparent" x="15" y="370" width="146" height="36" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Number of active patrons]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="#,##0.0 %" isBlankWhenNull="false">
+				<reportElement key="textField-21" mode="Transparent" x="211" y="370" width="50" height="18" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[new Float($V{PATRON_ACTIVE_COUNT}.floatValue() / $V{REPORT_COUNT}.floatValue())]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -524,9 +568,9 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="165" splitType="Immediate">
+		<band height="179" splitType="Immediate">
 			<staticText>
-				<reportElement key="staticText" positionType="Float" mode="Opaque" x="10" y="24" width="57" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="staticText" positionType="Float" mode="Opaque" x="10" y="42" width="57" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -539,7 +583,7 @@
 				<text><![CDATA[Affiliation:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" positionType="Float" mode="Opaque" x="10" y="71" width="76" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="staticText" positionType="Float" mode="Opaque" x="10" y="89" width="76" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -552,7 +596,7 @@
 				<text><![CDATA[Patron info:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" positionType="Float" mode="Transparent" x="0" y="8" width="521" height="15" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="textField" positionType="Float" mode="Transparent" x="0" y="26" width="521" height="15" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box leftPadding="2">
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -565,7 +609,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{sortName}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement key="textField" positionType="Float" mode="Transparent" x="10" y="38" width="511" height="15" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="textField" positionType="Float" mode="Transparent" x="10" y="56" width="511" height="15" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box leftPadding="10" rightPadding="10">
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -578,7 +622,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{institutionalAffiliation}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement key="textField" positionType="Float" mode="Transparent" x="10" y="55" width="511" height="15" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="textField" positionType="Float" mode="Transparent" x="10" y="73" width="511" height="15" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box leftPadding="10" rightPadding="10">
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -591,16 +635,16 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{department}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement key="line-1" positionType="Float" x="2" y="24" width="519" height="1" forecolor="#FFFFFF"/>
+				<reportElement key="line-1" positionType="Float" x="2" y="42" width="519" height="1" forecolor="#FFFFFF"/>
 			</line>
 			<line>
-				<reportElement key="line-1" positionType="Float" mode="Opaque" x="1" y="4" width="533" height="1" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="line-1" positionType="Float" mode="Opaque" x="1" y="5" width="533" height="1" forecolor="#000000" backcolor="#FFFFFF"/>
 				<graphicElement fill="Solid">
 					<pen lineWidth="1.0" lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="10" y="93" width="481" height="10" isRemoveLineWhenBlank="true"/>
+				<reportElement positionType="Float" x="10" y="111" width="481" height="10" isRemoveLineWhenBlank="true"/>
 				<box leftPadding="10" rightPadding="10">
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -611,7 +655,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{patronNotes}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="10" y="83" width="481" height="10" isRemoveLineWhenBlank="true"/>
+				<reportElement positionType="Float" x="10" y="101" width="481" height="10" isRemoveLineWhenBlank="true"/>
 				<box leftPadding="10" rightPadding="10">
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -622,7 +666,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{patronType}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement key="textField-12" positionType="Float" mode="Transparent" x="10" y="103" width="281" height="10" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="textField-12" positionType="Float" mode="Transparent" x="10" y="121" width="281" height="10" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box leftPadding="10" rightPadding="10">
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -635,18 +679,18 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{howDidYouHearAboutUs}.equals("") ? "" : "found us via: "+ $F{howDidYouHearAboutUs}]]></textFieldExpression>
 			</textField>
 			<subreport isUsingCache="true" runToBottom="false">
-				<reportElement key="subreport-4" positionType="Float" mode="Transparent" x="10" y="115" width="511" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="subreport-4" positionType="Float" mode="Transparent" x="10" y="127" width="511" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<dataSourceExpression><![CDATA[$V{patronAddressesDataSource}]]></dataSourceExpression>
 				<returnValue subreportVariable="TEST_USA" toVariable="TEST_USA_COUNT" calculation="Sum"/>
 				<subreportExpression class="java.lang.String"><![CDATA[$P{basePath} + "/sub_patronAddresses.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true" runToBottom="false">
-				<reportElement key="subreport-5" positionType="Float" mode="Transparent" x="10" y="123" width="511" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="subreport-5" positionType="Float" mode="Transparent" x="10" y="135" width="511" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<dataSourceExpression><![CDATA[$V{patronPhoneNumbersDataSource}]]></dataSourceExpression>
 				<subreportExpression class="java.lang.String"><![CDATA[$P{basePath} + "/sub_patronPhoneNumbers.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true" runToBottom="false">
-				<reportElement key="subreport-6" positionType="Float" mode="Transparent" x="10" y="131" width="511" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="subreport-6" positionType="Float" mode="Transparent" x="10" y="143" width="511" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<subreportParameter name="BASE_PATH">
 					<subreportParameterExpression><![CDATA["" + $P{basePath}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -655,7 +699,7 @@
 				<subreportExpression class="java.lang.String"><![CDATA[$P{basePath} + "/sub_patronVisits.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true" runToBottom="false">
-				<reportElement key="subreport-7" positionType="Float" mode="Transparent" x="10" y="155" width="511" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="subreport-7" positionType="Float" mode="Transparent" x="10" y="167" width="511" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<subreportParameter name="BASE_PATH">
 					<subreportParameterExpression><![CDATA["" + $P{basePath}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -664,7 +708,7 @@
 				<subreportExpression class="java.lang.String"><![CDATA[$P{basePath} + "/sub_patronForms.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true" runToBottom="false">
-				<reportElement key="subreport-7" positionType="Float" mode="Transparent" x="10" y="139" width="511" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="subreport-7" positionType="Float" mode="Transparent" x="10" y="151" width="511" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<subreportParameter name="BASE_PATH">
 					<subreportParameterExpression><![CDATA["" + $P{basePath}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -673,11 +717,24 @@
 				<subreportExpression class="java.lang.String"><![CDATA[$P{basePath} + "/sub_patronPublications.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true" runToBottom="false">
-				<reportElement key="subreport-8" positionType="Float" mode="Transparent" x="10" y="147" width="511" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="subreport-8" positionType="Float" mode="Transparent" x="10" y="159" width="511" height="8" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<dataSourceExpression><![CDATA[$V{patronFundingDataSource}]]></dataSourceExpression>
 				<returnValue subreportVariable="GRANTS_COUNT" toVariable="PATRON_GRANTS_COUNT" calculation="Sum"/>
 				<subreportExpression class="java.lang.String"><![CDATA[$P{basePath} + "/sub_patronFunding.jasper"]]></subreportExpression>
 			</subreport>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" positionType="Float" mode="Transparent" x="11" y="10" width="141" height="15" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box leftPadding="10" rightPadding="10">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(""+ $F{inactive}).equalsIgnoreCase("TRUE") ? "inactive patron" : "active patron"]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
