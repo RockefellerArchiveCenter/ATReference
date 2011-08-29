@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -265,6 +265,8 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 			this.addSubject((Subjects)domainObject);
 		} else if (domainObject instanceof Names) {
 			this.addName((Names)domainObject);
+		} else if (domainObject instanceof PatronVisitsResearchPurposes) {
+			this.addResearchPurposes((PatronVisitsResearchPurposes)domainObject);
 		} else {
 			super.addRelatedObject(domainObject);
 		}
@@ -314,10 +316,20 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 
 	public void addResearchPurposes(String researchPurpose)  {
 
-		if (researchPurpose == null)
+		if (researchPurpose == null) {
 			throw new IllegalArgumentException("Can't add a null research purpose.");
+        }
 
 		getResearchPurposes().add(new PatronVisitsResearchPurposes(this, researchPurpose));
 	}
+
+    public void addResearchPurposes(PatronVisitsResearchPurposes patronVisitsResearchPurposes) {
+        if (patronVisitsResearchPurposes == null) {
+			throw new IllegalArgumentException("Can't add a null research purpose.");
+        }
+
+        getResearchPurposes().add(patronVisitsResearchPurposes);
+    }
+
 
 }
