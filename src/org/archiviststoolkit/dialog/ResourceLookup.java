@@ -36,6 +36,8 @@ import ca.odell.glazedlists.FilterList;
 import ca.odell.glazedlists.swing.TextComponentMatcherEditor;
 import ca.odell.glazedlists.swing.EventTableModel;
 import ca.odell.glazedlists.swing.TableComparatorChooser;
+import org.rac.editors.PatronVisitFields;
+import org.rac.model.PatronVisits;
 
 public class ResourceLookup extends JDialog {
 
@@ -43,6 +45,9 @@ public class ResourceLookup extends JDialog {
 	public static final String PARENT_EDITOR_TYPE_RESOURCES = "resources";
     public static final String PARENT_EDITOR_TYPE_ASSESSMENTS = "assessment";
     public static final String PARENT_EDITOR_TYPE_DIGITALOBJECT = "digitalobject";
+
+    //todo RAC specific change
+    public static final String PARENT_EDITOR_TYPE_PATRON_VISITS = "patronVisits";
 
     public ResourceLookup(Dialog owner, String parentEditorType) {
         super(owner);
@@ -62,8 +67,12 @@ public class ResourceLookup extends JDialog {
 			parentEditorType = PARENT_EDITOR_TYPE_RESOURCES;
 		} else if (parentEditorFields instanceof AssessmentsFields) {
             parentEditorType = PARENT_EDITOR_TYPE_ASSESSMENTS;
+        } else if(parentEditorFields instanceof PatronVisitFields) {
+            parentEditorType = PARENT_EDITOR_TYPE_PATRON_VISITS;
         }
+
 		initClassBased();
+
 		this.getRootPane().setDefaultButton(this.select);
 	}
 
@@ -83,12 +92,18 @@ public class ResourceLookup extends JDialog {
             StandardEditor.setMainHeaderColorAndTextByClass(DigitalObjects.class, mainHeaderPanel, mainHeaderLabel);
 			getLinkButton().setVisible(false);
 			getCreateButton().setVisible(false);
+        } else if (parentEditorType.equals(PARENT_EDITOR_TYPE_PATRON_VISITS)) {
+			mainHeaderLabel.setText("Patron Visits");
+			getCreateButton().setVisible(false);
+            getSelect().setVisible(false);
         }
 	}
 
 	private void lookupTableMouseClicked(MouseEvent e) {
 		if (e.getClickCount() == 2) {
-			if (parentEditorType.equals(PARENT_EDITOR_TYPE_ACCESSIONS) || parentEditorType.equals(PARENT_EDITOR_TYPE_ASSESSMENTS)) {
+			if (parentEditorType.equals(PARENT_EDITOR_TYPE_ACCESSIONS) ||
+                    parentEditorType.equals(PARENT_EDITOR_TYPE_ASSESSMENTS) ||
+                    parentEditorType.equals(PARENT_EDITOR_TYPE_PATRON_VISITS)) {
 				linkResourceButtonActionPerformed();
 			} else if (parentEditorType.equals(PARENT_EDITOR_TYPE_RESOURCES) || parentEditorType.equals(PARENT_EDITOR_TYPE_DIGITALOBJECT)) {
 				setSelectedResourceAndExitWithOK();
@@ -515,14 +530,22 @@ public class ResourceLookup extends JDialog {
                 if (parentEditorType.equals(PARENT_EDITOR_TYPE_ASSESSMENTS)) {
                     Assessments assessmentsModel = (Assessments) parentEditorFields.getModel();
                     link = assessmentsModel.addResource(resource);
+                } else if (parentEditorType.equals(PARENT_EDITOR_TYPE_PATRON_VISITS)) {
+                    PatronVisits patronVisitsModel = (PatronVisits) parentEditorFields.getModel();
+                    link = patronVisitsModel.addResource(resource);
                 } else {
                     Accessions accessionsModel = (Accessions) parentEditorFields.getModel();
                     link = accessionsModel.addResource(resource);
                 }
 
+                // we have a link object now we need to add it to the specific table
                 if (link != null) {
                     if (parentEditorType.equals(PARENT_EDITOR_TYPE_ASSESSMENTS)) {
                         ((AssessmentsFields) parentEditorFields).getTableAssessmentsResources().addDomainObject(link);
+                    } else if(parentEditorType.equals(PARENT_EDITOR_TYPE_PATRON_VISITS)) {
+                        // todo code ....
+
+
                     } else { // This must be an accession editor
                         ((AccessionFields) parentEditorFields).getTableAccessionsResources().addDomainObject(link);
                     }

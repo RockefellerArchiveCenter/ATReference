@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.rac.model">
+
+	<class name="PatronVisitsResources"
+		   table="PatronVisitsResources">
+
+		<id name="patronVisitsResourcesId" column="patronVisitsResourcesId" type="java.lang.Long">
+			<generator class="native"></generator>
+		</id>
+
+		<many-to-one name="patronVisit"
+					 class="PatronVisits"
+					 column="patronVisitId"/>
+
+        <many-to-one name="resource"
+                     class="Resources"
+                     column="resourceId"/>
+	</class>
+
+</hibernate-mapping>

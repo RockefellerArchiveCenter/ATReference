@@ -61,7 +61,7 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 	private Set<PatronVisitsResearchPurposes> researchPurposes = new HashSet<PatronVisitsResearchPurposes>();
 	private Set<PatronVisitsSubjects> subjects = new HashSet<PatronVisitsSubjects>();
 	private Set<PatronVisitsNames> names = new HashSet<PatronVisitsNames>();
-
+    private Set<PatronVisitsResources> resources = new HashSet<PatronVisitsResources>();
 
 	private Patrons patron;
 
@@ -273,8 +273,7 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 	}
 
 	/**
-	 * A dummy place holder to be overridden by classes that have related objects
-	 *
+        * Method to remove any related objects
 	 * @param domainObject the domain object to be removed
 	 */
 	@Override
@@ -286,6 +285,8 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 			this.removeName((PatronVisitsNames)domainObject);
 		} else if (domainObject instanceof PatronVisitsResearchPurposes) {
 			this.removeResearchPurposes((PatronVisitsResearchPurposes)domainObject);
+		} else if (domainObject instanceof PatronVisitsResources) {
+			this.removeResource((PatronVisitsResources)domainObject);
 		} else {
 			super.removeRelatedObject(domainObject);			
 		}
@@ -307,7 +308,15 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 		this.researchPurposes = researchPurposes;
 	}
 
-	private void removeResearchPurposes(PatronVisitsResearchPurposes researchPurpose) {
+    public Set<PatronVisitsResources> getResources() {
+        return resources;
+    }
+
+    public void setResources(Set<PatronVisitsResources> resources) {
+        this.resources = resources;
+    }
+
+    private void removeResearchPurposes(PatronVisitsResearchPurposes researchPurpose) {
 		if (researchPurpose == null)
 			throw new IllegalArgumentException("Can't remove a null research purpose.");
 
@@ -331,5 +340,47 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
         getResearchPurposes().add(patronVisitsResearchPurposes);
     }
 
+    /**
+     * Method to link a resource to the assessment object
+     * @param resource the resource to link
+     * @return The PatronVisitsResource linking object
+     */
+    public PatronVisitsResources addResource(Resources resource) throws DuplicateLinkException {
+		if (resource == null)
+			throw new IllegalArgumentException("Can't add a null resource.");
+		if (containsResource(resource)) {
+			throw new DuplicateLinkException(resource.toString());
+		} else {
+			PatronVisitsResources link = new PatronVisitsResources(resource, this);
+			this.getResources().add(link);
+			return link;
+		}
+	}
 
+    /**
+     * Method to check to see if this resource is already linked to this object
+     * @param resource The resource to look for
+     *
+     * @return true if the resource is already link or false if it is not
+     */
+    private boolean containsResource(Resources resource) {
+		for (PatronVisitsResources resourceLink: getResources()) {
+			if (resourceLink.getResource() == resource) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+    /**
+     * Method to remove the resource record link
+     *
+     * @param patronVisitsResource
+     */
+    private void removeResource(PatronVisitsResources patronVisitsResource) {
+		if (patronVisitsResource == null)
+			throw new IllegalArgumentException("Can't remove a null resource link");
+
+		getResources().remove(patronVisitsResource);
+	}
 }
