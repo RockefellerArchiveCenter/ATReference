@@ -25,6 +25,7 @@ import com.jgoodies.forms.factories.*;
 import com.jgoodies.forms.layout.*;
 import org.archiviststoolkit.dialog.ErrorDialog;
 import org.archiviststoolkit.dialog.NameAuthorityLookup;
+import org.archiviststoolkit.dialog.ResourceLookup;
 import org.archiviststoolkit.dialog.SubjectTermLookup;
 import org.archiviststoolkit.editor.NameEnabledEditor;
 import org.archiviststoolkit.editor.SubjectEnabledEditorFields;
@@ -38,10 +39,7 @@ import org.archiviststoolkit.swing.ATBasicComponentFactory;
 import org.archiviststoolkit.structure.ATFieldInfo;
 import org.archiviststoolkit.swing.InfiniteProgressPanel;
 import org.rac.dialogs.PatronNameAuthorityLookup;
-import org.rac.model.PatronVisits;
-import org.rac.model.PatronVisitsNames;
-import org.rac.model.PatronVisitsResearchPurposes;
-import org.rac.model.PatronVisitsSubjects;
+import org.rac.model.*;
 
 public class PatronVisitFields extends RAC_DomainEditorFields implements SubjectEnabledEditorFields, NameEnabledEditor {
 
@@ -73,6 +71,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 		subjectsTable.updateCollection(visitModel.getSubjects());
 		namesTable.updateCollection(visitModel.getNames());
 		researchPurposeTable.updateCollection(visitModel.getResearchPurposes());
+        resourcesTable.updateCollection(visitModel.getResources());
 	}
 
 	public Component getInitialFocusComponent() {
@@ -81,7 +80,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 
 	private void addSubjectActionPerformed() {
 		SubjectTermLookup subjectLookupDialog = new SubjectTermLookup(getParentEditor(), this);
-//		subjectLookupDialog.setMainHeaderByClass(archDescriptionModel.getClass());
+        subjectLookupDialog.setMainHeaderText("Patron Visits");
 		subjectLookupDialog.showDialog();
 	}
 
@@ -95,7 +94,8 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 
 	private void addNameActionPerformed() {
 		PatronNameAuthorityLookup nameLookupDialog = new PatronNameAuthorityLookup(getParentEditor(), this);
-		nameLookupDialog.showDialog();
+		nameLookupDialog.setMainHeaderText("Patron Visits");
+        nameLookupDialog.showDialog();
 	}
 
 	private void removeNameActionPerformed() {
@@ -218,6 +218,20 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 		}
 	}
 
+    private void addResourceButtonActionPerformed() {
+        ResourceLookup resourcePicker = new ResourceLookup(getParentEditor(), this);
+		resourcePicker.setMainHeaderText("Patron Visits");
+        resourcePicker.showDialog(this);
+    }
+
+    private void removeResourceButtonActionPerformed() {
+        try {
+			removeRelatedTableRow(resourcesTable, this.getModel());
+		} catch (ObjectNotRemovedException e) {
+			new ErrorDialog("Resource not removed", e).showDialog();
+		}
+    }
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner non-commercial license
@@ -253,6 +267,11 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
         addName = new JButton();
         removeName = new JButton();
         panel2 = new JPanel();
+        scrollPane2 = new JScrollPane();
+        resourcesTable = new DomainSortableTable(PatronVisitsResources.class);
+        panel3 = new JPanel();
+        addResourceButton = new JButton();
+        removeResourceButton = new JButton();
         CellConstraints cc = new CellConstraints();
 
         //======== this ========
@@ -296,7 +315,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
             contentPanel.add(visitDate, cc.xy(3, 1));
 
             //---- label_subject ----
-            label_subject.setText("Subject");
+            label_subject.setText("Contact");
             ATFieldInfo.assignLabelInfo(label_subject, PatronVisits.class, PatronVisits.PROPERTYNAME_CONTACT_ARCHIVIST);
             contentPanel.add(label_subject, cc.xy(1, 3));
 
@@ -556,18 +575,47 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
                 //======== panel2 ========
                 {
                     panel2.setLayout(new FormLayout(
-                        new ColumnSpec[] {
-                            FormFactory.DEFAULT_COLSPEC,
-                            FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                            FormFactory.DEFAULT_COLSPEC
-                        },
+                        ColumnSpec.decodeSpecs("default:grow"),
                         new RowSpec[] {
+                            FormFactory.DEFAULT_ROWSPEC,
+                            FormFactory.LINE_GAP_ROWSPEC,
                             FormFactory.DEFAULT_ROWSPEC,
                             FormFactory.LINE_GAP_ROWSPEC,
                             FormFactory.DEFAULT_ROWSPEC,
                             FormFactory.LINE_GAP_ROWSPEC,
                             FormFactory.DEFAULT_ROWSPEC
                         }));
+
+                    //======== scrollPane2 ========
+                    {
+                        scrollPane2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+                        scrollPane2.setViewportView(resourcesTable);
+                    }
+                    panel2.add(scrollPane2, cc.xy(1, 1));
+
+                    //======== panel3 ========
+                    {
+                        panel3.setLayout(new FlowLayout());
+
+                        //---- addResourceButton ----
+                        addResourceButton.setText("Add Resource");
+                        addResourceButton.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                addResourceButtonActionPerformed();
+                            }
+                        });
+                        panel3.add(addResourceButton);
+
+                        //---- removeResourceButton ----
+                        removeResourceButton.setText("Reomve Resource");
+                        removeResourceButton.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                removeResourceButtonActionPerformed();
+                            }
+                        });
+                        panel3.add(removeResourceButton);
+                    }
+                    panel2.add(panel3, cc.xy(1, 3));
                 }
                 tabbedPane1.addTab("Resources Used", panel2);
 
@@ -612,6 +660,11 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
     private JButton addName;
     private JButton removeName;
     private JPanel panel2;
+    private JScrollPane scrollPane2;
+    private DomainSortableTable resourcesTable;
+    private JPanel panel3;
+    private JButton addResourceButton;
+    private JButton removeResourceButton;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 	public SubjectEnabledModel getSubjectEnabledModel() {
 		return (SubjectEnabledModel)this.getModel();
@@ -629,7 +682,11 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 		return namesTable;
 	}
 
-	private void initAccess() {
+    public DomainSortableTable getResourcesTable() {
+        return resourcesTable;
+    }
+
+    private void initAccess() {
 		//set form to read only for reference staff
 		if (!Users.doesCurrentUserHaveAccess(Users.ACCESS_CLASS_BEGINNING_DATA_ENTRY) &&
 				!this.getParentEditor().getNewRecord() &&
@@ -646,6 +703,9 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
 			addName.setEnabled(false);
 			removeName.setEnabled(false);
 			editNameRelationshipButton.setEnabled(false);
+            // resource button
+            addResourceButton.setEnabled(false);
+            removeResourceButton.setEnabled(false);
 		}
 	}
 

@@ -25,7 +25,7 @@ public class PatronVisitsResources extends DomainObject implements Serializable,
 
 	private Long PatronVisitsResourcesId = null;
 
-	@IncludeInApplicationConfiguration(1)
+	@IncludeInApplicationConfiguration
 	private Resources resource;
 
 	@IncludeInApplicationConfiguration
@@ -79,7 +79,7 @@ public class PatronVisitsResources extends DomainObject implements Serializable,
         this.patronVisit = patronVisit;
     }
 
-    @IncludeMethodInApplicationConfiguration(fieldName = PROPERTYNAME_RESOURCE_IDENTIFIER)
+    @IncludeMethodInApplicationConfiguration(fieldName = PROPERTYNAME_RESOURCE_IDENTIFIER, value = 1)
 	public String getResourceIdentifier() {
 		if (this.getResource() != null) {
 			return this.getResource().getResourceIdentifier();
@@ -88,7 +88,7 @@ public class PatronVisitsResources extends DomainObject implements Serializable,
 		}
 	}
 
-    @IncludeMethodInApplicationConfiguration(fieldName = PROPERTYNAME_RESOURCE_TITLE)
+    @IncludeMethodInApplicationConfiguration(fieldName = PROPERTYNAME_RESOURCE_TITLE, value = 2)
 	public String getResourceTitle() {
 		if (this.getResource() != null) {
 			return this.getResource().getTitle();

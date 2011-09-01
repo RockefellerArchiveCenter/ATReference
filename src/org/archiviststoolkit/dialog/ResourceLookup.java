@@ -93,10 +93,14 @@ public class ResourceLookup extends JDialog {
 			getLinkButton().setVisible(false);
 			getCreateButton().setVisible(false);
         } else if (parentEditorType.equals(PARENT_EDITOR_TYPE_PATRON_VISITS)) {
-			mainHeaderLabel.setText("Patron Visits");
 			getCreateButton().setVisible(false);
             getSelect().setVisible(false);
         }
+	}
+
+    //todo RAC - added to allow custom text in the main header
+	public void setMainHeaderText(String headerText) {
+		mainHeaderLabel.setText(headerText);
 	}
 
 	private void lookupTableMouseClicked(MouseEvent e) {
@@ -137,8 +141,6 @@ public class ResourceLookup extends JDialog {
 
     private void createButtonActionPerformed(ActionEvent e) {
         if (parentEditorType.equals(PARENT_EDITOR_TYPE_ACCESSIONS)) {
-            // todo see why this is not going through the factory
-//            DomainEditor dialog = new ResourceEditor(this);
 			DomainEditor dialog = DomainEditorFactory.getInstance().getDialog(Resources.class);
             dialog.setIncludeSaveButton(true);
             dialog.setIncludeOkAndAnotherButton(false);
@@ -221,29 +223,6 @@ public class ResourceLookup extends JDialog {
 
         return done;
     }
-
-    /* Method to delete a record that already saved
-    private boolean deleteResource(Boolean savedNewRecord, Resources instance) {
-        boolean done = false;
-        try {
-            if (savedNewRecord) { // already saved a new record so remove it
-                DomainAccessObject access = DomainAccessObjectFactory.getInstance().getDomainAccessObject(Resources.class);
-                access.deleteLongSession(instance);
-            }
-            done = true;
-        } catch (PersistenceException persistenceException) {
-            if (persistenceException.getCause() instanceof ConstraintViolationException) {
-                JOptionPane.showMessageDialog(this, "Can't save, Duplicate record:" + instance);
-                done = true;
-            }
-            new ErrorDialog(this, "Error saving new record.", persistenceException).showDialog();
-            done = true;
-        } catch (DeleteException deleteException) {
-            new ErrorDialog(this, "Error deleting saved record.", deleteException).showDialog();
-            done = true;
-        }
-        return done;
-    } */
 
     private void doneButtonActionPerformed(ActionEvent e) {
 		status = javax.swing.JOptionPane.CANCEL_OPTION;
@@ -543,13 +522,12 @@ public class ResourceLookup extends JDialog {
                     if (parentEditorType.equals(PARENT_EDITOR_TYPE_ASSESSMENTS)) {
                         ((AssessmentsFields) parentEditorFields).getTableAssessmentsResources().addDomainObject(link);
                     } else if(parentEditorType.equals(PARENT_EDITOR_TYPE_PATRON_VISITS)) {
-                        // todo code ....
-
-
+                        ((PatronVisitFields) parentEditorFields).getResourcesTable().addDomainObject(link);
                     } else { // This must be an accession editor
                         ((AccessionFields) parentEditorFields).getTableAccessionsResources().addDomainObject(link);
                     }
                 }
+
                 //set the record to dirty
                 ApplicationFrame.getInstance().setRecordDirty();
             } catch (DuplicateLinkException e) {
