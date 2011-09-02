@@ -274,7 +274,17 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
         panel3 = new JPanel();
         addResourceButton = new JButton();
         removeResourceButton = new JButton();
+        resourcesUsedLabel = new JLabel();
+        scrollPane6 = new JScrollPane();
+        textArea1 = ATBasicComponentFactory.createTextArea(detailsModel.getModel(PatronVisits.PROPERTYNAME_DETAILS_ON_RESOURCES));
         panel4 = new JPanel();
+        userDefinedStringLabel = new JLabel();
+        userDefinedTextField1 = ATBasicComponentFactory.createTextField(detailsModel.getModel(PatronVisits.PROPERTYNAME_USER_DEFINED_STRING1),false);
+        userDefinedBooleanLabel = new JLabel();
+        userDefinedCheckBox1 = ATBasicComponentFactory.createCheckBox(detailsModel, PatronVisits.PROPERTYNAME_USER_DEFINED_BOOLEAN1, PatronVisits.class);
+        userDefinedTextLabel = new JLabel();
+        scrollPane7 = new JScrollPane();
+        userDefinedTextArea1 = ATBasicComponentFactory.createTextArea(detailsModel.getModel(PatronVisits.PROPERTYNAME_USER_DEFINED_TEXT1));
         CellConstraints cc = new CellConstraints();
 
         //======== this ========
@@ -594,12 +604,16 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
                             FormFactory.LINE_GAP_ROWSPEC,
                             FormFactory.DEFAULT_ROWSPEC,
                             FormFactory.LINE_GAP_ROWSPEC,
-                            FormFactory.DEFAULT_ROWSPEC
+                            new RowSpec(RowSpec.CENTER, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
                         }));
 
                     //======== scrollPane2 ========
                     {
                         scrollPane2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+                        scrollPane2.setPreferredSize(new Dimension(219, 100));
+
+                        //---- resourcesTable ----
+                        resourcesTable.setPreferredScrollableViewportSize(new Dimension(200, 200));
                         scrollPane2.setViewportView(resourcesTable);
                     }
                     panel2.add(scrollPane2, cc.xy(1, 1));
@@ -627,6 +641,20 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
                         panel3.add(removeResourceButton);
                     }
                     panel2.add(panel3, cc.xy(1, 3));
+
+                    //---- resourcesUsedLabel ----
+                    resourcesUsedLabel.setText("Details On Resources Used");
+                    ATFieldInfo.assignLabelInfo(resourcesUsedLabel, PatronVisits.class, PatronVisits.PROPERTYNAME_DETAILS_ON_RESOURCES);
+                    panel2.add(resourcesUsedLabel, cc.xy(1, 5));
+
+                    //======== scrollPane6 ========
+                    {
+
+                        //---- textArea1 ----
+                        textArea1.setRows(10);
+                        scrollPane6.setViewportView(textArea1);
+                    }
+                    panel2.add(scrollPane6, cc.xy(1, 7));
                 }
                 tabbedPane1.addTab("Resources Used", panel2);
 
@@ -637,17 +665,41 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
                         new ColumnSpec[] {
                             FormFactory.DEFAULT_COLSPEC,
                             FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                            FormFactory.DEFAULT_COLSPEC
+                            new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
                         },
                         new RowSpec[] {
                             FormFactory.DEFAULT_ROWSPEC,
                             FormFactory.LINE_GAP_ROWSPEC,
                             FormFactory.DEFAULT_ROWSPEC,
                             FormFactory.LINE_GAP_ROWSPEC,
-                            FormFactory.DEFAULT_ROWSPEC,
-                            FormFactory.LINE_GAP_ROWSPEC,
-                            FormFactory.DEFAULT_ROWSPEC
+                            new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
                         }));
+
+                    //---- userDefinedStringLabel ----
+                    userDefinedStringLabel.setText("User String");
+                    ATFieldInfo.assignLabelInfo(userDefinedStringLabel, PatronVisits.class, PatronVisits.PROPERTYNAME_USER_DEFINED_STRING1);
+                    panel4.add(userDefinedStringLabel, cc.xy(1, 1));
+                    panel4.add(userDefinedTextField1, cc.xy(3, 1));
+
+                    //---- userDefinedBooleanLabel ----
+                    userDefinedBooleanLabel.setText("User Boolean");
+                    ATFieldInfo.assignLabelInfo(userDefinedBooleanLabel, PatronVisits.class, PatronVisits.PROPERTYNAME_USER_DEFINED_BOOLEAN1);
+                    panel4.add(userDefinedBooleanLabel, cc.xy(1, 3));
+
+                    //---- userDefinedCheckBox1 ----
+                    userDefinedCheckBox1.setText("Option");
+                    panel4.add(userDefinedCheckBox1, cc.xy(3, 3));
+
+                    //---- userDefinedTextLabel ----
+                    userDefinedTextLabel.setText("User Text");
+                    ATFieldInfo.assignLabelInfo(userDefinedTextLabel, PatronVisits.class, PatronVisits.PROPERTYNAME_USER_DEFINED_TEXT1);
+                    panel4.add(userDefinedTextLabel, cc.xywh(1, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.TOP));
+
+                    //======== scrollPane7 ========
+                    {
+                        scrollPane7.setViewportView(userDefinedTextArea1);
+                    }
+                    panel4.add(scrollPane7, cc.xy(3, 5));
                 }
                 tabbedPane1.addTab("User Defined Fields", panel4);
 
@@ -699,7 +751,17 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
     private JPanel panel3;
     private JButton addResourceButton;
     private JButton removeResourceButton;
+    private JLabel resourcesUsedLabel;
+    private JScrollPane scrollPane6;
+    private JTextArea textArea1;
     private JPanel panel4;
+    private JLabel userDefinedStringLabel;
+    private JTextField userDefinedTextField1;
+    private JLabel userDefinedBooleanLabel;
+    private JCheckBox userDefinedCheckBox1;
+    private JLabel userDefinedTextLabel;
+    private JScrollPane scrollPane7;
+    private JTextArea userDefinedTextArea1;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 	public SubjectEnabledModel getSubjectEnabledModel() {
 		return (SubjectEnabledModel)this.getModel();

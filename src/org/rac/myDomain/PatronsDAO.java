@@ -20,13 +20,12 @@
 
 package org.rac.myDomain;
 
-import org.archiviststoolkit.dialog.ErrorDialog;
 import org.archiviststoolkit.dialog.QueryEditor;
-import org.archiviststoolkit.exceptions.DuplicateLinkException;
 import org.archiviststoolkit.exceptions.MergeException;
 import org.archiviststoolkit.hibernate.ATSearchCriterion;
 import org.archiviststoolkit.hibernate.SessionFactory;
 import org.archiviststoolkit.model.Names;
+import org.archiviststoolkit.model.Resources;
 import org.archiviststoolkit.util.ATDateUtils;
 import org.hibernate.*;
 import org.rac.model.*;
@@ -99,13 +98,16 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			}
 		}
 
-        // deal with subject and names and funding date range search
+        // deal with subject, names, resource, and funding date range search
         Subjects selectedSubject = patronQueryEditor.getSelectedSubject();
 		Names selectedName = patronQueryEditor.getSelectedName();
-		String localHumanReadableSearchString;
+        Resources selectedResource = patronQueryEditor.getSelectedResource();
+
+        String localHumanReadableSearchString;
 		Collection patrons = null;
         Set subjectCollection = new HashSet();
 		Set nameCollection = new HashSet();
+        Set resourceCollection = new HashSet();
 		Set researchPurposeCollection = new HashSet();
 
 		if (selectedSubject != null) {
@@ -158,7 +160,25 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			} else {
 				returnCollection.retainAll(nameCollection);
 			}
+		}
 
+        if (selectedResource != null) {
+			//time to search through 2 tiers of records
+			//there is probably a hibernate way to do this but here we do it the brute force way.
+			localHumanReadableSearchString = StringHelper.concat(" <font color='red'>and</font> ", getHumanReadableSearchString(), " Resource equals " + selectedResource.toString());
+			setHumanReadableSearchString(localHumanReadableSearchString);
+
+			//now search for resources associated with visits
+			patrons = new HashSet();
+			PatronVisitsDAO visitLookup = new PatronVisitsDAO();
+			ArrayList patronVisits = new ArrayList(visitLookup.findByResource(selectedResource));
+			findPatronsByResource(resourceCollection, patrons, patronVisits);
+
+			if (returnCollection.size() == 0) {
+				returnCollection = resourceCollection;
+			} else {
+				returnCollection.retainAll(resourceCollection);
+			}
 		}
 
 		String researchPurpose = patronQueryEditor.getResearchPurpose();
@@ -229,6 +249,27 @@ public class PatronsDAO extends DomainAccessObjectImpl {
 			patrons.add(patronToAdd);
 		}
 		nameCollection.addAll(patrons);
+	}
+
+    /**
+     * Method to find the patron record from a patron visit record which has a resource
+     * record linked to it
+     *
+     * @param resourceCollection
+     * @param patrons
+     * @param linkedToResource
+     */
+    private void findPatronsByResource(Set resourceCollection, Collection patrons, ArrayList linkedToResource) {
+		linkedToResource.toArray();
+		Patrons patronToAdd = null;
+		for (Object o : linkedToResource) {
+			if (o instanceof PatronVisits) {
+				patronToAdd = ((PatronVisits)o).getPatron();
+			}
+
+            patrons.add(patronToAdd);
+		}
+		resourceCollection.addAll(patrons);
 	}
 
     /**

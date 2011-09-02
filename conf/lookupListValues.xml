@@ -6222,8 +6222,16 @@
     	<value>Permission to Publish</value>
 
     </list>
+
+    <list name="Visit Type" listType="1">
+
+        <usage className="org.rac.model.PatronVisits" field="visitType"/>
+
+    	<value>onsite</value>
+
+    	<value>offsite</value>
+
+    </list>
         <!-- end RAC patron module addition -->
-
-
 
 </atLookupLists>

@@ -45,6 +45,7 @@ public class ResourceLookup extends JDialog {
 	public static final String PARENT_EDITOR_TYPE_RESOURCES = "resources";
     public static final String PARENT_EDITOR_TYPE_ASSESSMENTS = "assessment";
     public static final String PARENT_EDITOR_TYPE_DIGITALOBJECT = "digitalobject";
+    public static final String PARENT_EDITOR_TYPE_NONE = "none"; // used to hide create and link buttons
 
     //todo RAC specific change
     public static final String PARENT_EDITOR_TYPE_PATRON_VISITS = "patronVisits";
@@ -95,6 +96,9 @@ public class ResourceLookup extends JDialog {
         } else if (parentEditorType.equals(PARENT_EDITOR_TYPE_PATRON_VISITS)) {
 			getCreateButton().setVisible(false);
             getSelect().setVisible(false);
+        } else if(parentEditorType.equals(PARENT_EDITOR_TYPE_NONE)) {
+            getLinkButton().setVisible(false);
+			getCreateButton().setVisible(false);
         }
 	}
 

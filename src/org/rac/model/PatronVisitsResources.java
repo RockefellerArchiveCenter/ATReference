@@ -22,6 +22,7 @@ public class PatronVisitsResources extends DomainObject implements Serializable,
     public static final String PROPERTYNAME_PATRON_VISIT_IDENTIFIER = "patronVisitIdentifier";
 	public static final String PROPERTYNAME_RESOURCE_IDENTIFIER = "resourceIdentifier";
 	public static final String PROPERTYNAME_RESOURCE_TITLE = "resourceTitle";
+    public static final String PROPERTYNAME_RESOURCE = "resource";
 
 	private Long PatronVisitsResourcesId = null;
 
@@ -34,7 +35,7 @@ public class PatronVisitsResources extends DomainObject implements Serializable,
     /**
      The constructor needed for serializing
       */
-    public void PatronVisitsResources() {}
+    public PatronVisitsResources() {}
 
     /**
      * The main constructor
@@ -44,7 +45,7 @@ public class PatronVisitsResources extends DomainObject implements Serializable,
      */
     public PatronVisitsResources(Resources resource, PatronVisits patronVisit) {
 		this.setResource(resource);
-		this.setPatronVisits(patronVisit);
+		this.setPatronVisit(patronVisit);
 	}
 
     public Long getPatronVisitsResourcesId() {
@@ -75,7 +76,7 @@ public class PatronVisitsResources extends DomainObject implements Serializable,
         return patronVisit;
     }
 
-    public void setPatronVisits(PatronVisits patronVisit) {
+    public void setPatronVisit(PatronVisits patronVisit) {
         this.patronVisit = patronVisit;
     }
 

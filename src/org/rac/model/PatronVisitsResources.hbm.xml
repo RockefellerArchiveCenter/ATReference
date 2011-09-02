@@ -16,7 +16,7 @@
 					 column="patronVisitId"/>
 
         <many-to-one name="resource"
-                     class="Resources"
+                     class="org.archiviststoolkit.model.Resources"
                      column="resourceId"/>
 	</class>
 

@@ -40,6 +40,7 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 	public static final String PROPERTYNAME_RESEARCH_PURPOSES = "researchPurposes";
 	public static final String PROPERTYNAME_SUBJECTS = "subjects";
 	public static final String PROPERTYNAME_NAMES = "names";
+    public static final String PROPERTYNAME_RESOURCES = "resources";
     public static final String PROPERTYNAME_VISIT_TYPE = "visitType";
     public static final String PROPERTYNAME_DETAILS_ON_RESOURCES = "detailsOnResourcesUsed";
 
@@ -74,6 +75,8 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
     @IncludeInApplicationConfiguration
 	private String detailsOnResourcesUsed = "";
 
+    /* Define suit of user defined fields */
+
     // These user defined variables are used
     @IncludeInApplicationConfiguration
 	private String userDefinedString1 = "";
@@ -84,11 +87,13 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
     @IncludeInApplicationConfiguration
 	private String userDefinedText1 = "";
 
-    // These user defined variables are not used for now 9/1/2011
-    // but are part of the data model for future use
+    // These user defined fields are not used for now (9/1/2011)
+    // but are part of the data model for future potential use
 	private Date userDefinedDate1 = null;
     private Integer userDefinedInteger1 = null;
     private Double userDefinedReal1 = null;
+
+    /*End user defined fields */
 
 	private Set<PatronVisitsResearchPurposes> researchPurposes = new HashSet<PatronVisitsResearchPurposes>();
 	private Set<PatronVisitsSubjects> subjects = new HashSet<PatronVisitsSubjects>();
@@ -111,10 +116,32 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 		this.patron = patron;
 	}
 
-	public PatronVisits(Date visitDate, String contactArchivist, String topic, Patrons patron) {
-		this.visitDate = visitDate;
+    /**
+     * Constructor used when duplicating the visit
+     * 
+     * @param visitDate
+     * @param visitType
+     * @param contactArchivist
+     * @param topic
+     * @param detailsOnResourcesUsed
+     * @param userDefinedString1
+     * @param userDefinedBoolean1
+     * @param userDefinedText1
+     * @param patron
+     */
+	public PatronVisits(Date visitDate, String visitType, String contactArchivist,
+                        String topic, String detailsOnResourcesUsed,
+                        String userDefinedString1, Boolean userDefinedBoolean1,
+                        String userDefinedText1, Patrons patron) {
+
+        this.visitDate = visitDate;
+        this.visitType = visitType;
 		this.contactArchivist = contactArchivist;
 		this.topic = topic;
+        this.detailsOnResourcesUsed = detailsOnResourcesUsed;
+        this.userDefinedString1 = userDefinedString1;
+        this.userDefinedBoolean1 = userDefinedBoolean1;
+        this.userDefinedText1 = userDefinedText1;
 		this.patron = patron;
 	}
 

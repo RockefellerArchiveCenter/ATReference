@@ -21,7 +21,6 @@ package org.rac.editors;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.*;
@@ -35,7 +34,6 @@ import org.archiviststoolkit.model.Repositories;
 import org.archiviststoolkit.model.Users;
 import org.archiviststoolkit.mydomain.*;
 import org.archiviststoolkit.mydomain.DomainObject;
-import org.archiviststoolkit.mydomain.DomainEditorFields;
 import org.archiviststoolkit.mydomain.DomainSortableTable;
 import org.archiviststoolkit.swing.*;
 import org.archiviststoolkit.swing.ATBasicComponentFactory;
@@ -155,6 +153,7 @@ public class PatronFields extends RAC_DomainEditorFields {
 
 			domainEditor.setNavigationButtonListeners((ActionListener)this.getParentEditor());
 			addRelatedRecord(domainEditor, PatronVisits.class, visitsTable);
+            domainEditor.pack();
 		} catch (AddRelatedObjectException e) {
 			new ErrorDialog("Error adding address", e).showDialog();
 		} catch (DuplicateLinkException e) {
@@ -286,36 +285,7 @@ public class PatronFields extends RAC_DomainEditorFields {
 	}
 
 	private void duplicateVisitActionPerformed() {
-		if (visitsTable.getSelectedRowCount() != 1) {
-			JOptionPane.showMessageDialog(this, "You must select one and only one visit to duplicate.");
-		} else {
-			int selectedRow = visitsTable.getSelectedRow();
-			PatronVisits visitToDuplicate = (PatronVisits)visitsTable.getSortedList().get(selectedRow);
-			PatronVisits newVisit = new PatronVisits(new Date(),
-					visitToDuplicate.getContactArchivist(),
-					visitToDuplicate.getTopic(),
-					visitToDuplicate.getPatron());
-			//research purposes
-			for (PatronVisitsResearchPurposes researchPurpose: visitToDuplicate.getResearchPurposes()) {
-				newVisit.addResearchPurposes(researchPurpose.getResearchPurpose());
-			}
-//			newVisit.setResearchPurposes(visitToDuplicate.getResearchPurposes());
-			//duplicate subjects
-			try {
-				for (PatronVisitsSubjects patronVisitsSubject: visitToDuplicate.getSubjects()) {
-					newVisit.addSubject(patronVisitsSubject.getSubject());
-				}
-				//duplicate names
-				for (PatronVisitsNames patronVisitName: visitToDuplicate.getNames()) {
-					newVisit.addName(patronVisitName.getName());
-				}
-			} catch (DuplicateLinkException e) {
-				new ErrorDialog("Error adding a name or subject", e).showDialog();
-			}
-			((Patrons)this.getModel()).addPatronVisit(newVisit);
-			visitsTable.getEventList().add(newVisit);
-			ApplicationFrame.getInstance().setRecordDirty();
-		}
+        duplicatePatronVisitRecord(visitsTable);
 	}
 
 	public JButton getDuplicateVisit() {

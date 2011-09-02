@@ -4776,5 +4776,21 @@
         <Examples>11/23/1996</Examples>
     </RECORD>
 
+    <RECORD>
+        <ClassName>PatronVisits</ClassName>
+        <PropertyName>visitType</PropertyName>
+        <Element_Label>Visit Type</Element_Label>
+        <Definition>The type of visit. Onsite or Offsite</Definition>
+        <Examples></Examples>
+    </RECORD>
+
+    <RECORD>
+        <ClassName>PatronVisits</ClassName>
+        <PropertyName>detailsOnResourcesUsed</PropertyName>
+        <Element_Label>Details On Resources Used</Element_Label>
+        <Definition>A detailed free text description of the items in the Collection that were used</Definition>
+        <Examples></Examples>
+    </RECORD>
+
 
 </RECORDS>
