@@ -40,6 +40,16 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 	public static final String PROPERTYNAME_RESEARCH_PURPOSES = "researchPurposes";
 	public static final String PROPERTYNAME_SUBJECTS = "subjects";
 	public static final String PROPERTYNAME_NAMES = "names";
+    public static final String PROPERTYNAME_VISIT_TYPE = "visitType";
+    public static final String PROPERTYNAME_DETAILS_ON_RESOURCES = "detailsOnResourcesUsed";
+
+    //a suite of user defined fields
+	public static final String PROPERTYNAME_USER_DEFINED_DATE1 = "userDefinedDate1";
+	public static final String PROPERTYNAME_USER_DEFINED_BOOLEAN1 = "userDefinedBoolean1";
+	public static final String PROPERTYNAME_USER_DEFINED_INTEGER1 = "userDefinedInteger1";
+	public static final String PROPERTYNAME_USER_DEFINED_REAL1 = "userDefinedReal1";
+	public static final String PROPERTYNAME_USER_DEFINED_STRING1 = "userDefinedString1";
+	public static final String PROPERTYNAME_USER_DEFINED_TEXT1 = "userDefinedText1";
 
 	@IncludeInApplicationConfiguration
 	@ExcludeFromDefaultValues
@@ -57,6 +67,28 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 
 	@IncludeInApplicationConfiguration(3)
 	private String topic = "";
+
+    @IncludeInApplicationConfiguration
+    private String visitType = "";
+
+    @IncludeInApplicationConfiguration
+	private String detailsOnResourcesUsed = "";
+
+    // These user defined variables are used
+    @IncludeInApplicationConfiguration
+	private String userDefinedString1 = "";
+
+    @IncludeInApplicationConfiguration
+    private Boolean userDefinedBoolean1 = null;
+
+    @IncludeInApplicationConfiguration
+	private String userDefinedText1 = "";
+
+    // These user defined variables are not used for now 9/1/2011
+    // but are part of the data model for future use
+	private Date userDefinedDate1 = null;
+    private Integer userDefinedInteger1 = null;
+    private Double userDefinedReal1 = null;
 
 	private Set<PatronVisitsResearchPurposes> researchPurposes = new HashSet<PatronVisitsResearchPurposes>();
 	private Set<PatronVisitsSubjects> subjects = new HashSet<PatronVisitsSubjects>();
@@ -146,7 +178,71 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
         this.topic = topic;
     }
 
-	public Set<PatronVisitsSubjects> getSubjects() {
+    public String getVisitType() {
+        return visitType;
+    }
+
+    public void setVisitType(String visitType) {
+        this.visitType = visitType;
+    }
+
+    public String getDetailsOnResourcesUsed() {
+        return detailsOnResourcesUsed;
+    }
+
+    public void setDetailsOnResourcesUsed(String detailsOnResourcesUsed) {
+        this.detailsOnResourcesUsed = detailsOnResourcesUsed;
+    }
+
+    public String getUserDefinedString1() {
+        return userDefinedString1;
+    }
+
+    public void setUserDefinedString1(String userDefinedString1) {
+        this.userDefinedString1 = userDefinedString1;
+    }
+
+    public Boolean getUserDefinedBoolean1() {
+        return userDefinedBoolean1;
+    }
+
+    public void setUserDefinedBoolean1(Boolean userDefinedBoolean1) {
+        this.userDefinedBoolean1 = userDefinedBoolean1;
+    }
+
+    public String getUserDefinedText1() {
+        return userDefinedText1;
+    }
+
+    public void setUserDefinedText1(String userDefinedText1) {
+        this.userDefinedText1 = userDefinedText1;
+    }
+
+    public Date getUserDefinedDate1() {
+        return userDefinedDate1;
+    }
+
+    public void setUserDefinedDate1(Date userDefinedDate1) {
+        this.userDefinedDate1 = userDefinedDate1;
+    }
+
+    public Integer getUserDefinedInteger1() {
+        return userDefinedInteger1;
+    }
+
+    public void setUserDefinedInteger1(Integer userDefinedInteger1) {
+        this.userDefinedInteger1 = userDefinedInteger1;
+    }
+
+    public Double getUserDefinedReal1() {
+        return userDefinedReal1;
+    }
+
+    public void setUserDefinedReal1(Double userDefinedReal1) {
+        this.userDefinedReal1 = userDefinedReal1;
+    }
+
+    public Set<PatronVisitsSubjects> getSubjects() {
 		return subjects;
 	}
 

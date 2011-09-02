@@ -238,6 +238,8 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
         contentPanel = new JPanel();
         label_visitDate = new JLabel();
         visitDate = ATBasicComponentFactory.createDateField(detailsModel.getModel( PatronVisits.PROPERTYNAME_VISIT_DATE));
+        visitTypeLabel = new JLabel();
+        visitTypeComboBox = ATBasicComponentFactory.createComboBox(detailsModel, PatronVisits.PROPERTYNAME_VISIT_TYPE, PatronVisits.class);
         label_subject = new JLabel();
         address1 = ATBasicComponentFactory.createTextField(detailsModel.getModel(PatronVisits.PROPERTYNAME_CONTACT_ARCHIVIST));
         label_topic = new JLabel();
@@ -272,6 +274,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
         panel3 = new JPanel();
         addResourceButton = new JButton();
         removeResourceButton = new JButton();
+        panel4 = new JPanel();
         CellConstraints cc = new CellConstraints();
 
         //======== this ========
@@ -289,6 +292,8 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
                     new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
                 },
                 new RowSpec[] {
+                    FormFactory.DEFAULT_ROWSPEC,
+                    FormFactory.LINE_GAP_ROWSPEC,
                     FormFactory.DEFAULT_ROWSPEC,
                     FormFactory.LINE_GAP_ROWSPEC,
                     FormFactory.DEFAULT_ROWSPEC,
@@ -314,19 +319,25 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
             visitDate.setColumns(10);
             contentPanel.add(visitDate, cc.xy(3, 1));
 
+            //---- visitTypeLabel ----
+            visitTypeLabel.setText("Visit Type");
+            ATFieldInfo.assignLabelInfo(visitTypeLabel, PatronVisits.class, PatronVisits.PROPERTYNAME_VISIT_TYPE);
+            contentPanel.add(visitTypeLabel, cc.xy(1, 3));
+            contentPanel.add(visitTypeComboBox, cc.xy(3, 3));
+
             //---- label_subject ----
             label_subject.setText("Contact");
             ATFieldInfo.assignLabelInfo(label_subject, PatronVisits.class, PatronVisits.PROPERTYNAME_CONTACT_ARCHIVIST);
-            contentPanel.add(label_subject, cc.xy(1, 3));
+            contentPanel.add(label_subject, cc.xy(1, 5));
 
             //---- address1 ----
             address1.setColumns(30);
-            contentPanel.add(address1, cc.xy(3, 3));
+            contentPanel.add(address1, cc.xy(3, 5));
 
             //---- label_topic ----
             label_topic.setText("Topic");
             ATFieldInfo.assignLabelInfo(label_topic, PatronVisits.class, PatronVisits.PROPERTYNAME_TOPIC);
-            contentPanel.add(label_topic, cc.xy(1, 5));
+            contentPanel.add(label_topic, cc.xy(1, 7));
 
             //======== scrollPane1 ========
             {
@@ -339,7 +350,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
                 patronNotes.setMinimumSize(new Dimension(200, 16));
                 scrollPane1.setViewportView(patronNotes);
             }
-            contentPanel.add(scrollPane1, cc.xy(3, 5));
+            contentPanel.add(scrollPane1, cc.xy(3, 7));
 
             //======== scrollPane5 ========
             {
@@ -357,7 +368,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
                 });
                 scrollPane5.setViewportView(researchPurposeTable);
             }
-            contentPanel.add(scrollPane5, cc.xywh(1, 7, 3, 1));
+            contentPanel.add(scrollPane5, cc.xywh(1, 9, 3, 1));
 
             //======== panel12 ========
             {
@@ -407,14 +418,14 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
                 });
                 panel12.add(removeResearchPurpose, cc.xy(5, 1));
             }
-            contentPanel.add(panel12, cc.xywh(1, 9, 3, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
+            contentPanel.add(panel12, cc.xywh(1, 11, 3, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
 
             //---- separator5 ----
             separator5.setBackground(new Color(220, 220, 232));
             separator5.setForeground(new Color(147, 131, 86));
             separator5.setMinimumSize(new Dimension(1, 10));
             separator5.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-            contentPanel.add(separator5, cc.xywh(1, 11, 3, 1));
+            contentPanel.add(separator5, cc.xywh(1, 13, 3, 1));
 
             //======== tabbedPane1 ========
             {
@@ -619,8 +630,29 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
                 }
                 tabbedPane1.addTab("Resources Used", panel2);
 
+
+                //======== panel4 ========
+                {
+                    panel4.setLayout(new FormLayout(
+                        new ColumnSpec[] {
+                            FormFactory.DEFAULT_COLSPEC,
+                            FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                            FormFactory.DEFAULT_COLSPEC
+                        },
+                        new RowSpec[] {
+                            FormFactory.DEFAULT_ROWSPEC,
+                            FormFactory.LINE_GAP_ROWSPEC,
+                            FormFactory.DEFAULT_ROWSPEC,
+                            FormFactory.LINE_GAP_ROWSPEC,
+                            FormFactory.DEFAULT_ROWSPEC,
+                            FormFactory.LINE_GAP_ROWSPEC,
+                            FormFactory.DEFAULT_ROWSPEC
+                        }));
+                }
+                tabbedPane1.addTab("User Defined Fields", panel4);
+
             }
-            contentPanel.add(tabbedPane1, cc.xywh(1, 13, 3, 1));
+            contentPanel.add(tabbedPane1, cc.xywh(1, 15, 3, 1));
         }
         add(contentPanel, cc.xy(1, 1));
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -631,6 +663,8 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
     private JPanel contentPanel;
     private JLabel label_visitDate;
     public JFormattedTextField visitDate;
+    private JLabel visitTypeLabel;
+    private JComboBox visitTypeComboBox;
     private JLabel label_subject;
     private JTextField address1;
     private JLabel label_topic;
@@ -665,6 +699,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
     private JPanel panel3;
     private JButton addResourceButton;
     private JButton removeResourceButton;
+    private JPanel panel4;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 	public SubjectEnabledModel getSubjectEnabledModel() {
 		return (SubjectEnabledModel)this.getModel();
