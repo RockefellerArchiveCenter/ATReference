@@ -38,6 +38,7 @@ import org.archiviststoolkit.mydomain.*;
 import org.archiviststoolkit.swing.ATBasicComponentFactory;
 import org.archiviststoolkit.structure.ATFieldInfo;
 import org.archiviststoolkit.swing.InfiniteProgressPanel;
+import org.rac.dialogs.PatronManagement;
 import org.rac.dialogs.PatronNameAuthorityLookup;
 import org.rac.model.*;
 
@@ -221,6 +222,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
     private void addResourceButtonActionPerformed() {
         ResourceLookup resourcePicker = new ResourceLookup(getParentEditor(), this);
 		resourcePicker.setMainHeaderText("Patron Visits");
+        resourcePicker.setMainHeaderColor(PatronManagement.headerColor);
         resourcePicker.showDialog(this);
     }
 

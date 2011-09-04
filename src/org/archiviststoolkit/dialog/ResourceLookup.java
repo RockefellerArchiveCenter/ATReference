@@ -107,6 +107,11 @@ public class ResourceLookup extends JDialog {
 		mainHeaderLabel.setText(headerText);
 	}
 
+    // todo RAC - added to allow custom color in the main header
+    public void setMainHeaderColor(Color color) {
+        mainHeaderPanel.setBackground(color);
+    }
+
 	private void lookupTableMouseClicked(MouseEvent e) {
 		if (e.getClickCount() == 2) {
 			if (parentEditorType.equals(PARENT_EDITOR_TYPE_ACCESSIONS) ||
