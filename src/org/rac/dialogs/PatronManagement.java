@@ -419,34 +419,56 @@ public class PatronManagement extends GeneralAdminDialog implements ActionListen
 		if (selectedIndexes.length < 1) {
 			JOptionPane.showMessageDialog(ApplicationFrame.getInstance(), "You must select at least 1 record to export");
 		} else {
-			ATFileChooser atFileChooser = new ATFileChooser(new SimpleFileFilter("xml"));
-			atFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+//			final ATFileChooser atFileChooser = new ATFileChooser(new SimpleFileFilter("xml"));
+//			atFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			final File selectedFileOrDirectory = FileUtils.chooseFileOrDirectory(1, null);
 
-			if (atFileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-				ExportPatronData exporter = new ExportPatronData(atFileChooser.getSelectedFile());
-				ArrayList<DomainObject> recordsToExport = new ArrayList<DomainObject>();
-				for (int loop = 0; loop < selectedIndexes.length; loop++) {
-					// check to see if this record is not locked before deleting it
-					DomainObject domainObject = getContentTable().getFilteredList().get(selectedIndexes[loop]);
-					recordsToExport.add(domainObject);
-				}
+//			if (atFileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+			if (selectedFileOrDirectory != null) {
 
-				InfiniteProgressPanel monitor = ATProgressUtil.createModalProgressMonitor(ApplicationFrame.getInstance(), 1000, false);
-				monitor.start("Exporting...");
-				StringBuffer message = new StringBuffer();
-				ApplicationFrame.getInstance().getTimer().reset();
 
-				exporter.export(recordsToExport, monitor);
+				Thread performer = new Thread(new Runnable() {
+					public void run() {
+						boolean allowCancel = true;
+						InfiniteProgressPanel monitor = ATProgressUtil.createModalProgressMonitor(ApplicationFrame.getInstance(), 1000, allowCancel);
+						monitor.start("Exporting...");
+						try {
+							ExportPatronData exporter = new ExportPatronData(selectedFileOrDirectory);
+							ArrayList<DomainObject> recordsToExport = new ArrayList<DomainObject>();
+							for (int loop = 0; loop < selectedIndexes.length; loop++) {
+							// check to see if this operation wasn't cancelled
+                            if(monitor.isProcessCancelled()) {
+                                break;
+                            }
+								// check to see if this record is not locked before deleting it
+								DomainObject domainObject = getContentTable().getFilteredList().get(selectedIndexes[loop]);
+								recordsToExport.add(domainObject);
+							}
 
-				String timer = MyTimer.toString(ApplicationFrame.getInstance().getTimer().elapsedTimeMillis());
-				message.append("Summary"+"\n");
-				message.append("-------"+"\n");
-				message.append("Total records exported:\t" + recordsToExport.size() + "\n\n");
-				message.append("Total export time:\t" + timer + "\n\n");
-				message.append("Output file:\t"+atFileChooser.getSelectedFile().getAbsolutePath()+"\n\n");
-				ImportExportLogDialog dialog = new ImportExportLogDialog(message.toString(), ImportExportLogDialog.DIALOG_TYPE_EXPORT);
-				monitor.close();
-				dialog.showDialog();
+							StringBuffer message = new StringBuffer();
+							ApplicationFrame.getInstance().getTimer().reset();
+
+							if(!monitor.isProcessCancelled()) {
+								Thread.setDefaultUncaughtExceptionHandler(new DefaultExceptionHandler());
+								exporter.export(recordsToExport, monitor);
+							}
+
+							String timer = MyTimer.toString(ApplicationFrame.getInstance().getTimer().elapsedTimeMillis());
+							message.append("Summary" + "\n");
+							message.append("-------" + "\n");
+							message.append("Total records exported:\t" + exporter.getRecordsExported() + "\n\n");
+							message.append("Total export time:\t" + timer + "\n\n");
+							message.append("Output file:\t" + selectedFileOrDirectory.getAbsolutePath() + "\n\n");
+							ImportExportLogDialog dialog = new ImportExportLogDialog(message.toString(), ImportExportLogDialog.DIALOG_TYPE_EXPORT);
+							monitor.close();
+							dialog.showDialog();
+						} finally {
+							monitor.close();
+						}
+					}
+				}, "Thread Name");
+				performer.start();
+
 			}
 		}
 	}

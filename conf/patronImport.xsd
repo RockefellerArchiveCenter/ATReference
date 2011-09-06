@@ -22,6 +22,7 @@
            <xs:element name="patronNotes" type="xs:string" minOccurs="0" maxOccurs="1"/>
            <xs:element name="email1" type="xs:string" minOccurs="0" maxOccurs="1"/>
            <xs:element name="email2" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="inactive" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
            <xs:element name="userDefinedDate1" type="xs:date" minOccurs="0" maxOccurs="1"/>
            <xs:element name="userDefinedDate2" type="xs:date" minOccurs="0" maxOccurs="1"/>
            <xs:element name="userDefinedBoolean1" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
@@ -175,7 +176,7 @@
             <xs:element name="collaborators" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="publicationAuthor" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="serialTitle" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="locationOfPublication" type="xs:string" minOccurs="0" maxOccurs="0"/>
+            <xs:element name="locationOfPublication" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="issueVolume" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="pageNumbers" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="url" type="xs:string" minOccurs="0" maxOccurs="1"/>

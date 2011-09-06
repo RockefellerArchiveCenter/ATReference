@@ -60,6 +60,7 @@ import java.util.GregorianCalendar;
 public class ExportPatronData {
 
 	File exportFile;
+	private int recordsExported = 0;
 
 	public ExportPatronData(File exportFile) {
 		this.exportFile = exportFile;
@@ -95,11 +96,16 @@ public class ExportPatronData {
 			Patron jaxbPatron = null;
 			Patrons patron, fullPatronRecord;
 			PatronsDAO patronsDAO = new PatronsDAO();
-			int recordIndex = 1;
 			int totalRecords = recordsToExport.size();
 			for (DomainObject object: recordsToExport) {
-				monitor.setTextLine("Exporting file  " + recordIndex++ + " of " + totalRecords + " - " +
-												exportFile.getAbsolutePath(), 1);
+
+                // check to see if the process was cancelled if so then just return right away
+                if(monitor.isProcessCancelled()) {
+                    return;
+                }
+
+				monitor.setTextLine("Exporting file  " + recordsExported++ + " of " + totalRecords + " - " +
+												exportFile.getAbsolutePath(), 2);
 				patron = (Patrons)object;
 				fullPatronRecord = (Patrons)patronsDAO.findByPrimaryKeyLongSession(patron.getIdentifier());
 				jaxbPatron = objectFactory.createPatron();
@@ -123,6 +129,10 @@ public class ExportPatronData {
 				for (PatronVisits patronVisit: fullPatronRecord.getPatronVisits()) {
 					jaxbPatronVisit = objectFactory.createPatronVisits();
 					populateJaxbObjectFromDomainObject(patronVisit, visitDescriptors, jaxbPatronVisit);
+					//deal with research ppurposes
+					for (PatronVisitsResearchPurposes researchPurpose: patronVisit.getResearchPurposes()) {
+						jaxbPatronVisit.getResearchPurpose().add(researchPurpose.getResearchPurpose());
+					}
 					//deal with subjects associated with visits
 					for (PatronVisitsSubjects subject: patronVisit.getSubjects()) {
 						org.rac.structure.patronImportSchema.PatronVisitsSubjects jaxbPatronVisitSubject = objectFactory.createPatronVisitsSubjects();
@@ -251,4 +261,7 @@ public class ExportPatronData {
 		return jaxbNameRecord;
 	}
 
+	public int getRecordsExported() {
+		return recordsExported;
+	}
 }

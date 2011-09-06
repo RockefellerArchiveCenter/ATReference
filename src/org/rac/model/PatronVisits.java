@@ -265,6 +265,8 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 			this.addSubject((Subjects)domainObject);
 		} else if (domainObject instanceof Names) {
 			this.addName((Names)domainObject);
+		} else if (domainObject instanceof PatronVisitsResearchPurposes) {
+			this.addResearchPurposes((PatronVisitsResearchPurposes)domainObject);
 		} else {
 			super.addRelatedObject(domainObject);
 		}
@@ -318,6 +320,14 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 			throw new IllegalArgumentException("Can't add a null research purpose.");
 
 		getResearchPurposes().add(new PatronVisitsResearchPurposes(this, researchPurpose));
+	}
+
+	public void addResearchPurposes(PatronVisitsResearchPurposes researchPurpose) {
+
+		if (researchPurpose == null)
+			throw new IllegalArgumentException("Can't add a null research purpose.");
+
+		getResearchPurposes().add(researchPurpose);
 	}
 
 }
