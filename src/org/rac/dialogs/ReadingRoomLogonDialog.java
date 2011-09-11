@@ -90,12 +90,18 @@ public class ReadingRoomLogonDialog extends JDialog {
         return suffix.getText().trim();
     }
 
+    public String getPrefix() {
+        return prefix.getText().trim();
+    }
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner non-commercial license
         dialogPane = new JPanel();
         panel1 = new JPanel();
         contentPanel = new JPanel();
+        label4 = new JLabel();
+        prefix = new JTextField();
         label1 = new JLabel();
         firstName = new JTextField();
         label2 = new JLabel();
@@ -146,26 +152,34 @@ public class ReadingRoomLogonDialog extends JDialog {
                             FormFactory.LINE_GAP_ROWSPEC,
                             FormFactory.DEFAULT_ROWSPEC,
                             FormFactory.LINE_GAP_ROWSPEC,
+                            FormFactory.DEFAULT_ROWSPEC,
+                            FormFactory.LINE_GAP_ROWSPEC,
                             FormFactory.DEFAULT_ROWSPEC
                         }));
+
+                    //---- label4 ----
+                    label4.setText("Prefix");
+                    ATFieldInfo.assignLabelInfo(label4, Names.class, Names.PROPERTYNAME_PERSONAL_PREFIX);
+                    contentPanel.add(label4, new CellConstraints(1, 1, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    contentPanel.add(prefix, new CellConstraints(3, 1, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
 
                     //---- label1 ----
                     label1.setText("First Name");
                     ATFieldInfo.assignLabelInfo(label1, Names.class, Names.PROPERTYNAME_PERSONAL_PRIMARY_NAME);
-                    contentPanel.add(label1, new CellConstraints(1, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
-                    contentPanel.add(firstName, new CellConstraints(3, 1, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    contentPanel.add(label1, new CellConstraints(1, 3, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    contentPanel.add(firstName, new CellConstraints(3, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
 
                     //---- label2 ----
                     label2.setText("Last Name");
                     ATFieldInfo.assignLabelInfo(label2, Names.class, Names.PROPERTYNAME_PERSONAL_REST_OF_NAME);
-                    contentPanel.add(label2, new CellConstraints(1, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
-                    contentPanel.add(lastName, new CellConstraints(3, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    contentPanel.add(label2, new CellConstraints(1, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    contentPanel.add(lastName, new CellConstraints(3, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
 
                     //---- label3 ----
                     label3.setText("Suffix");
                     ATFieldInfo.assignLabelInfo(label3, Names.class, Names.PROPERTYNAME_PERSONAL_SUFFIX);
-                    contentPanel.add(label3, new CellConstraints(1, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
-                    contentPanel.add(suffix, new CellConstraints(3, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    contentPanel.add(label3, new CellConstraints(1, 7, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    contentPanel.add(suffix, new CellConstraints(3, 7, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
                 }
                 panel1.add(contentPanel, cc.xy(1, 1));
 
@@ -229,6 +243,8 @@ public class ReadingRoomLogonDialog extends JDialog {
     private JPanel dialogPane;
     private JPanel panel1;
     private JPanel contentPanel;
+    private JLabel label4;
+    private JTextField prefix;
     private JLabel label1;
     private JTextField firstName;
     private JLabel label2;
@@ -266,6 +282,7 @@ public class ReadingRoomLogonDialog extends JDialog {
 	public void clearData() {
 		firstName.setText("");
 		lastName.setText("");
+        prefix.setText("");
         suffix.setText("");
 	}
 
@@ -274,7 +291,7 @@ public class ReadingRoomLogonDialog extends JDialog {
 	}
 
 	public void searchAndDisplayRecord() throws LookupException, PersistenceException, UnsupportedTableModelException, NonUniqueResultException {
-		Patrons patrons = patronDAO.queryByFirstLastNameSuffix(getFirstName(), getLastName(), getSuffix());
+		Patrons patrons = patronDAO.queryNameByFirstLastPrefixAndSuffix(getFirstName(), getLastName(), getPrefix(), getSuffix());
 		DomainEditor dialog;
 		Boolean newRecord;
 		if (patrons != null || getCreateNewRecord()) {
@@ -325,9 +342,11 @@ public class ReadingRoomLogonDialog extends JDialog {
 				}
 			}
 		} else {
+            String fullName = new String(getPrefix() + " " + getFirstName() + " " +
+                            getLastName() + " "  + getSuffix()).trim();
+
 			JOptionPane.showMessageDialog(this,
-                    "There were no patrons matching \" " + getFirstName() + " " +
-                            getLastName() + " "  + getSuffix() + "\".\nPlease try again");
+                    "There were no patrons matching \"" + fullName + "\".\nPlease try again");
 		}
 
 	}

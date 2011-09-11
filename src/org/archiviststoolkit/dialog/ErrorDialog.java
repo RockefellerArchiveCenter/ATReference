@@ -164,15 +164,14 @@ public class ErrorDialog extends JDialog {
         // if it is then only alert user of this and don't allow user to submit
         // error report
         if(errorText.contains("JDBCConnectionException")) {
-            String message = "Database Connection Lost ...\n\n" +
-                    "Please RESTART the program, and contact your System Administrator\n" +
-                    "if this problem continues.";
+            String message = "Database connection has been lost due to a server timeout.\n\n" +
+                "Please RESTART the program to continue.  If the problem persists, consult your System Administrator.";
 
             cardPanel.remove(contentPanel);
 
             ((CardLayout) cardPanel.getLayout()).show(cardPanel, "error");
 
-            this.label4.setText("Connection Error");
+            this.label4.setText("Connection Interruption!");
             this.errorMessage.setText(message);
 
             submitBugReport.setVisible(false);

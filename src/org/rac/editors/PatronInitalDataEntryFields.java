@@ -21,7 +21,6 @@ package org.rac.editors;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.*;
 import com.jgoodies.forms.factories.*;
 import com.jgoodies.forms.layout.*;
@@ -226,32 +225,7 @@ public class PatronInitalDataEntryFields extends RAC_DomainEditorFields {
 	}
 
 	private void duplicateVisitActionPerformed() {
-		if (visitsTable.getSelectedRowCount() != 1) {
-			JOptionPane.showMessageDialog(this, "You must select one and only one visit to duplicate.");
-		} else {
-			int selectedRow = visitsTable.getSelectedRow();
-			PatronVisits visitToDuplicate = (PatronVisits)visitsTable.getSortedList().get(selectedRow);
-			PatronVisits newVisit = new PatronVisits(new Date(),
-					visitToDuplicate.getContactArchivist(),
-					visitToDuplicate.getTopic(),
-					visitToDuplicate.getPatron());
-			newVisit.setResearchPurposes(visitToDuplicate.getResearchPurposes());
-			//duplicate subjects
-			try {
-				for (PatronVisitsSubjects patronVisitsSubject: visitToDuplicate.getSubjects()) {
-					newVisit.addSubject(patronVisitsSubject.getSubject());
-				}
-				//duplicate names
-				for (PatronVisitsNames patronVisitName: visitToDuplicate.getNames()) {
-					newVisit.addName(patronVisitName.getName());
-				}
-			} catch (DuplicateLinkException e) {
-				new ErrorDialog("Error adding a name or subject", e).showDialog();
-			}
-			((Patrons)this.getModel()).addPatronVisit(newVisit);
-			visitsTable.getEventList().add(newVisit);
-			ApplicationFrame.getInstance().setRecordDirty();
-		}
+		duplicatePatronVisitRecord(visitsTable);
 	}
 
 	private void removeVisitActionPerformed() {

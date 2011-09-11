@@ -22,10 +22,8 @@ package org.rac.myDomain;
 
 import org.archiviststoolkit.hibernate.SessionFactory;
 import org.archiviststoolkit.model.Names;
-import org.rac.model.PatronVisits;
-import org.rac.model.PatronVisitsNames;
-import org.rac.model.PatronVisitsResearchPurposes;
-import org.rac.model.PatronVisitsSubjects;
+import org.archiviststoolkit.model.Resources;
+import org.rac.model.*;
 import org.archiviststoolkit.model.Subjects;
 import org.archiviststoolkit.mydomain.DomainAccessObjectImpl;
 import org.hibernate.Session;
@@ -55,6 +53,15 @@ public class PatronVisitsDAO extends DomainAccessObjectImpl {
 		return  session.createCriteria(PatronVisits.class)
 				.createCriteria(PatronVisits.PROPERTYNAME_NAMES)
 					.add(Restrictions.eq(PatronVisitsNames.PROPERTYNAME_NAME, name)).list();
+
+	}
+
+    public Collection findByResource(Resources resource) {
+
+		Session session = SessionFactory.getInstance().openSession();
+		return  session.createCriteria(PatronVisits.class)
+				.createCriteria(PatronVisits.PROPERTYNAME_RESOURCES)
+					.add(Restrictions.eq(PatronVisitsResources.PROPERTYNAME_RESOURCE, resource)).list();
 
 	}
 

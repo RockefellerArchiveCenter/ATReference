@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -394,6 +394,10 @@ public class PatronNameAuthorityLookup extends JDialog {
 		pack();
 		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
+	}
+
+	public void setMainHeaderText(String headerText) {
+		mainHeaderLabel.setText(headerText);
 	}
 
 	public void setMainHeaderByClass(Class clazz) {

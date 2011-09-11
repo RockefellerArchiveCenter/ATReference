@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -400,7 +400,8 @@ public class ATFieldInfo implements Comparable {
         ATFieldInfo.addTableInfoIfNecessary(AssessmentsDigitalObjects.class);
         ATFieldInfo.addTableInfoIfNecessary(ArchDescriptionDates.class);
 		ATFieldInfo.addTableInfoIfNecessary(ArchDescriptionPhysicalDescriptions.class);
-		// tables for user/patron registration
+
+        // tables for user/patron registration
 		ATFieldInfo.addTableInfoIfNecessary(PatronAddresses.class);
 		ATFieldInfo.addTableInfoIfNecessary(PatronVisits.class);
 		ATFieldInfo.addTableInfoIfNecessary(PatronFunding.class);
@@ -409,6 +410,7 @@ public class ATFieldInfo implements Comparable {
 		ATFieldInfo.addTableInfoIfNecessary(PatronVisitsSubjects.class);
 		ATFieldInfo.addTableInfoIfNecessary(PatronVisitsNames.class);
 		ATFieldInfo.addTableInfoIfNecessary(PatronVisitsResearchPurposes.class);
+        ATFieldInfo.addTableInfoIfNecessary(PatronVisitsResources.class);
 		ATFieldInfo.addTableInfoIfNecessary(PatronPublicationsSubjects.class);
 		ATFieldInfo.addTableInfoIfNecessary(PatronPublicationsNames.class);
 		ATFieldInfo.addTableInfoIfNecessary(Services.class);

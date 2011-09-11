@@ -442,6 +442,11 @@ public class NameAuthorityLookup extends JDialog {
 		StandardEditor.setMainHeaderColorAndTextByClass(clazz, mainHeaderPanel, mainHeaderLabel);
 	}
 
+    //todo RAC - added to allow custom text in the main header
+	public void setMainHeaderText(String headerText) {
+		mainHeaderLabel.setText(headerText);
+	}
+
 	private void namesLookupTableMouseClicked(MouseEvent e) {
         if (e.getClickCount() == 2) {
 			if (dialogForLinking) {

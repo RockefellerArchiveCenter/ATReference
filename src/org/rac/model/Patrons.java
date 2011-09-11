@@ -86,7 +86,7 @@ public class Patrons extends DomainObject {
 	public static final String PROPERTYNAME_USER_DEFINED_TEXT3 = "userDefinedText3";
 	public static final String PROPERTYNAME_USER_DEFINED_TEXT4 = "userDefinedText4";
 
-// for linking names. Always as a subject
+    // for linking names. Always as a subject
 	public static final String NAME_LINK_FUNCTION_SUBJECT = "Subject";
 
 
@@ -96,6 +96,7 @@ public class Patrons extends DomainObject {
 
 	@IncludeInApplicationConfiguration(2)
 	@StringLengthValidationRequried
+    @DefaultIncludeInSearchEditor
 	private String patronType = "";
 
 	//added fields for user registration
@@ -106,6 +107,7 @@ public class Patrons extends DomainObject {
 	@IncludeInApplicationConfiguration
 	@ExcludeFromDefaultValues
 	@StringLengthValidationRequried
+    @DefaultIncludeInSearchEditor
 	private String primaryName = "";
 	/**
 	 * rest of name.
@@ -113,6 +115,7 @@ public class Patrons extends DomainObject {
 	@IncludeInApplicationConfiguration
 	@ExcludeFromDefaultValues
 	@StringLengthValidationRequried
+    @DefaultIncludeInSearchEditor
 	private String restOfName = "";
 	/**
 	 * prefix.
@@ -154,6 +157,7 @@ public class Patrons extends DomainObject {
 	@IncludeInApplicationConfiguration(3)
 	@ExcludeFromDefaultValues
 	@StringLengthValidationRequried
+    @DefaultIncludeInSearchEditor
 	private String institutionalAffiliation = "";
 
 	@IncludeInApplicationConfiguration
@@ -166,6 +170,7 @@ public class Patrons extends DomainObject {
 
 	@IncludeInApplicationConfiguration
 	@ExcludeFromDefaultValues
+    @DefaultIncludeInSearchEditor
 	private String patronNotes = "";
 
 	@IncludeInApplicationConfiguration(4)
@@ -179,6 +184,7 @@ public class Patrons extends DomainObject {
 	private Boolean inactive;
 
 	@IncludeInApplicationConfiguration
+    @DefaultIncludeInSearchEditor
 	private String howDidYouHearAboutUs = "";
 
 	//a suite of user defined fields

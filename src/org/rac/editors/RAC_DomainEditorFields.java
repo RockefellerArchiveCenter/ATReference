@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.  
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.  
  * All rights reserved. 
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL) 
@@ -31,14 +31,14 @@ import org.archiviststoolkit.structure.FieldNotFoundException;
 import org.archiviststoolkit.swing.ATBasicComponentFactory;
 import org.archiviststoolkit.swing.StandardEditor;
 import org.archiviststoolkit.util.SequencedObjectsUtils;
-import org.rac.model.PatronAddresses;
-import org.rac.model.Patrons;
+import org.rac.model.*;
 import org.rac.utils.RACLookupListUtils;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Date;
 
 public abstract class RAC_DomainEditorFields extends DomainEditorFields {
 
@@ -125,7 +125,6 @@ public abstract class RAC_DomainEditorFields extends DomainEditorFields {
                 ArrayList<DomainObject> relatedObjects = relatedTable.removeSelectedRows();
                 for (DomainObject relatedObject: relatedObjects) {
 					removeRelatedObject(model, relatedObject);
-//                    model.removeRelatedObject(relatedObject);
                 }
                 int rowCount = relatedTable.getRowCount();
                 if (rowCount == 0) {
@@ -157,7 +156,6 @@ public abstract class RAC_DomainEditorFields extends DomainEditorFields {
 	}
 
 	protected void addRelatedRecord(String whereString, DomainEditor dialog, Class objectClass, DomainGlazedListTable table) throws AddRelatedObjectException, DuplicateLinkException {
-
 		DomainObject parentDomainObject = this.getModel();
 		DomainObject objectToAdd = null;
 		dialog.setNewRecord(true);
@@ -206,28 +204,59 @@ public abstract class RAC_DomainEditorFields extends DomainEditorFields {
 			throw new AddRelatedObjectException(parentDomainObject, objectToAdd, e);
 		}
 		dialog.setNewRecord(false);
-
-
-//		PatronAddresses newAddresses;
-//		dialogAddresses.setNavigationButtonListeners((ActionListener)this.getParentEditor());
-//		dialogAddresses.setNewRecord(true);
-//
-//		boolean done = false;
-//		int returnStatus;
-//		while (!done) {
-//			newAddresses = new PatronAddresses(namesModel);
-//			dialogAddresses.setModel(newAddresses, null);
-//			returnStatus = dialogAddresses.showDialog();
-//			if (returnStatus == JOptionPane.OK_OPTION) {
-//				namesModel.addPatonsAddresses(newAddresses);
-//				addressesTable.updateCollection(namesModel.getPatronAddresses());
-//				done = true;
-//			} else if (returnStatus == StandardEditor.OK_AND_ANOTHER_OPTION) {
-//				namesModel.addPatonsAddresses(newAddresses);
-//				addressesTable.updateCollection(namesModel.getPatronAddresses());
-//			} else {
-//				done = true;
-//			}
-//		}
 	}
+
+    /**
+     * Method to duplicate a visit record. This method is placed in this class
+     * because there are two children (PatronFields and PatronInitalDataEntryFields)
+     * which use this method.
+     *
+     * @param visitsTable The domain sortable table that contains PatronVisit Records
+     */
+    public void duplicatePatronVisitRecord(DomainSortableTable visitsTable) {
+        if (visitsTable.getSelectedRowCount() != 1) {
+			JOptionPane.showMessageDialog(this, "You must select one and only one visit to duplicate.");
+		} else {
+			int selectedRow = visitsTable.getSelectedRow();
+			PatronVisits visitToDuplicate = (PatronVisits)visitsTable.getSortedList().get(selectedRow);
+
+            PatronVisits newVisit = new PatronVisits(new Date(),
+                    visitToDuplicate.getVisitType(),
+					visitToDuplicate.getContactArchivist(),
+					visitToDuplicate.getTopic(),
+                    visitToDuplicate.getDetailsOnResourcesUsed(),
+                    visitToDuplicate.getUserDefinedString1(),
+                    visitToDuplicate.getUserDefinedBoolean1(),
+                    visitToDuplicate.getUserDefinedText1(),
+					visitToDuplicate.getPatron());
+
+            //duplicate research purposes
+			for (PatronVisitsResearchPurposes researchPurpose: visitToDuplicate.getResearchPurposes()) {
+				newVisit.addResearchPurposes(researchPurpose.getResearchPurpose());
+			}
+
+            //duplicate subjects, names, and resource links
+			try {
+
+                // duplicate the subjects
+                for (PatronVisitsSubjects patronVisitsSubject: visitToDuplicate.getSubjects()) {
+					newVisit.addSubject(patronVisitsSubject.getSubject());
+				}
+				//duplicate names
+				for (PatronVisitsNames patronVisitName: visitToDuplicate.getNames()) {
+					newVisit.addName(patronVisitName.getName());
+				}
+
+                // duplicate the resources
+                for(PatronVisitsResources patronVisitResource: visitToDuplicate.getResources()) {
+                    newVisit.addResource(patronVisitResource.getResource());
+                }
+			} catch (DuplicateLinkException e) {
+				new ErrorDialog("Error adding a name or subject", e).showDialog();
+			}
+			((Patrons)this.getModel()).addPatronVisit(newVisit);
+			visitsTable.getEventList().add(newVisit);
+			ApplicationFrame.getInstance().setRecordDirty();
+		}
+    }
 }

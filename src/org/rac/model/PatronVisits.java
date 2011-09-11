@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -40,6 +40,17 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 	public static final String PROPERTYNAME_RESEARCH_PURPOSES = "researchPurposes";
 	public static final String PROPERTYNAME_SUBJECTS = "subjects";
 	public static final String PROPERTYNAME_NAMES = "names";
+    public static final String PROPERTYNAME_RESOURCES = "resources";
+    public static final String PROPERTYNAME_VISIT_TYPE = "visitType";
+    public static final String PROPERTYNAME_DETAILS_ON_RESOURCES = "detailsOnResourcesUsed";
+
+    //a suite of user defined fields
+	public static final String PROPERTYNAME_USER_DEFINED_DATE1 = "userDefinedDate1";
+	public static final String PROPERTYNAME_USER_DEFINED_BOOLEAN1 = "userDefinedBoolean1";
+	public static final String PROPERTYNAME_USER_DEFINED_INTEGER1 = "userDefinedInteger1";
+	public static final String PROPERTYNAME_USER_DEFINED_REAL1 = "userDefinedReal1";
+	public static final String PROPERTYNAME_USER_DEFINED_STRING1 = "userDefinedString1";
+	public static final String PROPERTYNAME_USER_DEFINED_TEXT1 = "userDefinedText1";
 
 	@IncludeInApplicationConfiguration
 	@ExcludeFromDefaultValues
@@ -58,10 +69,36 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 	@IncludeInApplicationConfiguration(3)
 	private String topic = "";
 
+    @IncludeInApplicationConfiguration
+    private String visitType = "";
+
+    @IncludeInApplicationConfiguration
+	private String detailsOnResourcesUsed = "";
+
+    /* Define suit of user defined fields */
+
+    // These user defined variables are used
+    @IncludeInApplicationConfiguration
+	private String userDefinedString1 = "";
+
+    @IncludeInApplicationConfiguration
+    private Boolean userDefinedBoolean1 = null;
+
+    @IncludeInApplicationConfiguration
+	private String userDefinedText1 = "";
+
+    // These user defined fields are not used for now (9/1/2011)
+    // but are part of the data model for future potential use
+	private Date userDefinedDate1 = null;
+    private Integer userDefinedInteger1 = null;
+    private Double userDefinedReal1 = null;
+
+    /*End user defined fields */
+
 	private Set<PatronVisitsResearchPurposes> researchPurposes = new HashSet<PatronVisitsResearchPurposes>();
 	private Set<PatronVisitsSubjects> subjects = new HashSet<PatronVisitsSubjects>();
 	private Set<PatronVisitsNames> names = new HashSet<PatronVisitsNames>();
-
+    private Set<PatronVisitsResources> resources = new HashSet<PatronVisitsResources>();
 
 	private Patrons patron;
 
@@ -79,10 +116,32 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 		this.patron = patron;
 	}
 
-	public PatronVisits(Date visitDate, String contactArchivist, String topic, Patrons patron) {
-		this.visitDate = visitDate;
+    /**
+     * Constructor used when duplicating the visit
+     * 
+     * @param visitDate
+     * @param visitType
+     * @param contactArchivist
+     * @param topic
+     * @param detailsOnResourcesUsed
+     * @param userDefinedString1
+     * @param userDefinedBoolean1
+     * @param userDefinedText1
+     * @param patron
+     */
+	public PatronVisits(Date visitDate, String visitType, String contactArchivist,
+                        String topic, String detailsOnResourcesUsed,
+                        String userDefinedString1, Boolean userDefinedBoolean1,
+                        String userDefinedText1, Patrons patron) {
+
+        this.visitDate = visitDate;
+        this.visitType = visitType;
 		this.contactArchivist = contactArchivist;
 		this.topic = topic;
+        this.detailsOnResourcesUsed = detailsOnResourcesUsed;
+        this.userDefinedString1 = userDefinedString1;
+        this.userDefinedBoolean1 = userDefinedBoolean1;
+        this.userDefinedText1 = userDefinedText1;
 		this.patron = patron;
 	}
 
@@ -146,7 +205,71 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
         this.topic = topic;
     }
 
-	public Set<PatronVisitsSubjects> getSubjects() {
+    public String getVisitType() {
+        return visitType;
+    }
+
+    public void setVisitType(String visitType) {
+        this.visitType = visitType;
+    }
+
+    public String getDetailsOnResourcesUsed() {
+        return detailsOnResourcesUsed;
+    }
+
+    public void setDetailsOnResourcesUsed(String detailsOnResourcesUsed) {
+        this.detailsOnResourcesUsed = detailsOnResourcesUsed;
+    }
+
+    public String getUserDefinedString1() {
+        return userDefinedString1;
+    }
+
+    public void setUserDefinedString1(String userDefinedString1) {
+        this.userDefinedString1 = userDefinedString1;
+    }
+
+    public Boolean getUserDefinedBoolean1() {
+        return userDefinedBoolean1;
+    }
+
+    public void setUserDefinedBoolean1(Boolean userDefinedBoolean1) {
+        this.userDefinedBoolean1 = userDefinedBoolean1;
+    }
+
+    public String getUserDefinedText1() {
+        return userDefinedText1;
+    }
+
+    public void setUserDefinedText1(String userDefinedText1) {
+        this.userDefinedText1 = userDefinedText1;
+    }
+
+    public Date getUserDefinedDate1() {
+        return userDefinedDate1;
+    }
+
+    public void setUserDefinedDate1(Date userDefinedDate1) {
+        this.userDefinedDate1 = userDefinedDate1;
+    }
+
+    public Integer getUserDefinedInteger1() {
+        return userDefinedInteger1;
+    }
+
+    public void setUserDefinedInteger1(Integer userDefinedInteger1) {
+        this.userDefinedInteger1 = userDefinedInteger1;
+    }
+
+    public Double getUserDefinedReal1() {
+        return userDefinedReal1;
+    }
+
+    public void setUserDefinedReal1(Double userDefinedReal1) {
+        this.userDefinedReal1 = userDefinedReal1;
+    }
+
+    public Set<PatronVisitsSubjects> getSubjects() {
 		return subjects;
 	}
 
@@ -273,8 +396,7 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 	}
 
 	/**
-	 * A dummy place holder to be overridden by classes that have related objects
-	 *
+        * Method to remove any related objects
 	 * @param domainObject the domain object to be removed
 	 */
 	@Override
@@ -286,6 +408,8 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 			this.removeName((PatronVisitsNames)domainObject);
 		} else if (domainObject instanceof PatronVisitsResearchPurposes) {
 			this.removeResearchPurposes((PatronVisitsResearchPurposes)domainObject);
+		} else if (domainObject instanceof PatronVisitsResources) {
+			this.removeResource((PatronVisitsResources)domainObject);
 		} else {
 			super.removeRelatedObject(domainObject);			
 		}
@@ -307,7 +431,15 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 		this.researchPurposes = researchPurposes;
 	}
 
-	private void removeResearchPurposes(PatronVisitsResearchPurposes researchPurpose) {
+    public Set<PatronVisitsResources> getResources() {
+        return resources;
+    }
+
+    public void setResources(Set<PatronVisitsResources> resources) {
+        this.resources = resources;
+    }
+
+    private void removeResearchPurposes(PatronVisitsResearchPurposes researchPurpose) {
 		if (researchPurpose == null)
 			throw new IllegalArgumentException("Can't remove a null research purpose.");
 
@@ -316,18 +448,62 @@ public class PatronVisits extends DomainObject implements SubjectEnabledModel, N
 
 	public void addResearchPurposes(String researchPurpose)  {
 
-		if (researchPurpose == null)
+		if (researchPurpose == null) {
 			throw new IllegalArgumentException("Can't add a null research purpose.");
+        }
 
 		getResearchPurposes().add(new PatronVisitsResearchPurposes(this, researchPurpose));
 	}
 
-	public void addResearchPurposes(PatronVisitsResearchPurposes researchPurpose) {
-
-		if (researchPurpose == null)
+    public void addResearchPurposes(PatronVisitsResearchPurposes patronVisitsResearchPurposes) {
+        if (patronVisitsResearchPurposes == null) {
 			throw new IllegalArgumentException("Can't add a null research purpose.");
+        }
 
-		getResearchPurposes().add(researchPurpose);
+        getResearchPurposes().add(patronVisitsResearchPurposes);
+    }
+
+    /**
+     * Method to link a resource to the assessment object
+     * @param resource the resource to link
+     * @return The PatronVisitsResource linking object
+     */
+    public PatronVisitsResources addResource(Resources resource) throws DuplicateLinkException {
+		if (resource == null)
+			throw new IllegalArgumentException("Can't add a null resource.");
+		if (containsResource(resource)) {
+			throw new DuplicateLinkException(resource.toString());
+		} else {
+			PatronVisitsResources link = new PatronVisitsResources(resource, this);
+			this.getResources().add(link);
+			return link;
+		}
 	}
 
+    /**
+     * Method to check to see if this resource is already linked to this object
+     * @param resource The resource to look for
+     *
+     * @return true if the resource is already link or false if it is not
+     */
+    private boolean containsResource(Resources resource) {
+		for (PatronVisitsResources resourceLink: getResources()) {
+			if (resourceLink.getResource() == resource) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+    /**
+     * Method to remove the resource record link
+     *
+     * @param patronVisitsResource
+     */
+    private void removeResource(PatronVisitsResources patronVisitsResource) {
+		if (patronVisitsResource == null)
+			throw new IllegalArgumentException("Can't remove a null resource link");
+
+		getResources().remove(patronVisitsResource);
+	}
 }

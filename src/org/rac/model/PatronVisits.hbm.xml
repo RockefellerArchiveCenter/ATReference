@@ -31,10 +31,39 @@
                   column="topic"
                   type="text"/>
 
-        <!--<set name="subjects" table="PatronVisitsSubjects">-->
-            <!--<many-to-many column="subjectId"-->
-                <!--class="org.archiviststoolkit.model.Subjects"/>-->
-        <!--</set>-->
+        <property name="visitType"
+				  column="visitType"
+				  type="string"/>
+
+        <property name="detailsOnResourcesUsed"
+                  column="detailsOnResourcesUsed"
+                  type="text"/>
+
+        <!-- a suite of user defined fields -->
+
+        <property name="userDefinedDate1"
+                  column="userDefinedDate1"
+                  type="date"/>
+
+        <property name="userDefinedBoolean1"
+                  column="userDefinedBoolean1"
+                  type="boolean"/>
+
+        <property name="userDefinedInteger1"
+                  column="userDefinedInteger1"
+                  type="integer"/>
+
+        <property name="userDefinedReal1"
+                  column="userDefinedReal1"
+                  type="double"/>
+
+        <property name="userDefinedString1"
+                  column="userDefinedString1"
+                  type="string"/>
+
+        <property name="userDefinedText1"
+                  column="userDefinedText1"
+                  type="text"/>
 
         <many-to-one name="patron"
                       class="org.rac.model.Patrons"
@@ -71,6 +100,17 @@
                 <column name="patronVisitId" not-null="true"/>
             </key>
             <one-to-many class="org.rac.model.PatronVisitsResearchPurposes"/>
+        </set>
+        
+        <set name="resources"
+             cascade="all-delete-orphan"
+             inverse="true"
+             lazy="true"
+             access="field">
+            <key>
+                <column name="patronVisitId" not-null="true"/>
+            </key>
+            <one-to-many class="org.rac.model.PatronVisitsResources"/>
         </set>
 
 	</class>

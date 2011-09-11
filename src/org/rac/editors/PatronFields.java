@@ -155,6 +155,7 @@ public class PatronFields extends RAC_DomainEditorFields {
 
 			domainEditor.setNavigationButtonListeners((ActionListener)this.getParentEditor());
 			addRelatedRecord(domainEditor, PatronVisits.class, visitsTable);
+            domainEditor.pack();
 		} catch (AddRelatedObjectException e) {
 			new ErrorDialog("Error adding address", e).showDialog();
 		} catch (DuplicateLinkException e) {
@@ -292,8 +293,13 @@ public class PatronFields extends RAC_DomainEditorFields {
 			int selectedRow = visitsTable.getSelectedRow();
 			PatronVisits visitToDuplicate = (PatronVisits)visitsTable.getSortedList().get(selectedRow);
 			PatronVisits newVisit = new PatronVisits(new Date(),
+					visitToDuplicate.getVisitType(),
 					visitToDuplicate.getContactArchivist(),
 					visitToDuplicate.getTopic(),
+					visitToDuplicate.getDetailsOnResourcesUsed(),
+					visitToDuplicate.getUserDefinedString1(),
+					visitToDuplicate.getUserDefinedBoolean1(),
+					visitToDuplicate.getUserDefinedText1(),
 					visitToDuplicate.getPatron());
 			//research purposes
 			for (PatronVisitsResearchPurposes researchPurpose: visitToDuplicate.getResearchPurposes()) {

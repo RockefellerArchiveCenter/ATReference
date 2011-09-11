@@ -20,6 +20,7 @@
 
 package org.archiviststoolkit.report;
 
+import net.sf.jasperreports.engine.JRSection;
 import net.sf.jasperreports.engine.design.*;
 import net.sf.jasperreports.engine.JRException;
 import org.archiviststoolkit.mydomain.DomainTableFormat;
@@ -42,7 +43,10 @@ public class JRReturnScreen {
 		JRDesignStaticText staticText;
 
 		JRDesignBand columnHeaderBand = (JRDesignBand)designTemplate.getColumnHeader();
-		JRDesignBand detailBand = (JRDesignBand)designTemplate.getDetail();
+
+        // (8/17/2011) This was changed after update ll to get program
+        // to compile using Jasper Reports 4.1.1
+		JRDesignBand detailBand = (JRDesignBand)((JRSection)designTemplate.getDetailSection()).getBands()[0];
 
 		int numberOfColumns = tableFormat.getColumnCount();
 		int columnWidth = WIDTH/numberOfColumns;

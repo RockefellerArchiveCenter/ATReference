@@ -130,6 +130,8 @@
         <mapping resource="org/rac/model/PatronVisitsResearchPurposes.hbm.xml"/>
         <!--mapping for a link between PatronVisits and Subjects-->
         <mapping resource="org/rac/model/PatronVisitsSubjects.hbm.xml"/>
+        <!--mapping for a link between PatronVisits and Resources-->
+        <mapping resource="org/rac/model/PatronVisitsResources.hbm.xml"/>
         <!--mapping for a link between PatronPublications and Subjects-->
         <mapping resource="org/rac/model/PatronPublicationsSubjects.hbm.xml"/>
         <!--mapping for a link between PatronPublications and Names-->
