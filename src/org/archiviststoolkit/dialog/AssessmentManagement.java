@@ -118,7 +118,7 @@ public class AssessmentManagement extends GeneralAdminDialog implements ActionLi
                         int size = assessmentDeleteList.size();
                         for (DomainObject domainObject : assessmentDeleteList) {
                             try {
-                                access.deleteLongSession(domainObject);
+                                access.deleteLongSession(domainObject, false);
                                 //getContentTable().getEventList().remove(domainObject);
                                 
                                 // update the monitor

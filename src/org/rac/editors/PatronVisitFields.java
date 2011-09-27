@@ -634,7 +634,7 @@ public class PatronVisitFields extends RAC_DomainEditorFields implements Subject
                         panel3.add(addResourceButton);
 
                         //---- removeResourceButton ----
-                        removeResourceButton.setText("Reomve Resource");
+                        removeResourceButton.setText("Remove Resource");
                         removeResourceButton.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent e) {
                                 removeResourceButtonActionPerformed();

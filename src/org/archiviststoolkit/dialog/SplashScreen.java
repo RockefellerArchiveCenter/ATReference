@@ -50,7 +50,7 @@ public class SplashScreen extends JFrame {
 
 	private void thisKeyPressed(KeyEvent e) {
 		if (e.isControlDown()) {
-			System.out.println("controll down");
+			System.out.println("control down");
 		}
 	}
 

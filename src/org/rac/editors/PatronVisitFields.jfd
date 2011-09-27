@@ -1162,7 +1162,7 @@
                 <string>javax.swing.JButton</string> 
                 <void method="setProperty"> 
                  <string>text</string> 
-                 <string>Reomve Resource</string> 
+                 <string>Remove Resource</string> 
                 </void> 
                 <void property="name"> 
                  <string>removeResourceButton</string> 
