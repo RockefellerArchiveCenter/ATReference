@@ -273,6 +273,9 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 		String releaseType = resourceBundle.getString("archiviststoolkit.releaseType");
 		String releaseUpdate = resourceBundle.getString("archiviststoolkit.releaseupdate");
 
+        // TODO RAC specific code to change the displayed version number
+        adjustVersionNumber();
+
         if (!releaseType.equals("production")) {
 			atVersionNumber += " - " + releaseType;
 		}
@@ -1519,6 +1522,7 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 		returnString += "\nOS Version: " + System.getProperty("os.version");
 		returnString += "\nPlatform: " + System.getProperty("os.arch");
 		returnString += "\nDatabase: " + UserPreferences.getInstance().getDatabaseUrl();
+        returnString += "\nDatabase Version: " + DatabaseConnectionUtils.getDatabaseVersionString();
 
 		return returnString;
 	}
@@ -1773,4 +1777,26 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 	public void setSharePatronRecords(Boolean sharePatronRecords) {
 		this.sharePatronRecords = sharePatronRecords;
 	}
+
+    /**
+     * Method to adjust the version number to be different that the
+     * database version
+     */
+    private void adjustVersionNumber() {
+        try {
+            // first get the release adjust number from resource file
+            String[] adjustParts = (resourceBundle.getString("archiviststoolkit.releaseadjust")).split("\\.");
+            String[] versionParts  = atVersionNumber.split("\\.");
+
+            // convert parts to integers and subtract them
+            int i1 = Integer.parseInt(versionParts[0]) - Integer.parseInt(adjustParts[0]);
+            int i2 = Integer.parseInt(versionParts[1]) - Integer.parseInt(adjustParts[1]);
+            int i3 = Integer.parseInt(versionParts[2]) - Integer.parseInt(adjustParts[2]);
+
+            atVersionNumber = i1 + "." + i2 + "." + i3;
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

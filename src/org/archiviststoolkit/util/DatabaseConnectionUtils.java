@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -41,6 +41,8 @@ public class DatabaseConnectionUtils {
     private static String errorString = "";
 
     private static final String CONNECTION_INFO_FILENAME = "atdbinfo.txt";
+
+    private static String databaseVersionString = "";
 
     public static Boolean testDbConnection() {
 
@@ -96,19 +98,21 @@ public class DatabaseConnectionUtils {
         int updateVersion = databaseVersion.getUpdateVersion();
 
         if (databaseVersion != null) {
+            databaseVersionString = majorVersion + "." + minorVersion + "." + updateVersion;
+
             Integer compareVersion = Constants.compareVersions(versionString,
                     majorVersion,
                     minorVersion,
                     updateVersion);
             if (calledFrom.equals(DatabaseConnectionUtils.CHECK_VERSION_FROM_MAIN)) {
                 if (compareVersion == Constants.VERSION_LESS) {
-                    VersionMismatch dialog = new VersionMismatch("ATReference version " + versionString
+                    VersionMismatch dialog = new VersionMismatch("ATReference data model version " + versionString
                             + " will not work with this database. This database is using version "
                             + majorVersion + "." + minorVersion + "." + updateVersion + ".", Constants.VERSION_LESS);
                     dialog.showDialog();
                     return false;
                 } else if (compareVersion == Constants.VERSION_GREATER) {
-                    VersionMismatch dialog = new VersionMismatch("ATReference version " + versionString
+                    VersionMismatch dialog = new VersionMismatch("ATReference data model version " + versionString
                             + " will not work with this database. This database is using version "
                             + majorVersion + "." + minorVersion + "." + updateVersion + ".", Constants.VERSION_GREATER);
                     dialog.showDialog();
@@ -116,17 +120,17 @@ public class DatabaseConnectionUtils {
                 }
             } else if (calledFrom.equals(DatabaseConnectionUtils.CHECK_VERSION_FROM_UPGRADE)) {
                 if (compareVersion == Constants.VERSION_LESS) {
-                    errorString = "ATReference version " + versionString + " will not work with this database. This database is using version "
+                    errorString = "ATReference data model version " + versionString + " will not work with this database. This database is using version "
                             + majorVersion + "." + minorVersion + "." + updateVersion + ".";
                     return false;
                 } else if (compareVersion == Constants.VERSION_EQUAL) {
-                    errorString = "Both client and database are ATReference version " + versionString
+                    errorString = "Both client and database are ATReference data model version " + versionString
                             + ". No upgrade is necessary.";
                     return false;
                 }
             } else if (calledFrom.equals(DatabaseConnectionUtils.CHECK_VERSION_FROM_UTILITIES)) {
                 if (compareVersion != Constants.VERSION_EQUAL) {
-                    errorString = "ATReference version " + versionString
+                    errorString = "ATReference data model version " + versionString
                             + " will not work with this database. This database is using version "
                             + majorVersion + "." + minorVersion + "." + updateVersion + ".";
                     return false;
@@ -395,5 +399,14 @@ public class DatabaseConnectionUtils {
         } catch (IOException e) { // just print the stack trace for now
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Method to return the database version string to print to the about dialog
+     *
+     * @return
+     */
+    public static String getDatabaseVersionString() {
+        return databaseVersionString;
     }
 }

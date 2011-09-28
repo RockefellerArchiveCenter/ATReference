@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.5.0_13" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_23" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -28,7 +28,7 @@
         <string>javax.swing.JLabel</string> 
         <void method="setProperty"> 
          <string>text</string> 
-         <string>&lt;html&gt;&lt;center&gt;Welcome to the&lt;br&gt;Archivists&apos; Toolkit&lt;br&gt;Maintenance  Program&lt;/center&gt;&lt;/html&gt;</string> 
+         <string>&lt;html&gt;&lt;center&gt;Welcome to the&lt;br&gt;ATReference&lt;br&gt;Maintenance  Program&lt;/center&gt;&lt;/html&gt;</string> 
         </void> 
         <void method="setProperty"> 
          <string>font</string> 
