@@ -27,7 +27,7 @@ import org.netbeans.spi.wizard.DeferredWizardResult;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class UpgradeTo_2_5_3 extends Upgrade {
+public class UpgradeTo_2_5_4 extends Upgrade {
     protected boolean doUpgrade(Connection conn, int initialStep, int numberOfSteps, DeferredWizardResult.ResultProgressHandle progress) {
 		return true;
 	}

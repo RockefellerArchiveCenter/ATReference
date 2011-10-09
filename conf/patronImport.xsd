@@ -76,6 +76,11 @@
             <xs:element name="contactArchivist" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="topic" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="visitDate" type="xs:date" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="visitType" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="detailsOnResourcesUsed" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="userDefinedBoolean1" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="userDefinedString1" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="userDefinedText1" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="researchPurpose" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="patronVisitsSubjects" type="patronVisitsSubjects" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="patronVisitsNames" type="patronVisitsNames" minOccurs="0" maxOccurs="unbounded"></xs:element>

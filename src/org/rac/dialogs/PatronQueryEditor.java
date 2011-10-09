@@ -185,6 +185,8 @@ public class PatronQueryEditor extends QueryEditor {
 				&& publicationTitle.getText().length() == 0
 				&& publicationDate.getText().length() == 0
 
+				&& selectedAddressType.length() == 0
+
 				&& selectedSubject == null
 
 				&& selectedName == null
@@ -255,6 +257,10 @@ public class PatronQueryEditor extends QueryEditor {
         selectedResource = null;
         resourceTextField.setText("");
     }
+
+	private void addressTypeActionPerformed() {
+		selectedAddressType = (String) addressType.getSelectedItem();
+	}
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -329,6 +335,8 @@ public class PatronQueryEditor extends QueryEditor {
 		addressCountry = new JTextField();
 		label22 = new JLabel();
 		addressRegion = new JTextField();
+		label24 = new JLabel();
+		addressType = ATBasicComponentFactory.createUnboundComboBox(LookupListUtils.getLookupListValues(PatronAddresses.class, PatronAddresses.PROPERTYNAME_ADDRESS_TYPE));
 		buttonBar = new JPanel();
 		inactiveCheckBox2 = new JCheckBox();
 		cancelButton = new JButton();
@@ -568,6 +576,8 @@ public class PatronQueryEditor extends QueryEditor {
 								FormFactory.DEFAULT_COLSPEC
 							},
 							new RowSpec[] {
+								FormFactory.DEFAULT_ROWSPEC,
+								FormFactory.LINE_GAP_ROWSPEC,
 								FormFactory.DEFAULT_ROWSPEC,
 								FormFactory.LINE_GAP_ROWSPEC,
 								FormFactory.DEFAULT_ROWSPEC,
@@ -870,6 +880,19 @@ public class PatronQueryEditor extends QueryEditor {
 						ATFieldInfo.assignLabelInfo(label22, PatronAddresses.class, PatronAddresses.PROPERTYNAME_REGION);
 						panel2.add(label22, cc.xy(3, 39));
 						panel2.add(addressRegion, cc.xy(5, 39));
+
+						//---- label24 ----
+						label24.setText("Address Type");
+						panel2.add(label24, cc.xy(3, 41));
+
+						//---- addressType ----
+						addressType.setOpaque(false);
+						addressType.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								addressTypeActionPerformed();
+							}
+						});
+						panel2.add(addressType, cc.xy(5, 41, CellConstraints.LEFT, CellConstraints.DEFAULT));
 					}
 					classSpecificPanel.add(panel2, cc.xy(1, 3));
 
@@ -1000,6 +1023,8 @@ public class PatronQueryEditor extends QueryEditor {
 	private JTextField addressCountry;
 	private JLabel label22;
 	private JTextField addressRegion;
+	private JLabel label24;
+	private JComboBox addressType;
 	private JPanel buttonBar;
 	private JCheckBox inactiveCheckBox2;
 	private JButton cancelButton;
@@ -1030,6 +1055,8 @@ public class PatronQueryEditor extends QueryEditor {
 	private String selectedPublicationType = "";
 	private Date publicationStartDate = null;
 	private Date publicationEndDate = null;
+
+	private String selectedAddressType = "";
 
 	private Subjects selectedSubject = null;
 	private Names selectedName = null;
@@ -1198,6 +1225,11 @@ public class PatronQueryEditor extends QueryEditor {
 					Patrons.PROPERTYNAME_PATRON_ADDRESSES,
 					PatronAddresses.PROPERTYNAME_COUNTRY + " contains " + addressCountry.getText(),
 					"Country"));
+		}
+
+		if (selectedAddressType.length() > 0) {
+			criterionList.add(new CriteriaRelationshipPairs(Restrictions.eq(PatronAddresses.PROPERTYNAME_ADDRESS_TYPE, selectedAddressType),
+					Patrons.PROPERTYNAME_PATRON_ADDRESSES, PatronAddresses.PROPERTYNAME_ADDRESS_TYPE + " equals " + selectedAddressType));
 		}
 
 		return criterionList;

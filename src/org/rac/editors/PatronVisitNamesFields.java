@@ -1,5 +1,6 @@
 /*
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * ATReference Copyright © 2011 Rockefeller Archive Center
+
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -9,8 +10,8 @@
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the ECL license for more details about permissions and limitations.
  *
  *
- * Archivists' Toolkit(TM)
- * http://www.archiviststoolkit.org
+ * ATReference
+ * https://github.com/RockefellerArchiveCenter/ATReference/wiki
  * info@archiviststoolkit.org
  *
  * Created by JFormDesigner on Wed Dec 15 12:39:56 EST 2010
