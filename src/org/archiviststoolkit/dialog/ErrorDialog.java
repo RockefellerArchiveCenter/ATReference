@@ -164,17 +164,9 @@ public class ErrorDialog extends JDialog {
         // if it is then only alert user of this and don't allow user to submit
         // error report
         if(errorText.contains("JDBCConnectionException")) {
-            String message = "Database connection has been lost due to a server timeout.\n\n" +
-                "Please RESTART the program to continue.  If the problem persists, consult your System Administrator.";
-
-            cardPanel.remove(contentPanel);
-
-            ((CardLayout) cardPanel.getLayout()).show(cardPanel, "error");
-
-            this.label4.setText("Connection Interruption!");
-            this.errorMessage.setText(message);
-
-            submitBugReport.setVisible(false);
+            setDisplayForConnectionException();
+        } else if(errorText.contains("ConstraintViolationException: could not delete")) {
+            setDisplayForDeleteLinkedRecordException(errorMessage, errorText);
         } else if (errorDialogType == DIALOG_TYPE_ERROR) {
 			((CardLayout) cardPanel.getLayout()).show(cardPanel, "error");
 			this.errorMessage.setText(errorMessage + "\n" + errorText);
@@ -186,6 +178,60 @@ public class ErrorDialog extends JDialog {
 
         pack();
 	}
+
+    /**
+     * Method to alert user that a record can't deleted because it's linked to
+     * a related record
+     */
+    private void setDisplayForDeleteLinkedRecordException(String errorMessage, String errorText) {
+        // depending on the stack trace get the linked record type
+        errorText = errorText.toLowerCase();
+
+        String linkedRecord  = "";
+
+        if(errorText.contains("assessmentsresources")) {
+            linkedRecord = "an \"Assessment\"";
+        } else if(errorText.contains("patronvisits")) {
+            linkedRecord = "a \"Patron Visit\"";
+        } else {
+            linkedRecord  = "a Related";
+        }
+
+        String message = "Error, unable to delete the selected record because " +
+                "It is currently linked to " + linkedRecord + " record.\n\n" +
+                "Please restart the program, then un-link this record before " +
+                "attempting to delete again.  Please note that failure to restart " + 
+                "the program will lead to additional errors.";
+
+        cardPanel.remove(contentPanel);
+
+        ((CardLayout) cardPanel.getLayout()).show(cardPanel, "error");
+
+        this.label4.setText(errorMessage.toUpperCase());
+        this.errorMessage.setText(message);
+
+        submitBugReport.setVisible(false);
+    }
+
+    /**
+     * Method to set the display for connection exception
+     *
+     */
+    private void setDisplayForConnectionException() {
+            String message = "Database connection has been lost due to a server timeout.\n\n" +
+                "Please RESTART the program to continue.  If the problem persists, consult your System Administrator.";
+
+            cardPanel.remove(contentPanel);
+
+            ((CardLayout) cardPanel.getLayout()).show(cardPanel, "error");
+
+            this.label4.setText("Connection Interruption!");
+            this.errorMessage.setText(message);
+
+            submitBugReport.setVisible(false);
+    }
+
+
 
 	public ErrorDialog(Frame owner) {
 		super(owner);
