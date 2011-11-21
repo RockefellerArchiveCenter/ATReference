@@ -110,50 +110,64 @@ public class ATDateUtils {
      * @return true if the date passes the check for an iso date
      */
     public static boolean isValidISODate(JTextField textField) {
+        return isValidISODate(textField, false);
+    }
+
+    /**
+     * Method to check to see if the string that was passed in is a valid iso date.
+     * valid iso dates can be either yyyy, yyyy-mm, yyyy-mm-dd
+     *
+     * @param textField The textfield containing the iso date to check
+     * @return true if the date passes the check for an iso date
+     */
+    public static boolean isValidISODate(JTextField textField, boolean strict) {
         String isoDate = textField.getText();
         SimpleDateFormat sdf = ApplicationFrame.applicationDateFormat;
         String pattern = sdf.toPattern();
         String newISODate = "";
 
         // fisrt check to if it matches a iso date
-        if(isoDate.matches("\\d{1,4}") || isoDate.matches("\\d{1,4}-\\d{1,2}") || isoDate.matches("\\d{1,4}-\\d{1,2}-\\d{1,2}")) {
+        if (isoDate.matches("\\d{1,4}") || isoDate.matches("\\d{1,4}-\\d{1,2}") || isoDate.matches("\\d{1,4}-\\d{1,2}-\\d{1,2}")) {
             newISODate = formatISODate(isoDate);
         }
 
-        // now check to see if it not in a date format that AT is using. if it is then convert to iso format
-        if (isValidATDate(textField)) {
-            try {
-                SimpleDateFormat isodf = new SimpleDateFormat("yyyy-MM-dd");
-                Date testDate = sdf.parse(isoDate);
-                newISODate = isodf.format(testDate);
-            } catch(ParseException pe) {
-                newISODate = "";
+        // if we not using strict iso dates, check to see if the date entered is not in a
+        // date format that AT is using. if it is then convert to iso format
+        if (!strict) {
+            if (isValidATDate(textField)) {
+                try {
+                    SimpleDateFormat isodf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date testDate = sdf.parse(isoDate);
+                    newISODate = isodf.format(testDate);
+                } catch (ParseException pe) {
+                    newISODate = "";
+                }
+            } else if (pattern.contains("M/d") && isoDate.indexOf("/") != 1) { // assume format is mm/yyyy
+                String[] sa = isoDate.split("/");
+                newISODate = formatISODate(sa[1] + "-" + sa[0]);
+            } else if (pattern.contains("M-d") && isoDate.indexOf("-") != -1) { // assume format is mm-yyyy
+                String[] sa = isoDate.split("-");
+                newISODate = formatISODate(sa[1] + "-" + sa[0]);
+            } else if (pattern.contains("y/M") && isoDate.indexOf("/") != -1) { // assume format is yyyy/mm
+                String[] sa = isoDate.split("/");
+                newISODate = formatISODate(sa[0] + "-" + sa[1]);
+            } else if (pattern.contains("d/M") && isoDate.indexOf("/") != -1) { // assume format is mm/yyyy
+                String[] sa = isoDate.split("/");
+                newISODate = formatISODate(sa[1] + "-" + sa[0]);
+            } else if (pattern.contains("d-M") && isoDate.indexOf("-") != -1) { // assume format is mm-yyyy
+                String[] sa = isoDate.split("-");
+                newISODate = formatISODate(sa[1] + "-" + sa[0]);
             }
-        } else if(pattern.contains("M/d") && isoDate.indexOf("/") != -1) { // assume format is mm/yyyy
-            String[] sa = isoDate.split("/");
-            newISODate = formatISODate(sa[1] + "-" + sa[0]);
-        } else if(pattern.contains("M-d") && isoDate.indexOf("-") != -1) { // assume format is mm-yyyy
-            String[] sa = isoDate.split("-");
-            newISODate = formatISODate(sa[1] + "-" + sa[0]);
-        } else if(pattern.contains("y/M") && isoDate.indexOf("/") != -1) { // assume format is yyyy/mm
-            String[] sa = isoDate.split("/");
-            newISODate = formatISODate(sa[0] + "-" + sa[1]);
-        } else if(pattern.contains("d/M") && isoDate.indexOf("/") != -1) { // assume format is mm/yyyy
-            String[] sa = isoDate.split("/");
-            newISODate = formatISODate(sa[1] + "-" + sa[0]);
-        } else if(pattern.contains("d-M") && isoDate.indexOf("-") != -1) { // assume format is mm-yyyy
-            String[] sa = isoDate.split("-");
-            newISODate = formatISODate(sa[1] + "-" + sa[0]);
         }
 
         // now check that the final date is in an iso format, if not display error to user
-        if(newISODate.matches("\\d{4}") || newISODate.matches("\\d{4}-\\d{2}") || newISODate.matches("\\d{4}-\\d{2}-\\d{2}")) {
+        if (newISODate.matches("\\d{4}") || newISODate.matches("\\d{4}-\\d{2}") || newISODate.matches("\\d{4}-\\d{2}-\\d{2}")) {
             textField.setText(newISODate);
             return true;
         } else { // display error to user
             String errorMessage = "The date provided is an invalid ISO date format.\nValid formats are YYYY, YYYY-MM, YYYY-MM-DD";
             JOptionPane.showMessageDialog(null, errorMessage);
-			textField.setText("");
+            textField.setText("");
             return false;
         }
     }

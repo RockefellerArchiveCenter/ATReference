@@ -178,19 +178,31 @@ public class ATBasicComponentFactory extends BasicComponentFactory {
 	}
 
     /**
-     * This create a textfeild that is used to input iso dates. The only thing this does
+     * This create a textfield that is used to input iso dates. The only thing this does
      * from a regular textfield is that it does checking of the date format on focus lost
-     * valid formats are yyyy, yyyy-mm, yyyy-mm-dd in the date format being used by the AT
-     * @param valueModel The vlaue model to bind to
+     * valid formats are yyyy, yyyy-mm, yyyy-mm-dd or the date format being used by
+     * the AT
+     *
+     * @param valueModel The value model to bind to
+     * @param strict If this is true only ISO formatted dates will match. If false the AT formated dates will also match
      * @return  The JTextfield
      */
-    public static JTextField createISODateField (ValueModel valueModel) {
+    public static JTextField createISODateField (ValueModel valueModel, boolean strict) {
 		JTextField textField = new JTextField();
 		Bindings.bind(textField, valueModel, true);
-		textField.addFocusListener(new ISODateFocusListener(textField));
+		textField.addFocusListener(new ISODateFocusListener(textField, strict));
 		return textField;
 	}
 
+    /**
+     * Overloaded method for creating an ISO text field
+     * @param valueModel
+     *
+     * @return The bounding text field
+     */
+    public static JTextField createISODateField (ValueModel valueModel) {
+		return createISODateField(valueModel, false);
+	}
 
 //	public static JFormattedTextField getSQLDateField() {
 //		DateFormatter dateFormatter =
@@ -670,9 +682,11 @@ public class ATBasicComponentFactory extends BasicComponentFactory {
 
 		private String oldValue = null;
 		private JTextComponent textComponent;
+        private boolean strict = false;
 
-		public ISODateFocusListener(JTextComponent textComponent) {
+		public ISODateFocusListener(JTextComponent textComponent, boolean strict) {
 			this.textComponent = textComponent;
+            this.strict = strict;
 		}
 
 		public void focusGained(FocusEvent event) {
@@ -683,7 +697,7 @@ public class ATBasicComponentFactory extends BasicComponentFactory {
 			String newValue = textComponent.getText();
 
             // check that the iso date format is valid
-            if(newValue.length() > 0 && ATDateUtils.isValidISODate((JTextField)textComponent)) {
+            if(newValue.length() > 0 && ATDateUtils.isValidISODate((JTextField)textComponent, strict)) {
                 // now check if the value was changed
                 if (!oldValue.equals(newValue)) {
 				    ApplicationFrame.getInstance().setRecordDirty();
