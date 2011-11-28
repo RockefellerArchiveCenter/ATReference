@@ -764,7 +764,7 @@ public final class ApplicationFrame extends JFrame implements ActionListener {
 
 			//todo RAC additions
 			toolMenu.add(patronAction);
-			toolMenu.add(services);
+			//toolMenu.add(services); todo (11/27/2011) uncomment once implemented
 			toolMenu.add(subjectReferenceReport);
 			toolMenu.add(patronVisitSummary);
 

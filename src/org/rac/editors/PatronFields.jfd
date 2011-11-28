@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_23" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_24" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -129,10 +129,6 @@
           <int>255</int> 
          </object> 
         </void> 
-        <void method="setProperty"> 
-         <string>opaque</string> 
-         <boolean>true</boolean> 
-        </void> 
         <void property="name"> 
          <string>tabbedPane</string> 
         </void> 
@@ -151,8 +147,13 @@
            </void> 
           </object> 
           <void method="setProperty"> 
-           <string>opaque</string> 
-           <boolean>false</boolean> 
+           <string>background</string> 
+           <object class="java.awt.Color"> 
+            <int>200</int> 
+            <int>205</int> 
+            <int>232</int> 
+            <int>255</int> 
+           </object> 
           </void> 
           <void property="name"> 
            <string>mainPatronFieldsPanel</string> 
@@ -2076,8 +2077,13 @@
            </void> 
           </object> 
           <void method="setProperty"> 
-           <string>opaque</string> 
-           <boolean>false</boolean> 
+           <string>background</string> 
+           <object class="java.awt.Color"> 
+            <int>200</int> 
+            <int>205</int> 
+            <int>232</int> 
+            <int>255</int> 
+           </object> 
           </void> 
           <void property="name"> 
            <string>panel11</string> 
@@ -2596,6 +2602,10 @@
              <string>font</string> 
              <object idref="Font8"/> 
             </void> 
+            <void method="setProperty"> 
+             <string>visible</string> 
+             <boolean>false</boolean> 
+            </void> 
             <void property="name"> 
              <string>separator4</string> 
             </void> 
@@ -2622,6 +2632,10 @@
             <void method="setProperty"> 
              <string>font</string> 
              <object idref="Font5"/> 
+            </void> 
+            <void method="setProperty"> 
+             <string>visible</string> 
+             <boolean>false</boolean> 
             </void> 
             <void property="name"> 
              <string>label_subjectScopeNote9</string> 
@@ -2652,6 +2666,10 @@
             <void method="setProperty"> 
              <string>font</string> 
              <object idref="Font0"/> 
+            </void> 
+            <void method="setProperty"> 
+             <string>visible</string> 
+             <boolean>false</boolean> 
             </void> 
             <void property="name"> 
              <string>scrollPane14</string> 
@@ -2710,6 +2728,10 @@
             <void method="setProperty"> 
              <string>font</string> 
              <object idref="Font0"/> 
+            </void> 
+            <void method="setProperty"> 
+             <string>visible</string> 
+             <boolean>false</boolean> 
             </void> 
             <void property="name"> 
              <string>panel17</string> 
@@ -2800,7 +2822,7 @@
           <null/> 
           <void method="setProperty"> 
            <string>title</string> 
-           <string>Visits, Forms and Services</string> 
+           <string>Visits and Forms</string> 
           </void> 
          </object> 
         </void> 
