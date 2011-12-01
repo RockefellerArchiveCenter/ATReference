@@ -739,10 +739,11 @@ public class DomainEditor extends StandardEditor {
                 } else {
                     new ErrorDialog("Error saving record", e).showDialog();
                 }
-                // need to get a new session here to prevent the occurance of ART-1674
+
+                // need to get a new session here to prevent the occurrence of ART-1674
                 try {
                     dao.closeLongSessionRollback();
-                    dao.getLongSession();
+                    dao.getLongSession().refresh(this.getModel());
                 } catch (SQLException e2) {
                     new ErrorDialog("Error closing session", e).showDialog();
                 }
