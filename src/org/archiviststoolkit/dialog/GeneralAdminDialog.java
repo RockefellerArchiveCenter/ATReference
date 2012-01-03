@@ -518,11 +518,10 @@ public class GeneralAdminDialog extends JDialog implements ActionListener{
         // check that the class is not the assessment class
         if(clazz != Assessments.class) {
             getContentTable().setClazz(clazz, sortField);
+            findAll();
         } else {
             getContentTable().setClazz(AssessmentsSearchResult.class, sortField);
         }
-
-        findAll();
 
 		//set up the dialog for editing records
 		dialog = DomainEditorFactory.getInstance().createDomainEditorWithParent(clazz, this, getContentTable(), true);
@@ -560,78 +559,9 @@ public class GeneralAdminDialog extends JDialog implements ActionListener{
         // class
         if (clazz == RDEScreen.class) {
             RDEUtils.removeRDEScreens(resultSet, rdeClazz);
+            getContentTable().updateCollection(resultSet);
         }
-
-        // if the class is an Assessment class the we need to create the results now
-        if(clazz == Assessments.class && !resultSet.isEmpty()) {
-            resultSet = getAssessmentsResultSet(resultSet, false);
-        }
-
-        getContentTable().updateCollection(resultSet);
 	}
-
-    /**
-     * Method to resturn the result for Assessment records which contains
-     * AssessmentsSearchResult object instead of Assessments.
-     * @param resultSet The collection containing Assessments objects
-     * @param removeInActive boolean specifying whether to allow inatice records to be displayed in table
-     * @return Collection containing AssessmentsSearchResult
-     */
-    protected Collection getAssessmentsResultSet(Collection resultSet, boolean removeInActive) {
-        Collection<AssessmentsSearchResult> newResultSet = new ArrayList<AssessmentsSearchResult>();
-
-        // interate through the results set
-        for (Iterator resultIterator = resultSet.iterator(); resultIterator.hasNext();) {
-            Assessments assessments = (Assessments)resultIterator.next();
-
-            // check if to allow this assessment in the result set
-            if(removeInActive && assessments.getInactive()) {
-                continue;
-            }
-
-            boolean hasLinkRecord = false; // keeps track if the assessment has any records link to it
-
-            // add any linked resources now
-            if(!assessments.getResources().isEmpty()) {
-                Set<AssessmentsResources> assessmentsResources = assessments.getResources();
-
-                for (AssessmentsResources assessmentResource : assessmentsResources) {
-                    newResultSet.add(new AssessmentsSearchResult(assessments, assessmentResource.getResource()));
-                }
-                hasLinkRecord = true;
-            }
-
-            // add any linked accessions now
-            if(!assessments.getAccessions().isEmpty()) {
-                Set<AssessmentsAccessions> assessmentsAccessions = assessments.getAccessions();
-
-                for (AssessmentsAccessions assessmentsAccession : assessmentsAccessions) {
-                    newResultSet.add(new AssessmentsSearchResult(assessments, assessmentsAccession.getAccession()));
-                }
-                hasLinkRecord = true;
-            }
-
-            // add any link digital objects now
-            if(!assessments.getDigitalObjects().isEmpty()) {
-                Set<AssessmentsDigitalObjects> assessmentsDigitalObjectses = assessments.getDigitalObjects();
-
-                for (AssessmentsDigitalObjects assessmentsDigitalObject : assessmentsDigitalObjectses) {
-                    newResultSet.add(new AssessmentsSearchResult(assessments, assessmentsDigitalObject.getDigitalObject()));
-                }
-                hasLinkRecord = true;
-            }
-
-            // if this assessment has no link records the just return assessment.
-            // such records with no link records should never exist, and this is
-            // only for testing and spoting bad records
-            if(!hasLinkRecord) {
-                newResultSet.add(new AssessmentsSearchResult(assessments));
-            }
-        }
-
-
-        return newResultSet;
-    }
 
 	protected final void setNavigationButtons() {
 		int numberOfRows = getContentTable().getRowCount();
