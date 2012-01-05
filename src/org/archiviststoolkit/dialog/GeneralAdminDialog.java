@@ -559,8 +559,9 @@ public class GeneralAdminDialog extends JDialog implements ActionListener{
         // class
         if (clazz == RDEScreen.class) {
             RDEUtils.removeRDEScreens(resultSet, rdeClazz);
-            getContentTable().updateCollection(resultSet);
         }
+
+        getContentTable().updateCollection(resultSet);
 	}
 
 	protected final void setNavigationButtons() {
