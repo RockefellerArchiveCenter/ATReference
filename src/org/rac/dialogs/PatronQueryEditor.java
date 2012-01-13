@@ -172,6 +172,7 @@ public class PatronQueryEditor extends QueryEditor {
 				&& visitTopic.getText().length() == 0
 				&& researchPurpose.getText().length() == 0
                 && detailsOnResourcesUsedTextField.getText().length() == 0
+				&& selectedVisitType.length() == 0
 				&& !areVisitDatesFilledOut()
 
 				&& addressCountry.getText().length() == 0
@@ -183,6 +184,7 @@ public class PatronQueryEditor extends QueryEditor {
 
 				&& selectedPublicationType.length() == 0
 				&& publicationTitle.getText().length() == 0
+				&& publicationAuthor.getText().length() == 0
 				&& publicationDate.getText().length() == 0
 
 				&& selectedAddressType.length() == 0
@@ -262,6 +264,10 @@ public class PatronQueryEditor extends QueryEditor {
 		selectedAddressType = (String) addressType.getSelectedItem();
 	}
 
+	private void visitTypeActionPerformed() {
+		selectedVisitType = (String) visitType.getSelectedItem();
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		// Generated using JFormDesigner non-commercial license
@@ -300,6 +306,8 @@ public class PatronQueryEditor extends QueryEditor {
 		lookupResourceButton = new JButton();
 		clearResourceButton = new JButton();
 		label9 = new JLabel();
+		visitTypeLabel = new JLabel();
+		visitType = ATBasicComponentFactory.createUnboundComboBox(LookupListUtils.getLookupListValues(PatronVisits.class, PatronVisits.PROPERTYNAME_VISIT_TYPE));
 		label8 = new JLabel();
 		panel3 = new JPanel();
 		visitDateStart = ATBasicComponentFactory.createUnboundDateField();
@@ -328,6 +336,8 @@ public class PatronQueryEditor extends QueryEditor {
 		publicationDate = new JTextField();
 		label18 = new JLabel();
 		publicationTitle = new JTextField();
+		label25 = new JLabel();
+		publicationAuthor = new JTextField();
 		label19 = new JLabel();
 		publicationType = ATBasicComponentFactory.createUnboundComboBox(LookupListUtils.getLookupListValues(PatronPublications.class, PatronPublications.PROPERTYNAME_PUBLICATION_TYPE));
 		label20 = new JLabel();
@@ -616,6 +626,10 @@ public class PatronQueryEditor extends QueryEditor {
 								FormFactory.LINE_GAP_ROWSPEC,
 								FormFactory.DEFAULT_ROWSPEC,
 								FormFactory.LINE_GAP_ROWSPEC,
+								FormFactory.DEFAULT_ROWSPEC,
+								FormFactory.LINE_GAP_ROWSPEC,
+								FormFactory.DEFAULT_ROWSPEC,
+								FormFactory.LINE_GAP_ROWSPEC,
 								FormFactory.DEFAULT_ROWSPEC
 							}));
 
@@ -715,9 +729,23 @@ public class PatronQueryEditor extends QueryEditor {
 						label9.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 						panel2.add(label9, cc.xywh(1, 7, 3, 1));
 
+						//---- visitTypeLabel ----
+						visitTypeLabel.setText("Visit Type");
+						ATFieldInfo.assignLabelInfo(visitTypeLabel, PatronVisits.class, PatronVisits.PROPERTYNAME_VISIT_TYPE);
+						panel2.add(visitTypeLabel, cc.xy(3, 9));
+
+						//---- visitType ----
+						visitType.setOpaque(false);
+						visitType.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								visitTypeActionPerformed();
+							}
+						});
+						panel2.add(visitType, cc.xy(5, 9, CellConstraints.LEFT, CellConstraints.DEFAULT));
+
 						//---- label8 ----
 						label8.setText("Visit Date");
-						panel2.add(label8, cc.xy(3, 9));
+						panel2.add(label8, cc.xy(3, 11));
 
 						//======== panel3 ========
 						{
@@ -752,36 +780,36 @@ public class PatronQueryEditor extends QueryEditor {
 							});
 							panel3.add(visitDateEnd, cc.xy(5, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 						}
-						panel2.add(panel3, cc.xy(5, 9));
+						panel2.add(panel3, cc.xy(5, 11));
 
 						//---- label10 ----
 						label10.setText("Contact Archivist");
-						panel2.add(label10, cc.xy(3, 11));
-						panel2.add(contactArchivist, cc.xy(5, 11));
+						panel2.add(label10, cc.xy(3, 13));
+						panel2.add(contactArchivist, cc.xy(5, 13));
 
 						//---- label7 ----
 						label7.setText("Research Purpose");
-						panel2.add(label7, cc.xy(3, 13));
-						panel2.add(researchPurpose, cc.xy(5, 13));
+						panel2.add(label7, cc.xy(3, 15));
+						panel2.add(researchPurpose, cc.xy(5, 15));
 
 						//---- label15 ----
 						label15.setText("Visit Topic");
-						panel2.add(label15, cc.xy(3, 15));
-						panel2.add(visitTopic, cc.xy(5, 15));
+						panel2.add(label15, cc.xy(3, 17));
+						panel2.add(visitTopic, cc.xy(5, 17));
 
 						//---- label2 ----
 						label2.setText("Details On Resources Used");
-						panel2.add(label2, cc.xy(3, 17));
-						panel2.add(detailsOnResourcesUsedTextField, cc.xy(5, 17));
+						panel2.add(label2, cc.xy(3, 19));
+						panel2.add(detailsOnResourcesUsedTextField, cc.xy(5, 19));
 
 						//---- label11 ----
 						label11.setText("Funding");
 						label11.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-						panel2.add(label11, cc.xywh(1, 19, 3, 1));
+						panel2.add(label11, cc.xywh(1, 21, 3, 1));
 
 						//---- label12 ----
 						label12.setText("Funding Date");
-						panel2.add(label12, cc.xy(3, 21));
+						panel2.add(label12, cc.xy(3, 23));
 
 						//======== panel4 ========
 						{
@@ -816,16 +844,16 @@ public class PatronQueryEditor extends QueryEditor {
 							});
 							panel4.add(fundingDateEnd, cc.xy(5, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
 						}
-						panel2.add(panel4, cc.xy(5, 21));
+						panel2.add(panel4, cc.xy(5, 23));
 
 						//---- label13 ----
 						label13.setText("Funding Topic");
-						panel2.add(label13, cc.xy(3, 23));
-						panel2.add(fundingTopic, cc.xy(5, 23));
+						panel2.add(label13, cc.xy(3, 25));
+						panel2.add(fundingTopic, cc.xy(5, 25));
 
 						//---- label14 ----
 						label14.setText("Funding Type");
-						panel2.add(label14, cc.xy(3, 25));
+						panel2.add(label14, cc.xy(3, 27));
 
 						//---- fundingType ----
 						fundingType.setOpaque(false);
@@ -834,26 +862,31 @@ public class PatronQueryEditor extends QueryEditor {
 								fundingTypeActionPerformed();
 							}
 						});
-						panel2.add(fundingType, cc.xy(5, 25, CellConstraints.LEFT, CellConstraints.DEFAULT));
+						panel2.add(fundingType, cc.xy(5, 27, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
 						//---- label16 ----
 						label16.setText("Publications");
 						label16.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-						panel2.add(label16, cc.xywh(1, 27, 5, 1));
+						panel2.add(label16, cc.xywh(1, 29, 5, 1));
 
 						//---- label17 ----
 						label17.setText("Publication Date");
-						panel2.add(label17, cc.xy(3, 29));
-						panel2.add(publicationDate, cc.xy(5, 29));
+						panel2.add(label17, cc.xy(3, 31));
+						panel2.add(publicationDate, cc.xy(5, 31));
 
 						//---- label18 ----
 						label18.setText("Publication Title");
-						panel2.add(label18, cc.xy(3, 31));
-						panel2.add(publicationTitle, cc.xy(5, 31));
+						panel2.add(label18, cc.xy(3, 33));
+						panel2.add(publicationTitle, cc.xy(5, 33));
+
+						//---- label25 ----
+						label25.setText("Publication Author");
+						panel2.add(label25, cc.xy(3, 35));
+						panel2.add(publicationAuthor, cc.xy(5, 35));
 
 						//---- label19 ----
 						label19.setText("Publication Type");
-						panel2.add(label19, cc.xy(3, 33));
+						panel2.add(label19, cc.xy(3, 37));
 
 						//---- publicationType ----
 						publicationType.setOpaque(false);
@@ -862,28 +895,28 @@ public class PatronQueryEditor extends QueryEditor {
 								publicationTypeActionPerformed();
 							}
 						});
-						panel2.add(publicationType, cc.xy(5, 33, CellConstraints.LEFT, CellConstraints.DEFAULT));
+						panel2.add(publicationType, cc.xy(5, 37, CellConstraints.LEFT, CellConstraints.DEFAULT));
 
 						//---- label20 ----
 						label20.setText("Addresses");
 						label20.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-						panel2.add(label20, cc.xywh(1, 35, 9, 1));
+						panel2.add(label20, cc.xywh(1, 39, 9, 1));
 
 						//---- label21 ----
 						label21.setText("Country");
 						ATFieldInfo.assignLabelInfo(label21, PatronAddresses.class, PatronAddresses.PROPERTYNAME_COUNTRY);
-						panel2.add(label21, cc.xy(3, 37));
-						panel2.add(addressCountry, cc.xy(5, 37));
+						panel2.add(label21, cc.xy(3, 41));
+						panel2.add(addressCountry, cc.xy(5, 41));
 
 						//---- label22 ----
 						label22.setText("Region");
 						ATFieldInfo.assignLabelInfo(label22, PatronAddresses.class, PatronAddresses.PROPERTYNAME_REGION);
-						panel2.add(label22, cc.xy(3, 39));
-						panel2.add(addressRegion, cc.xy(5, 39));
+						panel2.add(label22, cc.xy(3, 43));
+						panel2.add(addressRegion, cc.xy(5, 43));
 
 						//---- label24 ----
 						label24.setText("Address Type");
-						panel2.add(label24, cc.xy(3, 41));
+						panel2.add(label24, cc.xy(3, 45));
 
 						//---- addressType ----
 						addressType.setOpaque(false);
@@ -892,7 +925,7 @@ public class PatronQueryEditor extends QueryEditor {
 								addressTypeActionPerformed();
 							}
 						});
-						panel2.add(addressType, cc.xy(5, 41, CellConstraints.LEFT, CellConstraints.DEFAULT));
+						panel2.add(addressType, cc.xy(5, 45, CellConstraints.LEFT, CellConstraints.DEFAULT));
 					}
 					classSpecificPanel.add(panel2, cc.xy(1, 3));
 
@@ -988,6 +1021,8 @@ public class PatronQueryEditor extends QueryEditor {
 	private JButton lookupResourceButton;
 	private JButton clearResourceButton;
 	private JLabel label9;
+	private JLabel visitTypeLabel;
+	private JComboBox visitType;
 	private JLabel label8;
 	private JPanel panel3;
 	private JFormattedTextField visitDateStart;
@@ -1016,6 +1051,8 @@ public class PatronQueryEditor extends QueryEditor {
 	private JTextField publicationDate;
 	private JLabel label18;
 	private JTextField publicationTitle;
+	private JLabel label25;
+	private JTextField publicationAuthor;
 	private JLabel label19;
 	private JComboBox publicationType;
 	private JLabel label20;
@@ -1049,6 +1086,7 @@ public class PatronQueryEditor extends QueryEditor {
 	private Date fundingEndDate = null;
 
 	private String selectedResearchPurpose = "";
+	private String selectedVisitType = "";
 	private Date visitStartDate = null;
 	private Date visitEndDate = null;
 
@@ -1182,6 +1220,13 @@ public class PatronQueryEditor extends QueryEditor {
 					"Publication Title"));
 		}
 
+		if (publicationAuthor != null && publicationAuthor.getText().length() > 0) {
+			criterionList.add(new CriteriaRelationshipPairs(Restrictions.like(PatronPublications.PROPERTYNAME_PUBLICATION_AUTHOR, publicationAuthor.getText(), MatchMode.ANYWHERE),
+					Patrons.PROPERTYNAME_PATRON_PUBLICATIONS,
+					PatronPublications.PROPERTYNAME_PUBLICATION_AUTHOR + " contains " + publicationAuthor.getText(),
+					"Publication Author"));
+		}
+
         // Patron Visits
 		if (areVisitDatesFilledOut()) {
 			pair = new CriteriaRelationshipPairs(Restrictions.ge(PatronVisits.PROPERTYNAME_VISIT_DATE, visitStartDate), Patrons.PROPERTYNAME_PATRON_VISITS);
@@ -1202,6 +1247,11 @@ public class PatronQueryEditor extends QueryEditor {
 					Patrons.PROPERTYNAME_PATRON_VISITS,
 					PatronVisits.PROPERTYNAME_TOPIC + " contains " + visitTopic.getText(),
 					"Visit Topic"));
+		}
+
+		if (selectedVisitType.length() > 0) {
+			criterionList.add(new CriteriaRelationshipPairs(Restrictions.eq(PatronVisits.PROPERTYNAME_VISIT_TYPE, selectedVisitType),
+					Patrons.PROPERTYNAME_PATRON_VISITS, PatronVisits.PROPERTYNAME_VISIT_TYPE + " equals " + selectedVisitType));
 		}
 
         if (detailsOnResourcesUsedTextField != null && detailsOnResourcesUsedTextField.getText().length() > 0) {

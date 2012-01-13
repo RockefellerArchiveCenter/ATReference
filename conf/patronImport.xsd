@@ -84,6 +84,7 @@
             <xs:element name="researchPurpose" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="patronVisitsSubjects" type="patronVisitsSubjects" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="patronVisitsNames" type="patronVisitsNames" minOccurs="0" maxOccurs="unbounded"></xs:element>
+            <xs:element name="patronVisitsResources" type="patronVisitsResources" minOccurs="0" maxOccurs="unbounded"></xs:element>
         </xs:sequence>
     </xs:complexType>
     
@@ -95,6 +96,13 @@
         </xs:sequence>
     </xs:complexType>
     
+    <xs:complexType name="patronVisitsResources">
+        <xs:sequence>
+            <xs:element name="resourceIdentifier" type="xs:string"  minOccurs="1" maxOccurs="1"/>
+            <xs:element name="resourceTitle" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
     <xs:complexType name="patronVisitsNames">
         <xs:sequence>
             <xs:element name="nameLinkRole" type="xs:string" minOccurs="0" maxOccurs="1"/>

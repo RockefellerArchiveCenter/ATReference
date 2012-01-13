@@ -1,4 +1,4 @@
-Although ATReference 2.5 was not developed by the original copyright holders of Archivists' Toolkit TM, it has been based on that open-source product and its installation and use require acceptance of the original AT license agreement.
+Although ATReference 1.0 was not developed by the original copyright holders of Archivists' Toolkit TM, it has been based on that open-source product and its installation and use require acceptance of the original AT license agreement.
 
 Archivists' ToolkitTM
 

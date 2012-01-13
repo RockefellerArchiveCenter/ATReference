@@ -41,6 +41,7 @@ import org.rac.model.PatronVisitsNames;
 import org.rac.model.PatronVisitsSubjects;
 import org.rac.myDomain.PatronsDAO;
 import org.rac.structure.patronImportSchema.*;
+import org.rac.structure.patronImportSchema.PatronVisitsResources;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -77,6 +78,7 @@ public class ExportPatronData {
 			PropertyDescriptor[] publicationDescriptors = PropertyUtils.getPropertyDescriptors(org.rac.structure.patronImportSchema.PatronPublications.class);
 			PropertyDescriptor[] formDescriptors = PropertyUtils.getPropertyDescriptors(org.rac.structure.patronImportSchema.PatronForms.class);
 			PropertyDescriptor[] nameDescriptors = PropertyUtils.getPropertyDescriptors(NameComplexType.class);
+			PropertyDescriptor[] visitResourceDescriptors = PropertyUtils.getPropertyDescriptors(PatronVisitsResources.class);
 
 
 			JAXBContext context =
@@ -129,7 +131,7 @@ public class ExportPatronData {
 				for (PatronVisits patronVisit: fullPatronRecord.getPatronVisits()) {
 					jaxbPatronVisit = objectFactory.createPatronVisits();
 					populateJaxbObjectFromDomainObject(patronVisit, visitDescriptors, jaxbPatronVisit);
-					//deal with research ppurposes
+					//deal with research purposes
 					for (PatronVisitsResearchPurposes researchPurpose: patronVisit.getResearchPurposes()) {
 						jaxbPatronVisit.getResearchPurpose().add(researchPurpose.getResearchPurpose());
 					}
@@ -149,6 +151,14 @@ public class ExportPatronData {
 						jaxbPatronVisitName.setName(createJaxbNameRecord(name.getName(), objectFactory, nameDescriptors));
 						jaxbPatronVisit.getPatronVisitsNames().add(jaxbPatronVisitName);
 					}
+					//deal with resources associated with visits
+					PatronVisitsResources jaxbPatronVisitResource;
+					for (org.rac.model.PatronVisitsResources patronResource: patronVisit.getResources()) {
+						jaxbPatronVisitResource = objectFactory.createPatronVisitsResources();
+						populateJaxbObjectFromDomainObject(patronResource, visitResourceDescriptors, jaxbPatronVisitResource);
+						jaxbPatronVisit.getPatronVisitsResources().add(jaxbPatronVisitResource);
+					}
+
 					jaxbPatron.getPatronVisits().add(jaxbPatronVisit);
 				}
 

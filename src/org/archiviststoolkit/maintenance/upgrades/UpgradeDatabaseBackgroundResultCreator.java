@@ -150,7 +150,7 @@ public class UpgradeDatabaseBackgroundResultCreator extends DeferredWizardResult
                 progress.setProgress("Updating constants record", totalNumberOfSteps, totalNumberOfSteps);
 				Constants.updateOrCreateVersionRecord(versionString);
 
-                String successString = "The database has been upgraded to " + versionString +
+                String successString = "The data model has been upgraded to " + versionString +
 						". It will no longer work with earlier versions";
 				progress.finished(Summary.create(successString, wizardData));
 			}
