@@ -27,7 +27,7 @@ import javax.swing.border.*;
 
 import com.jgoodies.forms.factories.*;
 import com.jgoodies.forms.layout.*;
-import org.archiviststoolkit.maintenance.ChooseOperation;
+import org.archiviststoolkit.swing.SimpleFileFilter;
 import org.archiviststoolkit.util.UserPreferences;
 import org.archiviststoolkit.util.DatabaseConnectionInformation;
 import org.archiviststoolkit.util.DatabaseConnectionUtils;
@@ -153,13 +153,18 @@ public class UserPreferencesDialog extends JDialog {
             } else if (!currentUrl.contains("jdbc:hsqldb:")) {
                 // alert the user to configure the internal database
                 String message = "Please run the \"Maintenance Program\" to Configure\n" +
-                        "The Internal Database ...";
+                        "The Internal Database, or load an Internal Database file ...";
 
                 JOptionPane.showMessageDialog(this,
                         message,
                         "Internal Database not Configured",
                         JOptionPane.WARNING_MESSAGE);
             }
+
+            // make the open DB file button visible
+            openDBFileButton.setVisible(true);
+        } else {
+            openDBFileButton.setVisible(false);
         }
     }
 
@@ -175,6 +180,25 @@ public class UserPreferencesDialog extends JDialog {
             return prefix + dbFileName;
         } else {
             return null;
+        }
+    }
+
+    /**
+     * Method to open a new internal database file
+     *
+     */
+    private void openDBFileButtonActionPerformed() {
+        ATFileChooser filechooser = new ATFileChooser(new SimpleFileFilter(".script"));
+		filechooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+		if (filechooser.showOpenDialog(this, "Open Internal Database File") == JFileChooser.APPROVE_OPTION) {
+            String prefix = "jdbc:hsqldb:file:";
+            String dbFileName = filechooser.getSelectedFile().getAbsolutePath().replace(".script","");
+            String databaseUrl = prefix + dbFileName;
+
+            connectionUrl.setSelectedItem(databaseUrl);
+            userName.setText("SA");
+            password.setText("SA");
         }
     }
 
@@ -198,6 +222,7 @@ public class UserPreferencesDialog extends JDialog {
         label4 = new JLabel();
         databaseTypes = ATBasicComponentFactory.createUnboundComboBox(SessionFactory.getDatabaseTypesList(true));
         buttonBar = new JPanel();
+        openDBFileButton = new JButton();
         saveButton = new JButton();
         okButton = new JButton();
         cancelButton = new JButton();
@@ -310,7 +335,7 @@ public class UserPreferencesDialog extends JDialog {
 
                     //---- label1 ----
                     label1.setText("Connection URL");
-                    contentPanel.add(label1, new CellConstraints(1, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    contentPanel.add(label1, new CellConstraints(1, 1, 1, 1, CellConstraints.FILL, CellConstraints.DEFAULT, new Insets(0, 5, 0, 0)));
 
                     //---- connectionUrl ----
                     connectionUrl.setEditable(true);
@@ -319,21 +344,21 @@ public class UserPreferencesDialog extends JDialog {
                             updateConnectionUrlInformation();
                         }
                     });
-                    contentPanel.add(connectionUrl, new CellConstraints(3, 1, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    contentPanel.add(connectionUrl, new CellConstraints(3, 1, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets(0, 5, 0, 0)));
 
                     //---- label2 ----
                     label2.setText("Username");
-                    contentPanel.add(label2, new CellConstraints(1, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
-                    contentPanel.add(userName, new CellConstraints(3, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    contentPanel.add(label2, new CellConstraints(1, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets(0, 5, 0, 0)));
+                    contentPanel.add(userName, new CellConstraints(3, 3, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets(0, 5, 0, 0)));
 
                     //---- label3 ----
                     label3.setText("Password");
-                    contentPanel.add(label3, new CellConstraints(1, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
-                    contentPanel.add(password, new CellConstraints(3, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    contentPanel.add(label3, new CellConstraints(1, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets(0, 5, 0, 0)));
+                    contentPanel.add(password, new CellConstraints(3, 5, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets(0, 5, 0, 0)));
 
                     //---- label4 ----
                     label4.setText("Database Type");
-                    contentPanel.add(label4, new CellConstraints(1, 7, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets( 0, 5, 0, 0)));
+                    contentPanel.add(label4, new CellConstraints(1, 7, 1, 1, CellConstraints.DEFAULT, CellConstraints.DEFAULT, new Insets(0, 5, 0, 0)));
 
                     //---- databaseTypes ----
                     databaseTypes.setOpaque(false);
@@ -342,7 +367,7 @@ public class UserPreferencesDialog extends JDialog {
                             databaseTypesActionPerformed();
                         }
                     });
-                    contentPanel.add(databaseTypes, cc.xywh(3, 7, 1, 1, CellConstraints.LEFT, CellConstraints.DEFAULT));
+                    contentPanel.add(databaseTypes, cc.xy(3, 7, CellConstraints.LEFT, CellConstraints.DEFAULT));
                 }
                 panel1.add(contentPanel, cc.xy(1, 1));
 
@@ -353,6 +378,8 @@ public class UserPreferencesDialog extends JDialog {
                     buttonBar.setOpaque(false);
                     buttonBar.setLayout(new FormLayout(
                         new ColumnSpec[] {
+                            FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                            FormFactory.DEFAULT_COLSPEC,
                             FormFactory.GLUE_COLSPEC,
                             FormFactory.DEFAULT_COLSPEC,
                             FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
@@ -362,6 +389,16 @@ public class UserPreferencesDialog extends JDialog {
                         },
                         RowSpec.decodeSpecs("pref")));
 
+                    //---- openDBFileButton ----
+                    openDBFileButton.setText("Open Internal Database File");
+                    openDBFileButton.setVisible(false);
+                    openDBFileButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            openDBFileButtonActionPerformed();
+                        }
+                    });
+                    buttonBar.add(openDBFileButton, cc.xy(2, 1));
+
                     //---- saveButton ----
                     saveButton.setText("Save");
                     saveButton.setOpaque(false);
@@ -370,7 +407,7 @@ public class UserPreferencesDialog extends JDialog {
                             storeConnectionUrlInformation();
                         }
                     });
-                    buttonBar.add(saveButton, cc.xy(2, 1));
+                    buttonBar.add(saveButton, cc.xy(4, 1));
 
                     //---- okButton ----
                     okButton.setText("OK");
@@ -380,7 +417,7 @@ public class UserPreferencesDialog extends JDialog {
                             okButtonActionPerformed(e);
                         }
                     });
-                    buttonBar.add(okButton, cc.xy(4, 1));
+                    buttonBar.add(okButton, cc.xy(6, 1));
 
                     //---- cancelButton ----
                     cancelButton.setText("Cancel");
@@ -390,7 +427,7 @@ public class UserPreferencesDialog extends JDialog {
                             cancelButtonActionPerformed(e);
                         }
                     });
-                    buttonBar.add(cancelButton, cc.xy(6, 1));
+                    buttonBar.add(cancelButton, cc.xy(8, 1));
                 }
                 panel1.add(buttonBar, cc.xy(1, 3));
             }
@@ -435,6 +472,7 @@ public class UserPreferencesDialog extends JDialog {
     private JLabel label4;
     private JComboBox databaseTypes;
     private JPanel buttonBar;
+    private JButton openDBFileButton;
     private JButton saveButton;
     private JButton okButton;
     private JButton cancelButton;

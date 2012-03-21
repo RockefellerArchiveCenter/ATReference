@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.5.0_26" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_29" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -602,7 +602,7 @@
              <class>com.jgoodies.forms.layout.FormLayout</class> 
              <void method="setProperty"> 
               <string>$columnSpecs</string> 
-              <string>glue, default, labelcompgap, button, relgap, button</string> 
+              <string>labelcompgap, default, glue, default, labelcompgap, button, relgap, button</string> 
              </void> 
              <void method="setProperty"> 
               <string>$rowSpecs</string> 
@@ -634,6 +634,41 @@
               <string>javax.swing.JButton</string> 
               <void method="setProperty"> 
                <string>text</string> 
+               <string>Open Internal Database File</string> 
+              </void> 
+              <void method="setProperty"> 
+               <string>visible</string> 
+               <boolean>false</boolean> 
+              </void> 
+              <void property="name"> 
+               <string>openDBFileButton</string> 
+              </void> 
+              <void method="addEvent"> 
+               <object class="com.jformdesigner.model.FormEvent"> 
+                <string>java.awt.event.ActionListener</string> 
+                <string>actionPerformed</string> 
+                <string>openDBFileButtonActionPerformed</string> 
+                <boolean>false</boolean> 
+               </object> 
+              </void> 
+             </object> 
+             <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+              <class>com.jgoodies.forms.layout.CellConstraints</class> 
+              <void method="setProperty"> 
+               <string>gridX</string> 
+               <int>2</int> 
+              </void> 
+              <void method="setProperty"> 
+               <string>gridY</string> 
+               <int>1</int> 
+              </void> 
+             </object> 
+            </void> 
+            <void method="add"> 
+             <object class="com.jformdesigner.model.FormComponent"> 
+              <string>javax.swing.JButton</string> 
+              <void method="setProperty"> 
+               <string>text</string> 
                <string>Save</string> 
               </void> 
               <void method="setProperty"> 
@@ -656,7 +691,7 @@
               <class>com.jgoodies.forms.layout.CellConstraints</class> 
               <void method="setProperty"> 
                <string>gridX</string> 
-               <int>2</int> 
+               <int>4</int> 
               </void> 
               <void method="setProperty"> 
                <string>gridY</string> 
@@ -691,7 +726,7 @@
               <class>com.jgoodies.forms.layout.CellConstraints</class> 
               <void method="setProperty"> 
                <string>gridX</string> 
-               <int>4</int> 
+               <int>6</int> 
               </void> 
               <void method="setProperty"> 
                <string>gridY</string> 
@@ -726,7 +761,7 @@
               <class>com.jgoodies.forms.layout.CellConstraints</class> 
               <void method="setProperty"> 
                <string>gridX</string> 
-               <int>6</int> 
+               <int>8</int> 
               </void> 
               <void method="setProperty"> 
                <string>gridY</string> 
@@ -781,7 +816,7 @@
       <void method="setProperty"> 
        <string>size</string> 
        <object class="java.awt.Dimension"> 
-        <int>485</int> 
+        <int>630</int> 
         <int>275</int> 
        </object> 
       </void> 

@@ -1,5 +1,5 @@
 /**
- * Archivists' Toolkit(TM) Copyright © 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
+ * Archivists' Toolkit(TM) Copyright ï¿½ 2005-2007 Regents of the University of California, New York University, & Five Colleges, Inc.
  * All rights reserved.
  *
  * This software is free. You can redistribute it and / or modify it under the terms of the Educational Community License (ECL)
@@ -30,6 +30,7 @@ import org.archiviststoolkit.dialog.ErrorDialog;
 import com.jgoodies.validation.ValidationResult;
 import com.jgoodies.validation.util.ValidationUtils;
 
+import java.lang.reflect.Method;
 import java.util.Calendar;
 import java.lang.reflect.InvocationTargetException;
 
@@ -120,10 +121,16 @@ public abstract class ATAbstractValidator implements ATValidator {
 	protected void checkForStringLengths(DomainObject domainObject, ATPropertyValidationSupport support) {
 		try {
 			for (ATFieldInfo field: ATFieldInfo.getFieldsThatNeedStringValidation(domainObject.getClass())) {
-				String fieldValue = (String)field.getGetMethod().invoke(domainObject);
-				if (!ValidationUtils.hasMaximumLength(fieldValue, field.getStringLengthLimit())) {
-					support.addError(field.getFieldName(), "has a maximum length of " + field.getStringLengthLimit() + " characters");
-				}
+                Method method = field.getGetMethod();
+
+                if(method != null) {
+                    String fieldValue = (String)method.invoke(domainObject);
+				    if (!ValidationUtils.hasMaximumLength(fieldValue, field.getStringLengthLimit())) {
+					    support.addError(field.getFieldName(), "has a maximum length of " + field.getStringLengthLimit() + " characters");
+				    }
+                } else {
+                    System.out.println("No getter method for " + field.getFieldName());
+                }
 			}
 		} catch (IllegalAccessException e) {
 			new ErrorDialog("Error validating string length", e).showDialog();
